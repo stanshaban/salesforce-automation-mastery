@@ -1,0 +1,80 @@
+name: Submit a learning assignment
+description: Send a pull request in your own repository for a SAM review.
+title: "[Submission] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit a PR **in your own repository**. Do not send your solution as a PR to the course repository.
+        This issue is public. Keep code, screenshots, logs and personal data out of this form.
+        A private repository stays private: first give the agreed reviewer access, then share only the PR link here.
+        Creating this issue does not book or pay for personal review. Confirm the review arrangement separately.
+  - type: input
+    id: assignment
+    attributes:
+      label: Assignment ID
+      description: Use the exact ID from the portal.
+      placeholder: J-L01
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options: [Junior, Middle, Senior]
+    validations:
+      required: true
+  - type: input
+    id: pull_request
+    attributes:
+      label: Pull request URL
+      placeholder: https://github.com/your-account/your-lab/pull/1
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA submitted for review
+      description: Run git rev-parse HEAD after your final commit. Update this issue after corrections.
+      placeholder: Full 40-character SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Repository visibility
+      options:
+        - Public learning repository
+        - Private learning repository — reviewer access already arranged
+    validations:
+      required: true
+  - type: dropdown
+    id: review_type
+    attributes:
+      label: Review arrangement
+      options:
+        - Community feedback — no guaranteed response time
+        - Personal review — separately agreed with the instructor
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is ready and what remains uncertain?
+      description: A brief, non-sensitive summary. Put detailed evidence inside your own PR.
+      placeholder: "Implemented … Tested … I would like feedback on …"
+    validations:
+      required: true
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Ready for review
+      options:
+        - label: My PR contains the assignment ID, requirements and test evidence.
+          required: true
+        - label: I used only synthetic training data and checked my diff for credentials and private data.
+          required: true
+        - label: I understand that this issue is public and that local/static checks are not Salesforce test results.
+          required: true
+        - label: The agreed reviewer can access the PR and I have not merged it yet.
+          required: true

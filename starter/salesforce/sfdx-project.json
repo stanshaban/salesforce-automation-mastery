@@ -1,0 +1,6 @@
+{
+  "packageDirectories": [{ "path": "force-app", "default": true }],
+  "name": "sam-northstar-motors",
+  "namespace": "",
+  "sourceApiVersion": "68.0"
+}

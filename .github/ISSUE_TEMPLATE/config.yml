@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How to submit an assignment
+    url: https://github.com/stanshaban/salesforce-automation-mastery/blob/main/docs/submissions.md
+    about: Create a PR in your own repository, then submit its link for review.

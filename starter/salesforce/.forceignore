@@ -1,0 +1,10 @@
+**/.sf/**
+**/.sfdx/**
+**/.git/**
+**/node_modules/**
+**/.env*
+**/*.log
+**/*.key
+**/*.pem
+**/*.p12
+README.md

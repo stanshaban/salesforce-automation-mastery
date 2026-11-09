@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Training test-drive request with an independent owner and sharing model.</description>
+    <enableActivities>false</enableActivities>
+    <enableReports>true</enableReports>
+    <externalSharingModel>Private</externalSharingModel>
+    <label>Test Drive</label>
+    <nameField>
+        <displayFormat>TD-{0000}</displayFormat>
+        <label>Test Drive Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Drives</pluralLabel>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

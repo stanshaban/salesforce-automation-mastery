@@ -1,0 +1,5172 @@
+[
+  {
+    "id": "J-Q01",
+    "level": "junior",
+    "topic": "Security",
+    "title": "Запись расшарили, но её не видно",
+    "prompt": "Пользователю дали Read через manual sharing на Project__c. У пользователя нет object Read на Project__c. Других обходящих проверку прав нет. Что объясняет результат в стандартном интерфейсе?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sharing не заменяет object Read."
+      },
+      {
+        "id": "b",
+        "text": "Manual sharing автоматически выдаёт object Read."
+      },
+      {
+        "id": "c",
+        "text": "Нужно сделать пользователя владельцем роли."
+      },
+      {
+        "id": "d",
+        "text": "Достаточно добавить объект в навигацию."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Доступ к отдельной записи не меняет CRUD объекта."
+      },
+      {
+        "id": "c",
+        "text": "Роль не заменяет разрешение на объект."
+      },
+      {
+        "id": "d",
+        "text": "Пункт меню не выдаёт права на данные."
+      }
+    ],
+    "explanation": "Для чтения нужны и разрешение на объект, и подходящий доступ к записи.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q01-v1",
+        "prompt": "У пользователя есть object Read на Project__c. OWD Private; запись чужая, и ни роли, ни правил, ни ручного доступа к ней нет. Что нужно проверить?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Почему object Read не выдаёт Delete."
+          },
+          {
+            "id": "b",
+            "text": "Только язык интерфейса."
+          },
+          {
+            "id": "c",
+            "text": "Источник доступа к конкретной записи."
+          },
+          {
+            "id": "d",
+            "text": "Только имя вкладки."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Delete не нужен для чтения."
+          },
+          {
+            "id": "b",
+            "text": "Язык не определяет record access."
+          },
+          {
+            "id": "d",
+            "text": "Вкладка не даёт record access."
+          }
+        ],
+        "explanation": "CRUD есть, но он не означает доступ ко всем записям."
+      }
+    ]
+  },
+  {
+    "id": "J-Q02",
+    "level": "junior",
+    "topic": "Security",
+    "title": "Скрытое поле",
+    "prompt": "Поле Salary__c убрали с page layout, но FLS Read на него остался. Можно ли считать поле защищённым от чтения через другие разрешённые интерфейсы?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Да, page layout запрещает API-чтение."
+      },
+      {
+        "id": "b",
+        "text": "Да, если убрать поле из отчёта."
+      },
+      {
+        "id": "c",
+        "text": "Да, если переименовать поле."
+      },
+      {
+        "id": "d",
+        "text": "Нет: layout управляет отображением, FLS — доступом."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Layout не является проверкой API-доступа."
+      },
+      {
+        "id": "b",
+        "text": "Один отчёт не меняет FLS."
+      },
+      {
+        "id": "c",
+        "text": "Имя поля не является механизмом доступа."
+      }
+    ],
+    "explanation": "Скрытие на одной странице не отзывает право читать поле.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q02-v1",
+        "prompt": "FLS запрещает чтение Salary__c обычному пользователю. Поле добавили на его page layout. Появится ли право читать поле в стандартной форме?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да: после переименования layout."
+          },
+          {
+            "id": "b",
+            "text": "Нет: добавление на layout не выдаёт FLS."
+          },
+          {
+            "id": "c",
+            "text": "Да: layout всегда сильнее FLS."
+          },
+          {
+            "id": "d",
+            "text": "Да: если страница Lightning."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Название layout не меняет разрешения."
+          },
+          {
+            "id": "c",
+            "text": "Настройка отображения не обходит FLS."
+          },
+          {
+            "id": "d",
+            "text": "Lightning не отменяет права на поле."
+          }
+        ],
+        "explanation": "Разрешение на поле нужно отдельно от настройки страницы."
+      }
+    ]
+  },
+  {
+    "id": "J-Q03",
+    "level": "junior",
+    "topic": "Security",
+    "title": "Дополнительный permission set",
+    "prompt": "Профиль даёт Read на Case. Назначенный permission set дополнительно даёт Edit. Других ограничений редактирования рассматриваемой записи нет. Какой итог по разрешениям объекта?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только Edit: set заменяет профиль."
+      },
+      {
+        "id": "b",
+        "text": "Права отменяют друг друга."
+      },
+      {
+        "id": "c",
+        "text": "Read и Edit."
+      },
+      {
+        "id": "d",
+        "text": "Только Read: профиль всегда главнее."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Разрешения объединяются, а не заменяют весь профиль."
+      },
+      {
+        "id": "b",
+        "text": "У обычного permission set нет такого deny-поведения."
+      },
+      {
+        "id": "d",
+        "text": "Permission set не ограничивается набором прав профиля."
+      }
+    ],
+    "explanation": "Permission set добавляет разрешения к уже выданным.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q03-v1",
+        "prompt": "Edit на Case выдаёт только один permission set. Его сняли; профиль и остальные назначения дают лишь Read. Что останется по CRUD?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Только Read."
+          },
+          {
+            "id": "b",
+            "text": "Read и Edit навсегда."
+          },
+          {
+            "id": "c",
+            "text": "Никаких прав."
+          },
+          {
+            "id": "d",
+            "text": "Delete вместо Edit."
+          }
+        ],
+        "correctOptionId": "a",
+        "whyOthers": [
+          {
+            "id": "b",
+            "text": "Снятое назначение не сохраняет свой вклад."
+          },
+          {
+            "id": "c",
+            "text": "Профиль всё ещё даёт Read."
+          },
+          {
+            "id": "d",
+            "text": "Снятие назначения не выдаёт новое разрешение."
+          }
+        ],
+        "explanation": "После снятия единственного источника Edit этого права больше нет."
+      }
+    ]
+  },
+  {
+    "id": "J-Q04",
+    "level": "junior",
+    "topic": "Security",
+    "title": "Что означает Private",
+    "prompt": "OWD Project__c = Private. Руководитель получил Read к записи через sharing rule и имеет object Read. Нет restriction rules и повышенных прав. Должна ли запись быть видна?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только автору правила."
+      },
+      {
+        "id": "b",
+        "text": "Да: правило sharing расширило исходный доступ."
+      },
+      {
+        "id": "c",
+        "text": "Нет: Private — абсолютный запрет."
+      },
+      {
+        "id": "d",
+        "text": "Только если дать Modify All."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Правило выдаёт доступ получателям, а не своему автору."
+      },
+      {
+        "id": "c",
+        "text": "Private не запрещает дополнительные основания доступа."
+      },
+      {
+        "id": "d",
+        "text": "Для нужной записи уже есть достаточное основание."
+      }
+    ],
+    "explanation": "Private задаёт базовую видимость, которую можно расширять.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q04-v1",
+        "prompt": "OWD Project__c = Public Read Only. Есть object Edit, но нет дополнительных прав на изменение чужой записи. Можно ли редактировать любую чужую запись?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да: object Edit открывает все записи."
+          },
+          {
+            "id": "b",
+            "text": "Да: слово Public означает любые операции."
+          },
+          {
+            "id": "c",
+            "text": "Нет: нельзя даже читать."
+          },
+          {
+            "id": "d",
+            "text": "Нет: базовый record access даёт только чтение."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "CRUD не заменяет record-level access."
+          },
+          {
+            "id": "b",
+            "text": "Public Read Only означает чтение."
+          },
+          {
+            "id": "c",
+            "text": "Базовая модель даёт чтение при object Read."
+          }
+        ],
+        "explanation": "Object Edit и доступ на изменение конкретной записи нужны вместе."
+      }
+    ]
+  },
+  {
+    "id": "J-Q05",
+    "level": "junior",
+    "topic": "Security",
+    "title": "Роль и профиль",
+    "prompt": "Что точнее описывает разницу роли и профиля в обычной модели внутренних пользователей Salesforce?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Профиль участвует в разрешениях, роль — в доступе к записям через иерархию."
+      },
+      {
+        "id": "b",
+        "text": "Роль содержит все Apex-классы пользователя."
+      },
+      {
+        "id": "c",
+        "text": "Профиль определяет менеджера в иерархии ролей."
+      },
+      {
+        "id": "d",
+        "text": "Это два названия одного механизма."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Apex class access не является назначением роли."
+      },
+      {
+        "id": "c",
+        "text": "Профиль и роль назначаются отдельно."
+      },
+      {
+        "id": "d",
+        "text": "Они решают разные задачи."
+      }
+    ],
+    "explanation": "Это разные механизмы; роль не заменяет CRUD/FLS.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture",
+    "difficulty": 1,
+    "kind": "concept"
+  },
+  {
+    "id": "J-Q06",
+    "level": "junior",
+    "topic": "Data model",
+    "title": "Связь для независимого владельца",
+    "prompt": "Test_Drive__c должен иметь своего владельца и собственные sharing-настройки, а автомобиль может существовать независимо. Какой вариант связи с Vehicle__c подходит лучше?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Master-Detail ради независимого OwnerId."
+      },
+      {
+        "id": "b",
+        "text": "Formula field вместо связи."
+      },
+      {
+        "id": "c",
+        "text": "Permission Set Group вместо поля связи."
+      },
+      {
+        "id": "d",
+        "text": "Lookup."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "У detail нет независимой модели владения как у lookup."
+      },
+      {
+        "id": "b",
+        "text": "Формула не создаёт нужное отношение объектов."
+      },
+      {
+        "id": "c",
+        "text": "Группа прав не моделирует отношения данных."
+      }
+    ],
+    "explanation": "Master-Detail связывает доступ и владение detail-записью с master.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q06-v1",
+        "prompt": "Detail-запись должна существовать только вместе с родителем, наследовать его доступ и участвовать в native roll-up summary. Какую связь рассмотреть?",
+        "options": [
+          {
+            "id": "a",
+            "text": "LMS."
+          },
+          {
+            "id": "b",
+            "text": "Master-Detail."
+          },
+          {
+            "id": "c",
+            "text": "Lookup всегда даёт native roll-up summary."
+          },
+          {
+            "id": "d",
+            "text": "Text с Id родителя."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "LMS — коммуникация интерфейса, не связь данных."
+          },
+          {
+            "id": "c",
+            "text": "Обычный lookup не даёт тот же механизм roll-up."
+          },
+          {
+            "id": "d",
+            "text": "Текст не обеспечивает отношение и его поведение."
+          }
+        ],
+        "explanation": "Условия соответствуют зависимой detail-записи; последствия удаления надо принять осознанно."
+      }
+    ]
+  },
+  {
+    "id": "J-Q07",
+    "level": "junior",
+    "topic": "Data model",
+    "title": "Значение или вычисление",
+    "prompt": "Нужно показывать сумму двух числовых полей на той же записи. Пользователь не должен вводить сумму, отдельная история снимков не нужна. Какой первый простой вариант?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Отдельный объект на каждую сумму."
+      },
+      {
+        "id": "b",
+        "text": "Manual sharing."
+      },
+      {
+        "id": "c",
+        "text": "Formula field."
+      },
+      {
+        "id": "d",
+        "text": "Тригер с записью суммы при каждом чтении."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это не требуется данными условиями."
+      },
+      {
+        "id": "b",
+        "text": "Sharing не выполняет вычисления."
+      },
+      {
+        "id": "d",
+        "text": "Чтение не является триггерным DML-событием; решение лишнее."
+      }
+    ],
+    "explanation": "Вычисляемое значение не нужно дублировать ручным вводом без причины.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q08",
+    "level": "junior",
+    "topic": "Flow",
+    "title": "Повторное сохранение",
+    "prompt": "Record-triggered Flow создаёт Task при каждом update заявки. Требование: Task нужен только при переходе Status__c в Approved. Что исправить прежде всего?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Сделать всем Modify All."
+      },
+      {
+        "id": "b",
+        "text": "Проверять сам переход состояния, а не только текущее Approved."
+      },
+      {
+        "id": "c",
+        "text": "Запускать Flow чаще."
+      },
+      {
+        "id": "d",
+        "text": "Создавать Task в цикле дважды."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Права не исправляют бизнес-условие."
+      },
+      {
+        "id": "c",
+        "text": "Это усилит повторные действия."
+      },
+      {
+        "id": "d",
+        "text": "Повтор не решает условие запуска."
+      }
+    ],
+    "explanation": "Условие должно отличать первое утверждение от следующего сохранения.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered-automation",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q09",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "Лишний DML в before trigger",
+    "prompt": "В before update нужно проставить поле в тех же записях Trigger.new. Как сделать это без лишнего DML?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Изменить поля записей Trigger.new; отдельный update этих записей не нужен."
+      },
+      {
+        "id": "b",
+        "text": "Всегда выполнить update Trigger.new."
+      },
+      {
+        "id": "c",
+        "text": "Удалить и вставить записи заново."
+      },
+      {
+        "id": "d",
+        "text": "Запустить Batch для каждого Id."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Повторный DML по тем же записям здесь лишний и проблемный."
+      },
+      {
+        "id": "c",
+        "text": "Это меняет жизненный цикл и нарушает требование."
+      },
+      {
+        "id": "d",
+        "text": "Это несоразмерно простой локальной правке."
+      }
+    ],
+    "explanation": "Before trigger позволяет менять сохраняемые записи до их записи в БД.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk",
+    "difficulty": 1,
+    "kind": "code",
+    "code": "for (Project__c row : Trigger.new) {\n    row.Checked__c = true;\n}"
+  },
+  {
+    "id": "J-Q10",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "Запрос внутри цикла",
+    "prompt": "Что прежде всего нужно изменить в этом коде для пачки из 200 контактов?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Добавить try/catch вокруг каждого запроса."
+      },
+      {
+        "id": "b",
+        "text": "Увеличить число контактов до 500."
+      },
+      {
+        "id": "c",
+        "text": "Сделать переменную a static."
+      },
+      {
+        "id": "d",
+        "text": "Собрать AccountId в Set и получить Accounts одним запросом вне цикла."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это не устраняет расход запросов."
+      },
+      {
+        "id": "b",
+        "text": "Это увеличит нагрузку."
+      },
+      {
+        "id": "c",
+        "text": "Static не объединяет SOQL-запросы."
+      }
+    ],
+    "explanation": "Bulk-подход сокращает число запросов на пачку.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk",
+    "difficulty": 1,
+    "kind": "code",
+    "code": "for (Contact c : contacts) {\n    Account a = [SELECT Id, Name FROM Account WHERE Id = :c.AccountId];\n}"
+  },
+  {
+    "id": "J-Q11",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "DML на наборе",
+    "prompt": "Нужно вставить 200 новых записей. Какой базовый bulk-подход подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Выполнить 200 SOQL вместо insert."
+      },
+      {
+        "id": "b",
+        "text": "Вставлять только первую запись."
+      },
+      {
+        "id": "c",
+        "text": "Собрать записи в List и выполнить DML над списком."
+      },
+      {
+        "id": "d",
+        "text": "По одному insert внутри цикла."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Запрос не сохраняет новые записи."
+      },
+      {
+        "id": "b",
+        "text": "Это нарушает требование."
+      },
+      {
+        "id": "d",
+        "text": "Число DML statements растёт с числом записей."
+      }
+    ],
+    "explanation": "Операции над коллекцией экономят DML statements.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q12",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "Ищем по Id",
+    "prompt": "Есть Accounts и Contacts. Нужен быстрый доступ к Account по AccountId без повторного обхода всех Accounts. Что использовать?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Один глобальный Account для всех контактов."
+      },
+      {
+        "id": "b",
+        "text": "Map<Id, Account>."
+      },
+      {
+        "id": "c",
+        "text": "Список имён без Id."
+      },
+      {
+        "id": "d",
+        "text": "Ещё один вложенный цикл по всем Accounts."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Контакты могут относиться к разным Accounts."
+      },
+      {
+        "id": "c",
+        "text": "Имя не гарантирует нужное сопоставление."
+      },
+      {
+        "id": "d",
+        "text": "Это сохраняет лишнюю работу."
+      }
+    ],
+    "explanation": "Map позволяет находить значение по ключу вместо вложенного перебора.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk",
+    "difficulty": 1,
+    "kind": "concept"
+  },
+  {
+    "id": "J-Q13",
+    "level": "junior",
+    "topic": "Testing",
+    "title": "Тест без проверки результата",
+    "prompt": "Тест выполняет нужный метод и проходит, но не содержит assertions. Что улучшить первым?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверить ожидаемые изменения и отсутствие лишних действий."
+      },
+      {
+        "id": "b",
+        "text": "Убрать тест: он уже зелёный."
+      },
+      {
+        "id": "c",
+        "text": "Проверять только отсутствие exception."
+      },
+      {
+        "id": "d",
+        "text": "Добавить пустой System.debug."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Без проверок баг может остаться незамеченным."
+      },
+      {
+        "id": "c",
+        "text": "Метод может вернуть неправильный результат без ошибки."
+      },
+      {
+        "id": "d",
+        "text": "Лог не является assertion."
+      }
+    ],
+    "explanation": "Прохождение строк не доказывает правильное поведение.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q13-v1",
+        "prompt": "Тест содержит assertion, но он сравнивает 1 с 1. Как повысить его ценность?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Переименовать метод теста."
+          },
+          {
+            "id": "b",
+            "text": "Убрать вызов проверяемого метода."
+          },
+          {
+            "id": "c",
+            "text": "Сравнивать фактический бизнес-результат с ожидаемым."
+          },
+          {
+            "id": "d",
+            "text": "Увеличить число таких assertions."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Название не меняет его проверочную способность."
+          },
+          {
+            "id": "b",
+            "text": "Тогда поведение вообще не проверяется."
+          },
+          {
+            "id": "d",
+            "text": "Количество бессмысленных проверок не помогает."
+          }
+        ],
+        "explanation": "Постоянное истинное условие не связано с проверяемой функцией."
+      }
+    ]
+  },
+  {
+    "id": "J-Q14",
+    "level": "junior",
+    "topic": "Testing",
+    "title": "Негативный сценарий",
+    "prompt": "Функция запрещает запись на тест-драйв в прошлом. Какой тест обязательно добавить к успешной записи на завтра?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ещё десять одинаковых успешных записей."
+      },
+      {
+        "id": "b",
+        "text": "Проверку цвета кнопки вместо правила."
+      },
+      {
+        "id": "c",
+        "text": "Удаление проверки даты из кода."
+      },
+      {
+        "id": "d",
+        "text": "Попытку записи на прошедшую дату с проверкой понятной ошибки."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Они не проверяют запрет прошлого."
+      },
+      {
+        "id": "b",
+        "text": "Цвет не доказывает серверную валидацию."
+      },
+      {
+        "id": "c",
+        "text": "Это снимает требование, а не тестирует его."
+      }
+    ],
+    "explanation": "Тест должен подтверждать не только разрешённое, но и запрещённое поведение.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q15",
+    "level": "junior",
+    "topic": "Testing",
+    "title": "Данные для теста",
+    "prompt": "Unit test зависит от случайного Account в рабочей org. Что сделает тест воспроизводимее?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Копировать реальные персональные данные клиентов."
+      },
+      {
+        "id": "b",
+        "text": "Отключить assertions при отсутствии Account."
+      },
+      {
+        "id": "c",
+        "text": "Создавать необходимые данные в тесте или test setup."
+      },
+      {
+        "id": "d",
+        "text": "Искать первый доступный Account без условий."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Они не нужны для синтетического unit test."
+      },
+      {
+        "id": "b",
+        "text": "Тогда отсутствие данных скрывает непроверенное поведение."
+      },
+      {
+        "id": "d",
+        "text": "Результат зависит от содержимого org."
+      }
+    ],
+    "explanation": "Управляемые тестовые данные уменьшают зависимость от состояния org.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q16",
+    "level": "junior",
+    "topic": "Queries",
+    "title": "Запрос или поиск",
+    "prompt": "Нужно получить Opportunities одного Account по известному AccountId и StageName. Какой инструмент подходит напрямую?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lightning Message Service."
+      },
+      {
+        "id": "b",
+        "text": "SOQL с условиями по полям."
+      },
+      {
+        "id": "c",
+        "text": "SOSL обязателен для любого чтения."
+      },
+      {
+        "id": "d",
+        "text": "DML insert."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "LMS не является языком запросов."
+      },
+      {
+        "id": "c",
+        "text": "SOQL предназначен для запросов записей."
+      },
+      {
+        "id": "d",
+        "text": "Insert создаёт данные, а не читает их."
+      }
+    ],
+    "explanation": "Задача задаёт объект, поля и точные фильтры.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-sosl-intro.html",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q16-v1",
+        "prompt": "Пользователь вводит фрагмент имени, и нужно искать совпадения одновременно среди Accounts и Contacts по поисковому индексу. Что рассмотреть?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Только insert."
+          },
+          {
+            "id": "b",
+            "text": "Manual sharing."
+          },
+          {
+            "id": "c",
+            "text": "Один SOQL обязательно ищет сразу во всех объектах."
+          },
+          {
+            "id": "d",
+            "text": "SOSL."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Он не ищет записи."
+          },
+          {
+            "id": "b",
+            "text": "Он не выполняет поиск по тексту."
+          },
+          {
+            "id": "c",
+            "text": "SOQL и многосущностный текстовый поиск — разные задачи."
+          }
+        ],
+        "explanation": "SOSL подходит для текстового поиска по нескольким объектам."
+      }
+    ]
+  },
+  {
+    "id": "J-Q17",
+    "level": "junior",
+    "topic": "Data management",
+    "title": "Повторный импорт",
+    "prompt": "Внешняя система присылает заказ с постоянным External_Id__c. Поле настроено как External ID; значение однозначно определяет заказ. Как повторно прислать обновление без безусловного создания дубликата?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Использовать upsert по External_Id__c."
+      },
+      {
+        "id": "b",
+        "text": "Всегда insert."
+      },
+      {
+        "id": "c",
+        "text": "Менять внешний Id при каждом повторе."
+      },
+      {
+        "id": "d",
+        "text": "Удалять все заказы перед импортом."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Повтор может создать ещё одну запись."
+      },
+      {
+        "id": "c",
+        "text": "Тогда теряется постоянный ключ сопоставления."
+      },
+      {
+        "id": "d",
+        "text": "Это разрушительно и не требуется."
+      }
+    ],
+    "explanation": "Upsert выбирает создание или обновление по указанному ключу.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q17-v1",
+        "prompt": "Во входном заказе нет надёжного внешнего ключа, а имя клиента повторяется. Достаточно ли upsert по имени для безопасной синхронизации?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да: upsert угадывает нужную запись."
+          },
+          {
+            "id": "b",
+            "text": "Нет: нужно отключить проверки данных."
+          },
+          {
+            "id": "c",
+            "text": "Нет: сначала нужен однозначный контракт идентификации."
+          },
+          {
+            "id": "d",
+            "text": "Да: любое имя уникально."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Upsert использует заданное сопоставление, а не намерение."
+          },
+          {
+            "id": "b",
+            "text": "Отключение проверок не создаёт идентификатор."
+          },
+          {
+            "id": "d",
+            "text": "Условие прямо допускает повторения."
+          }
+        ],
+        "explanation": "Имя не доказывает тождество заказа."
+      }
+    ]
+  },
+  {
+    "id": "J-Q18",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "Частичный результат DML",
+    "prompt": "Используется Database.insert(records, false). Часть строк некорректна. Что должен обработать вызывающий код?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только результат первой строки."
+      },
+      {
+        "id": "b",
+        "text": "Всегда считать, что все строки сохранены."
+      },
+      {
+        "id": "c",
+        "text": "Ничего: false означает не выполнять insert."
+      },
+      {
+        "id": "d",
+        "text": "SaveResult для каждой строки: успехи и ошибки отдельно."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Остальные могут иметь другой исход."
+      },
+      {
+        "id": "b",
+        "text": "Некорректные строки могут не сохраниться."
+      },
+      {
+        "id": "c",
+        "text": "Параметр управляет all-or-none, не отключает DML."
+      }
+    ],
+    "explanation": "allOrNone=false позволяет частичный успех; нельзя считать весь список успешным.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q19",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Данные от родителя",
+    "prompt": "Родитель LWC передаёт выбранный recordId дочернему компоненту. Как ребёнок объявляет публичное входное свойство?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Через static в Apex."
+      },
+      {
+        "id": "b",
+        "text": "Через global variable на странице."
+      },
+      {
+        "id": "c",
+        "text": "Через @api."
+      },
+      {
+        "id": "d",
+        "text": "Через @wire без adapter."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это другой слой и не публичное свойство LWC."
+      },
+      {
+        "id": "b",
+        "text": "Общая переменная не заменяет контракт компонента."
+      },
+      {
+        "id": "d",
+        "text": "Wire нужен для provision данных через adapter."
+      }
+    ],
+    "explanation": "Публичное свойство задаёт контракт компонента для родителя.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-public.html",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q19-v1",
+        "prompt": "Ребёнок получил объект через публичное свойство и хочет отредактировать локальную черновую копию. Что лучше?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Создать свою копию нужных данных и уведомить родителя о сохранении."
+          },
+          {
+            "id": "b",
+            "text": "Изменить входной объект напрямую."
+          },
+          {
+            "id": "c",
+            "text": "Удалить объект у родителя."
+          },
+          {
+            "id": "d",
+            "text": "Перезаписать все глобальные переменные."
+          }
+        ],
+        "correctOptionId": "a",
+        "whyOthers": [
+          {
+            "id": "b",
+            "text": "Это нарушает однонаправленный поток данных."
+          },
+          {
+            "id": "c",
+            "text": "Это не локальное редактирование."
+          },
+          {
+            "id": "d",
+            "text": "Глобальное состояние не требуется."
+          }
+        ],
+        "explanation": "Переданные данные считаются принадлежащими источнику; не меняем их скрытно."
+      }
+    ]
+  },
+  {
+    "id": "J-Q20",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Сообщение от ребёнка",
+    "prompt": "Дочерний компонент сообщает родителю о выборе записи. Какой обычный механизм подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Новый Apex Batch на выбор записи."
+      },
+      {
+        "id": "b",
+        "text": "CustomEvent с нужными данными; родитель обрабатывает событие."
+      },
+      {
+        "id": "c",
+        "text": "Ребёнок напрямую изменяет приватное поле родителя."
+      },
+      {
+        "id": "d",
+        "text": "Platform Event обязателен для каждого клика."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Batch не нужен для уведомления родителя."
+      },
+      {
+        "id": "c",
+        "text": "Так нарушается граница компонентов."
+      },
+      {
+        "id": "d",
+        "text": "Для локального UI это лишний серверный механизм."
+      }
+    ],
+    "explanation": "Событие передаёт факт действия вверх по композиции.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q21",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Объект изменился, экран нет",
+    "prompt": "Поле state используется в шаблоне. Оно не помечено @track. Как надёжно обновить name с новой identity объекта?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Присвоить новый объект: this.state = { ...this.state, name: 'New' }."
+      },
+      {
+        "id": "b",
+        "text": "Менять только this.state.name и всегда ожидать rerender."
+      },
+      {
+        "id": "c",
+        "text": "Добавить console.log."
+      },
+      {
+        "id": "d",
+        "text": "Отключить шаблон."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Без наблюдения вложенных изменений это не надёжный способ."
+      },
+      {
+        "id": "c",
+        "text": "Лог не обновляет состояние."
+      },
+      {
+        "id": "d",
+        "text": "Это не исправляет отображение."
+      }
+    ],
+    "explanation": "Новая ссылка обнаруживается shallow reactivity.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-fields.html",
+    "difficulty": 1,
+    "kind": "code",
+    "code": "state = { name: 'Old' };\n// name выводится в шаблоне"
+  },
+  {
+    "id": "J-Q22",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Дочерний DOM ещё не готов",
+    "prompt": "В connectedCallback() код пытается найти элемент из собственного шаблона, но его ещё нет. Какой hook подходит для работы после рендера?",
+    "options": [
+      {
+        "id": "a",
+        "text": "constructor() гарантирует готовый DOM."
+      },
+      {
+        "id": "b",
+        "text": "Любой Apex trigger."
+      },
+      {
+        "id": "c",
+        "text": "disconnectedCallback() как основной рендер."
+      },
+      {
+        "id": "d",
+        "text": "renderedCallback(), с защитой от ненужных повторов."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Конструктор вызывается раньше рендера."
+      },
+      {
+        "id": "b",
+        "text": "Apex не управляет DOM компонента."
+      },
+      {
+        "id": "c",
+        "text": "Он относится к удалению/отсоединению."
+      }
+    ],
+    "explanation": "Connected означает вставку компонента; его дочерние элементы ещё могут не существовать.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks-dom.html",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q23",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Что делает wire",
+    "prompt": "Какое утверждение о wire service верно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Он всегда выполняется ровно один раз."
+      },
+      {
+        "id": "b",
+        "text": "Полученный объект можно всегда менять напрямую."
+      },
+      {
+        "id": "c",
+        "text": "Он предоставляет поток данных и может использовать клиентский кеш."
+      },
+      {
+        "id": "d",
+        "text": "Он всегда делает DML."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Изменения reactive config могут дать новое значение."
+      },
+      {
+        "id": "b",
+        "text": "Данные потока считаются immutable."
+      },
+      {
+        "id": "d",
+        "text": "Wire предназначен прежде всего для реактивного чтения."
+      }
+    ],
+    "explanation": "Wire не обязательно означает сетевой запрос при каждом вызове.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/data-wire-service-about.html",
+    "difficulty": 1,
+    "kind": "concept"
+  },
+  {
+    "id": "J-Q24",
+    "level": "junior",
+    "topic": "LWC",
+    "title": "Стандартная форма записи",
+    "prompt": "Нужно стандартное редактирование доступных полей записи, без особой серверной логики. Что стоит рассмотреть до собственного Apex-контроллера?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Выдавать всем администратора."
+      },
+      {
+        "id": "b",
+        "text": "Lightning record components и Lightning Data Service."
+      },
+      {
+        "id": "c",
+        "text": "Всегда писать собственный SOQL-контроллер."
+      },
+      {
+        "id": "d",
+        "text": "Сохранять поля через DOM."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Повышение прав не является UI-решением."
+      },
+      {
+        "id": "c",
+        "text": "Это лишнее для многих стандартных форм."
+      },
+      {
+        "id": "d",
+        "text": "DOM не является API записи Salesforce."
+      }
+    ],
+    "explanation": "Стандартные data-компоненты уже решают типовую работу с записью и доступом.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/data-ui-api.html",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q25",
+    "level": "junior",
+    "topic": "Git",
+    "title": "Что делает fetch",
+    "prompt": "Коллега обновил origin/main. Вы выполняете git fetch origin. Что происходит обычно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Обновляются remote-tracking refs; текущая рабочая ветка сама не сливается с main."
+      },
+      {
+        "id": "b",
+        "text": "Текущая ветка всегда rebased на main."
+      },
+      {
+        "id": "c",
+        "text": "Локальные коммиты отправляются на сервер."
+      },
+      {
+        "id": "d",
+        "text": "Все незакоммиченные файлы удаляются."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Rebase не является обычным действием fetch."
+      },
+      {
+        "id": "c",
+        "text": "Отправкой занимается push."
+      },
+      {
+        "id": "d",
+        "text": "Fetch не является очисткой рабочего дерева."
+      }
+    ],
+    "explanation": "Fetch получает объекты и ссылки, не выполняя автоматическую интеграцию в текущую ветку.",
+    "sourceUrl": "https://git-scm.com/docs/git-fetch",
+    "difficulty": 1,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "J-Q25-v1",
+        "prompt": "Вы хотите сначала увидеть чужие коммиты, не интегрируя их в свою ветку. Какой шаг подходит?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Удалить локальную ветку."
+          },
+          {
+            "id": "b",
+            "text": "Перезаписать main вручную."
+          },
+          {
+            "id": "c",
+            "text": "git fetch, затем просмотр diff или log."
+          },
+          {
+            "id": "d",
+            "text": "git push --force."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Просмотр чужой истории не требует удаления."
+          },
+          {
+            "id": "b",
+            "text": "Это не безопасный способ изучения изменений."
+          },
+          {
+            "id": "d",
+            "text": "Это меняет удалённую историю, не просто читает её."
+          }
+        ],
+        "explanation": "Получить сведения и интегрировать изменения можно отдельными шагами."
+      }
+    ]
+  },
+  {
+    "id": "J-Q26",
+    "level": "junior",
+    "topic": "Git",
+    "title": "Что делает pull",
+    "prompt": "Как точнее описать git pull для текущей ветки при настроенном upstream?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только загрузить refs, никогда не меняя ветку."
+      },
+      {
+        "id": "b",
+        "text": "Всегда удалить локальные коммиты."
+      },
+      {
+        "id": "c",
+        "text": "Всегда выполнить только rebase независимо от настроек."
+      },
+      {
+        "id": "d",
+        "text": "Получить изменения и интегрировать их выбранным способом, например merge или rebase."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это описание fetch без интеграции."
+      },
+      {
+        "id": "b",
+        "text": "Pull не равен удалению истории."
+      },
+      {
+        "id": "c",
+        "text": "Стратегия не универсальна."
+      }
+    ],
+    "explanation": "Поведение интеграции зависит от настроек и флагов.",
+    "sourceUrl": "https://git-scm.com/docs/git-pull",
+    "difficulty": 1,
+    "kind": "concept"
+  },
+  {
+    "id": "J-Q27",
+    "level": "junior",
+    "topic": "Platform architecture",
+    "title": "Данные и metadata",
+    "prompt": "Что является metadata, а не записью бизнес-данных?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Значение телефона в Contact."
+      },
+      {
+        "id": "b",
+        "text": "Сумма конкретной Opportunity."
+      },
+      {
+        "id": "c",
+        "text": "Определение custom field с его типом."
+      },
+      {
+        "id": "d",
+        "text": "Конкретный Account клиента."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это значение данных."
+      },
+      {
+        "id": "b",
+        "text": "Это данные записи."
+      },
+      {
+        "id": "d",
+        "text": "Это бизнес-запись."
+      }
+    ],
+    "explanation": "Metadata описывает структуру и поведение приложения.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-multitenant-architecture",
+    "difficulty": 1,
+    "kind": "concept"
+  },
+  {
+    "id": "J-Q28",
+    "level": "junior",
+    "topic": "Async Apex",
+    "title": "Зачем фоновые задания",
+    "prompt": "Пользователь сохранил заявку. Отправку уведомления можно выполнить позже; мгновенный ответ внешнего сервиса не нужен. Зачем рассмотреть async?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Чтобы не обрабатывать ошибки."
+      },
+      {
+        "id": "b",
+        "text": "Чтобы отделить фоновую работу от ожидания пользователя, учитывая задержки и лимиты."
+      },
+      {
+        "id": "c",
+        "text": "Чтобы получить бесконечные ресурсы."
+      },
+      {
+        "id": "d",
+        "text": "Чтобы гарантировать запуск ровно через миллисекунду."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Фоновые ошибки тоже требуют наблюдения и восстановления."
+      },
+      {
+        "id": "c",
+        "text": "Асинхронная инфраструктура ограничена."
+      },
+      {
+        "id": "d",
+        "text": "Такая гарантия не следует из async."
+      }
+    ],
+    "explanation": "Async переносит работу, но не отменяет ограничения платформы.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q29",
+    "level": "junior",
+    "topic": "Data quality",
+    "title": "Проверка только в браузере",
+    "prompt": "JS проверяет дату, но интеграция пишет записи напрямую через API. Где обеспечить общее бизнес-правило для всех этих путей?",
+    "options": [
+      {
+        "id": "a",
+        "text": "На подходящем серверном уровне, например Validation Rule."
+      },
+      {
+        "id": "b",
+        "text": "Только в тексте подсказки."
+      },
+      {
+        "id": "c",
+        "text": "Только в CSS."
+      },
+      {
+        "id": "d",
+        "text": "В названии вкладки."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Подсказка не запрещает некорректное сохранение."
+      },
+      {
+        "id": "c",
+        "text": "CSS не проверяет бизнес-данные."
+      },
+      {
+        "id": "d",
+        "text": "Название не влияет на API."
+      }
+    ],
+    "explanation": "Клиентская проверка помогает UX, но не охватывает API-запись.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/validation_rules",
+    "difficulty": 1,
+    "kind": "scenario"
+  },
+  {
+    "id": "J-Q30",
+    "level": "junior",
+    "topic": "Apex",
+    "title": "Значение до изменения",
+    "prompt": "В update trigger нужно понять, впервые ли Status__c стал Approved. Что сравнить?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только число записей в org."
+      },
+      {
+        "id": "b",
+        "text": "Только Trigger.new[0] для всей пачки."
+      },
+      {
+        "id": "c",
+        "text": "Имя текущего пользователя."
+      },
+      {
+        "id": "d",
+        "text": "Новое значение с прежним значением из Trigger.oldMap для того же Id."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Оно не говорит о переходе конкретного статуса."
+      },
+      {
+        "id": "b",
+        "text": "Каждая запись может иметь свой переход."
+      },
+      {
+        "id": "c",
+        "text": "Оно не является старым значением статуса."
+      }
+    ],
+    "explanation": "Сравнение состояния до и после позволяет распознать переход.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk",
+    "difficulty": 1,
+    "kind": "code",
+    "code": "if (row.Status__c == 'Approved' &&\n    Trigger.oldMap.get(row.Id).Status__c != 'Approved') {\n    // обработать переход\n}"
+  },
+  {
+    "id": "M-Q01",
+    "level": "middle",
+    "topic": "Security",
+    "title": "Что именно выключает muting",
+    "prompt": "Edit на Case приходит из Permission Set Group и из отдельно назначенного permission set. В группе Edit замьючен. Других ограничений нет. Что происходит с разрешением Edit на объект?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Edit остаётся благодаря отдельному permission set."
+      },
+      {
+        "id": "b",
+        "text": "Edit выключается у пользователя целиком."
+      },
+      {
+        "id": "c",
+        "text": "Edit остаётся только на записях владельца."
+      },
+      {
+        "id": "d",
+        "text": "Отдельный permission set автоматически удаляется."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Muting не является глобальным запретом."
+      },
+      {
+        "id": "c",
+        "text": "Вопрос о разрешении на объект; доступ к отдельным записям проверяется отдельно."
+      },
+      {
+        "id": "d",
+        "text": "Muting не удаляет назначения permission sets."
+      }
+    ],
+    "explanation": "Muting влияет на вклад конкретной группы. Он не отменяет то же разрешение, которое пришло из независимого назначения.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/permission-set-groups/mute-permissions-in-permission-set-groups",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q01-v1",
+        "prompt": "Edit на Case приходит только из одной Permission Set Group. В ней Edit замьючен; профиль и другие назначения Edit не дают. Пересчёт группы завершён. Есть ли разрешение Edit на объект?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, любой permission set внутри группы сильнее muting."
+          },
+          {
+            "id": "b",
+            "text": "Да, если запись расшарена Read/Write."
+          },
+          {
+            "id": "c",
+            "text": "Нет: единственный источник Edit замьючен."
+          },
+          {
+            "id": "d",
+            "text": "Да, muting только скрывает кнопку."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Muting предназначен именно для исключения разрешений из вклада группы."
+          },
+          {
+            "id": "b",
+            "text": "Sharing не заменяет разрешение Edit на объект."
+          },
+          {
+            "id": "d",
+            "text": "Muting меняет эффективные разрешения группы, а не только интерфейс."
+          }
+        ],
+        "explanation": "Если независимых источников Edit нет, группа с замьюченным Edit его не предоставляет."
+      }
+    ]
+  },
+  {
+    "id": "M-Q02",
+    "level": "middle",
+    "topic": "Security",
+    "title": "Implicit sharing и обычный lookup",
+    "prompt": "Внутреннему пользователю доступен Contact. CRUD позволяет читать Contact и Account. Какая встроенная связь может дать ему Read на родительский Account?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Любой lookup всегда открывает родительскую запись."
+      },
+      {
+        "id": "b",
+        "text": "Field-level security поля AccountId."
+      },
+      {
+        "id": "c",
+        "text": "Permission Set Group создаёт share-запись для каждого Contact."
+      },
+      {
+        "id": "d",
+        "text": "Parent implicit sharing между Contact и Account."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Произвольные lookup-связи не получают такую гарантию."
+      },
+      {
+        "id": "b",
+        "text": "FLS управляет полем, а не выдаёт доступ к родительской записи."
+      },
+      {
+        "id": "c",
+        "text": "Группа разрешений не создаёт такой тип implicit sharing."
+      }
+    ],
+    "explanation": "У стандартных связей Account с Contact, Case и Opportunity есть особое поведение implicit sharing. Обычный lookup на произвольный объект не получает эту логику автоматически.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q02-v1",
+        "prompt": "Work_Item__c содержит обычный lookup на Project__c. Оба объекта имеют независимое владение и Private OWD. Пользователь видит Work_Item__c, но никаких источников доступа к Project__c нет. Откроется ли Project__c только из-за lookup?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, если поле lookup добавлено на layout."
+          },
+          {
+            "id": "b",
+            "text": "Нет: сам обычный lookup не выдаёт доступ к Project__c."
+          },
+          {
+            "id": "c",
+            "text": "Да, все lookup работают как Account–Contact."
+          },
+          {
+            "id": "d",
+            "text": "Да, если Work_Item__c создан сегодня."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Layout не выдаёт доступ к записи."
+          },
+          {
+            "id": "c",
+            "text": "Это особенность определённых стандартных отношений."
+          },
+          {
+            "id": "d",
+            "text": "Дата создания не является источником sharing."
+          }
+        ],
+        "explanation": "Implicit sharing стандартной модели Account нельзя переносить на любой custom lookup."
+      }
+    ]
+  },
+  {
+    "id": "M-Q03",
+    "level": "middle",
+    "topic": "Security",
+    "title": "Смена owner и Manual share",
+    "prompt": "Для Project__c OWD = Private. Пользователь получает доступ только через Manual share. Настройка Keep Manual Shares when Transferring Records выключена. Что нужно учесть при смене владельца?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Пользователю автоматически назначается Modify All Records."
+      },
+      {
+        "id": "b",
+        "text": "Владение и sharing никогда не связаны."
+      },
+      {
+        "id": "c",
+        "text": "Manual share может быть удалён при transfer; этот доступ нельзя считать постоянным."
+      },
+      {
+        "id": "d",
+        "text": "Manual share всегда переживает transfer независимо от настроек."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Transfer не выдаёт это разрешение."
+      },
+      {
+        "id": "b",
+        "text": "Смена owner влияет на sharing и может запускать пересчёт."
+      },
+      {
+        "id": "d",
+        "text": "Сохранение зависит от настройки; нельзя обещать его без контекста."
+      }
+    ],
+    "explanation": "В указанной конфигурации смена owner удаляет manual shares. Для программных правил доступа пригоден отдельный Apex sharing reason; в новых org также проверяйте настройку сохранения manual shares.",
+    "sourceUrl": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q03-v1",
+        "prompt": "Keep Manual Shares when Transferring Records включена. После transfer обычный Manual share сохранился. Это доказывает, что у записи сменился owner неправильно?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Нет: сохранение manual shares соответствует включённой настройке."
+          },
+          {
+            "id": "b",
+            "text": "Да, любой Manual share обязан исчезнуть."
+          },
+          {
+            "id": "c",
+            "text": "Да, это возможно только для системного администратора."
+          },
+          {
+            "id": "d",
+            "text": "Нет, потому что Manual автоматически превратился в роль."
+          }
+        ],
+        "correctOptionId": "a",
+        "whyOthers": [
+          {
+            "id": "b",
+            "text": "Включённая настройка меняет именно это поведение."
+          },
+          {
+            "id": "c",
+            "text": "Настройка относится к сохранению shares, а не только к админу."
+          },
+          {
+            "id": "d",
+            "text": "Настройка не превращает share в роль."
+          }
+        ],
+        "explanation": "Современную настройку нужно учитывать при разборе access. Правило «Manual всегда удаляется при transfer» больше нельзя применять без условий."
+      }
+    ]
+  },
+  {
+    "id": "M-Q04",
+    "level": "middle",
+    "topic": "Security",
+    "title": "Restriction rule как дополнительный фильтр",
+    "prompt": "Task доступен пользователю через sharing. Для пользователя действует restriction rule, которая допускает только Tasks с Region__c = 'EU'. У этой Task Region__c = 'US'. Проверяем обычный пользовательский доступ в поддерживаемом контексте; bypass-разрешений нет. Что произойдёт?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rule даст доступ ко всем EU Tasks, даже без sharing."
+      },
+      {
+        "id": "b",
+        "text": "Task будет скрыта restriction rule."
+      },
+      {
+        "id": "c",
+        "text": "Sharing всегда сильнее restriction rule."
+      },
+      {
+        "id": "d",
+        "text": "Пользователь увидит Task, но Region__c станет пустым."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Restriction rule не выдаёт доступ к ранее недоступным записям."
+      },
+      {
+        "id": "c",
+        "text": "Restriction rule специально добавляет ограничение поверх существующего доступа."
+      },
+      {
+        "id": "d",
+        "text": "Это фильтр записей, а не маскирование поля."
+      }
+    ],
+    "explanation": "Restriction rule сужает уже доступный набор записей. Она не выдаёт новые записи и действует только там, где поддерживается.",
+    "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q04-v1",
+        "prompt": "Task имеет Region__c = 'EU' и проходит restriction rule. Но OWD = Private и у пользователя нет ни одного источника доступа к этой Task. CRUD есть, bypass нет. Будет ли запись доступна?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, совпадение Region выдаёт Read."
+          },
+          {
+            "id": "b",
+            "text": "Да, но только через API."
+          },
+          {
+            "id": "c",
+            "text": "Да, если пользователь обновит страницу."
+          },
+          {
+            "id": "d",
+            "text": "Нет: прохождение restriction rule не заменяет sharing."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Restriction rule не является sharing rule."
+          },
+          {
+            "id": "b",
+            "text": "В условии нет отдельного источника доступа через API."
+          },
+          {
+            "id": "c",
+            "text": "Обновление интерфейса не выдаёт права."
+          }
+        ],
+        "explanation": "Сначала нужен исходный доступ к записи; restriction rule может его сузить, но не создать."
+      }
+    ]
+  },
+  {
+    "id": "M-Q05",
+    "level": "middle",
+    "topic": "Apex security",
+    "title": "API version меняет defaults",
+    "prompt": "Класс переведён с Apex API 66.0 на 67.0. В нём обычный SOQL без WITH USER_MODE / WITH SYSTEM_MODE. На что нужно обратить внимание?",
+    "options": [
+      {
+        "id": "a",
+        "text": "В API 67.0 операции с данными по умолчанию переходят в user mode; нужны проверки прав и поведения."
+      },
+      {
+        "id": "b",
+        "text": "Изменится только внешний вид Setup."
+      },
+      {
+        "id": "c",
+        "text": "В API 67.0 все операции всегда выполняются как администратор."
+      },
+      {
+        "id": "d",
+        "text": "Нужно удалить все permission sets."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Версия влияет на поведение Apex."
+      },
+      {
+        "id": "c",
+        "text": "Default изменился в сторону user mode."
+      },
+      {
+        "id": "d",
+        "text": "Версия не требует удаления модели разрешений."
+      }
+    ],
+    "explanation": "В API 66.0 и ниже default для операций с БД — system mode, а с 67.0 — user mode. Версию класса нужно учитывать при чтении старых примеров.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q05-v1",
+        "prompt": "Класс остаётся на Apex API 66.0. В запросе явно указано WITH USER_MODE. Нужно ли повышать версию до 67.0, чтобы этот запрос учитывал CRUD, FLS и sharing пользователя?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Нет, но WITH USER_MODE проверяет только layout."
+          },
+          {
+            "id": "b",
+            "text": "Да, иначе SOQL всегда игнорирует WITH USER_MODE."
+          },
+          {
+            "id": "c",
+            "text": "Нет: явно заданный user mode уже применяет эти проверки."
+          },
+          {
+            "id": "d",
+            "text": "Да, до 67.0 любые проверки CRUD невозможны."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "User mode проверяет права, а не только интерфейс."
+          },
+          {
+            "id": "b",
+            "text": "Поддерживаемая версия исполняет явно заданный режим."
+          },
+          {
+            "id": "d",
+            "text": "User mode существовал и в API 66.0."
+          }
+        ],
+        "explanation": "Новые defaults не означают, что user mode отсутствовал раньше. Явный access mode позволяет не полагаться на default."
+      }
+    ]
+  },
+  {
+    "id": "M-Q06",
+    "level": "middle",
+    "topic": "Apex security",
+    "title": "with sharing не равно все проверки",
+    "prompt": "В классе Apex API 66.0 стоит with sharing. SOQL выполняется в system mode, отдельной проверки FLS нет. Какая гарантия отсутствует?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверка sharing: with sharing её всегда выключает."
+      },
+      {
+        "id": "b",
+        "text": "Выполнение SOQL: with sharing запрещает любые запросы."
+      },
+      {
+        "id": "c",
+        "text": "Наличие кода: класс автоматически становится Flow."
+      },
+      {
+        "id": "d",
+        "text": "Само with sharing не обеспечивает проверку CRUD и FLS."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Название означает применение sharing, а не отключение."
+      },
+      {
+        "id": "b",
+        "text": "Sharing keyword не запрещает SOQL."
+      },
+      {
+        "id": "c",
+        "text": "Это не механизм преобразования Apex."
+      }
+    ],
+    "explanation": "Sharing keyword регулирует доступ к записям. Для CRUD/FLS нужен подходящий access mode или явные проверки. Версия и режим в условии заданы специально.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html",
+    "difficulty": 2,
+    "kind": "concept"
+  },
+  {
+    "id": "M-Q07",
+    "level": "middle",
+    "topic": "Apex",
+    "title": "Защита от рекурсии, которая пропускает данные",
+    "prompt": "В одной транзакции триггер обрабатывает несколько порций записей. Handler использует один static Boolean, который после первого вызова навсегда становится true до конца транзакции. Почему это опасно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Static Boolean превращает синхронный trigger в Batch."
+      },
+      {
+        "id": "b",
+        "text": "Он гарантирует обработку ровно один раз для каждой записи."
+      },
+      {
+        "id": "c",
+        "text": "Последующие порции или нужные повторные проходы могут быть полностью пропущены."
+      },
+      {
+        "id": "d",
+        "text": "Static Boolean автоматически сбрасывается для каждой записи."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Флаг не меняет механизм выполнения."
+      },
+      {
+        "id": "b",
+        "text": "Один флаг не хранит состояние по отдельным записям."
+      },
+      {
+        "id": "d",
+        "text": "Он живёт в контексте транзакции, а не одной записи."
+      }
+    ],
+    "explanation": "Глобальный флаг не различает записи и причины повторного запуска. Начните с проверки изменения нужных полей и идемпотентной логики; защиту по Id применяйте с учётом операции и допустимых повторов.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered-automation",
+    "difficulty": 2,
+    "kind": "diagnosis"
+  },
+  {
+    "id": "M-Q08",
+    "level": "middle",
+    "topic": "Async Apex",
+    "title": "Что сохраняет Database.Stateful",
+    "prompt": "Batch считает итог через поле экземпляра total. Итог нужен в finish после нескольких execute. Что позволяет сохранить total между транзакциями batch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ORDER BY в start."
+      },
+      {
+        "id": "b",
+        "text": "Database.Stateful и поле экземпляра."
+      },
+      {
+        "id": "c",
+        "text": "Только static Integer total без Stateful."
+      },
+      {
+        "id": "d",
+        "text": "Database.AllowsCallouts."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Сортировка не сохраняет память между транзакциями."
+      },
+      {
+        "id": "c",
+        "text": "Static-поля не переносятся между транзакциями batch."
+      },
+      {
+        "id": "d",
+        "text": "Этот интерфейс разрешает callouts, а не хранение состояния."
+      }
+    ],
+    "explanation": "Stateful сохраняет instance-поля между транзакциями Batch Apex. Static-поля между такими транзакциями не сохраняются.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q08-v1",
+        "prompt": "Batch реализует Database.Stateful, но счётчик объявлен static Integer total. Можно ли использовать его как надёжный общий итог всех execute?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, Stateful сохраняет любые static-поля."
+          },
+          {
+            "id": "b",
+            "text": "Да, если batch scope равен 200."
+          },
+          {
+            "id": "c",
+            "text": "Да, если поле private."
+          },
+          {
+            "id": "d",
+            "text": "Нет: нужен instance-счётчик или сохранение результата вне памяти."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Гарантия относится к полям экземпляра."
+          },
+          {
+            "id": "b",
+            "text": "Размер порции не меняет правило для static."
+          },
+          {
+            "id": "c",
+            "text": "Модификатор доступа не меняет срок жизни static."
+          }
+        ],
+        "explanation": "Stateful не сохраняет static-поля между транзакциями."
+      }
+    ]
+  },
+  {
+    "id": "M-Q09",
+    "level": "middle",
+    "topic": "Async Apex",
+    "title": "Частичный сбой Batch",
+    "prompt": "Первый execute Batch успешно закоммитил изменения. Второй execute завершился необработанным исключением. Что будет с изменениями первого execute?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Они сохранятся: execute работают в отдельных транзакциях."
+      },
+      {
+        "id": "b",
+        "text": "Откатятся все порции с начала batch."
+      },
+      {
+        "id": "c",
+        "text": "Откатится вся org."
+      },
+      {
+        "id": "d",
+        "text": "Они сохранятся только с Database.Stateful."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Успешная предыдущая транзакция уже закоммичена."
+      },
+      {
+        "id": "c",
+        "text": "Ошибка не отменяет независимые транзакции org."
+      },
+      {
+        "id": "d",
+        "text": "Stateful касается памяти, а не изоляции транзакций."
+      }
+    ],
+    "explanation": "Batch не является одной общей транзакцией для всех порций. Нужен отчёт о сбоях и план повторной обработки неуспешных записей.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q09-v1",
+        "prompt": "Batch читает записи с ORDER BY CreatedDate. Бизнес-правило требует, чтобы порции execute гарантированно завершались строго по очереди. Можно ли опереться только на ORDER BY?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, если добавить Database.Stateful."
+          },
+          {
+            "id": "b",
+            "text": "Да, если finish пустой."
+          },
+          {
+            "id": "c",
+            "text": "Нет: порядок выполнения порций Batch не гарантирован."
+          },
+          {
+            "id": "d",
+            "text": "Да, ORDER BY гарантирует порядок завершения execute."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Stateful сохраняет память, но не создаёт гарантию порядка."
+          },
+          {
+            "id": "b",
+            "text": "Код finish не определяет порядок execute."
+          },
+          {
+            "id": "d",
+            "text": "Документация не даёт такой гарантии."
+          }
+        ],
+        "explanation": "Порядок выборки не даёт гарантии порядка выполнения batch-транзакций. Зависимый процесс требует другой координации."
+      }
+    ]
+  },
+  {
+    "id": "M-Q10",
+    "level": "middle",
+    "topic": "Async Apex",
+    "title": "Когда подходит Queueable",
+    "prompt": "После сохранения заявки нужно выполнить отдельную фоновую работу, передать объект с параметрами и получить job Id для отслеживания. Все объёмы и лимиты известны. Какой механизм подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Formula field: он возвращает job Id."
+      },
+      {
+        "id": "b",
+        "text": "Validation rule: она выполняет работу после commit."
+      },
+      {
+        "id": "c",
+        "text": "Page layout: он хранит очередь вызовов."
+      },
+      {
+        "id": "d",
+        "text": "Queueable Apex: System.enqueueJob возвращает job Id и допускает сложные типы параметров класса."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Формула не запускает такую фоновую задачу."
+      },
+      {
+        "id": "b",
+        "text": "Validation rule проверяет сохранение, а не служит очередью."
+      },
+      {
+        "id": "c",
+        "text": "Layout управляет интерфейсом записи."
+      }
+    ],
+    "explanation": "Queueable удобен для ограниченной фоновой работы и последующих зависимых шагов. Его выбор не отменяет лимиты и обработку ошибок.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/asynchronous_apex/async_apex_queueable",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q11",
+    "level": "middle",
+    "topic": "Async Apex",
+    "title": "Зачем нужен startTest / stopTest",
+    "prompt": "Тест ставит Queueable в очередь между Test.startTest() и Test.stopTest(). Где проверять результат этой непосредственно поставленной задачи?",
+    "options": [
+      {
+        "id": "a",
+        "text": "В тесте результата async проверить нельзя."
+      },
+      {
+        "id": "b",
+        "text": "Только через ручной запуск в production."
+      },
+      {
+        "id": "c",
+        "text": "После Test.stopTest(), когда собранная асинхронная работа выполнена в тесте."
+      },
+      {
+        "id": "d",
+        "text": "До вызова System.enqueueJob."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Apex предоставляет механизм тестирования async."
+      },
+      {
+        "id": "b",
+        "text": "Проверка должна быть воспроизводима в тесте."
+      },
+      {
+        "id": "d",
+        "text": "До постановки задачи её результат ещё не возник."
+      }
+    ],
+    "explanation": "Этот шаблон позволяет проверить результат async-работы. Не переносите это утверждение на произвольную многоуровневую цепочку без отдельного тестирования каждого шага.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/asynchronous_apex/async_apex_queueable",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q12",
+    "level": "middle",
+    "topic": "Integrations",
+    "title": "Named Credential и External Credential",
+    "prompt": "Apex вызывает внешний API. Где разделить URL сервиса и описание аутентификации без пароля в коде?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Токен в публичном GitHub, чтобы его видел CI."
+      },
+      {
+        "id": "b",
+        "text": "URL и транспорт — Named Credential; аутентификация и principals — External Credential."
+      },
+      {
+        "id": "c",
+        "text": "Пароль в Custom Label, URL в Apex."
+      },
+      {
+        "id": "d",
+        "text": "URL в permission set, пароль в SOQL."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Публичный репозиторий не подходит для секретов."
+      },
+      {
+        "id": "c",
+        "text": "Custom Label не заменяет безопасное хранение credential."
+      },
+      {
+        "id": "d",
+        "text": "Permission set не является endpoint, а SOQL не хранилище паролей."
+      }
+    ],
+    "explanation": "Современная модель разделяет endpoint и механизм аутентификации. Доступ пользователей к principal задаётся отдельно, например через permission set.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/named-credentials/guide/get-started.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q13",
+    "level": "middle",
+    "topic": "Integrations",
+    "title": "REST или SOAP под контракт",
+    "prompt": "Партнёр требует интеграцию по предоставленному WSDL и SOAP-контракту. Какой ответ обоснован?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверить подходящий SOAP-интерфейс и контракт; REST не является обязательной заменой только из-за возраста SOAP."
+      },
+      {
+        "id": "b",
+        "text": "Любой SOAP-вызов автоматически конвертируется в REST."
+      },
+      {
+        "id": "c",
+        "text": "WSDL — это конфигурация Lightning Message Service."
+      },
+      {
+        "id": "d",
+        "text": "Нужно отправить JSON по любому URL партнёра."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Автоматического преобразования произвольного контракта нет."
+      },
+      {
+        "id": "c",
+        "text": "WSDL описывает веб-сервис, а не LMS."
+      },
+      {
+        "id": "d",
+        "text": "Формат и endpoint должны соответствовать контракту."
+      }
+    ],
+    "explanation": "Выбор зависит от контракта, нужных операций и поддерживаемых версий. Сначала проверяют актуальную доступность конкретного API.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q14",
+    "level": "middle",
+    "topic": "Integrations",
+    "title": "Таймаут после создания заказа",
+    "prompt": "POST создания заказа вернул timeout. Внешняя система могла успеть сохранить заказ. Как безопаснее организовать повтор?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Всегда отправлять новый случайный ключ."
+      },
+      {
+        "id": "b",
+        "text": "Создать ещё один заказ без проверки."
+      },
+      {
+        "id": "c",
+        "text": "Считать timeout подтверждением успешной доставки."
+      },
+      {
+        "id": "d",
+        "text": "Использовать стабильный idempotency key / business key и проверку уже выполненной операции."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Новый ключ не позволяет распознать повтор той же операции."
+      },
+      {
+        "id": "b",
+        "text": "Это может создать дубль."
+      },
+      {
+        "id": "c",
+        "text": "Timeout не подтверждает ни успех, ни отсутствие результата."
+      }
+    ],
+    "explanation": "Timeout не доказывает, что запись не создана. Повтор должен быть безопасен при неизвестном результате первого запроса.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q15",
+    "level": "middle",
+    "topic": "Testing",
+    "title": "Тест внешнего HTTP API",
+    "prompt": "Юнит-тест Apex вызывает HTTP endpoint. Нужно проверить успешный ответ и ошибку сервиса без живого API. Что использовать?",
+    "options": [
+      {
+        "id": "a",
+        "text": "SeeAllData=true: оно эмулирует HTTP."
+      },
+      {
+        "id": "b",
+        "text": "Удалить assertions, чтобы timeout не мешал."
+      },
+      {
+        "id": "c",
+        "text": "HttpCalloutMock и Test.setMock с заранее заданными ответами."
+      },
+      {
+        "id": "d",
+        "text": "Настоящий production token в тестовом классе."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "SeeAllData не подменяет HTTP-ответы."
+      },
+      {
+        "id": "b",
+        "text": "Это убирает проверку поведения."
+      },
+      {
+        "id": "d",
+        "text": "Это небезопасно и делает тест зависимым от внешней системы."
+      }
+    ],
+    "explanation": "Mock делает тест независимым от сети и позволяет воспроизвести разные HTTP-ответы.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex_classes_restful_http_testing.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q16",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "connectedCallback может повторяться",
+    "prompt": "LWC добавляет listener на window в connectedCallback. Компонент несколько раз удаляют из DOM и возвращают. Как избежать лишних подписок?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Пометить handler как @api: это удаляет listeners."
+      },
+      {
+        "id": "b",
+        "text": "Снимать listener в disconnectedCallback и учитывать повторные подключения."
+      },
+      {
+        "id": "c",
+        "text": "Ничего: connectedCallback вызывается строго один раз."
+      },
+      {
+        "id": "d",
+        "text": "Перенести подписку в каждый renderedCallback без проверки."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "@api не управляет жизненным циклом внешних подписок."
+      },
+      {
+        "id": "c",
+        "text": "Повторная вставка может повторно вызвать hook."
+      },
+      {
+        "id": "d",
+        "text": "Это создаёт риск ещё большего числа подписок."
+      }
+    ],
+    "explanation": "connectedCallback не гарантированно вызывается единственный раз за жизнь экземпляра. Внешние ресурсы нужно освобождать, сохраняя ссылку на тот же handler.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks-dom.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q17",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Почему страница постоянно перерисовывается",
+    "prompt": "В renderedCallback компонент каждый раз присваивает новое значение состоянию, которое используется шаблоном. Наблюдается цикл перерисовок. Что проверить первым?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Изменение реактивного состояния внутри renderedCallback; убрать цикл или ограничить одноразовую инициализацию."
+      },
+      {
+        "id": "b",
+        "text": "Количество строк в HTML-комментариях."
+      },
+      {
+        "id": "c",
+        "text": "Наличие OWD = Private."
+      },
+      {
+        "id": "d",
+        "text": "Заменить все поля на static."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Комментарии не объясняют цикл реактивного состояния."
+      },
+      {
+        "id": "c",
+        "text": "OWD не задаёт цикл рендеринга браузера."
+      },
+      {
+        "id": "d",
+        "text": "Это не корректный способ управления состоянием LWC."
+      }
+    ],
+    "explanation": "Изменение используемого в шаблоне состояния планирует новую отрисовку. Повторное изменение в hook может снова запустить этот процесс.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks-rendered.html",
+    "difficulty": 2,
+    "kind": "diagnosis"
+  },
+  {
+    "id": "M-Q18",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "@track и Date",
+    "prompt": "Поле @track when = new Date() используется в шаблоне. Код меняет дату через when.setDate(...). Почему нельзя рассчитывать, что @track заметит это изменение?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@track отслеживает все изменения любого объекта."
+      },
+      {
+        "id": "b",
+        "text": "Date запрещён в LWC."
+      },
+      {
+        "id": "c",
+        "text": "Нужен permission set для JavaScript Date."
+      },
+      {
+        "id": "d",
+        "text": "Внутренние изменения Date не отслеживаются; присвойте новый объект Date."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это не относится ко всем встроенным типам."
+      },
+      {
+        "id": "b",
+        "text": "Date можно использовать, но изменение внутреннего состояния не наблюдается таким способом."
+      },
+      {
+        "id": "c",
+        "text": "Разрешения Salesforce не управляют реактивностью Date."
+      }
+    ],
+    "explanation": "Глубокое отслеживание @track работает для обычных объектов и массивов. Date, Set, Map и экземпляры классов требуют отдельного внимания.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-fields.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q19",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Что можно делать в cacheable Apex",
+    "prompt": "Метод @AuraEnabled(cacheable=true) получает список записей для LWC. Разработчик добавил в него update, чтобы отметить просмотр. Что неверно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Нужно добавить ещё один update, чтобы кэш сбросился."
+      },
+      {
+        "id": "b",
+        "text": "Нужно поставить cacheable на JavaScript-поле."
+      },
+      {
+        "id": "c",
+        "text": "Cacheable-метод должен только читать данные; запись вынесите в отдельное действие."
+      },
+      {
+        "id": "d",
+        "text": "В cacheable обязательно должен быть update."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это не устраняет нарушение контракта."
+      },
+      {
+        "id": "b",
+        "text": "Аннотация относится к Apex-методу."
+      },
+      {
+        "id": "d",
+        "text": "Cacheable не требует и не допускает такую запись."
+      }
+    ],
+    "explanation": "Кэширование допускает повторное использование результата без вызова сервера. Побочный эффект записи несовместим с таким контрактом.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q19-v1",
+        "prompt": "Пользователь нажимает Save, который должен изменить записи. Метод вызывается из LWC императивно и не обязан кэшироваться. Какой контракт подходит?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Отдельный @AuraEnabled метод без cacheable=true, с явной обработкой успеха и ошибок."
+          },
+          {
+            "id": "b",
+            "text": "Любой метод для LWC обязан иметь cacheable=true."
+          },
+          {
+            "id": "c",
+            "text": "Метод с update должен вызываться только через @wire."
+          },
+          {
+            "id": "d",
+            "text": "Сначала записать данные в браузерный кэш, Salesforce сохранит их сам."
+          }
+        ],
+        "correctOptionId": "a",
+        "whyOthers": [
+          {
+            "id": "b",
+            "text": "Это требование относится к Apex, подключаемому через @wire, а не ко всем императивным методам."
+          },
+          {
+            "id": "c",
+            "text": "Wire предназначен для предоставления данных, а не управления записью."
+          },
+          {
+            "id": "d",
+            "text": "Кэш браузера не является серверной операцией сохранения."
+          }
+        ],
+        "explanation": "Императивный вызов подходит для операций записи. Cacheable не нужен для каждого Apex-метода LWC."
+      }
+    ]
+  },
+  {
+    "id": "M-Q20",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Обновить данные от Apex wire",
+    "prompt": "LWC хранит полный объект, полученный от @wire Apex. После сохранения данных этим же экраном нужно обновить список, полученный от Apex. Что передать в refreshApex?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Любой record Id: refreshApex сам найдёт все запросы."
+      },
+      {
+        "id": "b",
+        "text": "Сохранённый объект результата wire, а не только result.data."
+      },
+      {
+        "id": "c",
+        "text": "Только массив result.data."
+      },
+      {
+        "id": "d",
+        "text": "Строку с названием permission set."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "refreshApex не принимает произвольный Id как замену wire-результату."
+      },
+      {
+        "id": "c",
+        "text": "Один массив не содержит необходимого контекста wire."
+      },
+      {
+        "id": "d",
+        "text": "Это не идентификатор wire-результата."
+      }
+    ],
+    "explanation": "refreshApex нужен контекст предыдущего wire-результата, чтобы обновить его данные.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q20-v1",
+        "prompt": "После императивного Apex update другой компонент показывает те же записи через Lightning Data Service. Как сообщить LDS, что эти записи устарели?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Передать массив Id в refreshApex вместо wire-результата."
+          },
+          {
+            "id": "b",
+            "text": "Изменить только локальную переменную: все LDS-кэши увидят это."
+          },
+          {
+            "id": "c",
+            "text": "Включить Database.Stateful."
+          },
+          {
+            "id": "d",
+            "text": "Вызвать notifyRecordUpdateAvailable с Id изменённых записей."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Это другой API и другой тип аргумента."
+          },
+          {
+            "id": "b",
+            "text": "Локальное состояние не оповещает LDS."
+          },
+          {
+            "id": "c",
+            "text": "Stateful относится к Batch Apex, а не к клиентскому кэшу."
+          }
+        ],
+        "explanation": "Apex сам не управляет LDS-кэшем. Для wired Apex применяют refreshApex, а для обновления известных LDS-записей — notifyRecordUpdateAvailable."
+      }
+    ]
+  },
+  {
+    "id": "M-Q21",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "LMS между независимыми компонентами",
+    "prompt": "Два компонента в Lightning Experience находятся в разных ветках DOM. Один LWC должен сообщить другому компоненту выбранный record Id в поддерживаемом контейнере. Какой механизм подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lightning Message Service и message channel."
+      },
+      {
+        "id": "b",
+        "text": "Только CustomEvent без посредника всегда достигнет любой ветки DOM."
+      },
+      {
+        "id": "c",
+        "text": "Database.Stateful хранит сообщение между компонентами."
+      },
+      {
+        "id": "d",
+        "text": "Manual sharing передаёт JavaScript-событие."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "DOM-событие не адресует произвольные независимые ветки."
+      },
+      {
+        "id": "c",
+        "text": "Stateful не является клиентской шиной."
+      },
+      {
+        "id": "d",
+        "text": "Sharing управляет доступом к записям."
+      }
+    ],
+    "explanation": "LMS обеспечивает обмен сообщениями между поддерживаемыми компонентами страницы, включая LWC, Aura и Visualforce. Это не долговечный серверный журнал событий.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/use-message-channel.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q22",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Граница Shadow DOM",
+    "prompt": "Родительский LWC пытается изменить внутренний DOM дочернего компонента, рассчитывая на стабильный selector. Дочерний использует Shadow DOM. Какой контракт надёжнее?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Любой CSS родителя обязан проникать внутрь дочернего shadow tree."
+      },
+      {
+        "id": "b",
+        "text": "Запретить серверную проверку FLS: её делает Shadow DOM."
+      },
+      {
+        "id": "c",
+        "text": "Скопировать секретные поля в hidden input внутри shadow tree."
+      },
+      {
+        "id": "d",
+        "text": "Публичные свойства/методы и события дочернего компонента вместо зависимости от его внутренних элементов."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Стили не получают такую неограниченную видимость."
+      },
+      {
+        "id": "b",
+        "text": "DOM-изоляция не проверяет Salesforce-права на данные."
+      },
+      {
+        "id": "c",
+        "text": "Переданные в браузер данные нельзя защищать только визуальным скрытием."
+      }
+    ],
+    "explanation": "Shadow DOM инкапсулирует внутреннюю разметку. При этом он не заменяет серверные CRUD/FLS и не должен считаться защитой уже переданных клиенту секретов.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/create-dom.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q23",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Нужны ли bubbles и composed везде",
+    "prompt": "Событие дочернего LWC нужно только его непосредственному владельцу, который слушает его на теге компонента. Как выбирать распространение события?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Всегда использовать capture: это единственный режим LWC."
+      },
+      {
+        "id": "b",
+        "text": "composed проверяет permission sets получателя."
+      },
+      {
+        "id": "c",
+        "text": "Использовать минимальное распространение, достаточное для этого API; не включать bubbles/composed автоматически."
+      },
+      {
+        "id": "d",
+        "text": "Всегда ставить оба флага true для всех событий."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "LWC не поддерживает dispatch/listeners в capture phase."
+      },
+      {
+        "id": "b",
+        "text": "Флаг управляет переходом границы shadow tree, а не Salesforce-доступом."
+      },
+      {
+        "id": "d",
+        "text": "Это без необходимости расширяет публичный контракт."
+      }
+    ],
+    "explanation": "Широко распространяемое событие становится контрактом для большего числа компонентов и повышает риск конфликтов. Оба флага по умолчанию false.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/events-propagation.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q24",
+    "level": "middle",
+    "topic": "LWC",
+    "title": "Почему Apex wire не вызывается",
+    "prompt": "Параметр реактивного Apex @wire равен undefined. Метод доступен, остальные настройки корректны. Что ожидать?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Метод вызывается, но игнорирует sharing."
+      },
+      {
+        "id": "b",
+        "text": "Apex-метод не вызывается, пока значение этого параметра undefined."
+      },
+      {
+        "id": "c",
+        "text": "Метод вызывается с пустой строкой."
+      },
+      {
+        "id": "d",
+        "text": "Метод обязательно вызывается с null."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Параметр wire не отключает security."
+      },
+      {
+        "id": "c",
+        "text": "undefined не преобразуется автоматически в такой аргумент."
+      },
+      {
+        "id": "d",
+        "text": "undefined и null имеют разное поведение в wire."
+      }
+    ],
+    "explanation": "Для Apex wire undefined означает отсутствие готовой конфигурации. null, напротив, передаётся в вызов.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-wire-method.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q24-v1",
+        "prompt": "В той же конфигурации Apex @wire параметр явно установлен в null, остальные параметры заданы. Запрещает ли null сам вызов метода?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Да, null и undefined полностью одинаковы для Apex wire."
+          },
+          {
+            "id": "b",
+            "text": "Да, если имя параметра начинается с record."
+          },
+          {
+            "id": "c",
+            "text": "Нет, потому что null автоматически заменяется Id пользователя."
+          },
+          {
+            "id": "d",
+            "text": "Нет: метод вызывается с null, а его обработка зависит от Apex-кода."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Документация различает эти случаи."
+          },
+          {
+            "id": "b",
+            "text": "Имя не создаёт такого правила."
+          },
+          {
+            "id": "c",
+            "text": "Автоматической подмены null на user Id нет."
+          }
+        ],
+        "explanation": "null отличается от undefined; это значение параметра, а не сигнал отложить вызов."
+      }
+    ]
+  },
+  {
+    "id": "M-Q25",
+    "level": "middle",
+    "topic": "Platform Events",
+    "title": "Событие после успешного сохранения",
+    "prompt": "Подписчик Platform Event сразу читает созданную транзакцией запись. Событие не должно появляться, если транзакция откатится. Какое поведение публикации подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Publish After Commit."
+      },
+      {
+        "id": "b",
+        "text": "Publish Immediately."
+      },
+      {
+        "id": "c",
+        "text": "Любой режим: событие и подписчик всегда в одной транзакции."
+      },
+      {
+        "id": "d",
+        "text": "LMS вместо Platform Event для серверного обработчика."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Событие может уйти до commit или несмотря на откат."
+      },
+      {
+        "id": "c",
+        "text": "Подписчик работает отдельно."
+      },
+      {
+        "id": "d",
+        "text": "LMS не заменяет серверный event bus."
+      }
+    ],
+    "explanation": "После успешного commit подписчик может рассчитывать, что изменения издателя сохранены. Publish Immediately такого условия не даёт.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations-decoupled-processes.html",
+    "difficulty": 2,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "M-Q25-v1",
+        "prompt": "Событие используется для диагностики ошибки. Оно не зависит от сохранённой записи и должно иметь возможность уйти даже при последующем откате транзакции. Какое поведение публикации соответствует этой цели?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Любой режим обеспечивает публикацию при rollback."
+          },
+          {
+            "id": "b",
+            "text": "Только refreshApex."
+          },
+          {
+            "id": "c",
+            "text": "Publish Immediately."
+          },
+          {
+            "id": "d",
+            "text": "Publish After Commit."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "After Commit зависит от успешного завершения."
+          },
+          {
+            "id": "b",
+            "text": "Это клиентское обновление Apex wire, а не публикация события."
+          },
+          {
+            "id": "d",
+            "text": "При откате событие с таким поведением не публикуется."
+          }
+        ],
+        "explanation": "Этот режим допускает публикацию независимо от итогового commit. Потребитель не должен предполагать, что данные транзакции уже сохранены."
+      }
+    ]
+  },
+  {
+    "id": "M-Q26",
+    "level": "middle",
+    "topic": "Platform Events",
+    "title": "Можно ли прибавить 1 к Replay ID",
+    "prompt": "Клиент Pub/Sub API сохранил Replay ID последнего обработанного события. Можно ли вычислить следующий Replay ID как previous + 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Да, Replay ID всегда идут подряд без пропусков."
+      },
+      {
+        "id": "b",
+        "text": "Да, если события принадлежат одному объекту."
+      },
+      {
+        "id": "c",
+        "text": "Да, если подписчик использует REST вместо Pub/Sub."
+      },
+      {
+        "id": "d",
+        "text": "Нет: Replay ID — непрозрачная позиция; сохраните полученное значение для возобновления."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Документация не даёт гарантии последовательности."
+      },
+      {
+        "id": "b",
+        "text": "Это не меняет природу Replay ID."
+      },
+      {
+        "id": "c",
+        "text": "Смена транспорта не создаёт такую гарантию."
+      }
+    ],
+    "explanation": "Replay ID не является обещанной последовательностью чисел. Его нельзя самостоятельно конструировать или считать бизнес-идентификатором события.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q27",
+    "level": "middle",
+    "topic": "Platform Events",
+    "title": "Publisher и subscriber — разные транзакции",
+    "prompt": "Издатель закоммитил Order__c и опубликовал событие After Commit. Позже Apex subscriber завершился ошибкой. Откатится ли уже сохранённый Order__c из-за ошибки subscriber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Да, если названия классов совпадают."
+      },
+      {
+        "id": "b",
+        "text": "Нет, потому что subscriber никогда не может ошибиться."
+      },
+      {
+        "id": "c",
+        "text": "Нет: ошибка отдельной транзакции подписчика не откатывает commit издателя."
+      },
+      {
+        "id": "d",
+        "text": "Да, event bus автоматически откатывает издателя."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Имена классов не соединяют транзакции."
+      },
+      {
+        "id": "b",
+        "text": "Ошибка возможна; именно поэтому нужна её обработка."
+      },
+      {
+        "id": "d",
+        "text": "Такой общей транзакции нет."
+      }
+    ],
+    "explanation": "Нужно наблюдать сбои подписчика и проектировать повторную обработку. Асинхронный обмен не создаёт одну общую транзакцию.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations-decoupled-processes.html",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q28",
+    "level": "middle",
+    "topic": "Git",
+    "title": "Перенести один исправляющий commit",
+    "prompt": "В ветке feature есть один самостоятельный исправляющий commit. В release нужно перенести его изменения, не объединяя все остальные commits feature. Что подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Удалить feature: Git сам восстановит commit в release."
+      },
+      {
+        "id": "b",
+        "text": "git cherry-pick выбранного commit с последующей проверкой и разрешением возможных конфликтов."
+      },
+      {
+        "id": "c",
+        "text": "git fetch автоматически перенесёт исправление в текущие файлы."
+      },
+      {
+        "id": "d",
+        "text": "git merge feature всегда переносит только последний commit."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Удаление ветки не переносит её изменения."
+      },
+      {
+        "id": "c",
+        "text": "Fetch обновляет объекты/refs, но не применяет выбранный commit."
+      },
+      {
+        "id": "d",
+        "text": "Merge объединяет истории, а не только один выбранный change."
+      }
+    ],
+    "explanation": "Cherry-pick применяет изменение выбранного commit на текущую ветку. Он не гарантирует отсутствие конфликтов или независимость от пропущенных изменений.",
+    "sourceUrl": "https://git-scm.com/docs/git-cherry-pick",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q29",
+    "level": "middle",
+    "topic": "Integrations",
+    "title": "Токен не заменяет права",
+    "prompt": "Интеграция успешно получила OAuth access token, но чтение нужного поля отклонено из-за FLS пользователя. Что исправлять?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверить требуемый минимум доступа интеграционного пользователя к объектам и полям; токен сам эти права не выдаёт."
+      },
+      {
+        "id": "b",
+        "text": "Выдать пользователю System Administrator без анализа."
+      },
+      {
+        "id": "c",
+        "text": "Повторять получение токена, пока FLS исчезнет."
+      },
+      {
+        "id": "d",
+        "text": "Скрыть поле с layout — тогда API разрешит его читать."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Это слишком широкий доступ и не обосновано требованием."
+      },
+      {
+        "id": "c",
+        "text": "Новый токен не изменяет разрешения пользователя."
+      },
+      {
+        "id": "d",
+        "text": "Layout не снимает ограничение FLS."
+      }
+    ],
+    "explanation": "Аутентификация отвечает на вопрос «кто вызывает», а авторизация — «что ему разрешено». Выдача токена не равна административным правам.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "M-Q30",
+    "level": "middle",
+    "topic": "Git",
+    "title": "Отменить уже опубликованный обычный commit",
+    "prompt": "Обычный, не merge, commit уже находится в общей ветке; коллеги успели его получить. Нужно отменить его изменения, сохранив историю. Что подходит?",
+    "options": [
+      {
+        "id": "a",
+        "text": "git reset --hard и обязательный force push без согласования."
+      },
+      {
+        "id": "b",
+        "text": "git fetch удалит плохой commit из истории."
+      },
+      {
+        "id": "c",
+        "text": "Удалить локальный каталог .git."
+      },
+      {
+        "id": "d",
+        "text": "git revert этого commit и проверка получившегося обратного изменения."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это переписывает общую историю, чего условие не требует."
+      },
+      {
+        "id": "b",
+        "text": "Fetch не отменяет commits."
+      },
+      {
+        "id": "c",
+        "text": "Это не исправляет общую ветку."
+      }
+    ],
+    "explanation": "Revert создаёт новый commit с обратным изменением. Для общей истории это отличается от её переписывания через reset и force push.",
+    "sourceUrl": "https://git-scm.com/docs/git-revert",
+    "difficulty": 2,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q01",
+    "level": "senior",
+    "topic": "Architecture",
+    "title": "Почему лимиты — часть архитектуры",
+    "prompt": "Команда хочет запросить увеличение каждого governor limit вместо изменения обработки данных. Почему это ненадёжная основа решения?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Мультитенантная платформа разделяет ресурсы; решение должно учитывать лимиты и измеренную нагрузку."
+      },
+      {
+        "id": "b",
+        "text": "Лимиты важны только для trial org, поэтому production решит проблему."
+      },
+      {
+        "id": "c",
+        "text": "Платная лицензия автоматически делает Apex безлимитным."
+      },
+      {
+        "id": "d",
+        "text": "Достаточно заменить SOQL на SOSL во всех местах."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Production также имеет ограничения платформы."
+      },
+      {
+        "id": "c",
+        "text": "Лицензия не снимает все governor limits."
+      },
+      {
+        "id": "d",
+        "text": "Разные языки решают разные задачи; такая замена не устраняет ресурсные ограничения."
+      }
+    ],
+    "explanation": "Лимиты защищают совместное использование ресурсов. Архитектура должна контролировать объём работы в транзакции, а не рассчитывать на произвольное снятие ограничений.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-multitenant-architecture",
+    "difficulty": 3,
+    "kind": "concept"
+  },
+  {
+    "id": "S-Q02",
+    "level": "senior",
+    "topic": "Performance",
+    "title": "Индекс есть, запрос медленный",
+    "prompt": "На объекте несколько миллионов записей. Фильтр по индексированному Status__c возвращает 80% записей. Команда утверждает, что индекс обязан ускорять этот запрос. Что проверить?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только существование индекса: после него анализ закончен."
+      },
+      {
+        "id": "b",
+        "text": "Только размер batch: он изменяет селективность WHERE."
+      },
+      {
+        "id": "c",
+        "text": "Только ORDER BY Id: он всегда принудительно включает индекс Status__c."
+      },
+      {
+        "id": "d",
+        "text": "Селективность и фактические планы через Query Plan; наличие индекса само по себе не гарантирует его пользу."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Нужно учитывать количество подходящих записей и план."
+      },
+      {
+        "id": "b",
+        "text": "Размер порции не меняет распределение данных для запроса."
+      },
+      {
+        "id": "c",
+        "text": "ORDER BY не даёт такой универсальной гарантии."
+      }
+    ],
+    "explanation": "Оптимизатор выбирает план по статистике и стоимости. При слишком широком фильтре индекс может быть невыгоден.",
+    "sourceUrl": "https://help.salesforce.com/s/articleView?id=000199003&language=en_US&type=1",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q02-v1",
+        "prompt": "Query Plan показывает дешёвый селективный план, запрос работает быстро. Debug log показывает почти всё CPU в повторном переборе больших коллекций Apex. Что оптимизировать первым?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Переписать WHERE без измерений."
+          },
+          {
+            "id": "b",
+            "text": "Алгоритм обработки коллекций, например вложенные поиски заменить доступом по Map."
+          },
+          {
+            "id": "c",
+            "text": "Повторно создать тот же индекс."
+          },
+          {
+            "id": "d",
+            "text": "Сразу увеличить число параллельных jobs."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Медленная часть находится после запроса."
+          },
+          {
+            "id": "c",
+            "text": "Измерения не указывают на проблему плана запроса."
+          },
+          {
+            "id": "d",
+            "text": "Это не уменьшает CPU одной транзакции."
+          }
+        ],
+        "explanation": "Когда измерения указывают на CPU Apex, добавление ещё одного индекса не исправляет узкое место."
+      }
+    ]
+  },
+  {
+    "id": "S-Q03",
+    "level": "senior",
+    "topic": "Performance",
+    "title": "Вложенный поиск по Id",
+    "prompt": "Для каждой Opportunity код линейно ищет Account в большой коллекции. Данные уже загружены. Как уменьшить число сравнений без новых SOQL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Добавить SOQL по AccountId внутрь внешнего цикла."
+      },
+      {
+        "id": "b",
+        "text": "Заменить List<Account> на Set<Account> и оставить тот же вложенный перебор."
+      },
+      {
+        "id": "c",
+        "text": "Построить Map<Id, Account> один раз и получать Account по o.AccountId."
+      },
+      {
+        "id": "d",
+        "text": "Вынести тот же двойной цикл в Queueable."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это создаст запрос на каждую запись и риск лимитов."
+      },
+      {
+        "id": "b",
+        "text": "Если перебор остаётся вложенным, основная стоимость поиска сохраняется."
+      },
+      {
+        "id": "d",
+        "text": "Перенос не уменьшает число сравнений."
+      }
+    ],
+    "explanation": "Карта устраняет повторный полный обход Accounts для каждой Opportunity. Это меняет алгоритм, а не только место выполнения.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/well-architected/guide/resource-and-cost-optimization.html",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "for (Opportunity o : opportunities) {\n    for (Account a : accounts) {\n        if (a.Id == o.AccountId) {\n            applyRegion(o, a);\n            break;\n        }\n    }\n}"
+  },
+  {
+    "id": "S-Q04",
+    "level": "senior",
+    "topic": "Performance",
+    "title": "Параллелизм усилил блокировки",
+    "prompt": "Несколько jobs обновляют разные дочерние записи одного горячего родителя, и UNABLE_TO_LOCK_ROW растёт с числом jobs. Какой первый шаг наиболее обоснован?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Увеличить размер payload, чтобы lock стал реже проверяться."
+      },
+      {
+        "id": "b",
+        "text": "Проверить блокируемые связанные записи и разделить/упорядочить работу по родителю, снизив конкуренцию за один Id."
+      },
+      {
+        "id": "c",
+        "text": "Удвоить параллелизм, чтобы каждое обновление быстрее получило lock."
+      },
+      {
+        "id": "d",
+        "text": "Удалить обработку ошибок: Salesforce сам гарантирует повтор каждого обновления."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Это может удлинить транзакцию и удержание lock."
+      },
+      {
+        "id": "c",
+        "text": "Больше конкурентов за одну запись обычно усиливает проблему."
+      },
+      {
+        "id": "d",
+        "text": "Такой гарантии для произвольного DML нет."
+      }
+    ],
+    "explanation": "Блокировка может затрагивать родителя и другие связанные записи. Дополнительные потоки могут усилить конфликт вместо ускорения.",
+    "sourceUrl": "https://developer.salesforce.com/blogs/2014/07/record-locking-cheat-sheet",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q04-v1",
+        "prompt": "Работа уже разделена по независимым родителям. Замеры не показывают общих locks, ресурсы и лимиты допускают нагрузку. Нужен рост throughput. Как проверить пользу параллельности?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Всегда выполнять всё последовательно независимо от данных."
+          },
+          {
+            "id": "b",
+            "text": "Сразу выставить неограниченное число workers."
+          },
+          {
+            "id": "c",
+            "text": "Добавить FOR UPDATE ко всем читаемым записям."
+          },
+          {
+            "id": "d",
+            "text": "Постепенно увеличить число workers и измерять throughput, ошибки и задержку."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "При независимых записях это может неоправданно ограничить скорость."
+          },
+          {
+            "id": "b",
+            "text": "Ресурсы и лимиты остаются конечными."
+          },
+          {
+            "id": "c",
+            "text": "Лишние locks не являются способом ускорить независимую работу."
+          }
+        ],
+        "explanation": "Параллельность полезна при независимой работе, но её предел определяется измерениями и ограничениями."
+      }
+    ]
+  },
+  {
+    "id": "S-Q05",
+    "level": "senior",
+    "topic": "Sharing at scale",
+    "title": "Много записей у одного owner",
+    "prompt": "Один технический пользователь владеет сотнями тысяч записей. Его часто перемещают между ролями, участвующими в sharing rules. Почему изменения стали дорогими?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ownership skew увеличивает объём пересчёта доступа при изменениях роли и групп владельца."
+      },
+      {
+        "id": "b",
+        "text": "Любая роль переписывает значения всех пользовательских полей."
+      },
+      {
+        "id": "c",
+        "text": "Это обязательно ошибка FLS, а объём записей не важен."
+      },
+      {
+        "id": "d",
+        "text": "Достаточно перенести пользователя в новую роль каждый час."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Проблема в пересчёте доступа, а не обязательном переписывании всех полей."
+      },
+      {
+        "id": "c",
+        "text": "FLS не объясняет такой объём sharing recalculation."
+      },
+      {
+        "id": "d",
+        "text": "Частые изменения могут увеличивать стоимость пересчётов."
+      }
+    ],
+    "explanation": "Концентрация владения сама по себе не означает ошибку, но изменения такой модели могут затронуть огромный набор shares. Нужно оценить распределение owner и стабильность access model.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/draes/guide/draes-group-membership-data-skew.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q05-v1",
+        "prompt": "Технический пользователь владеет большой историей записей, но модель владения и роли стабильна. Команда увидела число 10 000 и хочет немедленно перераспределить данные без замеров. Как оценить предложение?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Массово менять owner в рабочий пик без проверки."
+          },
+          {
+            "id": "b",
+            "text": "Игнорировать модель доступа при любых объёмах."
+          },
+          {
+            "id": "c",
+            "text": "Считать концентрацию сигналом риска, затем измерить операции и влияние предлагаемого transfer."
+          },
+          {
+            "id": "d",
+            "text": "Считать 10 001-ю запись всегда недопустимой."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Такой перенос может породить собственные проблемы доступа и нагрузки."
+          },
+          {
+            "id": "b",
+            "text": "Стабильность не отменяет необходимости учитывать будущую нагрузку."
+          },
+          {
+            "id": "d",
+            "text": "Это не универсальный жёсткий лимит количества записей владельца."
+          }
+        ],
+        "explanation": "Порог data skew — ориентир для проектирования, а не доказательство, что массовый transfer сейчас безопаснее. Сам transfer тоже может вызвать дорогой пересчёт."
+      }
+    ]
+  },
+  {
+    "id": "S-Q06",
+    "level": "senior",
+    "topic": "Sharing at scale",
+    "title": "Deferred sharing — что происходит после Resume",
+    "prompt": "В org включена возможность defer sharing calculations. Администратор Suspend-нул sharing rule calculations, изменил участвующие группы и нажал Resume. Что нужно сделать с накопленными изменениями?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ничего: Resume гарантирует полный пересчёт старых изменений."
+      },
+      {
+        "id": "b",
+        "text": "Удалить OWD, чтобы shares появились снова."
+      },
+      {
+        "id": "c",
+        "text": "Выдать всем Modify All Data до следующего релиза."
+      },
+      {
+        "id": "d",
+        "text": "Выполнить полный Recalculate и проверить доступ после завершения."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Документация отдельно требует Recalculate."
+      },
+      {
+        "id": "b",
+        "text": "OWD не удаляется как способ завершения этой процедуры."
+      },
+      {
+        "id": "c",
+        "text": "Это необоснованно расширяет доступ и не завершает пересчёт."
+      }
+    ],
+    "explanation": "Resume возобновляет обработку новых изменений. Для изменений, накопленных во время паузы, нужен полный пересчёт; без него access может остаться несогласованным.",
+    "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_rule_recalculation.htm&language=en_US&type=5",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q06-v1",
+        "prompt": "Sharing rule calculations приостановлены. Администратор создаёт Manual share. Нужно ли считать, что эта операция обязательно ждёт Resume вместе со всеми sharing changes?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Нет, потому что Manual share временно выдаёт CRUD."
+          },
+          {
+            "id": "b",
+            "text": "Нет: defer sharing rules не приостанавливает все виды sharing; manual shares обрабатываются отдельно."
+          },
+          {
+            "id": "c",
+            "text": "Да, любая проверка доступа полностью выключена."
+          },
+          {
+            "id": "d",
+            "text": "Да, потому что Manual share — это sharing rule."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Manual share влияет на record access, а не CRUD."
+          },
+          {
+            "id": "c",
+            "text": "Deferral не отключает всю модель безопасности."
+          },
+          {
+            "id": "d",
+            "text": "Manual share и sharing rule — разные механизмы."
+          }
+        ],
+        "explanation": "Пауза касается пересчётов, связанных с sharing rules. Изменения manual shares, teams и queues не стоит автоматически считать отложенными."
+      }
+    ]
+  },
+  {
+    "id": "S-Q07",
+    "level": "senior",
+    "topic": "Apex security",
+    "title": "Обновление API и SECURITY_ENFORCED",
+    "prompt": "Класс компилировался на API 66.0 с запросом WITH SECURITY_ENFORCED. После перевода на API 67.0 запрос не компилируется. Какой путь миграции проверять?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Удалить все security clauses и считать, что API 67.0 теперь выполняется в system mode."
+      },
+      {
+        "id": "b",
+        "text": "Заменить SOQL на строковую конкатенацию, чтобы проверки пропали."
+      },
+      {
+        "id": "c",
+        "text": "Перейти на WITH USER_MODE и протестировать изменение проверок доступа."
+      },
+      {
+        "id": "d",
+        "text": "Оставить SECURITY_ENFORCED и добавить больше permission sets."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "В API 67.0 default для операций с данными — user mode."
+      },
+      {
+        "id": "b",
+        "text": "Это не обоснованная миграция и может создать дополнительный риск injection."
+      },
+      {
+        "id": "d",
+        "text": "Ошибка компиляции не устраняется назначением прав."
+      }
+    ],
+    "explanation": "В API 67.0 WITH SECURITY_ENFORCED больше не поддерживается. User mode проверяет доступ шире, поэтому это миграция поведения, а не только замена текста.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "// Класс: Apex API 67.0\nList<Account> rows = [\n    SELECT Id, Name FROM Account WITH SECURITY_ENFORCED\n];"
+  },
+  {
+    "id": "S-Q08",
+    "level": "senior",
+    "topic": "Apex security",
+    "title": "Пропущенное sharing keyword и версия класса",
+    "prompt": "Два класса не содержат with/without/inherited sharing. Один на API 66.0, другой на API 67.0. Как корректно описать различие defaults?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sharing keyword влияет только на CSS компонентов."
+      },
+      {
+        "id": "b",
+        "text": "В 67.0 default — with sharing; в 66.0 и ниже отсутствие keyword сохраняет текущий sharing context."
+      },
+      {
+        "id": "c",
+        "text": "В обеих версиях отсутствие keyword всегда значит without sharing."
+      },
+      {
+        "id": "d",
+        "text": "В обеих версиях отсутствие keyword всегда значит with sharing."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Он управляет record-level access в Apex."
+      },
+      {
+        "id": "c",
+        "text": "Для 67.0 default изменён, а старое поведение зависит от контекста."
+      },
+      {
+        "id": "d",
+        "text": "Это неверно для всех старых контекстов."
+      }
+    ],
+    "explanation": "Старое отсутствие keyword нельзя безусловно объяснять как «всегда without sharing». Контекст вызова и версия важны; явный контракт упрощает ревью.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html",
+    "difficulty": 3,
+    "kind": "concept"
+  },
+  {
+    "id": "S-Q09",
+    "level": "senior",
+    "topic": "Security",
+    "title": "Свои RowCause на standard objects",
+    "prompt": "Команда работает с Metadata API 68.0 и поддерживаемым standard object с share object и OWD, допускающим sharing. Верно ли, что custom Apex sharing reasons возможны только на custom objects?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Нет: API 68.0 добавляет sharing reasons для поддерживаемых standard objects; проверяйте условия объекта и org."
+      },
+      {
+        "id": "b",
+        "text": "Да, это вечное ограничение платформы."
+      },
+      {
+        "id": "c",
+        "text": "Нет, теперь любой объект, включая detail master-detail, имеет свою share table."
+      },
+      {
+        "id": "d",
+        "text": "Нет, потому что RowCause больше не нужен для shares."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Актуальная документация API 68.0 его изменила."
+      },
+      {
+        "id": "c",
+        "text": "Поддержка требует подходящего объекта и share object."
+      },
+      {
+        "id": "d",
+        "text": "RowCause по-прежнему обозначает причину sharing."
+      }
+    ],
+    "explanation": "Старые статьи описывают прежнее ограничение. Новая возможность не распространяется автоматически на любой объект, например detail master-detail без собственной share table.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q09-v1",
+        "prompt": "Project__c — custom object с собственной share table. Программное правило A и правило B выдают shares по разным custom sharing reasons. Нужно отозвать только доступ, выданный правилом A. Какой фильтр нужен?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Удалить permission sets у всех получателей."
+          },
+          {
+            "id": "b",
+            "text": "Изменить OWD на Private: только A исчезнет."
+          },
+          {
+            "id": "c",
+            "text": "Удалять только shares, принадлежащие правилу A, включая его RowCause и целевые записи/получателей."
+          },
+          {
+            "id": "d",
+            "text": "Удалить все Project__Share для этих записей без проверки RowCause."
+          }
+        ],
+        "correctOptionId": "c",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Это меняет доступ гораздо шире нужной причины."
+          },
+          {
+            "id": "b",
+            "text": "OWD не различает два программных sharing reasons."
+          },
+          {
+            "id": "d",
+            "text": "Это может отозвать доступ от другого правила."
+          }
+        ],
+        "explanation": "Отдельные reasons позволяют управлять своим источником доступа, не трогая независимые shares."
+      }
+    ]
+  },
+  {
+    "id": "S-Q10",
+    "level": "senior",
+    "topic": "Security",
+    "title": "Две restriction rules для одного пользователя",
+    "prompt": "Для одного объекта созданы две активные restriction rules, и один пользователь попадает под обе. Команда рассчитывает на логическое AND двух фильтров. Что нужно исправить?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ничего: платформа всегда объединяет все rules через AND."
+      },
+      {
+        "id": "b",
+        "text": "Ничего: платформа всегда объединяет их через OR."
+      },
+      {
+        "id": "c",
+        "text": "Переименовать rules так, чтобы нужная шла первой по алфавиту."
+      },
+      {
+        "id": "d",
+        "text": "Спроектировать критерии так, чтобы одному пользователю соответствовала только одна активная rule."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Такой гарантии нет."
+      },
+      {
+        "id": "b",
+        "text": "Такая композиция также не обещана."
+      },
+      {
+        "id": "c",
+        "text": "Имя не является контрактом выбора нужного фильтра."
+      }
+    ],
+    "explanation": "Salesforce не валидирует взаимоисключение. Если пользователю подходят две активные rules, наблюдается только одна; нельзя рассчитывать на композицию AND.",
+    "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q11",
+    "level": "senior",
+    "topic": "Platform Events",
+    "title": "Подписчик отсутствовал дольше retention",
+    "prompt": "Pub/Sub клиент был выключен пять суток. Он хранит Replay ID, а нужные Platform Events старше стандартного окна хранения 72 часа. Какой план восстановления надёжнее?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Вычесть 100 из Replay ID, чтобы попасть в старые данные."
+      },
+      {
+        "id": "b",
+        "text": "Переключить подписчика на LMS: там хранится полная история."
+      },
+      {
+        "id": "c",
+        "text": "Сверка с устойчивым источником данных и backfill; replay за пределами retention не гарантирован."
+      },
+      {
+        "id": "d",
+        "text": "Повторять старый Replay ID, пока платформа гарантированно вернёт всё."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Replay ID нельзя конструировать арифметически."
+      },
+      {
+        "id": "b",
+        "text": "LMS не является долговечным серверным архивом."
+      },
+      {
+        "id": "d",
+        "text": "После retention такая гарантия отсутствует."
+      }
+    ],
+    "explanation": "Event bus — не бессрочный архив. Для длительных разрывов требуется отдельный путь восстановления бизнес-состояния.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q11-v1",
+        "prompt": "Pub/Sub клиент остановился ненадолго, checkpoint ещё входит в доступное окно хранения. Как возобновить получение после последнего обработанного события?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Использовать сохранённый полученный Replay ID и учитывать повторную доставку в обработчике."
+          },
+          {
+            "id": "b",
+            "text": "Всегда делать полный импорт всей базы."
+          },
+          {
+            "id": "c",
+            "text": "Вычислить новый Replay ID по текущему времени."
+          },
+          {
+            "id": "d",
+            "text": "Обнулить checkpoint после каждого события."
+          }
+        ],
+        "correctOptionId": "a",
+        "whyOthers": [
+          {
+            "id": "b",
+            "text": "Для короткого разрыва доступен механизм replay."
+          },
+          {
+            "id": "c",
+            "text": "Replay ID не является timestamp для самостоятельного расчёта."
+          },
+          {
+            "id": "d",
+            "text": "Так теряется точка восстановления."
+          }
+        ],
+        "explanation": "Replay позволяет продолжить поток в пределах доступной истории. Обработчик всё равно должен быть устойчив к повтору бизнес-операции."
+      }
+    ]
+  },
+  {
+    "id": "S-Q12",
+    "level": "senior",
+    "topic": "Platform Events",
+    "title": "Replay ID как ключ дедупликации",
+    "prompt": "Для Platform Events, получаемых через Pub/Sub API, нужен идентификатор события для дедупликации. Почему одного replay_id недостаточно как универсального уникального ключа?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Дедупликация не нужна, если запрос выполнен через TLS."
+      },
+      {
+        "id": "b",
+        "text": "Replay ID — позиция потока и может потерять уникальность при определённых maintenance-сценариях; используйте event.id и бизнес-идемпотентность."
+      },
+      {
+        "id": "c",
+        "text": "Replay ID всегда равен Salesforce Id бизнес-записи."
+      },
+      {
+        "id": "d",
+        "text": "Replay ID всегда уникален во всех потоках и за всё время."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "TLS защищает транспорт, но не исключает повторную обработку."
+      },
+      {
+        "id": "c",
+        "text": "Он описывает позицию события, а не бизнес-record Id."
+      },
+      {
+        "id": "d",
+        "text": "Документация оговаривает исключения, например migrations."
+      }
+    ],
+    "explanation": "У Platform Event есть отдельный event.id. Не переносите эту конкретную схему поля без проверки на Change Data Capture.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q13",
+    "level": "senior",
+    "topic": "Integrations",
+    "title": "SaveResult публикации — ещё не бизнес-успех",
+    "prompt": "EventBus.publish вернул успешный SaveResult. Можно ли сразу пометить внешнюю доставку и бизнес-обработку завершёнными?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Нет: успешная постановка публикации не подтверждает выполнение внешнего подписчика."
+      },
+      {
+        "id": "b",
+        "text": "Да, SaveResult доказывает успешный commit любого подписчика."
+      },
+      {
+        "id": "c",
+        "text": "Да, если event payload содержит record Id."
+      },
+      {
+        "id": "d",
+        "text": "Да, если subscriber написан на Apex вместо другого языка."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Издатель не получает такую гарантию через SaveResult."
+      },
+      {
+        "id": "c",
+        "text": "Наличие Id не подтверждает доставку и обработку."
+      },
+      {
+        "id": "d",
+        "text": "Разделение этапов остаётся."
+      }
+    ],
+    "explanation": "У публикации, доставки и обработки разные этапы. Для бизнес-подтверждения нужен соответствующий контракт, статус или обратное событие; для финального результата публикации применимы publish callbacks.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-publish-callbacks.html",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q14",
+    "level": "senior",
+    "topic": "Async Apex",
+    "title": "Очередь растёт быстрее обработки",
+    "prompt": "После перевода всего процесса в Queueable пользователи перестали ждать, но длина очереди растёт каждый день. Что изменилось на самом деле?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Система масштабируется бесконечно, достаточно подождать."
+      },
+      {
+        "id": "b",
+        "text": "Async автоматически увеличил все org allocations."
+      },
+      {
+        "id": "c",
+        "text": "Нужно скрыть страницу Apex Jobs, чтобы очередь не тормозила."
+      },
+      {
+        "id": "d",
+        "text": "Ожидание перенесено в очередь; нужно сравнить входную нагрузку с пропускной способностью и ограничить/укрупнить работу."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Постоянный рост очереди показывает дисбаланс нагрузки."
+      },
+      {
+        "id": "b",
+        "text": "Выбор Queueable не отменяет общие ограничения."
+      },
+      {
+        "id": "c",
+        "text": "Наблюдение не является причиной нагрузки."
+      }
+    ],
+    "explanation": "Async не создаёт неограниченные ресурсы или SLA запуска. Нужны наблюдение за очередью, допустимая задержка и управление нагрузкой.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing",
+    "difficulty": 3,
+    "kind": "diagnosis"
+  },
+  {
+    "id": "S-Q15",
+    "level": "senior",
+    "topic": "Async Apex",
+    "title": "Пятьдесят миллионов в QueryLocator",
+    "prompt": "Batch start возвращает QueryLocator с миллионами записей. Команда хочет загрузить все связанные данные в память каждого execute, потому что QueryLocator поддерживает до 50 млн. Что неверно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Database.Stateful делает heap безлимитным."
+      },
+      {
+        "id": "b",
+        "text": "В Batch вообще нет governor limits."
+      },
+      {
+        "id": "c",
+        "text": "Особое ограничение QueryLocator в start не снимает лимиты памяти, CPU и запросов в execute."
+      },
+      {
+        "id": "d",
+        "text": "QueryLocator автоматически распределяет любой вложенный код на новые транзакции."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Stateful сохраняет состояние, но не убирает лимиты."
+      },
+      {
+        "id": "b",
+        "text": "Порции имеют отдельные, но конечные лимиты."
+      },
+      {
+        "id": "d",
+        "text": "Границы execute не дробят произвольную логику автоматически."
+      }
+    ],
+    "explanation": "Каждая порция должна укладываться в собственные лимиты. Большой общий dataset не означает возможность обработать его целиком в одной транзакции.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q16",
+    "level": "senior",
+    "topic": "Security",
+    "title": "stripInaccessible: проверили не тот список",
+    "prompt": "Код API 66.0 получает Accounts в system mode. Цель — удалить недоступные для чтения поля перед передачей клиенту. Почему приведённый фрагмент не выполняет эту цель?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Достаточно переименовать rows в safeRows."
+      },
+      {
+        "id": "b",
+        "text": "Он возвращает исходный rows вместо decision.getRecords()."
+      },
+      {
+        "id": "c",
+        "text": "READABLE проверяет только CSS."
+      },
+      {
+        "id": "d",
+        "text": "stripInaccessible автоматически удаляет поля из схемы org."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Имя переменной не подменяет возвращаемые данные."
+      },
+      {
+        "id": "c",
+        "text": "AccessType.READABLE связан с доступом на чтение полей."
+      },
+      {
+        "id": "d",
+        "text": "Метод не меняет метаданные объекта."
+      }
+    ],
+    "explanation": "stripInaccessible возвращает результат проверки отдельно. Нужно использовать очищенные records и отдельно обеспечить требуемый record-level access.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-class-system-sobjectaccessdecision.html",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "List<Account> rows = [SELECT Id, Name, AnnualRevenue FROM Account];\nSObjectAccessDecision decision = Security.stripInaccessible(\n    AccessType.READABLE, rows\n);\nreturn rows;"
+  },
+  {
+    "id": "S-Q17",
+    "level": "senior",
+    "topic": "Security",
+    "title": "Bind защищает значение, не имя поля",
+    "prompt": "Пользователь выбирает поле сортировки, его строка вставляется после ORDER BY. Значения WHERE уже передаются через bind. Какая защита всё ещё нужна?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Разрешённый список имён полей и направлений сортировки; bind значений не защищает структуру запроса."
+      },
+      {
+        "id": "b",
+        "text": "Ничего: один bind в WHERE защищает всю строку SOQL."
+      },
+      {
+        "id": "c",
+        "text": "Достаточно удалить пробелы из sortField."
+      },
+      {
+        "id": "d",
+        "text": "Поставить without sharing: это проверяет SOQL injection."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Он защищает только соответствующее значение."
+      },
+      {
+        "id": "c",
+        "text": "Это не проверка допустимого поля или синтаксиса."
+      },
+      {
+        "id": "d",
+        "text": "Sharing keyword не валидирует структуру динамического запроса."
+      }
+    ],
+    "explanation": "Имена полей и ключевые слова нельзя обрабатывать как обычные связанные значения. Ограничивайте динамические части контракта и отдельно применяйте access mode.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-dynamic-soql.html",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "String queryText = 'SELECT Id, Name FROM Account '\n    + 'WHERE Name = :nameFilter ORDER BY ' + sortField;\n// nameFilter связан; sortField получен от клиента."
+  },
+  {
+    "id": "S-Q18",
+    "level": "senior",
+    "topic": "Performance",
+    "title": "OFFSET не подходит для всей истории",
+    "prompt": "Экран должен пройти десятки тысяч записей. Он строит SOQL с LIMIT 50 OFFSET page * 50. Что не учтено?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LIMIT 50 автоматически снимает предел OFFSET."
+      },
+      {
+        "id": "b",
+        "text": "ORDER BY Name отменяет предел 2 000."
+      },
+      {
+        "id": "c",
+        "text": "Достаточно повторять запрос с тем же OFFSET до следующей страницы."
+      },
+      {
+        "id": "d",
+        "text": "SOQL OFFSET ограничен 2 000; для такого объёма нужен другой способ продолжения выборки."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Размер страницы не снимает предел смещения."
+      },
+      {
+        "id": "b",
+        "text": "Сортировка не меняет этот предел."
+      },
+      {
+        "id": "c",
+        "text": "Повтор того же смещения не продвигает выборку."
+      }
+    ],
+    "explanation": "Выбор зависит от задачи: query/queryMore для API-обхода, cursor API подходящей версии или pagination по стабильному ключу для интерфейса. Нельзя просто бесконечно увеличивать OFFSET.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-select-offset.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q18-v1",
+        "prompt": "Каталог небольшой: 300 записей, нужны страницы по 20. Используются допустимые OFFSET и стабильный ORDER BY. Данные могут изменяться между запросами. Что всё ещё нельзя обещать?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Что ORDER BY может задавать порядок."
+          },
+          {
+            "id": "b",
+            "text": "Что страницы являются неизменным snapshot: OFFSET не создаёт общий server-side cursor."
+          },
+          {
+            "id": "c",
+            "text": "Что OFFSET вообще доступен в SOQL."
+          },
+          {
+            "id": "d",
+            "text": "Что LIMIT можно применять вместе с OFFSET."
+          }
+        ],
+        "correctOptionId": "b",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "ORDER BY задаёт порядок, но не фиксирует snapshot между запросами."
+          },
+          {
+            "id": "c",
+            "text": "OFFSET поддерживается, если соблюдены ограничения."
+          },
+          {
+            "id": "d",
+            "text": "Совместное применение поддерживается и обычно нужно."
+          }
+        ],
+        "explanation": "В пределах лимита OFFSET применим, но новые или удалённые записи могут сдвинуть границы страниц."
+      }
+    ]
+  },
+  {
+    "id": "S-Q19",
+    "level": "senior",
+    "topic": "CI/CD",
+    "title": "Что доказывает зелёный PR",
+    "prompt": "CI проверил только форматирование JavaScript. В PR также изменены Apex и metadata. Какого подтверждения качества ещё нет?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только новый скриншот обложки курса."
+      },
+      {
+        "id": "b",
+        "text": "Только количество commits в ветке."
+      },
+      {
+        "id": "c",
+        "text": "Что metadata разворачивается и Apex-поведение проходит нужные тесты в подходящей org."
+      },
+      {
+        "id": "d",
+        "text": "Ничего: форматирование гарантирует корректность Apex."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Он не проверяет deployability и серверное поведение."
+      },
+      {
+        "id": "b",
+        "text": "Количество commits не является проверкой результата."
+      },
+      {
+        "id": "d",
+        "text": "Форматтер не выполняет Apex и не проверяет зависимости metadata."
+      }
+    ],
+    "explanation": "Для разных частей приложения нужны соответствующие проверки: статический анализ, LWC-тесты и deployment/Apex tests. Один форматтер не покрывает всё приложение.",
+    "sourceUrl": "https://developer.salesforce.com/blogs/2022/01/set-up-continuous-integration-for-your-salesforce-projects",
+    "difficulty": 3,
+    "kind": "diagnosis"
+  },
+  {
+    "id": "S-Q20",
+    "level": "senior",
+    "topic": "CI/CD",
+    "title": "Чистая среда и скрытые зависимости",
+    "prompt": "Приложение работает в личной dev org, но не разворачивается в свежую подходящую scratch org: отсутствует поле, вручную созданное ранее. Что выявила проверка?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Что нужно отключить проверку deployment errors."
+      },
+      {
+        "id": "b",
+        "text": "Неучтённую metadata-зависимость; нужное поле и конфигурацию следует включить в воспроизводимый источник."
+      },
+      {
+        "id": "c",
+        "text": "Что scratch org всегда несовместимы с Apex."
+      },
+      {
+        "id": "d",
+        "text": "Что Git должен хранить полный dump production клиентов."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Отключение сигнала не устраняет зависимость."
+      },
+      {
+        "id": "c",
+        "text": "Scratch org предназначены в том числе для разработки и CI."
+      },
+      {
+        "id": "d",
+        "text": "Нужна metadata и безопасные тестовые данные, а не клиентская информация."
+      }
+    ],
+    "explanation": "Чистая среда помогает обнаружить ручные изменения, не попавшие в проект. Нужные features/licenses также должны соответствовать приложению.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-scratch-orgs.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q20-v1",
+        "prompt": "Проект зависит от отраслевой функции, которой нет в выбранной конфигурации scratch org и которая в ней недоступна. Что делать с CI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Создать поле с тем же названием и считать продукт полностью воспроизведённым."
+          },
+          {
+            "id": "b",
+            "text": "Игнорировать все ошибки missing feature на production deployment."
+          },
+          {
+            "id": "c",
+            "text": "Разрешить CI автоматически покупать лицензии."
+          },
+          {
+            "id": "d",
+            "text": "Использовать поддерживаемую среду и явно описать обязательные features/licenses; не объявлять код сломанным только по этой ошибке."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Одинаковое имя поля не заменяет отраслевую функциональность."
+          },
+          {
+            "id": "b",
+            "text": "Ограничение среды надо решить, а не скрыть."
+          },
+          {
+            "id": "c",
+            "text": "Это не необходимое следствие проверки и не решает конфигурацию автоматически."
+          }
+        ],
+        "explanation": "Воспроизводимость требует подходящей среды. Scratch org полезны, но не гарантируют наличие любого продукта и лицензии."
+      }
+    ]
+  },
+  {
+    "id": "S-Q21",
+    "level": "senior",
+    "topic": "Testing",
+    "title": "Почему 100% coverage недостаточно",
+    "prompt": "Тест покрывает все строки handler, но проверяет только отсутствие исключения. Ошибка в расчёте скидки незаметна. Что добавит полезную гарантию?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверки бизнес-результата на обычных и граничных данных, включая bulk и негативные случаи."
+      },
+      {
+        "id": "b",
+        "text": "Удалить часть тестов, чтобы coverage стал ровно 75%."
+      },
+      {
+        "id": "c",
+        "text": "Добавить System.assert(true) после каждой строки."
+      },
+      {
+        "id": "d",
+        "text": "Проверить только длину имени класса."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Процент сам по себе не создаёт нужных проверок."
+      },
+      {
+        "id": "c",
+        "text": "Такая проверка не проверяет результат."
+      },
+      {
+        "id": "d",
+        "text": "Это не связано с расчётом скидки."
+      }
+    ],
+    "explanation": "Coverage показывает выполнение строк, а не правильность расчёта. Assertions должны отличать ожидаемое поведение от неправильного.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro",
+    "difficulty": 3,
+    "kind": "diagnosis"
+  },
+  {
+    "id": "S-Q22",
+    "level": "senior",
+    "topic": "Testing",
+    "title": "Тестировать права как сценарии",
+    "prompt": "Новый Apex endpoint должен отдавать только разрешённые пользователю записи и поля. Все тесты запускаются с максимально широким доступом. Какая проверка нужна дополнительно?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Только тест под вторым администратором."
+      },
+      {
+        "id": "b",
+        "text": "Скрыть поля с layout в тестовой org."
+      },
+      {
+        "id": "c",
+        "text": "Проверять только HTTP 200 без содержимого ответа."
+      },
+      {
+        "id": "d",
+        "text": "Положительные и отрицательные сценарии под ограниченными пользователями с проверкой фактического access mode и результата."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Он может иметь те же широкие права и не проверить отказ."
+      },
+      {
+        "id": "b",
+        "text": "Это не эквивалент FLS и серверного доступа."
+      },
+      {
+        "id": "c",
+        "text": "Нужен контроль того, какие данные реально возвращены."
+      }
+    ],
+    "explanation": "Администратор скрывает ошибки модели доступа. У тестов должны быть конкретные ожидания по records, полям и отказам; одно наличие runAs без понимания режима недостаточно.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q23",
+    "level": "senior",
+    "topic": "Integrations",
+    "title": "Повторяемая ошибка payload",
+    "prompt": "Сервис отвечает 400: обязательный код страны отсутствует в payload. Очередь повторяет тот же запрос каждую секунду. Какой подход разумнее?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Заменять все ответы 400 на успех."
+      },
+      {
+        "id": "b",
+        "text": "Создавать новый business key на каждом retry."
+      },
+      {
+        "id": "c",
+        "text": "Зафиксировать ошибку данных, отправить запись на исправление и повторять после изменения причины."
+      },
+      {
+        "id": "d",
+        "text": "Увеличить частоту повторов до 100 в секунду."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Так теряется корректность бизнес-процесса."
+      },
+      {
+        "id": "b",
+        "text": "Это не исправляет payload и может мешать дедупликации."
+      },
+      {
+        "id": "d",
+        "text": "Это не добавит отсутствующий код страны."
+      }
+    ],
+    "explanation": "Не все ошибки временные. Бесконечный retry неизменного некорректного запроса тратит лимиты и маскирует проблему; transient-сбои требуют отдельной политики.",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q24",
+    "level": "senior",
+    "topic": "Agentforce",
+    "title": "Один хороший ответ — не регрессия",
+    "prompt": "После изменения Agentforce action один тестовый диалог выглядит убедительно. Как проверять, что агент готов к сценарию курса?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Проверять только название агента."
+      },
+      {
+        "id": "b",
+        "text": "Подготовить набор входов с ожидаемыми действиями и результатами, включая ограничения и ошибочные запросы; сравнивать прогоны."
+      },
+      {
+        "id": "c",
+        "text": "Принимать любой грамматически правильный ответ."
+      },
+      {
+        "id": "d",
+        "text": "Измерять только количество слов в ответе."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Название не проверяет сценарий."
+      },
+      {
+        "id": "c",
+        "text": "Хороший текст не гарантирует правильное действие и доступ."
+      },
+      {
+        "id": "d",
+        "text": "Длина не доказывает правильность бизнес-результата."
+      }
+    ],
+    "explanation": "Одного удачного ответа мало для проверки поведения. У Agentforce есть Testing Center, DX и Testing API; выбор зависит от процесса и среды.",
+    "sourceUrl": "https://developer.salesforce.com/docs/ai/agentforce/guide/testing-api-get-started.html",
+    "difficulty": 3,
+    "kind": "scenario",
+    "variations": [
+      {
+        "id": "S-Q24-v1",
+        "prompt": "Команда запускает Agentforce Testing API и предполагает, что тесты никогда не меняют данные и любые связанные запросы бесплатны. Что уточняет текущая документация?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Тесты автоматически откатывают абсолютно любые изменения."
+          },
+          {
+            "id": "b",
+            "text": "Тестирование поддерживается только на production."
+          },
+          {
+            "id": "c",
+            "text": "Любой Data 360 query внутри теста всегда бесплатен."
+          },
+          {
+            "id": "d",
+            "text": "Тесты могут менять данные; поддерживаемая среда — sandbox, а Data 360 queries могут потреблять credits."
+          }
+        ],
+        "correctOptionId": "d",
+        "whyOthers": [
+          {
+            "id": "a",
+            "text": "Документация предупреждает о возможности изменения данных."
+          },
+          {
+            "id": "b",
+            "text": "В указанной документации тестирование агентов доступно в sandboxes."
+          },
+          {
+            "id": "c",
+            "text": "Связанные запросы могут потреблять Data 360 credits."
+          }
+        ],
+        "explanation": "Это влияет на подготовку безопасных данных и оценку стоимости. Отсутствие Einstein Requests/Flex Credits за сам прогон не означает бесплатность всех зависимых операций."
+      }
+    ]
+  },
+  {
+    "id": "S-Q25",
+    "level": "senior",
+    "topic": "Omni-Channel",
+    "title": "Урок по устаревшему Omni-Channel",
+    "prompt": "В ноябре 2026 команда пишет новый практический урок исключительно по Standard Omni-Channel и обещает его как актуальную конфигурацию. Что требуется проверить?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Переход на Enhanced Omni-Channel: Standard retired в Summer ’26; примеры нужно сверить с текущей org."
+      },
+      {
+        "id": "b",
+        "text": "Ничего: Standard и Enhanced — только разные названия одной неизменной страницы."
+      },
+      {
+        "id": "c",
+        "text": "Удалить все очереди: Enhanced не может маршрутизировать работу."
+      },
+      {
+        "id": "d",
+        "text": "Заменить routing на Permission Set Group."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "Документация описывает retirement и различия возможностей."
+      },
+      {
+        "id": "c",
+        "text": "Такое заключение не следует из перехода."
+      },
+      {
+        "id": "d",
+        "text": "Разрешения не являются механизмом распределения работы."
+      }
+    ],
+    "explanation": "Документация указывает на автоматическое обновление org при rollout Summer ’26. В уроке важны актуальная настройка routing и поведение, а не старый интерфейс.",
+    "sourceUrl": "https://help.salesforce.com/s/articleView?id=sf.omnichannel_std_vs_enhanced.htm&language=en_US&type=5",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q26",
+    "level": "senior",
+    "topic": "Automotive Cloud",
+    "title": "Практика требует правильной среды",
+    "prompt": "Курс обещает лабораторию Automotive Cloud в любом обычном Trailhead Playground без проверки продукта. Какое решение надёжнее?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Назвать custom object Vehicle__c и считать его полной Automotive Cloud."
+      },
+      {
+        "id": "b",
+        "text": "Считать Salesforce Developer Edition гарантией всех отраслевых лицензий."
+      },
+      {
+        "id": "c",
+        "text": "Сначала выдать всем admin, тогда появятся отсутствующие лицензии."
+      },
+      {
+        "id": "d",
+        "text": "Заранее проверить подходящую Automotive Cloud trial или org, доступные функции и ограничения; предусмотреть отдельную учебную модель при отсутствии доступа."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Похожая схема не воспроизводит лицензированный продукт целиком."
+      },
+      {
+        "id": "b",
+        "text": "Обычная DE не гарантирует все продукты."
+      },
+      {
+        "id": "c",
+        "text": "Права администратора не добавляют лицензированный продукт."
+      }
+    ],
+    "explanation": "Отраслевой продукт нельзя считать установленным в любой учебной org. Доступ к среде — часть подготовки лаборатории; упрощённая модель должна быть явно обозначена.",
+    "sourceUrl": "https://developer.salesforce.com/free-trials/comparison/automotive-cloud",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q27",
+    "level": "senior",
+    "topic": "Architecture",
+    "title": "Flow или Apex — выбор по нагрузке",
+    "prompt": "Простое обновление полей своей записи уже работает в before-save Flow. Команда хочет переписать его в Apex только ради senior-портфолио. Какие данные нужны для обоснования?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Никогда не использовать Apex на объектах с Flow."
+      },
+      {
+        "id": "b",
+        "text": "Считать число строк кода основной бизнес-метрикой."
+      },
+      {
+        "id": "c",
+        "text": "Требования, сложность, тестируемость, порядок автоматизаций и измеренная нагрузка; сам грейд автора не критерий."
+      },
+      {
+        "id": "d",
+        "text": "Всегда переписывать любой Flow в Apex."
+      }
+    ],
+    "correctOptionId": "c",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Совместное использование возможно, но требует согласованного дизайна."
+      },
+      {
+        "id": "b",
+        "text": "Количество строк не отражает корректность и эксплуатацию."
+      },
+      {
+        "id": "d",
+        "text": "Это не универсальное улучшение."
+      }
+    ],
+    "explanation": "Подход выбирают под задачу. Record-triggered automation требует общей картины объекта и жизненного цикла транзакции, а не правила «всегда Flow» или «всегда Apex».",
+    "sourceUrl": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered-automation",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q28",
+    "level": "senior",
+    "topic": "LWC",
+    "title": "Кэш без обещанного TTL",
+    "prompt": "LWC показывает кэшируемый Apex-результат. Код предполагает, что он всегда живёт ровно пять минут, и по таймеру строит бизнес-логику. Что исправлять?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Считать кэш источником окончательного подтверждения успешного DML."
+      },
+      {
+        "id": "b",
+        "text": "Не полагаться на фиксированный TTL; обновлять данные через поддерживаемый механизм, когда известно, что они устарели."
+      },
+      {
+        "id": "c",
+        "text": "Зашить другое число минут из старой статьи."
+      },
+      {
+        "id": "d",
+        "text": "Объявить cacheable=false, но оставить @wire Apex без изменений."
+      }
+    ],
+    "correctOptionId": "b",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Результат чтения из кэша не подтверждает новую запись."
+      },
+      {
+        "id": "c",
+        "text": "Это оставляет ту же хрупкую зависимость."
+      },
+      {
+        "id": "d",
+        "text": "Apex wire требует cacheable=true."
+      }
+    ],
+    "explanation": "Продолжительность клиентского кэша может меняться. Корректность процесса не должна зависеть от недокументированного постоянного времени.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
+    "difficulty": 3,
+    "kind": "scenario"
+  },
+  {
+    "id": "S-Q29",
+    "level": "senior",
+    "topic": "Apex security",
+    "title": "Явный режим сильнее догадки по keyword",
+    "prompt": "Класс Apex API 67.0 объявлен without sharing, но запрос явно содержит WITH USER_MODE. Как оценить этот запрос?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Он применяет sharing, CRUD и FLS пользователя: явный user mode действует на операцию."
+      },
+      {
+        "id": "b",
+        "text": "without sharing всегда отменяет WITH USER_MODE."
+      },
+      {
+        "id": "c",
+        "text": "API 67.0 запрещает любые without sharing классы."
+      },
+      {
+        "id": "d",
+        "text": "Запрос учитывает только FLS, но никогда record access."
+      }
+    ],
+    "correctOptionId": "a",
+    "whyOthers": [
+      {
+        "id": "b",
+        "text": "User mode операции применяет пользовательские проверки."
+      },
+      {
+        "id": "c",
+        "text": "Такого общего запрета нет; важен обоснованный контракт."
+      },
+      {
+        "id": "d",
+        "text": "User mode применяет и sharing."
+      }
+    ],
+    "explanation": "Нельзя читать security только по строке объявления класса. Access mode операции и версия Apex также входят в контракт.",
+    "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "// Apex API 67.0\npublic without sharing class AccountLookup {\n    public static List<Account> findAccounts() {\n        return [SELECT Id, Name FROM Account WITH USER_MODE];\n    }\n}"
+  },
+  {
+    "id": "S-Q30",
+    "level": "senior",
+    "topic": "Integrations",
+    "title": "Частичный успех нельзя назвать полным",
+    "prompt": "Обработчик использует Database.insert(rows, false) и затем помечает всю партию как Synced, не читая SaveResult. Какие данные он теряет?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Никакие: allOrNone=false гарантирует успех каждой записи."
+      },
+      {
+        "id": "b",
+        "text": "Только время выполнения: ошибки в этом режиме невозможны."
+      },
+      {
+        "id": "c",
+        "text": "Только порядок полей: SaveResult не относится к DML."
+      },
+      {
+        "id": "d",
+        "text": "Какие конкретные записи не сохранились и почему; статусы нужно связывать с результатом каждой записи."
+      }
+    ],
+    "correctOptionId": "d",
+    "whyOthers": [
+      {
+        "id": "a",
+        "text": "Параметр допускает частичный успех, а не гарантирует общий."
+      },
+      {
+        "id": "b",
+        "text": "Validation и другие ошибки всё ещё возможны."
+      },
+      {
+        "id": "c",
+        "text": "SaveResult описывает результат операции для соответствующей записи."
+      }
+    ],
+    "explanation": "Partial success — осознанный контракт. Успешная часть не должна скрывать ошибки остальных; повтор направляют на подходящие неуспешные записи с учётом идемпотентности.",
+    "sourceUrl": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml",
+    "difficulty": 3,
+    "kind": "code",
+    "code": "Database.SaveResult[] results = Database.insert(rows, false);\n// Ошибка дизайна: результаты отдельных rows проигнорированы.\nmarkWholeBatchAsSynced();"
+  }
+]

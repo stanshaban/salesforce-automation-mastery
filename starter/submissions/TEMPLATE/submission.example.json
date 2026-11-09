@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "assignmentId": "J-L01",
+  "environment": {
+    "type": "Developer Edition",
+    "apiVersion": "68.0"
+  },
+  "summary": "Replace with what you implemented and how to reproduce it.",
+  "tests": {
+    "static": "not-run",
+    "salesforce": "not-run",
+    "commands": [],
+    "resultsSummary": "State what actually ran; do not paste credentials or raw customer logs."
+  },
+  "acceptance": [
+    {
+      "criterion": "Replace with one requirement from the assignment",
+      "result": "not-run",
+      "evidence": "Relative path to safe evidence or a short observation"
+    }
+  ],
+  "designNotes": "Explain one choice and one limitation.",
+  "aiAssistance": "Describe what AI helped with and what you verified yourself."
+}

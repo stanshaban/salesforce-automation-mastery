@@ -1,0 +1,19 @@
+{
+  "name": "salesforce-automation-mastery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SAM developer training, self-check and assignment review portal",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check-content.mjs"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.5.0"
+  }
+}

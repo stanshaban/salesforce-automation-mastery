@@ -1,0 +1,619 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-09",
+  "language": "ru",
+  "purpose": "Авторские вопросы для самопроверки. Темы обобщены из учебного интервью; персональные данные и стенограмма в банк не включены.",
+  "counts": {
+    "base": 90,
+    "variants": 30,
+    "byLevel": {
+      "junior": 30,
+      "middle": 30,
+      "senior": 30
+    },
+    "variantsByLevel": {
+      "junior": 10,
+      "middle": 11,
+      "senior": 9
+    }
+  },
+  "reviewPolicy": "Перепроверять версии и доступность функций при каждом сезонном релизе. Источники обосновывают технические факты; сценарии и варианты ответов написаны для SAM.",
+  "versionCaveats": [
+    {
+      "topic": "Apex API 67.0",
+      "note": "С API 67.0 database operations по умолчанию user mode; ≤66.0 — system mode. Для класса без sharing keyword API67 default with sharing; до67 отсутствие keyword сохраняет текущий sharing context, а не универсально without sharing. WITH SECURITY_ENFORCED не поддерживается с67.0.",
+      "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html"
+    },
+    {
+      "topic": "Explicit access mode",
+      "note": "WITH USER_MODE применяет sharing, CRUD/FLS, даже если класс without sharing. В system mode record sharing зависит от class keyword; system mode не следует автоматически приравнивать к without sharing.",
+      "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "topic": "Manual shares и API68",
+      "note": "Сохранение Manual shares при transfer зависит от Keep Manual Shares when Transferring Records. Sharing reasons для поддерживаемых standard objects доступны с Metadata API68.0; на detail master-detail без share object это не распространяется.",
+      "sourceUrl": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html",
+      "additionalSourceUrl": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects"
+    },
+    {
+      "topic": "Restriction rules",
+      "note": "Работают только для поддерживаемых объектов/контекстов. Сужают существующий доступ, не дают новый. Критерии надо проектировать так, чтобы пользователю соответствовала одна активная rule; две rules не означают гарантированный AND.",
+      "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5"
+    },
+    {
+      "topic": "Deferred sharing rules",
+      "note": "Требует доступности функции в org. После Resume обязателен полный Recalculate накопленных изменений. Пауза не останавливает все механизмы sharing, включая manual shares.",
+      "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_rule_recalculation.htm&language=en_US&type=5"
+    },
+    {
+      "topic": "Platform Events",
+      "note": "Стандартная retention PE/CDC —72часа; Replay ID непрозрачен и не служит универсальным уникальным ключом. Publish After Commit зависит от commit; Immediately может опередить commit или пережить rollback. Успешный SaveResult публикации не подтверждает обработку подписчиком.",
+      "sourceUrl": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
+      "additionalSourceUrl": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-publish-callbacks.html"
+    },
+    {
+      "topic": "LWC",
+      "note": "Не полагаться на фиксированный TTL Apex cache. refreshApex получает wire emission, notifyRecordUpdateAvailable обновляет знания LDS о записанных через Apex records. @track не наблюдает внутренние изменения Date/Set/Map.",
+      "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
+      "additionalSourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-fields.html"
+    },
+    {
+      "topic": "Omni-Channel",
+      "note": "Standard Omni-Channel retired в Summer’26; актуальные практики сверять с Enhanced Omni-Channel.",
+      "sourceUrl": "https://help.salesforce.com/s/articleView?id=sf.omnichannel_std_vs_enhanced.htm&language=en_US&type=5"
+    },
+    {
+      "topic": "Agentforce",
+      "note": "На дату проверки agent testing в документации доступно в sandboxes, тесты могут менять данные. Data360-запросы во время тестов могут потреблять credits.",
+      "sourceUrl": "https://developer.salesforce.com/docs/ai/agentforce/guide/testing-api-get-started.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "security",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q04"
+      ]
+    },
+    {
+      "id": "fields",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q02"
+      ]
+    },
+    {
+      "id": "objects",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q01",
+        "J-Q03",
+        "M-Q29"
+      ]
+    },
+    {
+      "id": "sharing",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q05",
+        "M-Q02"
+      ]
+    },
+    {
+      "id": "muting",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/permission-set-groups/mute-permissions-in-permission-set-groups",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q01"
+      ]
+    },
+    {
+      "id": "restriction",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q04",
+        "S-Q10"
+      ]
+    },
+    {
+      "id": "deferred",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_rule_recalculation.htm&language=en_US&type=5",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q06"
+      ]
+    },
+    {
+      "id": "version",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q05",
+        "S-Q07",
+        "S-Q08"
+      ]
+    },
+    {
+      "id": "sharingReason",
+      "url": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q09"
+      ]
+    },
+    {
+      "id": "model",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q06"
+      ]
+    },
+    {
+      "id": "bulk",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers/apex_triggers_bulk",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q09",
+        "J-Q10",
+        "J-Q12",
+        "J-Q30"
+      ]
+    },
+    {
+      "id": "tests",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q13",
+        "J-Q14",
+        "J-Q15",
+        "S-Q21"
+      ]
+    },
+    {
+      "id": "async",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q28",
+        "S-Q14"
+      ]
+    },
+    {
+      "id": "batch",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q08",
+        "M-Q09",
+        "S-Q15"
+      ]
+    },
+    {
+      "id": "queueable",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/asynchronous_apex/async_apex_queueable",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q10",
+        "M-Q11"
+      ]
+    },
+    {
+      "id": "flow",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered-automation",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q08",
+        "M-Q07",
+        "S-Q27"
+      ]
+    },
+    {
+      "id": "soql",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-sosl-intro.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q16"
+      ]
+    },
+    {
+      "id": "dml",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_dml",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q11",
+        "J-Q17",
+        "J-Q18",
+        "S-Q30"
+      ]
+    },
+    {
+      "id": "connected",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks-dom.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q22",
+        "M-Q16"
+      ]
+    },
+    {
+      "id": "rendered",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks-rendered.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q17"
+      ]
+    },
+    {
+      "id": "reactivity",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-fields.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q21",
+        "M-Q18"
+      ]
+    },
+    {
+      "id": "wire",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/data-wire-service-about.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q23"
+      ]
+    },
+    {
+      "id": "cache",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q19",
+        "M-Q20",
+        "S-Q28"
+      ]
+    },
+    {
+      "id": "events",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q20"
+      ]
+    },
+    {
+      "id": "lms",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/use-message-channel.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q21"
+      ]
+    },
+    {
+      "id": "shadow",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-dom.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q22"
+      ]
+    },
+    {
+      "id": "lds",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/data-ui-api.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q24"
+      ]
+    },
+    {
+      "id": "peCommit",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations-decoupled-processes.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q25",
+        "M-Q27"
+      ]
+    },
+    {
+      "id": "replay",
+      "url": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q26",
+        "S-Q11",
+        "S-Q12"
+      ]
+    },
+    {
+      "id": "integration",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q13",
+        "M-Q14",
+        "S-Q23"
+      ]
+    },
+    {
+      "id": "named",
+      "url": "https://developer.salesforce.com/docs/platform/named-credentials/guide/get-started.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q12"
+      ]
+    },
+    {
+      "id": "mock",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex_classes_restful_http_testing.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q15"
+      ]
+    },
+    {
+      "id": "architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-multitenant-architecture",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q27",
+        "S-Q01"
+      ]
+    },
+    {
+      "id": "locking",
+      "url": "https://developer.salesforce.com/blogs/2014/07/record-locking-cheat-sheet",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q04"
+      ]
+    },
+    {
+      "id": "gitFetch",
+      "url": "https://git-scm.com/docs/git-fetch",
+      "provider": "Git",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q25"
+      ]
+    },
+    {
+      "id": "gitPull",
+      "url": "https://git-scm.com/docs/git-pull",
+      "provider": "Git",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q26"
+      ]
+    },
+    {
+      "id": "gitCherry",
+      "url": "https://git-scm.com/docs/git-cherry-pick",
+      "provider": "Git",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q28"
+      ]
+    },
+    {
+      "id": "gitRevert",
+      "url": "https://git-scm.com/docs/git-revert",
+      "provider": "Git",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q30"
+      ]
+    },
+    {
+      "id": "agent",
+      "url": "https://developer.salesforce.com/docs/ai/agentforce/guide/testing-api-get-started.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q24"
+      ]
+    },
+    {
+      "id": "omni",
+      "url": "https://help.salesforce.com/s/articleView?id=sf.omnichannel_std_vs_enhanced.htm&language=en_US&type=5",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q25"
+      ]
+    },
+    {
+      "id": "auto",
+      "url": "https://developer.salesforce.com/free-trials/comparison/automotive-cloud",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q26"
+      ]
+    },
+    {
+      "id": "userMode",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q06",
+        "S-Q22",
+        "S-Q29"
+      ]
+    },
+    {
+      "id": "standardReasons",
+      "url": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q03"
+      ]
+    },
+    {
+      "id": "apexWire",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-wire-method.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q24"
+      ]
+    },
+    {
+      "id": "publicProps",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-public.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q19"
+      ]
+    },
+    {
+      "id": "formula",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q07"
+      ]
+    },
+    {
+      "id": "validation",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/validation_rules",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "J-Q29"
+      ]
+    },
+    {
+      "id": "propagation",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/events-propagation.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "M-Q23"
+      ]
+    },
+    {
+      "id": "queryPlan",
+      "url": "https://help.salesforce.com/s/articleView?id=000199003&language=en_US&type=1",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q02"
+      ]
+    },
+    {
+      "id": "ci",
+      "url": "https://developer.salesforce.com/blogs/2022/01/set-up-continuous-integration-for-your-salesforce-projects",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q19"
+      ]
+    },
+    {
+      "id": "scratch",
+      "url": "https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-scratch-orgs.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q20"
+      ]
+    },
+    {
+      "id": "skew",
+      "url": "https://developer.salesforce.com/docs/platform/draes/guide/draes-group-membership-data-skew.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q05"
+      ]
+    },
+    {
+      "id": "resource",
+      "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/resource-and-cost-optimization.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q03"
+      ]
+    },
+    {
+      "id": "publishCallback",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-publish-callbacks.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q13"
+      ]
+    },
+    {
+      "id": "dynamic",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-dynamic-soql.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q17"
+      ]
+    },
+    {
+      "id": "strip",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-class-system-sobjectaccessdecision.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q16"
+      ]
+    },
+    {
+      "id": "offset",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-select-offset.html",
+      "provider": "Salesforce",
+      "checkedAt": "2026-11-09",
+      "questionIds": [
+        "S-Q18"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.sf/
+.sfdx/
+.env
+.env.*
+!.env.example
+node_modules/
+coverage/
+test-results/
+*.log
+*.key
+*.pem
+*.p12
+.DS_Store

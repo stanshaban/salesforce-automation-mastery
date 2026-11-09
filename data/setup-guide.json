@@ -1,0 +1,482 @@
+{
+  "title": "Настройка VS Code и рабочего процесса Salesforce-разработчика",
+  "checkedAt": "2026-11-09",
+  "introduction": "Учебная org — отдельная среда Salesforce с её данными, пользователями и настройками. Metadata описывают устройство приложения: например, какое поле есть у автомобиля; данные — конкретное значение этого поля. VS Code редактирует файлы metadata и кода. Salesforce CLI переносит выбранные файлы между проектом и учебной org. Git сохраняет историю файлов, а GitHub помогает показать изменения и получить review. Перед этим гайдом пройди введение в CRM, объекты, поля и записи.",
+  "baseline": "Основной путь использует личную копию шаблона SAM и DX-папку starter/salesforce. Примеры проверены по документации на 9 ноября 2026; установка и запуск в org выполняются самим учеником. Для примеров используем отдельную учебную org с alias sam-training, а не клиентскую или рабочую production org.",
+  "steps": [
+    {
+      "id": "setup-01",
+      "title": "Разобраться в окне VS Code",
+      "outcome": "Можешь показать, где найти файл, команду, результат запуска и изменения Git.",
+      "explanation": "Слева — файлы проекта и переключатели разделов. В центре — редактор. Внизу — Terminal, Problems и Output. Палитра команд вызывает действия расширений. Строка состояния помогает заметить ветку и выбранную Salesforce org.",
+      "actions": [
+        "Открой любую учебную папку через File → Open Folder.",
+        "Найди Explorer, Search, Source Control и Extensions в боковой панели.",
+        "Открой View → Command Palette: Cmd+Shift+P на macOS; Ctrl+Shift+P на Windows/Linux.",
+        "Открой Terminal → New Terminal и переключись между Terminal, Problems и Output."
+      ],
+      "commands": [],
+      "verify": "Без подсказки покажи четыре места: файл, палитру команд, вывод ошибки, diff изменения.",
+      "commonMistake": "Считать, что сохранение файла в редакторе уже изменило Salesforce org.",
+      "visual": {
+        "zone": "sidebar",
+        "caption": "Пять зон окна: Activity Bar → Explorer → Editor → нижняя панель → Status Bar."
+      },
+      "sourceUrls": [
+        "https://code.visualstudio.com/docs/getstarted/userinterface",
+        "https://code.visualstudio.com/docs/terminal/basics"
+      ],
+      "video": {
+        "title": "Разобраться в окне VS Code",
+        "shots": [
+          "Общий план окна с подписями зон.",
+          "Крупно Explorer и открытый файл.",
+          "Палитра команд поверх редактора.",
+          "Нижняя панель: одинаковая ошибка в Problems и подробности в Output."
+        ]
+      }
+    },
+    {
+      "id": "setup-02",
+      "title": "Установить VS Code и Git",
+      "outcome": "Редактор открывает папку проекта; Git доступен из терминала.",
+      "explanation": "Устанавливаем актуальную стабильную версию VS Code для своей ОС и архитектуры. Старый номер минимальной версии из статьи быстро устаревает: текущая Marketplace-страница Salesforce требует свежий VS Code. Copilot не нужен для прохождения SAM.",
+      "actions": [
+        "Скачай VS Code с официального сайта. На macOS перетащи приложение в Applications; на Windows обычно подходит User Installer.",
+        "Установи Git по официальной инструкции для своей ОС, если git --version не находится.",
+        "На macOS добавь команду code через Command Palette → Shell Command: Install 'code' command in PATH; если предлагается Copilot, для этого курса его установка не требуется.",
+        "После установки открой новый терминал, чтобы он увидел обновлённый PATH."
+      ],
+      "commands": [
+        {
+          "label": "Версия редактора",
+          "command": "code --version",
+          "platform": "all"
+        },
+        {
+          "label": "Версия Git",
+          "command": "git --version",
+          "platform": "all"
+        }
+      ],
+      "verify": "Обе команды показывают версию. Если code пока недоступен, File → Open Folder остаётся рабочим способом открыть проект.",
+      "commonMistake": "Проверять команды в терминале, который был открыт до установки; путать Visual Studio с Visual Studio Code.",
+      "visual": {
+        "zone": "terminal",
+        "caption": "В терминале видны ответы code --version и git --version; версии в ролике подписаны датой записи."
+      },
+      "sourceUrls": [
+        "https://code.visualstudio.com/docs/setup/mac",
+        "https://code.visualstudio.com/docs/setup/windows",
+        "https://git-scm.com/downloads",
+        "https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode"
+      ],
+      "video": {
+        "title": "Установить VS Code и Git",
+        "shots": [
+          "Показать выбор macOS Apple Silicon/Intel и Windows x64/ARM без полного ожидания установки.",
+          "Открыть установленное приложение.",
+          "Показать новый терминал и две команды проверки."
+        ]
+      }
+    },
+    {
+      "id": "setup-03",
+      "title": "Добавить Salesforce CLI и Java",
+      "outcome": "Команды sf доступны; Apex Language Server найдёт подходящий JDK.",
+      "explanation": "CLI выполняет запросы к org от твоего имени. JDK нужен локальным возможностям Apex в редакторе; он не устанавливает Salesforce и не запускает сервер платформы. Для этого маршрута выбираем JDK 21, рекомендованный Salesforce.",
+      "actions": [
+        "Установи Salesforce CLI официальным установщиком для своей ОС; отдельный npm-путь здесь не нужен.",
+        "Установи JDK 21 из одного из источников, перечисленных в Salesforce Java Setup.",
+        "Перезапусти VS Code и терминал после установки.",
+        "Если Apex не находит Java, задай user-setting salesforcedx-vscode-apex.java.home на папку JDK, а не на файл java; на Windows путь в JSON требует экранированных обратных слешей."
+      ],
+      "commands": [
+        {
+          "label": "Версия Salesforce CLI",
+          "command": "sf --version",
+          "platform": "all"
+        },
+        {
+          "label": "Версия Java",
+          "command": "java -version",
+          "platform": "all"
+        },
+        {
+          "label": "Путь к JDK 21 на macOS",
+          "command": "/usr/libexec/java_home -v 21",
+          "platform": "macos"
+        },
+        {
+          "label": "Где Windows нашла Java",
+          "command": "where.exe java",
+          "platform": "windows"
+        }
+      ],
+      "verify": "sf показывает версию; java показывает JDK 21. Если на машине несколько JDK, настройка VS Code указывает на нужный.",
+      "commonMistake": "Установить JRE вместо JDK или указать путь к java.exe вместо корня JDK. Не добавляй Java-путь в репозиторий: он индивидуален для компьютера.",
+      "visual": {
+        "zone": "terminal",
+        "caption": "CLI и Java — две отдельные проверки; подчёркнуты строки с версиями."
+      },
+      "sourceUrls": [
+        "https://developer.salesforce.com/tools/salesforcecli",
+        "https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/java-setup.html"
+      ],
+      "video": {
+        "title": "Добавить Salesforce CLI и Java",
+        "shots": [
+          "Показать страницы официальных установщиков.",
+          "Проверить sf и java в новом терминале.",
+          "Показать пользовательскую настройку Java и Output → Apex при неверном пути."
+        ]
+      }
+    },
+    {
+      "id": "setup-04",
+      "title": "Включить Salesforce Extension Pack",
+      "outcome": "Видишь Salesforce-команды, подсказки Apex и инструменты metadata.",
+      "explanation": "Установи Salesforce Extension Pack от издателя Salesforce, ID salesforce.salesforcedx-vscode. Pack объединяет CLI integration, Apex, LWC, тесты, org browser и другие инструменты. Наличие AI-расширения не означает, что нужно подключать AI или оформлять подписку.",
+      "actions": [
+        "Открой Extensions: Cmd+Shift+X на macOS или Ctrl+Shift+X на Windows/Linux.",
+        "Найди Salesforce Extension Pack и проверь издателя и ID.",
+        "Открой его список Included Extensions; отдельно найди Apex, LWC и Salesforce Org Browser.",
+        "После открытия DX-проекта введи SFDX в Command Palette. Если функций не видно, проверь, что в открытой папке есть sfdx-project.json."
+      ],
+      "commands": [
+        {
+          "label": "Альтернативная установка по точному ID",
+          "command": "code --install-extension salesforce.salesforcedx-vscode",
+          "platform": "all"
+        },
+        {
+          "label": "Список установленных расширений",
+          "command": "code --list-extensions --show-versions",
+          "platform": "all"
+        }
+      ],
+      "verify": "Pack установлен. В DX-проекте палитра показывает Salesforce-команды. После открытия Apex-файла нет ошибки запуска Language Server.",
+      "commonMistake": "Установить похожее расширение неизвестного издателя или открыть родительскую папку, из которой расширение не видит DX-проект.",
+      "visual": {
+        "zone": "sidebar",
+        "caption": "В разделе Extensions выделены имя, издатель Salesforce и точный ID; затем подсвечена палитра SFDX."
+      },
+      "sourceUrls": [
+        "https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode",
+        "https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html",
+        "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace"
+      ],
+      "video": {
+        "title": "Включить Salesforce Extension Pack",
+        "shots": [
+          "Установка через Extensions.",
+          "Список included components без подробного обхода каждого.",
+          "Команда SFDX в палитре и пример autocomplete в Apex."
+        ]
+      }
+    },
+    {
+      "id": "setup-05",
+      "title": "Получить свой проект",
+      "outcome": "У тебя собственный GitHub-репозиторий и локальная DX-папка.",
+      "explanation": "В SAM основная дорога — создать свою копию через Use this template, затем клонировать её. Это личный учебный проект; PR с заданием создаётся между ветками внутри него. Не создавай новый Salesforce-проект поверх шаблона.",
+      "actions": [
+        "На странице SAM выбери Use this template → Create a new repository и скопируй только default branch.",
+        "В VS Code запусти Git: Clone, вставь URL своего репозитория и выбери локальную папку.",
+        "Открой starter/salesforce как папку VS Code; именно там находится sfdx-project.json.",
+        "В Explorer найди force-app/main/default, sfdx-project.json и .forceignore. Версию API смотри в проекте и metadata.",
+        "Если хочешь отдельно изучить создание с нуля, выполни sf template generate project --name northstar-sandbox --manifest вне существующего проекта. Это дополнительное упражнение."
+      ],
+      "commands": [
+        {
+          "label": "Открыть DX-папку из корня копии SAM",
+          "command": "code starter/salesforce",
+          "platform": "all"
+        },
+        {
+          "label": "Проверить адрес собственного репозитория",
+          "command": "git remote -v",
+          "platform": "all"
+        },
+        {
+          "label": "Проверить начальное состояние",
+          "command": "git status",
+          "platform": "all"
+        }
+      ],
+      "verify": "В редакторе открыт starter/salesforce; origin указывает на твою копию; git status не содержит случайных личных файлов.",
+      "commonMistake": "Создать template-копию, а затем пытаться отправить из неё PR прямо в исходный репозиторий: истории независимы. Для решения нужен PR внутри своей копии.",
+      "visual": {
+        "zone": "editor",
+        "caption": "В дереве выделены starter/salesforce, sfdx-project.json и force-app; отдельно показана связь origin с личным репозиторием."
+      },
+      "sourceUrls": [
+        "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template",
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_template_generate_project.html"
+      ],
+      "video": {
+        "title": "Получить свой проект",
+        "shots": [
+          "Use this template → личная копия.",
+          "Git: Clone → выбор папки.",
+          "Открыть DX-папку и объяснить три важных файла.",
+          "Показать origin; не выводить авторизационные данные."
+        ]
+      }
+    },
+    {
+      "id": "setup-06",
+      "title": "Подключить учебную org",
+      "outcome": "Можешь назвать org, в которую попадут команды.",
+      "explanation": "Авторизация открывается в браузере: CLI получает доступ после входа. Alias sam-training помогает не перепутать среды. Для Developer Edition используем login.salesforce.com; для предоставленной sandbox — test.salesforce.com или её подтверждённый My Domain URL.",
+      "actions": [
+        "Создай или получи отдельную учебную org.",
+        "Выполни одну команду авторизации, подходящую типу org. В браузере войди именно в учебную среду.",
+        "Вернись в редактор и проверь alias через sf org list.",
+        "Открой org командой с явным --target-org. Для упражнений тоже всегда указывай этот alias.",
+        "Не прикладывай к сдаче папки .sf/.sfdx, auth URL, токены, пароли или записи экрана авторизации."
+      ],
+      "commands": [
+        {
+          "label": "Developer Edition: вход через браузер",
+          "command": "sf org login web --alias sam-training --instance-url https://login.salesforce.com",
+          "platform": "all"
+        },
+        {
+          "label": "Sandbox: альтернативный вход",
+          "command": "sf org login web --alias sam-training --instance-url https://test.salesforce.com",
+          "platform": "all"
+        },
+        {
+          "label": "Список подключённых сред",
+          "command": "sf org list",
+          "platform": "all"
+        },
+        {
+          "label": "Открыть нужную org",
+          "command": "sf org open --target-org sam-training",
+          "platform": "all"
+        }
+      ],
+      "verify": "Открывшаяся org — твоя учебная среда; alias виден в локальном списке. В сдаче записан только тип среды и версия API, без токенов.",
+      "commonMistake": "Авторизоваться в рабочую org по сохранённой браузерной сессии или считать, что alias гарантирует правильность — его соответствие нужно проверить.",
+      "visual": {
+        "zone": "status",
+        "caption": "Две стрелки: браузерная авторизация → локальный alias → явный target-org в команде."
+      },
+      "sourceUrls": [
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_org_login_web.html",
+        "https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-cli-usernames-orgs.html"
+      ],
+      "video": {
+        "title": "Подключить учебную org",
+        "shots": [
+          "Показать команду до запуска.",
+          "Склейка: авторизация за кадром.",
+          "Показать alias и открывшуюся учебную org без идентификаторов пользователя."
+        ]
+      }
+    },
+    {
+      "id": "setup-07",
+      "title": "Развернуть стартовые metadata",
+      "outcome": "Понимаешь направление deploy: файлы → org.",
+      "explanation": "Первый deploy переносит выбранные файлы стартового проекта в учебную org. Это не импорт бизнес-данных. В шаблоне есть каркас объектов Vehicle__c и Test_Drive__c с Lookup; законченных решений заданий нет.",
+      "actions": [
+        "Из starter/salesforce проверь git status и состав force-app.",
+        "Запусти deploy только force-app в sam-training.",
+        "Прочитай итог: успех, job ID или список ошибок. Если ожидание закончилось, проверь завершение задания, не запускай повтор вслепую.",
+        "В Setup учебной org найди два объекта и сравни поля с файлами.",
+        "Посмотри permission set SAM_Lab_Basics. Назначай его только подходящей учебной персоне; permission set не открывает чужие записи сам по себе."
+      ],
+      "commands": [
+        {
+          "label": "Перенести стартовые metadata в учебную org",
+          "command": "sf project deploy start --source-dir force-app --target-org sam-training --wait 10",
+          "platform": "all"
+        }
+      ],
+      "verify": "Deploy завершён успешно; оба объекта видны в Object Manager. Ты можешь показать, какой локальный файл создал одно выбранное поле.",
+      "commonMistake": "Путать deploy metadata с созданием тестовых записей или запускать всю папку случайного проекта вместо выбранного набора.",
+      "visual": {
+        "zone": "terminal",
+        "caption": "Слева force-app, справа учебная org; стрелка Deploy направлена вправо, результат команды внизу."
+      },
+      "sourceUrls": [
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_project_deploy_start.html",
+        "https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-develop-any-org.html"
+      ],
+      "video": {
+        "title": "Развернуть стартовые metadata",
+        "shots": [
+          "Показать список стартовых metadata.",
+          "Запустить ограниченный deploy.",
+          "Сопоставить один XML-файл с полем в Object Manager.",
+          "Короткая демонстрация ошибки и места её чтения."
+        ]
+      }
+    },
+    {
+      "id": "setup-08",
+      "title": "Забрать одно изменение из org",
+      "outcome": "Понимаешь retrieve: org → файлы, и умеешь увидеть diff.",
+      "explanation": "Если поле создано через Setup, Git пока о нём не знает. Retrieve забирает выбранные metadata в локальный проект. Перед ним проверь незакоммиченные правки: операция может перезаписать соответствующие локальные файлы.",
+      "actions": [
+        "В учебной org добавь поле к Vehicle__c по заданию J-L01.",
+        "В VS Code проверь git status; сохрани нужные локальные правки отдельным коммитом или осознанно убери их в stash.",
+        "Забери только Vehicle__c через CLI либо Org Browser.",
+        "Открой Source Control и сравни XML до/после.",
+        "Убедись, что diff не включает другие объекты и персональные данные."
+      ],
+      "commands": [
+        {
+          "label": "Проверить локальные изменения",
+          "command": "git status",
+          "platform": "all"
+        },
+        {
+          "label": "Забрать только учебный объект",
+          "command": "sf project retrieve start --metadata CustomObject:Vehicle__c --target-org sam-training",
+          "platform": "all"
+        },
+        {
+          "label": "Посмотреть разницу",
+          "command": "git diff",
+          "platform": "all"
+        }
+      ],
+      "verify": "В diff виден ожидаемый файл/изменение поля. Сохранение в Setup и retrieve объясняются как две разные операции.",
+      "commonMistake": "Забирать все metadata org ради одного поля или думать, что retrieve автоматически делает commit.",
+      "visual": {
+        "zone": "source-control",
+        "caption": "Стрелка Retrieve направлена к файлам; рядом две колонки diff с одним изменением."
+      },
+      "sourceUrls": [
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_project_retrieve_start.html",
+        "https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/org-browser.html"
+      ],
+      "video": {
+        "title": "Забрать одно изменение из org",
+        "shots": [
+          "Изменить одно учебное поле.",
+          "Забрать его и показать новый файл в Explorer.",
+          "Открыть diff; объяснить добавленные и удалённые строки."
+        ]
+      }
+    },
+    {
+      "id": "setup-09",
+      "title": "Запустить тест и найти причину сбоя",
+      "outcome": "Отличаешь результат теста от покрытия, а сообщение ошибки — от причины.",
+      "explanation": "Этот шаг выполняется после Apex-задания J-L04: в чистом starter ещё нет готового TestDriveStatusServiceTest. Тест проверяет ожидаемое поведение. Логи помогают выяснить путь выполнения; они не заменяют assertions.",
+      "actions": [
+        "После реализации J-L04 разверни свой Apex в sam-training.",
+        "Запусти TestDriveStatusServiceTest; дождись финального результата, при долгом запуске используй возвращённый test run ID.",
+        "Намеренно сломай одно правило локально, повтори deploy и тест: он должен поймать ошибку. Затем восстанови правильный вариант.",
+        "Для своей учебной операции включи tail log, воспроизведи сценарий и останови наблюдение Ctrl+C.",
+        "В Output/Problems объясни первую полезную ошибку. Сохраняй для review короткий результат, а не полный лог с данными."
+      ],
+      "commands": [
+        {
+          "label": "Проверить тестовый класс J-L04",
+          "command": "sf apex run test --class-names TestDriveStatusServiceTest --target-org sam-training --result-format human --wait 10 --code-coverage",
+          "platform": "all"
+        },
+        {
+          "label": "Смотреть логи своей учебной операции",
+          "command": "sf apex tail log --target-org sam-training",
+          "platform": "all"
+        }
+      ],
+      "verify": "Есть реальные assertions и успешный итог теста; намеренная поломка приводила к провалу. В объяснении названа причина ошибки, не только её текст.",
+      "commonMistake": "Сдать скриншот 100% coverage как доказательство качества; считать тест завершённым, если CLI вернул только ID запуска.",
+      "visual": {
+        "zone": "terminal",
+        "caption": "Три разных сигнала: Passed/Failed, assertion message и coverage; подсвечен именно проверяемый результат."
+      },
+      "sourceUrls": [
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_apex_run_test.html",
+        "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_apex_tail_log.html"
+      ],
+      "video": {
+        "title": "Запустить тест и найти причину сбоя",
+        "shots": [
+          "Открыть тест и показать assertion.",
+          "Успешный запуск, затем короткая демонстрация намеренной ошибки.",
+          "Показать полезный фрагмент лога и итог исправления."
+        ]
+      }
+    },
+    {
+      "id": "setup-10",
+      "title": "Сдать файлы или PR на review",
+      "outcome": "Проверяющий получает небольшой diff, воспроизводимые шаги и доказательства.",
+      "explanation": "В портале выбери задание и отправь конкретные файлы работы либо ссылку на PR. Приложи описание изменений и реальные результаты тестов. PR удобен для истории и комментариев: создай его из своей ветки в main своей копии. Публичный PR виден всем; загруженные в портал файлы предназначены для тебя и reviewer. Email и Skool-профиль заполняются только в профиле портала при необходимости.",
+      "actions": [
+        "Выбери assignment ID и подготовь только относящиеся к нему metadata, тесты и краткую инструкцию. Не прикладывай auth-файлы, клиентские данные или экспорт всей org.",
+        "Если идёшь через GitHub, создай ветку submission/J-L01 в своей копии, проверь git diff и добавь конкретные файлы. Команды ниже — пример этого пути из starter/salesforce.",
+        "Заполни starter/submissions/J-L01/submission.json по шаблону. Укажи тип org/API, выполненные проверки, известные ограничения и вопрос для reviewer.",
+        "Для пути через GitHub отправь ветку в origin и открой PR с base main в своей копии. Для пути с файлами выбери разрешённые порталом файлы и понятные названия: metadata, test results, README.",
+        "В разделе Сдать работу проверь assignment ID, ссылку или вложения и описание. Отправь в очередь review; сама загрузка файлов ещё не означает одобрение решения.",
+        "После комментариев обнови ту же работу. Для PR меняй ту же ветку; для файлов приложи актуальную версию и поясни исправления. GitHub issue нужен только как необязательный резервный путь."
+      ],
+      "commands": [
+        {
+          "label": "Новая ветка задания",
+          "command": "git switch -c submission/J-L01",
+          "platform": "all"
+        },
+        {
+          "label": "Просмотреть изменения",
+          "command": "git diff",
+          "platform": "all"
+        },
+        {
+          "label": "Добавить metadata из DX-папки",
+          "command": "git add force-app",
+          "platform": "all"
+        },
+        {
+          "label": "Добавить карточку сдачи из DX-папки",
+          "command": "git add ../submissions/J-L01/submission.json",
+          "platform": "all"
+        },
+        {
+          "label": "Проверить будущий commit",
+          "command": "git diff --cached",
+          "platform": "all"
+        },
+        {
+          "label": "Сохранить работу",
+          "command": "git commit -m \"Complete J-L01 data model\"",
+          "platform": "all"
+        },
+        {
+          "label": "Отправить свою ветку",
+          "command": "git push -u origin submission/J-L01",
+          "platform": "all"
+        }
+      ],
+      "verify": "Заявка содержит правильный assignment ID, актуальные файлы или PR URL, инструкцию и доказательства. Reviewer может сопоставить тесты с этой версией решения.",
+      "commonMistake": "Считать загрузку автоматическим зачётом; прикладывать только скриншот результата; отправлять рабочие секреты или email в публичный PR.",
+      "visual": {
+        "zone": "source-control",
+        "caption": "Изменения + тесты → файлы или PR URL → личная заявка в SAM → комментарии reviewer → новая версия."
+      },
+      "sourceUrls": [
+        "https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request",
+        "https://docs.github.com/en/get-started/using-git/about-git",
+        "https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template"
+      ],
+      "video": {
+        "title": "Два способа сдать работу",
+        "shots": [
+          "Показать небольшой diff и результаты тестов.",
+          "Вариант A: выбрать конкретные файлы, подписать их и отправить через портал.",
+          "Вариант B: открыть PR в личной копии и передать ссылку.",
+          "Показать статус заявки и обновление после review на учебном аккаунте."
+        ]
+      }
+    }
+  ]
+}
