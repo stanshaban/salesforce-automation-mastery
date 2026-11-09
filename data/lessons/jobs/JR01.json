@@ -1,0 +1,109 @@
+{
+  "id": "JR01",
+  "track": "jobs",
+  "title": "Choose a Target Role and Read Job Requirements",
+  "minutes": 60,
+  "summary": "Turn a vague goal into a shortlist of roles and a skills map you can support with examples.",
+  "prerequisites": [
+    "An interest in Salesforce work. A completed exercise helps, but is not required to begin role research."
+  ],
+  "learningObjectives": [
+    "Compare responsibilities before titles.",
+    "Separate requirements from preferences.",
+    "Use evidence to choose a preparation priority."
+  ],
+  "sections": [
+    {
+      "heading": "A job title is a starting point, not a definition",
+      "body": [
+        "A Salesforce Developer builds and maintains features on the Salesforce platform. The balance of configuration, Apex, Lightning Web Components, integrations and support varies between teams. A title such as “Senior Salesforce Developer” is therefore not a complete description of the work. Read what the person will actually do and what the employer expects them to know.",
+        "For this exercise, imagine that you have completed the Northstar test-drive application. You can explain its data model, write a bulk-safe trigger and build a small LWC. You have not operated a large production integration. These facts are more useful than deciding, without evidence, that you are “middle level.” They tell you which requirements you can demonstrate and which require preparation.",
+        "If you have not completed a project yet, leave the evidence column empty or write “not yet demonstrated.” Use the fictional Northstar example to understand the method, then choose a first learning task. You can research a target before you are ready to apply; do not copy the example as your own experience."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Choose roles by responsibilities and evidence, not by the title alone."
+        }
+      ]
+    },
+    {
+      "heading": "Separate three kinds of requirement",
+      "body": [
+        "A practical requirement affects whether the role can work for you: location, time zone, working arrangement or a stated employment condition. A technical requirement describes work you must be able to perform, such as maintaining Apex integrations. A preference may improve your fit without being essential, such as previous experience in the automotive industry. Use the employer’s wording; do not turn every item into a mandatory rule.",
+        "Take this fictional description: “Maintain Apex and LWC features, support REST integrations, work with a UK-based team; Automotive Cloud experience preferred.” Your Northstar LWC is relevant evidence. A completed mock callout exercise shows practice, but it does not prove experience maintaining a production integration. The industry preference is a separate gap. “UK-based team” does not by itself establish where the employer can hire; that still needs clarification."
+      ]
+    },
+    {
+      "heading": "Build a small evidence matrix",
+      "body": [
+        "Create a table with the columns requirement, employer wording, importance, evidence and next step. Mark evidence as “I can demonstrate this,” “I have practised this” or “I have not used this.” These labels prevent a tutorial from silently turning into commercial experience. Attach a concrete item: a repository, a test result, an explanation or an authorised work example.",
+        "Start with five genuine job descriptions, keeping a direct link and the date you reviewed each one. Highlight repeated responsibilities rather than counting every keyword equally. If four roles require integration support and your only gap is integration diagnosis, that is a useful study signal. If every role is outside your preferred working arrangement, changing your technical study plan will not solve the practical mismatch."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Collect five descriptions before changing your CV. First find the work you are trying to be hired to do."
+        }
+      ]
+    },
+    {
+      "heading": "Choose a primary and an adjacent target",
+      "body": [
+        "Select one primary role whose central responsibilities you can credibly discuss. Choose one adjacent role only if you can explain the difference in preparation. For example, your primary target might be a developer role focused on Apex and LWC; an adjacent target might add integration ownership. Do not describe the second role as equivalent if its responsibilities are substantially broader.",
+        "Write a three-sentence target statement: the work you want, the evidence you bring and the area you are developing. “I want to build Salesforce service applications. My strongest examples are a tested test-drive feature and an accessible LWC. I am extending that work with integration failure handling.” This is an internal planning tool, not a claim that you are guaranteed to qualify. Review it when you have better evidence from actual applications."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Another person should be able to connect every claimed strength to one example in your matrix."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Choose a realistic target using five current job descriptions.",
+    "steps": [
+      "Save five employer descriptions with links and review dates.",
+      "Separate practical conditions, technical responsibilities and preferences.",
+      "Map each important requirement to something you can demonstrate, have practised or have not used.",
+      "Write a primary target, one adjacent target and a short preparation priority."
+    ],
+    "acceptance": [
+      "No requirement is marked essential unless the description supports that interpretation.",
+      "Tutorial work is identified as practice rather than employment.",
+      "The chosen target is explained with evidence, not only a desired title."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does a senior title prove that two roles require the same skills?",
+      "answer": "No. Responsibilities, context and expected ownership may differ. Compare the descriptions."
+    },
+    {
+      "question": "Is a missing preferred skill an automatic rejection?",
+      "answer": "You cannot infer that. Keep it distinct from stated requirements and decide whether the core work fits."
+    },
+    {
+      "question": "What makes a skills gap actionable?",
+      "answer": "A specific requirement, your current evidence and a concrete next exercise or question to resolve it."
+    }
+  ],
+  "recap": [
+    "Compare responsibilities before titles.",
+    "Separate requirements from preferences.",
+    "Use evidence to choose a preparation priority."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce career paths",
+      "url": "https://trailhead.salesforce.com/career-path"
+    }
+  ],
+  "illustration": {
+    "subject": "three career paths with one selected route and a small evidence card",
+    "alt": "Three career paths with one selected route and a small evidence card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Choose a Target Role. Subject: three career paths with one selected route and a small evidence card."
+  }
+}

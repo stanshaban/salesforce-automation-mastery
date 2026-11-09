@@ -1,0 +1,140 @@
+{
+  "id": "M22",
+  "track": "middle",
+  "title": "Wire, imperative Apex, and refreshing data",
+  "minutes": 50,
+  "summary": "Separate reactive reads from explicit writes and refresh the cache that actually supplies the displayed data.",
+  "prerequisites": [
+    "M21 lifecycle and asynchronous JavaScript.",
+    "Apex security and a simple LWC using record inputs."
+  ],
+  "learningObjectives": [
+    "Use @api, @wire, and imperative calls for their distinct roles.",
+    "Choose the correct refresh mechanism.",
+    "Separate write failure from refresh failure."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "An @api property is part of a component's public input contract. A parent can pass the selected appointment ID, and the child should respond to changes without mutating the parent's object. @wire provisions data reactively from an adapter or cacheable Apex method. An imperative Apex call runs when your code explicitly invokes it, making it appropriate for a user-requested write.",
+        "A JavaScript Promise represents an operation that will settle later as fulfilled or rejected. An async method returns a Promise; await pauses that method’s continuation until the supplied Promise settles, without freezing the whole page. try/catch handles rejection from an awaited operation. This is why the save and refresh below have separate try blocks. A reactive wire parameter uses a dollar-prefixed property reference, such as status: \"$status\", so changing the component property requests data for the new input.",
+        "Apex methods used with @wire require cacheable=true and must not mutate data. Keep the emitted wire result, not just its data array, if it will later be passed to refreshApex. An imperative Apex result is not automatically managed by Lightning Data Service. Identify which mechanism owns each displayed value before choosing how to refresh it.",
+        "For an Apex wire, refreshApex refreshes that wired result. For LDS-backed records changed outside LDS, notifyRecordUpdateAvailable informs LDS about affected IDs. For a custom imperative read, call the read again and update local state. Do not assume one refresh function repairs every component or that a fixed cache duration can be relied upon.",
+        "Reactivity also needs clear state ownership. Reassigning a field to a new value is usually sufficient for ordinary updates; @track is not required on every property. It can help observe mutations within supported plain objects and arrays, but does not make every complex object deeply reactive. Prefer an understandable immutable update when it avoids ambiguous nested mutations."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Refresh the data source that owns the displayed value; saving a record and refreshing a view are separate operations."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna confirms TD-A from a detail panel. The write succeeds, but the subsequent list refresh fails. Showing 'Save failed, try again' would encourage another write even though the appointment is already confirmed. Show a saved state with a separate 'Could not reload the list' message and offer to retry only the read.",
+        "The fragment below assumes a declared cacheable getVisits Apex method and a confirmVisit method that enforces the confirmation rule from M07. They are application methods you create, not built-in Salesforce APIs. The result object assigned in wiredVisits is what refreshApex needs. Adapt the names to your implemented controller rather than pasting unresolved imports."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which operation should the user repeat when the write succeeded but reloading failed?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "LWC controller fragment; requires your VisitController methods and template",
+          "code": "@api status = 'Requested';\n@wire(getVisits, { status: '$status' })\nwiredVisits(result) {\n    this.wiredResult = result;\n    this.rows = result.data || [];\n    this.loadError = result.error;\n}\nasync confirmSelected() {\n    if (this.saving) return;\n    this.saving = true;\n    this.saved = false;\n    this.saveError = undefined;\n    this.loadError = undefined;\n    try {\n        await confirmVisit({ recordId: this.selectedId });\n        this.saved = true;\n    } catch (error) {\n        this.saveError = 'The appointment was not confirmed.';\n        this.saving = false;\n        return;\n    }\n    try {\n        await refreshApex(this.wiredResult);\n    } catch (error) {\n        this.loadError = 'Saved, but the list could not be refreshed.';\n    } finally {\n        this.saving = false;\n    }\n}"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use existing Test Drive fields. Implement a cacheable VisitController.getVisits(String status) using an allowed status filter, bounded results, and explicit user-mode access, plus a non-cacheable confirmVisit(Id recordId) enforcing M07. Grant the restricted user class access and required data permissions. Import api and wire from lwc, refreshApex from @salesforce/apex, and both controller methods. Add selectedId and the template/state declarations; the fragment is not a complete bundle."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Build the read path",
+          "instruction": "Pass a selected record or filter through @api and connect a cacheable read. Show loading, empty, success, and error states distinctly.",
+          "expected": "Changing the public input produces the intended new read."
+        },
+        {
+          "title": "Add the explicit write",
+          "instruction": "Call a non-cacheable mutation method on a user action. Disable accidental duplicate submission while waiting and preserve field-level/business validation errors safely.",
+          "expected": "A click has one controlled write result."
+        },
+        {
+          "title": "Test refresh ownership",
+          "instruction": "Compare wired Apex, LDS, and imperative read scenarios. Simulate a write failure and a post-write refresh failure separately.",
+          "expected": "The interface offers the correct recovery for each case."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Passing only an array to refreshApex loses the wire configuration it needs. Refresh the emitted result object.",
+        "A late response for selection A can overwrite selection B. Use a request identity or equivalent guard when managing imperative reads, and test rapid selection changes."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not mark a mutating method cacheable or treat notifyRecordUpdateAvailable as a general server-event bus."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Keep an appointment panel current",
+    "brief": "Implement a reactive read and explicit confirmation with separate save and refresh outcomes.",
+    "steps": [
+      "Verify input-driven reading.",
+      "Perform and validate the write.",
+      "Force refresh failure and retry only the read."
+    ],
+    "acceptance": [
+      "The correct refresh API matches each data source.",
+      "A successful save is not reported as a failed save.",
+      "Rapid input changes do not display the wrong record."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What must be passed to refreshApex?",
+      "answer": "A result previously emitted by an Apex wire, so its bound configuration can be refreshed."
+    },
+    {
+      "question": "When should LDS be notified?",
+      "answer": "When records it may cache change outside its own update mechanisms."
+    },
+    {
+      "question": "Is @track required for every field?",
+      "answer": "No. Ordinary reassignment is reactive; @track has a narrower role for supported nested mutations."
+    }
+  ],
+  "recap": [
+    "Separate public input, reactive read, and explicit write.",
+    "Refresh the owning source.",
+    "Represent partial UI failure accurately."
+  ],
+  "sources": [
+    {
+      "title": "Apex result caching",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html"
+    },
+    {
+      "title": "LDS record update notification",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/reference-notify-record-update.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a component and a data cache synchronising after one record update",
+    "alt": "A component and a data cache synchronising after one record update",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Cache Refresh. Subject: a component and a data cache synchronising after one record update."
+  }
+}

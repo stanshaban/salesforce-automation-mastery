@@ -1,0 +1,132 @@
+{
+  "id": "M05",
+  "track": "middle",
+  "title": "Restriction rules and supported access paths",
+  "minutes": 50,
+  "summary": "Filter an already accessible record set for selected users while recognizing object, edition, and execution-context boundaries.",
+  "prerequisites": [
+    "M01: grants versus operations.",
+    "M03: multiple record-access paths."
+  ],
+  "learningObjectives": [
+    "Distinguish narrowing from granting access.",
+    "Create a controlled restriction-rule experiment.",
+    "Test the relevant read paths without claiming a universal deny."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A sharing mechanism opens access to records. A restriction rule narrows the records a matching user can access through supported paths. Think of two stages: first determine the records available from the ordinary security model, then apply the rule's record criteria where the feature is supported. A restriction rule does not give a user object Read or open a private appointment.",
+        "Rules have user criteria and record criteria. User criteria identify the people to whom the restriction applies; record criteria identify the records that remain visible to those people. Both must be stated explicitly. A rule that accidentally matches Oleg as well as Anna can hide operational work from the manager, even when the sharing design itself is correct.",
+        "Support is specific rather than universal. Current documentation lists custom and external objects plus selected standard objects including quotes, contracts, events, tasks, time sheets, and time sheet entries. Active-rule allowances differ by edition. Check the current documentation and your org before creating a rule. Do not assume Account and Contact are supported simply because they are familiar CRM objects.",
+        "Execution context also matters. Test the UI and user-mode query paths that your feature actually uses. A privileged system operation must be reviewed separately rather than being treated as automatically constrained by every end-user restriction. This distinction becomes especially important when custom Apex or an integration reads data on behalf of another process."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A restriction rule filters applicable access; it is neither a sharing grant nor a universal denial across every context."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Add Region__c, a restricted Picklist with North and South, to Test_Drive__c. Add SAM_Region_Limited__c, a Checkbox default false, to User. These fields are new prerequisites, not starter fields. In this small experiment, users with the checkbox true should see only North appointments through the supported paths being tested.",
+        "First give Anna ordinary access to one North and one South appointment. Confirm she can see both. Enable the restriction for the flagged test user and expect the South record to disappear from the selected read path. Max remains unflagged and should retain the baseline. This isolates restriction behavior from a missing share or missing object permission."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "If Anna cannot read either record, what other security layer might be failing?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use a separate training org or reversible rule. Record edition, object support, active-rule limit, user criteria, record criteria, and the exact paths you will test."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Prepare a known accessible set",
+          "instruction": "Create the new fields and two appointments. Grant the restricted persona access to both before the rule. Capture a list-view and query baseline.",
+          "expected": "The experiment starts with known access rather than an assumed grant."
+        },
+        {
+          "title": "Apply the narrow rule",
+          "instruction": "Create the restriction on Test_Drive__c for flagged users and North records. Activate it only after reviewing the criteria.",
+          "expected": "The flagged user loses the South result in supported end-user reads."
+        },
+        {
+          "title": "Compare identities and paths",
+          "instruction": "Repeat as Anna and Max in the UI and an explicitly user-mode Apex query. Separately document any privileged process without pretending it is the same context.",
+          "expected": "Each observation names both identity and execution path."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A list-view filter can look like a restriction rule while applying only to that view. Test an independent supported read path to distinguish the two.",
+        "A rule on one object does not automatically restrict all related child records. If an LWC also queries Contact or Vehicle, analyze those operations independently. Missing licensing or unsupported functionality should be reported, not simulated as a live successful configuration."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Never describe restriction rules as a global deny that automatically governs arbitrary privileged Apex."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Compare a grant with a restriction",
+    "brief": "Create the North/South experiment and explain the result for two users.",
+    "steps": [
+      "Document the baseline grants.",
+      "Add and test the rule.",
+      "Remove or deactivate it and verify the baseline returns."
+    ],
+    "acceptance": [
+      "No new access is attributed to the restriction.",
+      "Supported object, edition, and context are recorded.",
+      "Positive, negative, and unaffected-user cases are included."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Can the rule open a private appointment?",
+      "answer": "No. The underlying access must already be granted."
+    },
+    {
+      "question": "Why test an unflagged user?",
+      "answer": "It verifies that the user criteria do not restrict unrelated personas."
+    },
+    {
+      "question": "Does restricting Test Drive restrict its Contact?",
+      "answer": "Not automatically. The related object's own security and supported rules must be evaluated."
+    }
+  ],
+  "recap": [
+    "Start with a known accessible set.",
+    "State both user and record criteria.",
+    "Verify support and execution context."
+  ],
+  "sources": [
+    {
+      "title": "Restriction Rules",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Explicit database access modes",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a fine filter removing two records from an already accessible group",
+    "alt": "A fine filter removing two records from an already accessible group",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Restriction Rules. Subject: a fine filter removing two records from an already accessible group."
+  }
+}

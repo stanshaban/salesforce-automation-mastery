@@ -1,0 +1,144 @@
+{
+  "id": "M26",
+  "track": "middle",
+  "title": "Platform Events and publication timing",
+  "minutes": 50,
+  "summary": "Publish a business fact with a deliberate relationship to commit, and verify the subscriber independently from the publisher.",
+  "prerequisites": [
+    "M08 transactions and idempotency.",
+    "M11 async choices and M19 diagnostic identities."
+  ],
+  "learningObjectives": [
+    "Distinguish a fact from a command.",
+    "Compare Publish After Commit and Publish Immediately.",
+    "Avoid treating publish acceptance as subscriber success."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A Platform Event is a message on Salesforce's event infrastructure. A producer publishes it, and subscribers react independently. 'Test drive confirmed' describes a business fact; 'confirm this test drive' requests an action. Naming the intent matters because a subscriber should know whether it can trust the referenced change as committed or is being asked to perform it.",
+        "Publish After Commit ties publication to successful completion of the producing transaction. This is a natural choice for a message announcing a saved confirmation. Publish Immediately decouples publication from the transaction's final outcome, so a subscriber may observe the event before related data commits or even when the producer later rolls back. That behavior can be useful for specific diagnostics but is not interchangeable with a committed business fact.",
+        "The initial publish result reports acceptance for publication, not proof that the event reached every subscriber or that subscriber business work completed. Publishing itself is asynchronous and can fail after acceptance. A subscriber also has its own execution and error behavior. Model these stages separately in your status and diagnostics rather than returning a final business success from the publish call.",
+        "Events can be duplicated. A durable business key lets a subscriber avoid a second business effect even when the same operation is delivered again or republished under another event identity. That protection must be coordinated with the subscriber's output: do not mark an event handled before the intended result has been safely committed."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Commit, publication, delivery, and subscriber completion are separate milestones."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Create Test_Drive_Confirmed__e with Test_Drive_Id__c Text(18) and Business_Key__c Text(100). Choose Publish After Commit. These are new Platform Event metadata fields, not ordinary Test Drive fields. Publish the appointment ID and a stable confirmation key; do not include Irina's email, phone, or unnecessary customer details.",
+        "Use Confirmation_Receipt__c from M08 as the subscriber's demonstration output. Its unique Operation_Key__c stores the business key. A repeated event should leave one receipt. In a separate event definition or controlled comparison, explore Publish Immediately and a producer rollback. The comparison must state the configured behavior and avoid presenting a unit-test event delivery as an external integration proof."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What additional evidence is needed after accepted.isSuccess returns true?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Publisher fragment; event metadata and a valid visitId must already exist",
+          "code": "Test_Drive_Confirmed__e eventMessage = new Test_Drive_Confirmed__e(\n    Test_Drive_Id__c = String.valueOf(visitId),\n    Business_Key__c = 'confirm:' + String.valueOf(visitId)\n);\nDatabase.SaveResult accepted = EventBus.publish(eventMessage);\nSystem.assert(accepted.isSuccess(), 'Inspect publication-request errors');\n// This assertion does not prove delivery or subscriber completion."
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create the event metadata and verify its publish behavior. Use the receipt schema from M08 or explicitly define an equivalent unique-key output. Configure subscriber-user permissions deliberately.",
+        "In the isolated event exercise, remove or disable M08’s direct receipt-creation path so only the subscriber owns the effect. Use a fresh appointment/key and assert zero receipts before publication, one after delivery, and still one after redelivery. Otherwise a receipt created earlier by synchronous automation can make a broken subscriber appear correct. Configure and record the actual subscriber running identity; an event trigger does not automatically run as Anna."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Implement the producer boundary",
+          "instruction": "Publish only for the defined confirmation event, with minimal payload and a stable business key. Record the initial acceptance result separately.",
+          "expected": "No unrelated update is announced as a new business confirmation."
+        },
+        {
+          "title": "Implement the subscriber result",
+          "instruction": "Validate the payload, read authorized required data, and reconcile the unique-key receipt in the subscriber transaction. Preserve errors for investigation.",
+          "expected": "A duplicate does not create a second receipt."
+        },
+        {
+          "title": "Test commit and rollback",
+          "instruction": "Test publisher behavior, subscriber delivery with supported Test.getEventBus().deliver calls, and an independently observed training run. Compare rollback under the selected settings.",
+          "expected": "Evidence names which stage and environment was actually verified."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A subscriber cannot safely assume that a Publish Immediately event's referenced record is already committed. Retrying reads indefinitely is not a substitute for choosing the correct publication semantics.",
+        "A single transaction-local set does not provide durable deduplication. Re-delivery in a later transaction requires a persistent operation identity."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not describe EventBus.publish success as successful processing by all subscribers."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Publish and consume a confirmation fact",
+    "brief": "Create a minimal event path with explicit commit behavior and a duplicate-safe receipt.",
+    "steps": [
+      "Create the event schema.",
+      "Publish and inspect acceptance.",
+      "Test duplicate handling and rollback separately."
+    ],
+    "acceptance": [
+      "Payload contains no unnecessary customer data.",
+      "Publication timing is stated and checked.",
+      "The receipt remains unique across repeated delivery."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why prefer After Commit for this fact?",
+      "answer": "The message should describe a confirmation that actually committed."
+    },
+    {
+      "question": "Does a successful publish return prove processing?",
+      "answer": "No. Publication acceptance and subscriber completion are separate stages."
+    },
+    {
+      "question": "Why use a business key as well as an event identity?",
+      "answer": "The same business operation can be republished as a new event and still must not create a second effect."
+    }
+  ],
+  "recap": [
+    "Name the event's meaning.",
+    "Choose the commit relationship.",
+    "Verify subscriber outcomes separately."
+  ],
+  "sources": [
+    {
+      "title": "Decoupled publishing",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations-decoupled-processes.html"
+    },
+    {
+      "title": "Platform Event considerations",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations.html"
+    },
+    {
+      "title": "Delivering test events",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-test-deliver.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a small event envelope published after a transaction boundary to two subscribers",
+    "alt": "A small event envelope published after a transaction boundary to two subscribers",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Events. Subject: a small event envelope published after a transaction boundary to two subscribers."
+  }
+}

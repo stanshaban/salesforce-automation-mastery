@@ -226,6 +226,50 @@ if (agentforce) {
   }
 }
 
+// Complete authored lessons, exports and generated covers must agree with the curriculum.
+const fullLessonFiles = (await walk('data/lessons')).filter(file => file.endsWith('.json'));
+requireThat(fullLessonFiles.length === lessonIds.size, 'complete lessons: count differs from curriculum');
+const authoredIds = new Set();
+for (const file of fullLessonFiles) {
+  const lesson = await readJson(file);
+  if (!lesson) continue;
+  unique(lesson.id, authoredIds, 'complete lessons');
+  requireThat(lessonIds.has(lesson.id), `${file}: absent from curriculum`);
+  requireThat([...levels, 'jobs'].includes(lesson.track), `${file}: invalid track`);
+  for (const field of ['title', 'summary']) requireThat(nonempty(lesson[field]), `${file}: missing ${field}`);
+  for (const field of ['prerequisites', 'learningObjectives', 'recap', 'sources']) requireThat(nonemptyArray(lesson[field]), `${file}: missing ${field}`);
+  requireThat(nonemptyArray(lesson.sections), `${file}: no authored sections`);
+  for (const section of lesson.sections || []) {
+    requireThat(nonempty(section.heading) && nonemptyArray(section.body) && section.body.every(nonempty), `${file}: empty explanation`);
+    for (const note of section.callouts || []) requireThat(['idea','action','warning','check'].includes(note.kind) && nonempty(note.text), `${file}: invalid callout`);
+    for (const step of section.steps || []) requireThat(['title','instruction','expected'].every(key=>nonempty(step[key])), `${file}: incomplete guided step`);
+    for (const code of section.codeBlocks || []) requireThat(nonempty(code.code) && nonempty(code.caption), `${file}: code has no context`);
+  }
+  requireThat(nonempty(lesson.exercise?.brief) && nonemptyArray(lesson.exercise?.steps) && nonemptyArray(lesson.exercise?.acceptance), `${file}: incomplete independent practice`);
+  requireThat(lesson.knowledgeCheck?.length >= 3 && lesson.knowledgeCheck.every(q=>nonempty(q.question)&&nonempty(q.answer)), `${file}: incomplete answered knowledge check`);
+  requireThat(nonempty(lesson.illustration?.alt), `${file}: image alt text missing`);
+  requireThat(await exists(`public/lesson-images/${lesson.id}.jpg`), `${file}: unique cover missing`);
+  const exported = await readFile(path.join(root, `public/lesson-exports/${lesson.id}.md`), 'utf8').catch(()=> '');
+  requireThat(exported.includes(lesson.title) && exported.includes(lesson.exercise.brief) && exported.includes('> **'), `${file}: full text export missing or stale`);
+  const prose=(lesson.sections || []).flatMap(section=>section.body || []).join(' ');
+  requireThat(prose.split(/\s+/).length >= 300, `${file}: explanation is too thin for a complete lesson`);
+}
+requireThat([...lessonIds].every(id=>authoredIds.has(id)), 'complete lessons: curriculum has an outline without a lesson');
+const imageManifest = await readJson('docs/image-prompts/manifest.json');
+if (imageManifest) {
+  requireThat(imageManifest.length === lessonIds.size + 1, 'image manifest: expected one cover per lesson plus Agentforce');
+  const imageIds=new Set();
+  for(const item of imageManifest) {
+    unique(item.id,imageIds,'image manifest');
+    requireThat(item.status==='generated' && nonempty(item.prompt) && await exists(item.path), `${item.id}: generated cover incomplete`);
+  }
+  requireThat(imageIds.has('AF-L01'), 'Agentforce cover missing');
+}
+for(const file of [...await walk('data'), 'public/app.mjs', 'public/index.html', 'public/lesson-reader.mjs', ...await walk('public/lesson-exports')].filter(file=>/\.(json|mjs|html|md)$/.test(file))) {
+  const text=await readFile(path.join(root,file),'utf8');
+  requireThat(!/[А-Яа-яЁё]/.test(text), `${file}: learner content must be English`);
+}
+
 // Look only at publishable files. Local .env/runtime data may legitimately exist and are not read.
 let tracked = [];
 try { tracked = execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).split('\0').filter(Boolean); } catch { /* A downloaded ZIP has no Git metadata. */ }
@@ -261,5 +305,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   const count = Array.isArray(bank) ? bank.length : 0;
-  console.log(`Content OK: ${count} questions, ${parsed.size} JSON files, curriculum, assignments, setup, six foundations and Agentforce chapters. No known secret patterns in publishable files.`);
+  console.log(`Content OK: ${count} questions, ${parsed.size} JSON files, 98 complete lessons, exports, 99 generated covers, assignments, setup and Agentforce chapters. No known secret patterns in publishable files.`);
 }

@@ -1,0 +1,145 @@
+{
+  "id": "M15",
+  "track": "middle",
+  "title": "API contracts and credential boundaries",
+  "minutes": 50,
+  "summary": "Describe the warranty provider's request, response, errors, and identity before connecting a client.",
+  "prerequisites": [
+    "M12 Warranty_Request__c state.",
+    "M06 security context; HTTP vocabulary is introduced here."
+  ],
+  "learningObjectives": [
+    "Write an explicit external-service contract.",
+    "Separate endpoint configuration from authentication.",
+    "Define which runtime user can use a principal."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "An API contract states how two systems communicate. For Northstar's warranty check, it should specify the method and path, VIN format, response fields, error meanings, authentication, timeout expectations, and retry rules. A successful sample call is only one observation. It does not establish the contract for missing vehicles, expired credentials, malformed responses, or repeated operations.",
+        "HTTP is a request-and-response protocol. A method says what kind of operation is requested: GET reads information, while a service may use POST to accept an operation. A URL identifies the destination; headers carry metadata; a body carries structured content. The response includes a numeric status and may include a body. JSON represents named values using braces, quoted property names, strings, numbers, Boolean values, arrays, and null. In the sample, covered is a Boolean, not the string \"true\". The exact meaning of each status and field belongs in the service contract.",
+        "Use an intentionally fictional contract for this course: GET /v1/warranties/{vin}; 200 returns covered as a Boolean and expiresOn as an ISO date; 404 means the vehicle was not found; 429 and selected 5xx responses are potentially transient. A negative covered value is a valid business answer, not a transport failure. The mock implementation in M17 does not require a real warranty account or server.",
+        "Modern Named Credentials separate endpoint configuration from authentication configuration. A Named Credential identifies the endpoint and references an External Credential describing how authentication works. A principal represents the permitted identity configuration, and permission assignments control who may use it. A named principal can represent a shared integration identity; a per-user arrangement ties calls to individual external identities where the provider supports that design.",
+        "Credentials are operational configuration, not strings embedded in Apex or a repository. Decide the required remote scopes and who can provision or rotate the secret. A user who can run the Apex class should not automatically be assumed able to use every external principal. Authentication to the provider also does not replace Salesforce permission checks for the source vehicle and destination request."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "The endpoint, remote identity, Salesforce caller, and permitted business operation are separate parts of the contract."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna asks for a warranty check on vehicle NS-001. Salesforce reads the synthetic VIN under the intended user permissions. The client uses only the dedicated warranty endpoint and the allowed principal. A 200 response with covered=false means the lookup completed and found no coverage. A 401 means the integration's authentication needs attention; asking Anna to retry repeatedly is unlikely to fix it.",
+        "For the required exercise, write the contract and use test-only mock calls. You may prepare a configuration design with the Named Credential API name Northstar_Warranty, but do not enter fabricated real credentials or make requests to an arbitrary public service. A live credential exercise is optional only when you control a suitable test provider."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can you distinguish a valid 'not covered' answer from failed authentication?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "json",
+          "caption": "Fictional successful response contract, not a real provider payload",
+          "code": "{\n  \"covered\": true,\n  \"expiresOn\": \"2031-06-30\"\n}"
+        },
+        {
+          "language": "apex",
+          "caption": "Production-style endpoint reference fragment; requires configured Named Credential",
+          "code": "request.setEndpoint('callout:Northstar_Warranty/v1/warranties/'\n    + EncodingUtil.urlEncode(vin, 'UTF-8'));\nrequest.setMethod('GET');"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "The required path is contract plus HttpCalloutMock, with no remote server. Optional credential setup must record the selected protocol, principal type, permission mapping, and test endpoint you own."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Write the contract table",
+          "instruction": "Define request inputs, successful fields and types, each error category, identity, timeout, and safe retry behavior.",
+          "expected": "Unknown responses have a specified handling rule."
+        },
+        {
+          "title": "Map the credential boundary",
+          "instruction": "Draw Salesforce user → allowed principal → External Credential → Named Credential endpoint. Explain named versus per-user identity for this use case.",
+          "expected": "Secrets are not passed through business method parameters."
+        },
+        {
+          "title": "Review failure behavior",
+          "instruction": "Describe how 401, 403, 404, 429, malformed JSON, and timeout differ. Choose the visible request state and operator action for each.",
+          "expected": "The same 'retry' button is not offered indiscriminately."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A developer can accidentally log Authorization headers or full response bodies. Define safe diagnostic fields and keep secrets out of source control and evidence.",
+        "Configuring credentials does not prove the provider supports idempotency, a particular scope, or a particular API response. Those are contract facts that require documentation or controlled verification."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "No real external service, secret, purchase, or paid trial is required for the mock-based course path."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Specify the warranty API",
+    "brief": "Create a contract and credential responsibility map that another developer can implement without guessing.",
+    "steps": [
+      "Define the fictional request and response.",
+      "Classify failure and retry outcomes.",
+      "Document optional live setup separately from mock verification."
+    ],
+    "acceptance": [
+      "Business negative and transport failures differ.",
+      "Identity and principal permission mapping are explicit.",
+      "No secret appears in code or documentation."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What does the Named Credential contribute?",
+      "answer": "Endpoint configuration and a reference to the authentication configuration."
+    },
+    {
+      "question": "What does an External Credential describe?",
+      "answer": "The authentication protocol and related identity configuration used for the external system."
+    },
+    {
+      "question": "Why not retry every 401?",
+      "answer": "The likely issue is invalid or expired authentication; repeated identical attempts can add load without repairing it."
+    }
+  ],
+  "recap": [
+    "Write the contract before the client.",
+    "Separate identity from endpoint.",
+    "Keep live integration evidence distinct from mock tests."
+  ],
+  "sources": [
+    {
+      "title": "Named and External Credentials",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.external_services_define_named_credential.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Principal access",
+      "url": "https://help.salesforce.com/s/articleView?id=sf.nc_enable_ext_cred_principal.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "two system boxes connected by a contract card and a small key",
+    "alt": "Two system boxes connected by a contract card and a small key",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: API Contracts and Authentication. Subject: two system boxes connected by a contract card and a small key."
+  }
+}

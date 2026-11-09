@@ -1,0 +1,139 @@
+{
+  "id": "S13",
+  "track": "senior",
+  "title": "Control Privileged Code and External-User Access",
+  "minutes": 70,
+  "summary": "Review identity, permissions, record sharing, and input validation as separate trust boundaries, using explicit Apex access modes.",
+  "prerequisites": [
+    "Know permission layers, Apex sharing keywords, and API integrations.",
+    "Understand user mode and system mode in the API 68.0 baseline."
+  ],
+  "learningObjectives": [
+    "Explain why authentication is not authorization.",
+    "Identify the narrow responsibility of a privileged operation.",
+    "Write negative tests for external identities and untrusted input."
+  ],
+  "sections": [
+    {
+      "heading": "Name the caller and the requested action",
+      "body": [
+        "An external portal asks Salesforce to retrieve Irina's appointment. The request contains an appointment Id and a customer identifier. Neither value is proof that the caller is entitled to that appointment. Authentication establishes who the caller is; authorization establishes what that identity may do. Input validation checks whether the supplied values are acceptable for the operation. These checks solve different problems.",
+        "A trust boundary separates information or actions with different assumptions about who controls them. Browser input, integration payloads, and model-generated tool arguments should cross that boundary as untrusted data. The server should derive or verify the permitted customer relationship rather than accepting a caller's claim that a record belongs to them."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "An Id is a locator, not an authorization token."
+        }
+      ]
+    },
+    {
+      "heading": "Read both the class and the operation mode",
+      "body": [
+        "Sharing keywords govern record-level behavior in Apex contexts, while database operation modes affect the operation's security checks. With API 68.0, the newer default database mode is user mode. An explicit WITH USER_MODE query applies the user's sharing, object, and field checks even when the surrounding class is declared without sharing. Conversely, specifying system mode does not mean that a with-sharing class has automatically become without sharing.",
+        "This is why 'the class is with sharing' is not a complete security review, and 'Apex always ignores permissions' is an outdated blanket statement. Inspect the class version, call path, sharing declaration, and each operation's intended mode. Explicitly document any elevation rather than depending on an implicit default inherited from an old example.",
+        "The code below illustrates a user-mode read contract, not a complete externally exposed endpoint. A real endpoint still needs appropriate entry-point authorization, allowed field selection, input checks, and error behavior. Do not infer those missing pieces from one query."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "For every operation, explain which checks are applied and why the chosen mode matches the business permission."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "API 68.0 illustration: user-mode query, not a complete endpoint",
+          "code": "public with sharing class AppointmentReader {\n    public static List<Test_Drive__c> readVisible(Set<Id> ids) {\n        return [SELECT Id, Status__c, Vehicle__c\n                FROM Test_Drive__c\n                WHERE Id IN :ids WITH USER_MODE];\n    }\n}"
+        }
+      ]
+    },
+    {
+      "heading": "If elevation is needed, make its scope small",
+      "body": [
+        "A maintenance service might legitimately update a derived status across records that Anna cannot edit directly. That does not justify exposing an unrestricted 'update any object' method to her browser. Define the exact action, allowed records, permitted fields, initiating identity, and auditable reason. Keep privileged code behind a narrow boundary and validate its caller before performing elevated work.",
+        "Use an allowlist when client input controls a structural choice such as a sort field or operation name. Bind values in queries where supported, but do not assume a bound filter value validates an independently concatenated field name. If using stripInaccessible, use the returned cleaned records and understand that field stripping is not a substitute for the full record-access policy.",
+        "External users require particular care because license types and sharing models differ. A high-volume external user does not necessarily participate in the same role hierarchy as an internal employee. Verify the actual license, product, and supported access mechanism. Do not simulate an external persona with an internal administrator and call the result equivalent."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A broad OAuth scope or a successful token response does not replace the integration user's object, field, and record permissions."
+        }
+      ]
+    },
+    {
+      "heading": "Prove the denied paths",
+      "body": [
+        "Build a synthetic matrix: an authorized appointment, another client's appointment, a nonexistent Id, a forbidden field, and a malformed operation request. Decide whether the response should reveal that a hidden record exists. Errors should be useful without disclosing another customer's data.",
+        "Run a small permitted test under genuinely limited personas when available. Otherwise produce a threat review and an executable test plan, clearly marked unexecuted. Record the security context with each result. A test that passes under an administrator says little about the portal caller.",
+        "The final review should show where identity is established, where the requested business action is authorized, where data access is enforced, and where input is validated. Keep these checks explicit even if one platform API supplies several of them."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Write the unauthorized case before the happy path; it often exposes an unclear trust boundary."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Review an appointment-read endpoint",
+    "brief": "Design the authorization contract for a portal caller who may read only their own appointments.",
+    "steps": [
+      "Draw browser, authentication layer, endpoint, data access, and response boundaries.",
+      "List trusted identity attributes and untrusted request values.",
+      "Specify the API 68.0 query mode and any deliberately privileged helper.",
+      "Create five positive/negative input cases, including another client's valid record Id.",
+      "Document license assumptions, required permissions, sanitized errors, and how the restricted persona will be tested."
+    ],
+    "acceptance": [
+      "The contract does not trust a client-supplied customer Id as proof of ownership.",
+      "Identity, CRUD/FLS, record sharing, and payload validation are treated separately.",
+      "Any elevated operation has a narrow purpose and explicit negative tests."
+    ],
+    "stretch": "Explain how the plan changes for a different external-user license without assuming identical role behavior."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is a valid record Id insufficient authorization?",
+      "answer": "Knowing an identifier does not establish that the caller may access or change the identified record."
+    },
+    {
+      "question": "What does WITH USER_MODE do inside without sharing?",
+      "answer": "For that operation it applies the user's sharing, object permissions, and field permissions; the class label alone does not override the explicit mode."
+    },
+    {
+      "question": "What should a privileged helper avoid accepting?",
+      "answer": "Unrestricted object names, field sets, record selections, or arbitrary operations from an untrusted caller without a narrow validated business contract."
+    }
+  ],
+  "recap": [
+    "Review identity and authorization independently.",
+    "Use explicit operation modes and version-aware reasoning.",
+    "Keep elevated work narrow and test denied access."
+  ],
+  "sources": [
+    {
+      "title": "Set an access mode for database operations",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "title": "Apex versioned behavior changes",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html"
+    },
+    {
+      "title": "Sharing architecture and external-user models",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture"
+    },
+    {
+      "title": "Dynamic SOQL",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-dynamic-soql.html"
+    }
+  ],
+  "illustration": {
+    "subject": "an external user and internal application separated by a clear guarded boundary",
+    "alt": "An external user and internal application separated by a clear guarded boundary",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Trust Boundaries. Subject: an external user and internal application separated by a clear guarded boundary."
+  }
+}

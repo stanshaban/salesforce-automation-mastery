@@ -1,0 +1,123 @@
+{
+  "id": "jobs",
+  "title": "Salesforce Job Research",
+  "entry": "A target role or an interest in finding your next Salesforce position.",
+  "exit": "A repeatable search workflow, an honest CV, a reviewable portfolio and an interview practice plan.",
+  "project": "Your own job-search workspace and evidence-based application materials.",
+  "modules": [
+    {
+      "title": "Find suitable roles",
+      "lessons": [
+        {
+          "id": "JR01",
+          "title": "Choose a Target Role and Read Job Requirements",
+          "outcome": "Turn a vague goal into a shortlist of roles and a skills map you can support with examples.",
+          "task": "Choose a realistic target using five current job descriptions.",
+          "acceptance": "No requirement is marked essential unless the description supports that interpretation. Tutorial work is identified as practice rather than employment. The chosen target is explained with evidence, not only a desired title.",
+          "interview": "Does a senior title prove that two roles require the same skills?",
+          "visual": "a simple map with three career paths and one clearly selected route"
+        },
+        {
+          "id": "JR02",
+          "title": "Use AI to Research and Verify Job Opportunities",
+          "outcome": "Use an AI assistant to organise job research while checking every opportunity against a real employer source.",
+          "task": "Research a small batch of roles and verify the strongest candidates.",
+          "acceptance": "No role is accepted solely on an AI-generated link or summary. Unknown conditions remain explicitly unknown. The list includes a date checked and a direct source for each active opportunity.",
+          "interview": "What if the assistant cannot browse?",
+          "visual": "a magnifying glass checking one job card while duplicate cards sit aside"
+        },
+        {
+          "id": "JR03",
+          "title": "Build a Repeatable Job Search Workflow",
+          "outcome": "Create a small system that makes the next useful action visible without turning job hunting into administration.",
+          "task": "Build and run a small job-search board for one week.",
+          "acceptance": "Applied means actually submitted. Unverified opportunities cannot silently enter the application queue. Every active record has a next step; closed records retain their useful history.",
+          "interview": "Why not create dozens of stages?",
+          "visual": "a calm task board with one job card moving toward a calendar tile"
+        }
+      ]
+    },
+    {
+      "title": "Present your experience",
+      "lessons": [
+        {
+          "id": "JR04",
+          "title": "Describe Your Experience with Evidence",
+          "outcome": "Explain what you built, why it mattered and what you can actually prove.",
+          "task": "Write two evidence-based accounts: one completed feature and one problem you investigated.",
+          "acceptance": "The reader can distinguish your work from the team’s or starter project’s work. Every number has a measurement source and scope. Training work is labelled and still explains a meaningful technical result.",
+          "interview": "Must every CV achievement include a percentage?",
+          "visual": "a developer connecting a project card to a test result and a small evidence folder"
+        },
+        {
+          "id": "JR05",
+          "title": "Write a Clear and Honest Salesforce CV",
+          "outcome": "Create a readable CV that connects your skills to relevant work without inventing experience.",
+          "task": "Produce a master CV based only on experience and projects you can substantiate.",
+          "acceptance": "The target role and two relevant examples are easy to find. No training project is presented as commercial employment. The exported file has readable text, working links and current contact details.",
+          "interview": "Should you claim expertise in a tool you used once?",
+          "visual": "a clean document beside a pencil and a small verified project card"
+        },
+        {
+          "id": "JR06",
+          "title": "Tailor Your CV to a Specific Role",
+          "outcome": "Change emphasis for a vacancy while keeping your experience accurate and consistent.",
+          "task": "Tailor your master CV to one verified vacancy and keep a change log.",
+          "acceptance": "Every claim remains consistent with the master CV. The most relevant evidence is prominent. Unsupported requirements are recorded as gaps rather than disguised as experience.",
+          "interview": "What should change when tailoring a CV?",
+          "visual": "two simple documents linked by three carefully selected matching cards"
+        },
+        {
+          "id": "JR07",
+          "title": "Prepare a Salesforce Portfolio for Review",
+          "outcome": "Make one project easy for another developer to understand, run and assess.",
+          "task": "Prepare one portfolio repository and rehearse a short review walkthrough.",
+          "acceptance": "Training context, ownership and limitations are explicit. Setup and test instructions match the project. The demonstration includes a success and a failure case.",
+          "interview": "Does a screenshot prove reproducibility?",
+          "visual": "an open project folder with a small application preview and a clear checklist"
+        }
+      ]
+    },
+    {
+      "title": "Practise and improve your interviews",
+      "lessons": [
+        {
+          "id": "JR08",
+          "title": "Practise a Technical Interview with AI",
+          "outcome": "Run a structured mock interview that reveals gaps instead of rewarding memorised wording.",
+          "task": "Run a five-question mock interview and turn it into a small practice plan.",
+          "acceptance": "The session contains follow-up questions, not only definitions. Corrections are supported or explicitly marked uncertain. The final plan names a concrete exercise rather than “study more.”",
+          "interview": "Is an AI interview score a reliable hiring prediction?",
+          "visual": "two drawn people discussing a technical card with a small evidence checklist"
+        },
+        {
+          "id": "JR09",
+          "title": "Practise Live Coding and Code Review",
+          "outcome": "Show your reasoning while solving a small problem and reviewing a flawed implementation.",
+          "task": "Implement the input-only count method, then review a deliberately flawed alternative.",
+          "acceptance": "Counts use only the supplied list. Empty input and repeated vehicles are covered. The review identifies behaviour and scaling issues before style preferences. The report names the tested class, API version, actual test result and zero-query/zero-DML method check; unexecuted org checks are labelled outstanding.",
+          "interview": "Why clarify whether database queries are allowed?",
+          "visual": "a developer at a simple code window with a peer pointing to one review note"
+        },
+        {
+          "id": "JR10",
+          "title": "Discuss Your Experience and Evaluate the Employer",
+          "outcome": "Prepare clear experience stories and questions that help you understand the work and team.",
+          "task": "Prepare three experience stories and a focused set of employer questions.",
+          "acceptance": "Stories contain a specific action and evidence, not only personal qualities. Team contributions and limitations remain accurate. Employer questions clarify responsibilities you care about.",
+          "interview": "Should a mistake story hide the mistake?",
+          "visual": "a balanced conversation between two drawn people with three simple question cards"
+        },
+        {
+          "id": "JR11",
+          "title": "Build a Preparation Plan from Interview Feedback",
+          "outcome": "Turn an interview or mock session into a focused cycle of practice and reassessment.",
+          "task": "Turn one interview or mock session into a one-week preparation plan.",
+          "acceptance": "Each priority has a concrete practice task and a verification method. The plan fits the time you actually have. Reassessment uses a variation, not only the original question.",
+          "interview": "Can you know why an employer rejected you without feedback?",
+          "visual": "a small calendar beside a learning loop and two focused task cards"
+        }
+      ]
+    }
+  ]
+}

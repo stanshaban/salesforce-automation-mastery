@@ -1,0 +1,148 @@
+{
+  "id": "M09",
+  "track": "middle",
+  "title": "Structuring Apex and using Custom Metadata",
+  "minutes": 50,
+  "summary": "Separate warranty business rules, orchestration, and external access without adding layers that have no clear responsibility.",
+  "prerequisites": [
+    "Apex classes, methods, object construction, and unit tests; the small policy constructor is introduced below.",
+    "M07–M08: responsibility and operation identity."
+  ],
+  "learningObjectives": [
+    "Locate a rule in a small responsibility map.",
+    "Represent deployable policy as Custom Metadata.",
+    "Make local tests independent of a real endpoint."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A large warranty method often mixes several jobs: reading a vehicle, deciding whether to request a check, constructing HTTP, interpreting a response, saving status, and deciding retry timing. When one policy changes, this mixture makes unrelated behavior harder to understand. Separation is useful when each part has a distinct reason to change and a clear input/output contract.",
+        "For Northstar, use three responsibilities. A policy object describes allowed attempts and timeout. A client adapter translates the warranty provider's request and response. An application service coordinates the vehicle, request state, and chosen client. This is a responsibility map, not a requirement to create an interface for every helper or a framework before the first use case works.",
+        "Custom Metadata stores deployable configuration records. It suits a policy such as a named warranty provider's timeout or enabled flag, which should move with configuration between environments. It is not the right place for secrets, per-customer mutable progress, or every transient result. Authentication belongs in the credential system, while request state belongs in ordinary data.",
+        "Introduce Warranty_Policy__mdt with Enabled__c Checkbox, Max_Attempts__c Number(2,0), and Timeout_Millis__c Number(6,0). Create a Default record with true, 3, and 10000 respectively. These names are new metadata dependencies, not starter fields. Validate policy values at the boundary: a missing record, zero attempts, or an unreasonable timeout should produce a clear configuration error rather than a mysterious runtime failure."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A useful layer has a distinct responsibility and can be explained with one concrete reason it might change."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Suppose the provider changes its JSON from covered to isCovered. That translation belongs in the adapter. If Oleg changes the allowed retry count from three to two, policy changes without rewriting HTTP parsing. If Northstar decides that a completed test drive must exist before requesting a warranty check, that eligibility rule belongs in the application behavior, not in the generic HTTP client.",
+        "For the first implementation, avoid the network entirely. Create a small policy class with constructor arguments enabled, maxAttempts, and timeoutMillis. Have the orchestration accept the policy as input. The production entry point reads Custom Metadata and constructs the policy; unit tests construct explicit values. This keeps the local rule testable without pretending configuration and endpoint authentication were verified.",
+        "A constructor initializes a new instance: it has the same name as the class and no return type. In the example, this.maxAttempts is the instance field and maxAttempts is the incoming parameter. new WarrantyPolicy(true, 3, 10000) creates one explicit configuration value. You do not need an interface or inheritance framework for this local step; add a client interface only when defining interchangeable provider implementations."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which component changes when the provider renames a response field, and which changes when Northstar changes a retry limit?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Complete minimal WarrantyPolicy.cls; caller validates acceptable values before use",
+          "code": "public with sharing class WarrantyPolicy {\n    public Boolean enabled { get; private set; }\n    public Integer maxAttempts { get; private set; }\n    public Integer timeoutMillis { get; private set; }\n    public WarrantyPolicy(Boolean enabled, Integer maxAttempts, Integer timeoutMillis) {\n        this.enabled = enabled;\n        this.maxAttempts = maxAttempts;\n        this.timeoutMillis = timeoutMillis;\n    }\n}"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create the Custom Metadata type and Default record in the training org, retrieve their metadata, and note the dependency. No Warranty_Request__c object is required yet; persistent request state is introduced in M12."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Map existing responsibilities",
+          "instruction": "Take a single long warranty-method sketch and annotate each statement as policy, orchestration, external translation, or persistence.",
+          "expected": "The proposed split follows real responsibilities."
+        },
+        {
+          "title": "Extract one local rule",
+          "instruction": "Create a small policy object and an eligibility method with explicit inputs. Test enabled/disabled and attempt-limit boundaries without any callout.",
+          "expected": "Changing a policy value changes a predictable result."
+        },
+        {
+          "title": "Connect configuration at the edge",
+          "instruction": "Read the named Custom Metadata record only in the entry/configuration layer and validate missing or invalid values. Pass the resolved policy into the local rule.",
+          "expected": "Tests can supply policy directly while the entry point handles configuration failures."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Reading global configuration inside every helper makes tests and behavior depend on hidden inputs. Passing a small validated policy makes those dependencies visible.",
+        "An abstraction that merely renames one method without isolating a changing dependency may add navigation rather than clarity. Remove it if the reviewer cannot explain what it protects."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Never put access tokens, passwords, or customer-specific request progress in Custom Metadata for this exercise."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Refactor a warranty rule",
+    "brief": "Separate one policy and one business decision from a mixed orchestration sketch.",
+    "steps": [
+      "Create and retrieve the declared metadata.",
+      "Implement a locally testable rule.",
+      "Demonstrate a policy change and a missing-configuration failure."
+    ],
+    "acceptance": [
+      "Dependencies are visible at the entry point.",
+      "Local tests require no provider or real credentials.",
+      "Each introduced layer has a stated responsibility."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is request progress ordinary data?",
+      "answer": "It changes per operation and represents runtime business state rather than deployable configuration."
+    },
+    {
+      "question": "Why inject a policy into a test?",
+      "answer": "It makes the rule's inputs explicit and lets the test cover boundaries without changing global configuration."
+    },
+    {
+      "question": "When is another layer unnecessary?",
+      "answer": "When it does not isolate a distinct responsibility or changing dependency and only forwards calls."
+    }
+  ],
+  "recap": [
+    "Separate changing concerns.",
+    "Use Custom Metadata for deployable policy.",
+    "Keep secrets and mutable request state elsewhere."
+  ],
+  "sources": [
+    {
+      "title": "Integration architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Asynchronous processing fundamentals",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    },
+    {
+      "title": "Custom Metadata accessors",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-methods-system-custom-metadata-types.html"
+    },
+    {
+      "title": "Develop and test with Custom Metadata",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/custom_metadata_types_adv/cmt_develop"
+    }
+  ],
+  "illustration": {
+    "subject": "three tidy code modules with a separate small configuration card",
+    "alt": "Three tidy code modules with a separate small configuration card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Structure and Metadata. Subject: three tidy code modules with a separate small configuration card."
+  }
+}

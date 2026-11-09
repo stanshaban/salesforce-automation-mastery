@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node server/index.mjs",
     "test": "node --test test/*.test.mjs",
-    "check": "node scripts/check-content.mjs"
+    "check": "node scripts/check-content.mjs",
+    "build:content": "node scripts/build-course.mjs && node scripts/export-lessons.mjs"
   },
   "dependencies": {
     "express": "^5.1.0",

@@ -1,0 +1,128 @@
+{
+  "id": "M01",
+  "track": "middle",
+  "title": "Designing and verifying an access model",
+  "minutes": 50,
+  "summary": "Turn a business request into separate object, field, record, and operation decisions. Build an access matrix for two sales branches before changing permissions.",
+  "prerequisites": [
+    "Junior: objects, fields, users, permission sets, and private organization-wide defaults.",
+    "The core Vehicle__c and Test_Drive__c metadata are deployed in a training org."
+  ],
+  "learningObjectives": [
+    "Translate a role description into testable operations.",
+    "Identify the source of every allowed action.",
+    "Prove both permitted and denied access."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Northstar Motors has two salespeople, Anna and Max, and a manager, Oleg. Irina is their customer, represented by a Contact record; she is not automatically a Salesforce user. Saying that service staff should see customers leaves several questions unanswered. Which customers, which fields, through which interface, and what may staff change? An access model answers these questions before a profile or sharing rule is edited.",
+        "Separate four decisions. Object permission determines whether an operation such as reading Test Drive is available at all. Field-level security determines which fields the person may read or edit. Record access determines which individual test drives the person can reach. A business rule can further decide whether an otherwise editable appointment may be cancelled. A person passing one layer has not automatically passed the others.",
+        "The starter uses private organization-wide defaults for Vehicle__c and Test_Drive__c. Both objects have independent owners. Test_Drive__c.Vehicle__c and Customer__c are optional lookups, so do not infer that seeing a vehicle or Contact grants access to every related test drive. A permission set granting object Read is also not a sharing mechanism. Record ownership, hierarchy, sharing rules, and explicit shares must be considered separately.",
+        "Design the smallest useful personas instead of a permission set for every individual. Anna and Max can share a salesperson permission set while record ownership distinguishes their work. Oleg may need access to both salespeople's appointments without permission to change a vehicle's VIN. A manager's title in a business diagram does not configure a Salesforce role hierarchy; that relationship must be deliberately implemented."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Write the expected result first; permission configuration is the implementation of that expectation."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use two vehicles and two test drives. Anna owns TD-A for Irina tomorrow; Max owns TD-B for another fictional customer. Both salespeople can read the shared demonstration vehicle catalog. Anna may edit TD-A's status but should not read TD-B. Oleg can read both appointments and cannot edit VIN__c. This small dataset distinguishes object permission from record visibility without requiring hundreds of records.",
+        "Create a table with columns persona, object, field, record category, operation, expected result, and granting mechanism. Include Anna reading Max's appointment as an explicit denial. If a deny test unexpectedly succeeds, investigate additional permission sets, hierarchy, groups, and broad administrative permissions before changing the intended requirement."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can you explain why Anna can read Vehicle__c yet cannot necessarily read Max's Test_Drive__c?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "No new fields are required. Use Name, VIN__c, Model__c, Status__c on Vehicle__c and the existing Test Drive fields. Use only synthetic Contacts."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Create the baseline",
+          "instruction": "Create the two appointments and record their owners. Test from a restricted salesperson, not just the administrator who configured the exercise.",
+          "expected": "Ownership and record counts are known before adding grants."
+        },
+        {
+          "title": "Implement one access path",
+          "instruction": "Grant the necessary object and field permissions, then choose a deliberate record-sharing mechanism for Oleg. Record why it matches the requirement.",
+          "expected": "Oleg reads both appointments through an identified mechanism."
+        },
+        {
+          "title": "Run the matrix",
+          "instruction": "Execute each allow and deny row through the actual interface used in the scenario. Record the identity and result. Remove a grant and repeat the affected rows.",
+          "expected": "Results change only where the removed grant was necessary."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A page layout can hide a field without enforcing field-level security. Likewise, a successful administrator demonstration says little about a salesperson's access. Treat these as different tests.",
+        "If the training org cannot provide three simultaneous users, perform sequential restricted-persona checks and label that limitation. Do not report concurrent multi-user verification that did not happen."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not fix a failed access test by giving View All or Modify All unless that broad access is an explicit requirement."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create the Northstar access matrix",
+    "brief": "Prepare and verify a minimum-permission model for Anna, Max, and Oleg.",
+    "steps": [
+      "Write at least eight access rows before configuration.",
+      "Implement the intended grants.",
+      "Attach actual positive and negative results with the granting source."
+    ],
+    "acceptance": [
+      "Every allowed row identifies its grant.",
+      "At least three denied operations are tested.",
+      "No administrator-only evidence is presented as salesperson verification."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does object Read grant every record?",
+      "answer": "No. It enables the operation on the object; record visibility still has to be established."
+    },
+    {
+      "question": "Why is Irina not automatically a Salesforce user?",
+      "answer": "A Contact represents a person in business data. A User represents an authenticated Salesforce identity; the records serve different purposes."
+    },
+    {
+      "question": "Why test denial?",
+      "answer": "An overly broad configuration can pass every positive example while exposing records that should remain private."
+    }
+  ],
+  "recap": [
+    "Separate object, field, record, and business-operation decisions.",
+    "Configure personas and record access deliberately.",
+    "Keep evidence tied to the tested user."
+  ],
+  "sources": [
+    {
+      "title": "Sharing and record access",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.managing_the_sharing_model.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "a compact permission matrix with two drawn team roles and distinct accessible record groups",
+    "alt": "A compact permission matrix with two drawn team roles and distinct accessible record groups",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Access Design. Subject: a compact permission matrix with two drawn team roles and distinct accessible record groups."
+  }
+}

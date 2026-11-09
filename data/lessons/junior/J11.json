@@ -1,0 +1,124 @@
+{
+  "id": "J11",
+  "track": "junior",
+  "title": "Understand the Layers of Data Access",
+  "minutes": 50,
+  "summary": "Separate sign-in, object operations, field permissions, and access to an individual record.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Describe a precise access operation.",
+    "Separate the main access layers.",
+    "Use evidence from the intended identity."
+  ],
+  "sections": [
+    {
+      "heading": "Describe the requested action",
+      "body": [
+        "Oleg says that Max should see tomorrow's test drive. Before configuring anything, make that sentence precise. Max needs to sign in, read Test Drive records, read the relevant fields, and access the particular appointment. If he must change its time, the required action is different. Access without a user, record, field, and operation is too vague to test.",
+        "Organization access concerns entry into the environment, including an active account and applicable login controls. Object permissions describe operations such as Create, Read, Edit, and Delete on a category of data; people often abbreviate these as CRUD. Field-level security, or FLS, describes which fields are readable or editable. Record access concerns the individual records a user can reach within those object operations."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Ask which user wants to perform which action on which record and fields."
+        }
+      ]
+    },
+    {
+      "heading": "Distinguish similar symptoms",
+      "body": [
+        "Imagine that Anna owns TD-001 and Max does not. First, Max cannot sign in. Sharing TD-001 does not repair the login problem. Second, Max can sign in but lacks Read on Test Drive. A record share does not substitute for object Read. Third, he can read the appointment but not a protected field. Increasing record sharing does not fix a deliberately restricted field.",
+        "Fourth, Max has the relevant object and field permissions but no access to the private appointment. This is the situation where record-sharing mechanisms become relevant. This sequence is a useful model for ordinary interactions, not a claim that every execution context is identical. Developer features, elevated permissions, and specialized access controls need explicit consideration in later lessons.",
+        "The visible page introduces presentation as another concern. A field can be absent because the page excludes it, FLS hides it, or a component is configured differently. The remedies differ. Comparing screenshots without inspecting permissions can lead you to change the wrong layer and accidentally grant more than the business requested."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "An administrator successfully opening a record does not prove the intended salesperson access."
+        }
+      ]
+    },
+    {
+      "heading": "Run a controlled experiment",
+      "body": [
+        "Use a restricted learning user if the org has a suitable spare license. Record its profile, permission sets, and broad data permissions first. A pre-existing grant can hide the effect you are trying to demonstrate. For example, object-level View All Records can explain visibility that you otherwise might attribute to a new share.",
+        "To prepare a test identity, open Setup → Users → Users → New User. Use a fictional learning name, an email address you control for account access, and a unique email-shaped Username; Username and email have different purposes. Choose an available compatible Salesforce license and the Minimum Access – Salesforce profile when your org offers it. Otherwise inspect the chosen profile and remove broad permissions from the experiment. Do not use System Administrator for the restricted persona. Complete account activation through the normal Salesforce process, keep credentials private, and sign in through a separate browser profile. J12 supplies the small business permissions. If no suitable license is available, use the explicitly unexecuted analysis path below.",
+        "Choose one known appointment and write the expected action for Max. Change one layer at a time and repeat the same action against the same record. Keep the record identifier in private evidence so that a different sample record does not confuse your comparison. Use fictional data and do not put credentials in screenshots.",
+        "If another suitable user is unavailable, complete the predictions and configuration inspection but mark user-execution checks as not performed. Changing page layouts while remaining an administrator is not an equivalent test. Accurate evidence of a limitation is better than an apparently complete access matrix based on the wrong identity.",
+        "The goal is to avoid random grants. Once you identify the blocked layer, propose the smallest correction consistent with the requirement. Then verify a permitted action and an action that should remain denied. Successful troubleshooting explains both the improvement and the boundary that remains in place."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Record an allowed action and a denied action for every configuration change."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Write the baseline",
+          "instruction": "Describe Max, the appointment, the operation, and the required fields.",
+          "expected": "The test can be repeated without interpretation."
+        },
+        {
+          "title": "Inspect grants",
+          "instruction": "Check the relevant user assignments and appointment ownership.",
+          "expected": "Broad permissions and existing routes are visible."
+        },
+        {
+          "title": "Change one variable",
+          "instruction": "Test one object, field, or record change in the learning org.",
+          "expected": "The observation can be connected to a specific change."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Classify four access failures",
+    "brief": "Explain why similar symptoms require different investigation paths.",
+    "steps": [
+      "Describe a login failure, missing object Read, hidden field, and inaccessible record.",
+      "Identify evidence and a possible minimal correction for each.",
+      "Run available restricted-user tests and label those not performed."
+    ],
+    "acceptance": [
+      "Object, field, and record access are distinguished.",
+      "Administrator results are not represented as salesperson tests."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Will record sharing grant object Read?",
+      "answer": "No. The required object operation permission remains necessary."
+    },
+    {
+      "question": "Does an absent field prove missing FLS?",
+      "answer": "No. Page or component configuration can also omit a field."
+    },
+    {
+      "question": "What if no second user is available?",
+      "answer": "Document predictions and configuration, and explicitly mark execution checks as unperformed."
+    }
+  ],
+  "recap": [
+    "Describe a precise access operation.",
+    "Separate the main access layers.",
+    "Use evidence from the intended identity."
+  ],
+  "sources": [
+    {
+      "title": "Data security overview",
+      "url": "https://trailhead.salesforce.com/modules/data_security/units/data_security_overview"
+    },
+    {
+      "title": "Field-level security",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_fields"
+    }
+  ],
+  "illustration": {
+    "subject": "four translucent geometric access layers protecting one customer record",
+    "alt": "Four translucent geometric access layers protecting one customer record",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Security Layers. Subject: four translucent geometric access layers protecting one customer record."
+  }
+}

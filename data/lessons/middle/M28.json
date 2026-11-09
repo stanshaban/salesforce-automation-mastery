@@ -1,0 +1,143 @@
+{
+  "id": "M28",
+  "track": "middle",
+  "title": "Git fetch, integration, and cherry-picking a fix",
+  "minutes": 50,
+  "summary": "Explain the state changed by common Git operations and transfer one focused correction without losing unrelated work.",
+  "prerequisites": [
+    "Setup guide: personal repository, branches, commits, and PRs.",
+    "A clean training copy with no uncommitted customer work."
+  ],
+  "learningObjectives": [
+    "Distinguish working tree, staging, local branch, and remote-tracking refs.",
+    "Explain fetch versus pull.",
+    "Resolve and verify a controlled cherry-pick conflict."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "The working tree contains the files currently checked out. The index, often called staging, records the content prepared for the next commit. A local branch points to a commit in your repository. A remote-tracking reference such as origin/main records the last fetched state of the remote branch; it is not a live view that updates itself whenever someone pushes.",
+        "git fetch downloads objects and updates the relevant remote-tracking references without automatically integrating them into your current branch. git pull performs a fetch followed by an integration strategy, such as merge or rebase, according to options and configuration. Before pulling, know which branch you are on, whether the working tree is clean, and which integration behavior is intended.",
+        "Cherry-pick applies the change introduced by a selected commit onto the current branch, creating a new commit when successful. It is useful for moving one focused fix without bringing an entire feature branch. The new commit has different ancestry and normally a different identity. A later merge can therefore encounter related changes; cherry-pick is not a magic link that makes histories identical.",
+        "Conflicts mean Git cannot decide how overlapping edits should combine. Resolve the business meaning, not merely the conflict markers. If two branches change the warranty timeout and its explanation, keeping both lines may create contradictory policy. Inspect the final file, run the relevant checks, and continue the operation only when the intended result is clear."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Git operations change specific layers of repository state; inspect those layers before integrating history."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "In your personal training copy, create notes/warranty-contract.md with a short fictional timeout policy and commit it. On a hotfix branch, correct one incorrect timeout explanation. On a feature branch, edit the same paragraph while adding unrelated notes. Cherry-picking the hotfix onto the feature branch gives a controlled conflict that contains no production code.",
+        "Draw the original main commit, feature commit, and hotfix commit before running the operation. After resolution, draw the new cherry-picked commit on the feature branch. Explain why the hotfix branch's original commit still exists and why the feature branch's new commit is not the same object."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "After fetch, which pointer may change even though your checked-out files remain unchanged?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "shell",
+          "caption": "Inspection and integration commands in your personal training copy; replace the commit placeholder",
+          "code": "git status\ngit fetch origin\ngit log --oneline --graph --decorate --all -12\ngit diff main..origin/main\ngit switch practice/feature\ngit cherry-pick <observed-hotfix-commit-id>\n# If conflicted: edit the intended final content, then:\ngit add notes/warranty-contract.md\ngit cherry-pick --continue\n# To abandon this in-progress cherry-pick instead:\n# git cherry-pick --abort"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create the practice branches and file explicitly in your own repository. Replace placeholders using the observed log. Do not run these commands blindly in a checkout containing unrelated unfinished work."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Record the initial state",
+          "instruction": "Inspect status and the branch graph. Note the current branch, staged files, working changes, and origin/main before fetching.",
+          "expected": "You can identify what is local and what is last-known remote state."
+        },
+        {
+          "title": "Observe fetch separately",
+          "instruction": "Fetch, inspect the graph again, and compare local main with origin/main before choosing merge or rebase. Explain what pull would additionally do under your configuration.",
+          "expected": "No automatic integration is mistaken for part of fetch."
+        },
+        {
+          "title": "Transfer and resolve the fix",
+          "instruction": "Cherry-pick the focused hotfix into the practice feature branch, resolve its intended meaning, and inspect the resulting diff and history.",
+          "expected": "Only the intended fix and known conflict resolution are added."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A destructive reset can erase uncommitted or unshared work. It is unnecessary for this exercise; use the operation's abort mechanism when you need to return from an unresolved cherry-pick.",
+        "A clean merge or cherry-pick is not proof that the application is correct. Git resolves text and history, not warranty business rules."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not force-push or reset a shared branch merely to make the graph look tidy."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Transfer one warranty correction",
+    "brief": "Create the controlled branch experiment and explain each state transition.",
+    "steps": [
+      "Draw the initial graph.",
+      "Observe fetch without integration.",
+      "Resolve the cherry-pick and verify the final file."
+    ],
+    "acceptance": [
+      "Working tree, index, branch, and remote-tracking state are distinguished.",
+      "The selected commit is identified from real history.",
+      "The final content is coherent and unrelated changes are preserved."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does fetch update your current files?",
+      "answer": "It does not automatically integrate the fetched history into the checked-out branch."
+    },
+    {
+      "question": "What does pull add?",
+      "answer": "It integrates fetched changes using the selected or configured merge/rebase behavior."
+    },
+    {
+      "question": "Why does cherry-pick create a new commit?",
+      "answer": "It applies an existing change onto a different history position rather than moving the original commit object."
+    }
+  ],
+  "recap": [
+    "Inspect state before history changes.",
+    "Separate fetching from integration.",
+    "Verify meaning after conflict resolution."
+  ],
+  "sources": [
+    {
+      "title": "Git fetch",
+      "url": "https://git-scm.com/docs/git-fetch"
+    },
+    {
+      "title": "Git pull",
+      "url": "https://git-scm.com/docs/git-pull"
+    },
+    {
+      "title": "Git cherry-pick",
+      "url": "https://git-scm.com/docs/git-cherry-pick"
+    }
+  ],
+  "illustration": {
+    "subject": "a clean branching history with one small fix moved carefully to another branch",
+    "alt": "A clean branching history with one small fix moved carefully to another branch",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Git Branching. Subject: a clean branching history with one small fix moved carefully to another branch."
+  }
+}

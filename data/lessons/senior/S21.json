@@ -1,0 +1,142 @@
+{
+  "id": "S21",
+  "track": "senior",
+  "title": "Write an Architecture Decision and Review the Risk",
+  "minutes": 60,
+  "summary": "Explain a technical choice in a short decision record, then review a pull request by its behavior and consequences.",
+  "prerequisites": [
+    "Understand Northstar's access model and integration alternatives.",
+    "Be comfortable reading a small code diff and stating test expectations."
+  ],
+  "learningObjectives": [
+    "Write a concise architecture decision record with real alternatives.",
+    "Separate required review fixes from optional preferences.",
+    "Support disagreement with concrete scenarios and evidence."
+  ],
+  "sections": [
+    {
+      "heading": "A decision record preserves the reason",
+      "body": [
+        "An architecture decision record, or ADR, captures a significant choice and why it was made. It should name the problem, relevant constraints, considered alternatives, selected approach, and consequences. Its value is not the number of headings. A future developer should understand which assumption would justify revisiting the choice.",
+        "Northstar must decide whether booking confirmation waits for the scheduling service or first creates a Pending request. The answer depends on the product promise, acceptable delay, outage behavior, and duplicate-prevention contract. 'Async is more scalable' is too broad to settle it. It hides the important question of whether Anna may tell Irina the slot is confirmed."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A useful decision says what it optimizes for and what it deliberately makes harder."
+        }
+      ]
+    },
+    {
+      "heading": "Compare alternatives under the same conditions",
+      "body": [
+        "Consider synchronous reservation, asynchronous reservation with a Pending state, and a hybrid that performs a fast check but confirms later. Evaluate each against the same requirements. A hybrid check does not reserve a slot unless the provider contract explicitly says it does; a result can become stale before confirmation.",
+        "Record uncertainty honestly. If provider response-time evidence is unavailable, mark it unknown and propose a test. If the business has not accepted a Pending state, treat that as a decision dependency, not as permission to implement it silently.",
+        "A concise ADR might choose asynchronous confirmation because the approved process permits a short Pending period and staff need to keep capturing requests during brief outages. Consequences include a visible status, durable retry work, idempotency, reconciliation, and queue-age monitoring. That is a concrete tradeoff, not a claim that asynchronous processing is universally superior."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Name at least one condition that would make you revisit the chosen approach."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic ADR skeleton",
+          "code": "Decision: capture a request, then confirm through the scheduling service\nContext: approved Pending state; provider owns reservation authority\nAlternatives: synchronous confirmation; asynchronous confirmation; check-then-confirm hybrid\nChoice: asynchronous confirmation with stable operation identity\nConsequences: queue, retries, reconciliation, visible Pending state\nRevisit if: immediate guaranteed confirmation becomes a business requirement"
+        }
+      ]
+    },
+    {
+      "heading": "Review a change through a failure scenario",
+      "body": [
+        "The proposed pull request adds a browser-callable cancellation helper. Its pseudocode uses privileged update access for any supplied appointment Id and contains no explicit authorization check. The required review comment should identify the concrete risk: a caller could request cancellation of an appointment outside the permitted business relationship.",
+        "Do not hide that issue among preferences about naming or formatting. State the trigger, observed or inferred consequence, and necessary correction. For example: 'A caller-controlled Id reaches an elevated update without checking cancellation authority. Validate the permitted appointment and action before elevation, and add a negative test for another dealer's appointment.'",
+        "Under the API 68.0 baseline, review both the class declaration and the operation's explicit access mode. Do not rely on old assumptions that every query or DML automatically runs in system mode. A deliberate privileged operation deserves an explicit reason and a narrow boundary."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A review comment should not claim an exploit was executed when you only established the problematic code path."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Intentionally unsafe pseudocode for review; not executable Apex",
+          "code": "cancelAppointment(caller, appointmentId):\n    appointment = privilegedRead(appointmentId)\n    appointment.Status = \"Cancelled\"\n    privilegedWrite(appointment)\n    return \"Cancelled\"\n\nAssumptions: browser-callable; privilegedRead/Write bypass caller access.\nThere is no caller-to-record or cancellation-authority check.\nDo not implement these abstract privileged helpers as a production endpoint."
+        }
+      ]
+    },
+    {
+      "heading": "Make review a collaborative verification process",
+      "body": [
+        "Separate blocking correctness or security issues, non-blocking maintainability improvements, and questions requiring product clarification. Ask for evidence proportional to the risk: a negative access test for the cancellation helper, a repeat-request test for idempotency, or a small measured comparison for a performance claim.",
+        "After a revision, verify that the identified behavior changed. A renamed method does not fix missing authorization. A test that asserts only 'no exception' does not prove that another dealer's appointment stayed unchanged. Review the revised diff and the relevant result.",
+        "In the classroom, produce one ADR and three review comments against a synthetic change. No real colleague or repository discussion needs to be contacted. The goal is a clear, respectful technical explanation that another developer can act on without reading your mind."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "End each required comment with a verifiable condition, not a preferred implementation style."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Defend a decision and review a cancellation helper",
+    "brief": "Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation.",
+    "steps": [
+      "State the approved business constraints and two genuine alternatives.",
+      "Choose an approach, list consequences, and name a revisit condition.",
+      "Write one blocking authorization comment, one test-coverage comment, and one optional maintainability suggestion.",
+      "For each required fix, define a scenario that would prove it is resolved.",
+      "Revise the ADR after a hypothetical requirement for immediate confirmation; explain whether the original choice still holds."
+    ],
+    "acceptance": [
+      "Alternatives are compared under the same business requirements.",
+      "The review distinguishes harmful behavior from stylistic preference.",
+      "The explanation connects access mode, caller authority, and a negative test."
+    ],
+    "stretch": "Defend the alternative you did not choose to show that you understand its strongest use case."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What makes an ADR useful later?",
+      "answer": "It preserves context, constraints, alternatives, consequences, and the assumptions that would justify a new decision."
+    },
+    {
+      "question": "Why is 'use async' not enough?",
+      "answer": "It does not state the user-facing confirmation promise, failure behavior, consistency needs, or operational consequences."
+    },
+    {
+      "question": "What belongs in a blocking review comment?",
+      "answer": "A concrete correctness, security, or contract risk with an actionable correction and a way to verify the behavior."
+    }
+  ],
+  "recap": [
+    "Record reasons and tradeoffs, not just a selected tool.",
+    "Review behavior with concrete scenarios.",
+    "Make required fixes distinguishable from preferences."
+  ],
+  "sources": [
+    {
+      "title": "Integration pattern selection",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Apex operation access modes",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "title": "CI evidence for Salesforce changes",
+      "url": "https://developer.salesforce.com/blogs/2022/01/set-up-continuous-integration-for-your-salesforce-projects"
+    }
+  ],
+  "illustration": {
+    "subject": "two drawn developers comparing a small design diagram and a tradeoff card",
+    "alt": "Two drawn developers comparing a small design diagram and a tradeoff card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Architecture Review. Subject: two drawn developers comparing a small design diagram and a tradeoff card."
+  }
+}

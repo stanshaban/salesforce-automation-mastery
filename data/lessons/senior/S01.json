@@ -1,0 +1,134 @@
+{
+  "id": "S01",
+  "track": "senior",
+  "title": "How a Salesforce Transaction Runs",
+  "minutes": 55,
+  "summary": "Trace one booking from a browser action to committed records, then separate that transaction from the work that follows it.",
+  "prerequisites": [
+    "Complete the Middle track or explain SOQL, DML, triggers, and Queueable Apex.",
+    "Know the starter Vehicle__c and Test_Drive__c objects and their lookup relationship."
+  ],
+  "learningObjectives": [
+    "Distinguish application metadata, business records, and execution state.",
+    "Draw transaction and trust boundaries without inventing Salesforce internals.",
+    "Explain which application decisions remain important on Hyperforce."
+  ],
+  "sections": [
+    {
+      "heading": "Start with Anna's booking",
+      "body": [
+        "Anna is a salesperson at Northstar Motors. She selects a Vehicle__c record and creates a Test_Drive__c for client Irina. The field definitions, validation rules, Apex classes, and Flow definitions are metadata: instructions that describe how the application behaves. The particular vehicle and appointment are business data. Changing a field definition and inserting an appointment are different operations, even though both can begin in Setup or a browser.",
+        "A runtime is the software that interprets those definitions and executes the application. You do not need to know the physical database layout to design this feature. You do need to know which operations share a transaction. A transaction is a unit of work whose database changes can commit together or roll back together when its execution fails. The user's click is an entry point, not a guarantee that everything it eventually causes belongs to one transaction."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Draw the boundary around work that commits together, not around every action that has the same business purpose."
+        }
+      ]
+    },
+    {
+      "heading": "Follow the save through the boundary",
+      "body": [
+        "Begin your diagram with identity and input. Anna's authenticated session identifies the caller; the application still needs to validate the requested vehicle, appointment time, and permitted operation. Object permissions, field permissions, and record access answer different questions. For Apex compiled at API 68.0, database operations default to user mode. Prefer an explicit access contract in examples so reviewers do not have to infer the intent from a class version.",
+        "Next draw the synchronous save path: request handling, applicable platform validation and automation, and the commit decision. This is a conceptual boundary diagram, not a replacement for the complete order-of-execution reference. A before-save change to the same appointment belongs inside that work. A Queueable job that runs later gets a separate execution context. If it fails after the appointment has committed, its failure does not travel backward and undo the earlier commit.",
+        "The synthetic trace below gives you events, not measurements from a Salesforce org. The reservation and notification are one business process but two technical transactions. That distinction determines what Anna can be told. 'Booking saved; notification pending' is more accurate than treating an enqueued notification as proof of delivery."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Ask what remains true if the asynchronous step fails ten minutes after the browser reports success."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic boundary trace; these events were written for this lesson",
+          "code": "T1 request: Anna submits appointment for Irina\nT1 validation: vehicle exists; requested time accepted\nT1 database: Test_Drive__c created\nT1 commit: appointment becomes durable\nT2 Queueable: notification attempt starts later\nT2 failure: external service times out\nObserved business state: appointment exists; delivery is unconfirmed"
+        }
+      ]
+    },
+    {
+      "heading": "Why shared infrastructure affects your design",
+      "body": [
+        "Multitenancy means a platform serves multiple tenants while maintaining separation between their data and operations. An org is a tenant boundary; it is not permission for every user inside that org to see every record. Governor limits constrain individual executions, while other allocations apply across the org or a time window. These controls are part of the platform contract, so a design should budget work rather than assume unlimited processing.",
+        "Hyperforce concerns Salesforce's infrastructure architecture and deployment on public-cloud infrastructure. It does not turn an inefficient nested loop into an efficient algorithm, merge independent transactions, or remove the application security model. Regional availability and organizational requirements can affect an infrastructure decision, but they do not establish a particular CPU entitlement for your code.",
+        "Separate facts from assumptions on the drawing. Label an application service, an org boundary, and a conceptual platform layer. Do not invent a specific number of servers, a physical table layout, or a database engine for the customer's instance. If a requirement depends on such an internal detail, identify the supported Salesforce contract or an explicit question for Salesforce instead."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "An architecture diagram should expose important uncertainty instead of hiding it behind detailed-looking infrastructure boxes."
+        }
+      ]
+    },
+    {
+      "heading": "Design a visible recovery path",
+      "body": [
+        "Oleg, the manager, needs to distinguish an appointment that was never created from one whose notification failed. A useful application status might track Pending, Delivered, and Needs attention for the notification separately from the appointment's booking status. Those fields are a proposed extension, not fields already supplied by the starter. Keep the business state and delivery state separate so a retry cannot accidentally rebook Irina.",
+        "Measure each boundary independently in a permitted training environment: whether the appointment exists after the save, whether a queued job reached a terminal status, and whether a mocked recipient acknowledged the message. A screenshot of the appointment proves neither a network delivery nor the correctness of a retry. In a paper-only exercise, label every status transition as a prediction and explain how a future experiment would verify it."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Use one booking identifier across the diagram, but give each transaction and delivery attempt its own identifier."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Draw the booking boundary map",
+    "brief": "Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required.",
+    "steps": [
+      "Draw browser, Salesforce synchronous transaction, committed appointment, async worker, and external recipient.",
+      "Place metadata and business data in different boxes; annotate where identity and access are checked.",
+      "Add three failure cards: validation failure before commit, worker failure after commit, and successful delivery with a lost response.",
+      "For each card, state whether an appointment exists and what Anna and Oleg should see.",
+      "If using a training org, verify only one small save and a mocked asynchronous failure; record API version and the observations separately from the supplied trace."
+    ],
+    "acceptance": [
+      "The diagram has explicit commit boundaries and does not claim Hyperforce removes limits.",
+      "A worker failure leaves the committed appointment intact.",
+      "Every claim is labelled as a documented platform rule, a synthetic case result, or an observation from your own experiment."
+    ],
+    "stretch": "Explain why a single business transaction can require reconciliation across several technical transactions."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does org isolation replace record sharing?",
+      "answer": "No. Tenant isolation separates organizations; sharing and other permissions govern access inside an organization."
+    },
+    {
+      "question": "Can a failed Queueable automatically roll back an appointment committed earlier?",
+      "answer": "No. The later job is a separate transaction. Recovery must handle the existing appointment and failed follow-up explicitly."
+    },
+    {
+      "question": "Why state the Apex API version?",
+      "answer": "Versioned behavior can affect execution defaults. API 68.0 uses the newer user-mode defaults; explicit access modes make the intended contract easier to review."
+    }
+  ],
+  "recap": [
+    "Metadata describes the application; records describe individual business entities.",
+    "Commit boundaries determine what can roll back together.",
+    "Infrastructure changes do not replace efficient code, access design, or recovery planning."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce architecture basics",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/architecture-basics"
+    },
+    {
+      "title": "Platform multitenant architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-multitenant-architecture"
+    },
+    {
+      "title": "Set an access mode for database operations",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a shared platform foundation supporting several clearly separated application workspaces",
+    "alt": "A shared platform foundation supporting several clearly separated application workspaces",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Architecture. Subject: a shared platform foundation supporting several clearly separated application workspaces."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "JR10",
+  "track": "jobs",
+  "title": "Discuss Your Experience and Evaluate the Employer",
+  "minutes": 60,
+  "summary": "Prepare clear experience stories and questions that help you understand the work and team.",
+  "prerequisites": [
+    "JR04: evidence-based experience accounts.",
+    "One role description you want to discuss."
+  ],
+  "learningObjectives": [
+    "Explain decisions and learning.",
+    "Ask about the actual work.",
+    "Separate observations from assumptions."
+  ],
+  "sections": [
+    {
+      "heading": "Prepare stories with a real decision",
+      "body": [
+        "Experience questions often ask about a difficult problem, feedback, collaboration or a mistake. Choose real events that you can discuss without exposing confidential information. A training or volunteer example can be useful when you label the context. The strongest story contains a decision you made, the information available at the time and what you learned from the result.",
+        "For example, you may have built a flow that worked for one test record but failed when several records were updated. Explain how you reproduced the failure, identified the repeated work, changed the design and checked the result. Do not replace the technical detail with “I worked hard and solved it.” The interviewer needs to understand how you approach uncertainty."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A useful story explains a decision and its consequences. It does not need to make you look flawless."
+        }
+      ]
+    },
+    {
+      "heading": "Keep responsibility and outcome clear",
+      "body": [
+        "Use a short structure: situation, responsibility, action, result and reflection. Describe the situation only far enough to make the problem understandable. Spend most of the time on your actions and reasoning. If other people helped, identify their contribution. If the result was mixed, explain what improved and what remained unresolved.",
+        "Prepare three stories: one successful delivery, one diagnosis or mistake, and one response to feedback. For each, write a one-sentence lesson that changed how you work. “I now test a mixed batch before calling validation complete” is more concrete than “I learned to be careful.” Practise telling the story in two minutes, then allow follow-up questions."
+      ]
+    },
+    {
+      "heading": "Ask questions that reveal the actual work",
+      "body": [
+        "An interview also gives you information about the role. Ask about the first projects, the balance between configuration and code, the release process, the development environments and how code review works. For a more senior role, ask who owns architectural decisions, incident response and technical debt prioritisation. Choose questions that matter to your target responsibilities rather than reading a long generic list.",
+        "Connect a question to something in the description. “You mention integration ownership. Does that include monitoring and handling failed messages, or mainly building new endpoints?” is more useful than assuming the phrase has one meaning. Ask for examples where possible. The answer may reveal a fit, a learning opportunity or a mismatch; record it without treating one imperfect answer as a complete judgment of the employer."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Prepare five questions, then choose the two or three that remain unanswered during the conversation."
+        }
+      ]
+    },
+    {
+      "heading": "Use the conversation to make a decision",
+      "body": [
+        "After the interview, record what you learned about responsibilities, support, expectations and the next stage. Separate stated facts from your interpretation. “The team said developers rotate incident support” is a fact from the conversation. “The team is probably chaotic” is an interpretation that needs more evidence. If a practical condition is still unclear, note a follow-up question.",
+        "Review whether the role still matches the target from JR01. A role with a desirable title may involve work you do not want, while a differently titled role may offer the development you need. You do not need to decide everything during the call. The aim of your questions is to replace assumptions with information that supports a thoughtful decision."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Your notes contain both evidence about your fit and unanswered questions about the role."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Prepare three experience stories and a focused set of employer questions.",
+    "steps": [
+      "Choose real events with clear ownership.",
+      "Write the decision, result and reflection for each.",
+      "Practise a two-minute version and one technical follow-up.",
+      "Prepare questions linked to the actual role description.",
+      "After a mock conversation, separate facts, interpretations and open questions."
+    ],
+    "acceptance": [
+      "Stories contain a specific action and evidence, not only personal qualities.",
+      "Team contributions and limitations remain accurate.",
+      "Employer questions clarify responsibilities you care about."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Should a mistake story hide the mistake?",
+      "answer": "No. Explain the response, verification and lesson while respecting confidentiality."
+    },
+    {
+      "question": "Why ask for an example of the release process?",
+      "answer": "An example reveals how the process works in practice and reduces ambiguity."
+    },
+    {
+      "question": "How should you record an uncertain impression?",
+      "answer": "Label it as an interpretation and identify what additional information would confirm or change it."
+    }
+  ],
+  "recap": [
+    "Explain decisions and learning.",
+    "Ask about the actual work.",
+    "Separate observations from assumptions."
+  ],
+  "sources": [
+    {
+      "title": "How Salesforce hires",
+      "url": "https://www.salesforce.com/company/careers/culture/how-we-hire/"
+    }
+  ],
+  "illustration": {
+    "subject": "two drawn people in a calm professional conversation with three concrete project story cards",
+    "alt": "Two drawn people in a calm professional conversation with three concrete project story cards",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Discuss Your Experience. Subject: two drawn people in a calm professional conversation with three concrete project story cards."
+  }
+}

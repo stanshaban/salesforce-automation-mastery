@@ -1,0 +1,145 @@
+{
+  "id": "S25",
+  "track": "senior",
+  "title": "Capstone: Improve Northstar with Reproducible Evidence",
+  "minutes": 90,
+  "summary": "Deliver a small, complete improvement package that connects diagnosis, implementation, tests, recovery, and a clear statement of its limits.",
+  "prerequisites": [
+    "Complete S01–S24 or demonstrate equivalent skills.",
+    "Have a local project workspace; a Salesforce training org is optional for the proxy path.",
+    "For the local JavaScript path, install Node.js 24 to match this repository and confirm node --version in your terminal. No npm packages are needed for the fixture."
+  ],
+  "learningObjectives": [
+    "Produce evidence that matches the scope of an improvement claim.",
+    "Combine performance, correctness, and release reasoning in one review.",
+    "Respond to a new constraint without hiding unresolved work."
+  ],
+  "sections": [
+    {
+      "heading": "Choose a bounded problem with a visible outcome",
+      "body": [
+        "Oleg asks for a final improvement to Northstar's booking process. Choose two connected defects from the course, such as repeated collection scans and duplicate notification effects, or an overly broad vehicle query and an incomplete integration failure state. Avoid turning the capstone into a rewrite of the whole platform.",
+        "Define the user promise and the defect mechanism. Anna should receive a correct booking outcome, Max should see only permitted useful data, and Oleg should find unresolved work. A performance claim must preserve that promise. The final package should make it possible for another learner to reproduce your limited experiment without access to your private org or credentials."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "The capstone is complete when the claimed behavior is demonstrated and its remaining limits are explicit, not when the repository contains many files."
+        }
+      ]
+    },
+    {
+      "heading": "Choose an honest execution path",
+      "body": [
+        "The Salesforce path uses a small synthetic fixture in your own permitted training environment, with recorded API versions, configuration, personas, and actual test results. The local proxy path uses pure code or a simulation to demonstrate algorithmic work, state transitions, duplicate handling, and recovery decisions. It does not claim to measure Salesforce CPU, sharing recalculation, or enterprise throughput.",
+        "The JavaScript fixture below is a local illustration of repeated matching work. It deliberately uses ordinary objects rather than Salesforce records. Extend it to compare a nested search with a Map lookup while asserting the same matched result. Counting comparisons supports a claim about algorithmic work for that fixture. A wall-clock timing, if collected, remains a local measurement with its own conditions.",
+        "Save the complete JavaScript block as baseline.mjs in a local exercise folder and run node baseline.mjs from that folder. The supplied fixture should print comparisons: 1640 and matchedCount: 80. Those are deterministic counts for these arrays, not timings. Record your actual output before adding the Map implementation and assertions; a printed count alone is not a passing comparison test.",
+        "Use the S15 event sequence as a second fixture if you choose duplicate handling. Preserve the original supplied input and show the corrected final state. If you only write a design without executing either path, label the implementation and verification criteria incomplete rather than awarding yourself a passed capstone."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Every result needs a reproducible command or procedure, a fixture, an expected outcome, and an actual observation."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "Local fixture to extend; not a Salesforce benchmark",
+          "code": "const vehicles = Array.from({length: 40}, (_, i) => ({id: `V-${i}`}));\nconst appointments = Array.from({length: 80}, (_, i) => ({vehicleId: `V-${i % 40}`}));\nlet comparisons = 0;\nconst matched = appointments.map(appointment => {\n  for (const vehicle of vehicles) {\n    comparisons += 1;\n    if (vehicle.id === appointment.vehicleId) return vehicle.id;\n  }\n  return null;\n});\nconsole.log({comparisons, matchedCount: matched.filter(Boolean).length});\n// Add a Map-based implementation and assert identical matched values."
+        }
+      ]
+    },
+    {
+      "heading": "Build an evidence package, not a demonstration story",
+      "body": [
+        "Include the problem brief, baseline revision, changed revision, fixture, raw results, and the smallest relevant diff. Add tests for empty input, ordinary input, a mixed collection, and the failure that originally motivated the change. For access-related work, include a denied case under the relevant security context. For asynchronous work, include a repeated or uncertain outcome.",
+        "Write one ADR explaining the selected approach and an alternative. Add a runbook for release or recovery appropriate to the change. A local algorithm improvement may need only a simple rollback procedure; a data backfill needs separate recovery reasoning. Scale the documentation to the actual risk.",
+        "Present before and after only when both were observed under comparable conditions. Supplied synthetic values belong in a separate assumptions section. A clear statement such as 'comparison count decreased for this local fixture; production Apex behavior remains untested' is more credible than an invented enterprise speedup."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Let a reviewer follow one claim all the way from requirement to code, test, result, and limitation."
+        }
+      ]
+    },
+    {
+      "heading": "Defend the result and accept a new constraint",
+      "body": [
+        "Ask a reviewer to introduce one unexpected constraint: another dealer must remain isolated, the provider can return duplicate acknowledgments, or the historical data cannot be changed during business hours. Explain which part of the implementation still holds and which decision must be revisited. Do not conceal the gap with a new untested assertion.",
+        "Prepare a first-week observation plan for a hypothetical approved release. Choose a few signals tied to the original risk, such as failed saves, queue age, duplicate effects, access denials, and the defined user-journey latency. State who investigates each signal and what evidence would trigger rollback or recovery.",
+        "The review outcome can be Accepted, Changes required, or Design reviewed with execution outstanding. These statuses describe evidence, not a guaranteed professional title. Resolve important review comments by changing behavior and rerunning the relevant checks, then link the new result to the updated revision."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A local proxy demonstrates the mechanism it models; it does not certify a production Salesforce architecture."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit the Northstar improvement pack",
+    "brief": "Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path.",
+    "steps": [
+      "Write a problem statement, user promise, and acceptance matrix before editing.",
+      "Preserve the baseline and fixture; implement a small reviewable change.",
+      "Run the meaningful checks and save raw, sanitized results with the revision identifiers.",
+      "Create one ADR, an appropriate release/recovery runbook, and a brief incident-prevention note.",
+      "Respond to one surprise constraint, resolve critical review findings, and submit the final evidence index."
+    ],
+    "acceptance": [
+      "At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance.",
+      "Before-and-after claims are supported by comparable observations and unchanged business assertions.",
+      "The package includes tests, limitations, recovery reasoning, and no real customer data or credentials."
+    ],
+    "stretch": "Have another learner reproduce the result from a clean checkout and record any missing instructions they discover."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Can a local Map experiment prove a Salesforce CPU improvement?",
+      "answer": "No. It can demonstrate reduced matching work and local behavior for the fixture; Salesforce runtime and production effects need separate measurements."
+    },
+    {
+      "question": "What makes an evidence index valuable?",
+      "answer": "It connects each claim to the exact fixture, revision, procedure, result, and limitation so another person can review or reproduce it."
+    },
+    {
+      "question": "How should an unexpected requirement be handled?",
+      "answer": "Identify which assumptions changed, preserve valid parts, revise the affected decision, and mark any new implementation or verification work as outstanding."
+    }
+  ],
+  "recap": [
+    "Make a bounded improvement and prove the matching claim.",
+    "Keep synthetic inputs, local observations, and Salesforce observations distinct.",
+    "Finish with reproducible evidence and resolved critical review feedback."
+  ],
+  "sources": [
+    {
+      "title": "Resource and cost optimization",
+      "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/resource-and-cost-optimization.html"
+    },
+    {
+      "title": "Continuous integration evidence",
+      "url": "https://developer.salesforce.com/blogs/2022/01/set-up-continuous-integration-for-your-salesforce-projects"
+    },
+    {
+      "title": "Integration reliability",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Apex behavior testing",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro"
+    },
+    {
+      "title": "Run Node.js scripts from the command line",
+      "url": "https://nodejs.org/learn/command-line/run-nodejs-scripts-from-the-command-line"
+    }
+  ],
+  "illustration": {
+    "subject": "a restored dealership system with a measured performance improvement and a concise incident timeline",
+    "alt": "A restored dealership system with a measured performance improvement and a concise incident timeline",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Senior Project. Subject: a restored dealership system with a measured performance improvement and a concise incident timeline."
+  }
+}

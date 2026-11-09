@@ -1,0 +1,286 @@
+{
+  "id": "j",
+  "title": "Junior Salesforce Developer",
+  "entry": "No previous CRM or Salesforce experience is required. Begin with people, business information, and a personal learning org. Apex syntax and browser-language basics are taught before their application code. Complete the separate workspace guide before code deployment.",
+  "exit": "Deliver and explain a small Salesforce feature with a deliberate data model, restricted-user access evidence, automation, bulk-aware Apex, a usable interface, tests, and a reproducible handover.",
+  "project": "Northstar Motors is a fictional dealership. Anna and Max are salespeople, Oleg manages the team, and Irina is a customer requesting a test drive. The project records an appointment and supports a controlled handover.",
+  "modules": [
+    {
+      "title": "CRM and Salesforce Foundations",
+      "lessons": [
+        {
+          "id": "J01",
+          "title": "What a CRM Does for a Business",
+          "outcome": "Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action.",
+          "task": "Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina.",
+          "acceptance": "The note distinguishes a request from a confirmed test drive. Another person can state what happens next without guessing.",
+          "interview": "Why is a telephone number insufficient?",
+          "visual": "two drawn colleagues sharing a customer record, conversation and calendar"
+        },
+        {
+          "id": "J02",
+          "title": "Salesforce Products, the Platform, and Your Org",
+          "outcome": "Distinguish a product, an application, and an org while learning who uses and changes Salesforce.",
+          "task": "Northstar needs a new field, a customer note, an access change, a useful management report, and a stock-system connection.",
+          "acceptance": "An application is not confused with an org. The proposed developer work includes understanding requirements and testing, not just writing code.",
+          "interview": "What is an org?",
+          "visual": "a drawn salesperson, administrator and developer around a single application workspace"
+        },
+        {
+          "id": "J03",
+          "title": "Create and Reopen a Learning Org",
+          "outcome": "Use a browser to create a personal Salesforce learning environment and verify that you can return to the same one.",
+          "task": "Prepare a short environment note that helps you resume learning tomorrow.",
+          "acceptance": "The note identifies one learning environment consistently. No passwords, authentication files, or real customer details appear in the evidence.",
+          "interview": "Is VS Code required for this lesson?",
+          "visual": "a small separate training workspace in a protective outline beside a larger company workspace"
+        },
+        {
+          "id": "J04",
+          "title": "Finding Your Way Around Salesforce",
+          "outcome": "Recognize an application, navigation item, list, record page, and Setup without assuming previous Salesforce use.",
+          "task": "Create a simple map showing how Anna finds a customer and where an administrator changes configuration.",
+          "acceptance": "Each interface area has a plain-language purpose. The map distinguishes navigation, stored data, and configuration.",
+          "interview": "Does Recently Viewed contain every record?",
+          "visual": "one clean application window opening into a list and a single record card"
+        },
+        {
+          "id": "J05",
+          "title": "Objects, Fields, and Records",
+          "outcome": "Use a small vehicle catalogue to distinguish the shape of information from individual stored items.",
+          "task": "Create a diagram containing two vehicles and three test-drive events.",
+          "acceptance": "Objects, fields, values, and records are labelled correctly. Vehicle status is distinct from test-drive status.",
+          "interview": "Is City EV a field?",
+          "visual": "three neatly stacked record cards with aligned property rows and one highlighted field"
+        },
+        {
+          "id": "J06",
+          "title": "Turn a Request into a Testable Task",
+          "outcome": "Clarify who needs a feature, what information it uses, and how you will know it works before choosing a tool.",
+          "task": "Write a one-page brief for Oleg before creating fields or automation.",
+          "acceptance": "Assumptions are visibly different from confirmed requirements. Acceptance criteria describe behaviour rather than an unexamined technical solution.",
+          "interview": "Can an invented restriction be treated as a requirement?",
+          "visual": "a simple request card becoming three concrete checklist steps beside a drawn learner"
+        }
+      ]
+    },
+    {
+      "title": "Data and the First Application",
+      "lessons": [
+        {
+          "id": "J07",
+          "title": "Choose Standard Objects Before Creating New Ones",
+          "outcome": "Classify customer information using Lead, Account, Contact, Opportunity, and Case, then explain why the course adds two custom objects.",
+          "task": "Explain how Northstar should store five different pieces of customer work.",
+          "acceptance": "An Opportunity is not described as requiring a Lead in every process. The course Contact lookup and its limits are stated explicitly. The learning org contains the core Vehicle and Test Drive schema needed by J08, without duplicate objects.",
+          "interview": "Is a customer complaint a new sale?",
+          "visual": "a restrained row of customer, company, opportunity and support record symbols connected by one path"
+        },
+        {
+          "id": "J08",
+          "title": "Field Types, Formulas, and Validation Rules",
+          "outcome": "Separate entered values, calculated values, and rejected input using concrete appointment examples.",
+          "task": "Give Oleg evidence that the fields accept valid data and explain invalid input.",
+          "acceptance": "A historical appointment can receive an unrelated edit without this time rule blocking it. Blank handling and time-zone assumptions are documented.",
+          "interview": "When does a validation rule reject a save?",
+          "visual": "a record form with a calendar field, a number field and a clear validation check"
+        },
+        {
+          "id": "J09",
+          "title": "Choose Lookup or Master-Detail Deliberately",
+          "outcome": "Compare relationship behaviour while preserving independent ownership of the course Test Drive records.",
+          "task": "Explain why the course keeps Test Drive independently owned.",
+          "acceptance": "The experiment does not replace the core relationship. The explanation includes ownership and access, not only deletion.",
+          "interview": "Where is a Master-Detail field created?",
+          "visual": "two record cards connected by a clean relationship line with a small linked record underneath"
+        },
+        {
+          "id": "J10",
+          "title": "Build a Usable Sales Application",
+          "outcome": "Assemble tabs, a record page, a useful list, and a small management report around one clear salesperson journey.",
+          "task": "Create a short demonstration from application navigation to an appointment and a management count.",
+          "acceptance": "The report matches the known sample records. The explanation does not claim that a page layout enforces field-level security.",
+          "interview": "Why can a report and a list show different counts?",
+          "visual": "a compact car-dealership application window with a car, appointment card and small bar chart"
+        }
+      ]
+    },
+    {
+      "title": "Designing and Verifying Access",
+      "lessons": [
+        {
+          "id": "J11",
+          "title": "Understand the Layers of Data Access",
+          "outcome": "Separate sign-in, object operations, field permissions, and access to an individual record.",
+          "task": "Explain why similar symptoms require different investigation paths.",
+          "acceptance": "Object, field, and record access are distinguished. Administrator results are not represented as salesperson tests.",
+          "interview": "Will record sharing grant object Read?",
+          "visual": "four translucent geometric access layers protecting one customer record"
+        },
+        {
+          "id": "J12",
+          "title": "Grant a Small Set of Working Permissions",
+          "outcome": "Create an additive permission set that enables appointment work without broad administration.",
+          "task": "Submit a small table connecting Anna to the operations and fields she needs.",
+          "acceptance": "The evidence uses a restricted user. The explanation recognizes additive permissions and independent record sharing.",
+          "interview": "Does an unchecked Delete box remove another Delete grant?",
+          "visual": "two small permission cards combining to open one lock on a record"
+        },
+        {
+          "id": "J13",
+          "title": "Set a Record-Access Baseline and Add Exceptions",
+          "outcome": "Use Private defaults, roles, and a focused sharing rule to explain appointment visibility.",
+          "task": "Explain the intended owner, peer, manager, and service-reviewer access.",
+          "acceptance": "A role is not confused with a profile. No unsupported branch isolation is claimed. Other granting sources are investigated when results differ.",
+          "interview": "Does Private prevent all non-owner access?",
+          "visual": "a simple team hierarchy above three record cards with carefully drawn access paths"
+        },
+        {
+          "id": "J14",
+          "title": "Share One Record and Test an Ownership Change",
+          "outcome": "Use manual sharing for a specific handover and verify transfer behaviour in the actual org configuration.",
+          "task": "Explain the behaviour of one manual share before and after ownership changes.",
+          "acceptance": "The explanation does not say manual shares always disappear. New ownership is not mistaken for retained manual sharing.",
+          "interview": "Does sharing transfer ownership?",
+          "visual": "one drawn colleague handing a single record card to another through a permission key"
+        },
+        {
+          "id": "J15",
+          "title": "Trace the Source of an Access Problem",
+          "outcome": "Investigate missing or excessive access with evidence, one hypothesis, and a minimal correction.",
+          "task": "Diagnose one object, one field, and one record access case.",
+          "acceptance": "A layout issue is not mislabeled as FLS. A filter issue is not mislabeled as sharing. Any unavailable execution check is stated honestly.",
+          "interview": "Why inspect Access Granted By?",
+          "visual": "a magnifying glass tracing two different paths toward the same accessible record"
+        },
+        {
+          "id": "J16",
+          "title": "Verify Access for Sales, Service, and Management",
+          "outcome": "Turn a written access matrix into repeatable positive and negative checks for three working personas.",
+          "task": "Deliver a short access demonstration and an evidence matrix for Oleg.",
+          "acceptance": "No broad grant was added solely to make a test pass. Every executed result names the tested persona. Untested cells remain distinguishable from successful ones.",
+          "interview": "Is a persona the same as a role?",
+          "visual": "two drawn workplace roles facing the same records with different visible subsets"
+        }
+      ]
+    },
+    {
+      "title": "Flow, Apex, and Transaction Behaviour",
+      "lessons": [
+        {
+          "id": "J17",
+          "title": "Create a Record-Triggered Flow with a Clear Failure Path",
+          "outcome": "Create one follow-up Task for a new appointment request, avoid update duplicates, and make a failed reminder visible.",
+          "task": "Deliver the Flow, activity-setting change, and a three-case result table.",
+          "acceptance": "The activity prerequisite is included. The submission distinguishes a Task from an email notification. The active version and observed transaction outcome are stated.",
+          "interview": "Why choose after-save here?",
+          "visual": "three simple flow nodes transforming a saved appointment into a reminder card"
+        },
+        {
+          "id": "J18",
+          "title": "Apex Syntax, Variables, Collections, and Methods",
+          "outcome": "Read and write a small pure Apex function before introducing database operations.",
+          "task": "Add a method that returns labels for available minutes using a Map.",
+          "acceptance": "The code performs no database operation. Returned ordering and null behaviour are explicit. The explanation distinguishes List, Set, and Map.",
+          "interview": "How does assignment differ from comparison?",
+          "visual": "a calm developer workspace with a small code card, a collection of blocks and a method-shaped container"
+        },
+        {
+          "id": "J19",
+          "title": "Read and Change Records with SOQL and DML",
+          "outcome": "Write a bounded bulk operation with explicit user-mode access and separate reads from writes.",
+          "task": "Provide evidence for empty, single-record, and 200-record scenarios.",
+          "acceptance": "No query or DML is executed once per appointment. Only Requested appointments for supplied vehicles change. The stated dataset boundary is honest.",
+          "interview": "Does assigning a field in memory save it?",
+          "visual": "one data shelf with a clean read arrow and a separate update arrow returning one record"
+        },
+        {
+          "id": "J20",
+          "title": "Use a Thin Trigger and a Focused Handler",
+          "outcome": "Validate the whole incoming collection while keeping business rules outside the trigger entry point.",
+          "task": "Implement and explain the two agreed validation rules.",
+          "acceptance": "All pending records are checked. The handler contains no unnecessary self-update. The submission states what the rules do not guarantee.",
+          "interview": "Why use old values?",
+          "visual": "an incoming group of record cards activating one event-driven processing node"
+        },
+        {
+          "id": "J21",
+          "title": "Trace Automation Through a Transaction",
+          "outcome": "Explain how several automations participate in one save and verify what a rollback actually removes.",
+          "task": "Produce a small timeline and before-and-after record evidence.",
+          "acceptance": "The timeline is labelled as a relevant subset of the official order. A retained variable ID is not mistaken for a committed record. Separate asynchronous work is not described as the same transaction.",
+          "interview": "Does a generated ID prove commit?",
+          "visual": "an orderly sequence of four process tiles inside one transaction boundary"
+        },
+        {
+          "id": "J22",
+          "title": "Write Apex Tests That Prove Behaviour",
+          "outcome": "Create independent test data and assert valid, invalid, and bulk outcomes rather than aiming only for executed lines.",
+          "task": "Test the pure function and appointment validation with independent data.",
+          "acceptance": "Assertions check the intended business outcome. Tests do not depend on ordinary org data. The submitted results come from an actual run or are clearly marked unperformed.",
+          "interview": "Can 100% coverage accompany incorrect behaviour?",
+          "visual": "a small test bench comparing an expected result card with an actual result card and one check"
+        }
+      ]
+    },
+    {
+      "title": "Components, Diagnosis, and Handover",
+      "lessons": [
+        {
+          "id": "J23",
+          "title": "HTML, JavaScript, and Your First Lightning Web Component",
+          "outcome": "Learn the browser-language basics and build an explicitly simulated appointment preview with four visible states.",
+          "task": "Extend the simulated preview with a second sample appointment while preserving honest labels.",
+          "acceptance": "The interface is explicitly labelled as a demonstration. Sample rows are not claimed to be persisted. Every rendered row has a stable key.",
+          "interview": "Does assigning rows create Salesforce records?",
+          "visual": "three clean interface building blocks assembling into one component card"
+        },
+        {
+          "id": "J24",
+          "title": "Read and Edit a Record with Lightning Data Service",
+          "outcome": "Use a standard record form for an ordinary edit and verify the result under a restricted user.",
+          "task": "Deliver the working editor and a short comparison with a custom Apex alternative.",
+          "acceptance": "No synthetic preview ID is used as a Salesforce record ID. The outcome is verified after save. The choice of standard components is justified.",
+          "interview": "Does @api recordId always populate in every container?",
+          "visual": "a small component window connected to a shared data cache and a record card"
+        },
+        {
+          "id": "J25",
+          "title": "Pass Data Down and Send Events Up",
+          "outcome": "Split a small interface into a parent and child with clear ownership of state.",
+          "task": "Extend the example with a third simulated item and document the public contract.",
+          "acceptance": "The child does not mutate the supplied object. Events use a clear matching name and minimal detail. The simulation is not described as a database operation.",
+          "interview": "Who owns selectedId?",
+          "visual": "a parent component container and two child cards communicating with one upward event arrow"
+        },
+        {
+          "id": "J26",
+          "title": "Investigate a Failure from Symptom to Cause",
+          "outcome": "Use a reproducible case, a focused hypothesis, and the right evidence from the browser or Salesforce.",
+          "task": "Choose the event mismatch or another controlled learning failure and explain it from symptom to proof.",
+          "acceptance": "The note separates observed facts from hypotheses. The correction addresses the demonstrated cause. Private data and credentials are excluded.",
+          "interview": "Why is a hypothesis different from an observation?",
+          "visual": "a magnifying glass isolating one highlighted break in an otherwise clean code path"
+        },
+        {
+          "id": "J27",
+          "title": "Use Git to Hand Over a Reproducible Change",
+          "outcome": "Capture the relevant metadata, review a small diff, and submit a version another person can inspect.",
+          "task": "Hand over the appointment feature as a versioned, explainable change.",
+          "acceptance": "The package excludes credentials and real customer data. Setup-only changes required by the feature are captured or explicitly documented. The review target is an identifiable version in the learner repository.",
+          "interview": "Does changing a local file change the org immediately?",
+          "visual": "a tidy branching path of commits joining a reviewed change card"
+        },
+        {
+          "id": "J28",
+          "title": "Deliver the Northstar Test-Drive Application",
+          "outcome": "Demonstrate a complete small feature, explain its boundaries, and respond to a modest requirement change.",
+          "task": "Deliver a short demonstration, source package, and review note for the Northstar appointment feature.",
+          "acceptance": "The feature works within its stated educational scope. Critical correctness or access defects are corrected before requesting acceptance. The author can explain data, permissions, automation, code, and interface choices. No simulation or unexecuted test is misrepresented as a live result.",
+          "interview": "What makes this more than a collection of exercises?",
+          "visual": "a finished car test-drive application with a calendar and a small review check"
+        }
+      ]
+    }
+  ]
+}

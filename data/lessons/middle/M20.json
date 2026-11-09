@@ -1,0 +1,144 @@
+{
+  "id": "M20",
+  "track": "middle",
+  "title": "Choosing SOQL or SOSL for a search requirement",
+  "minutes": 50,
+  "summary": "Use structured queries for known filters and indexed search for words across object types, while handling delayed search visibility.",
+  "prerequisites": [
+    "Junior SOQL and standard CRM objects.",
+    "M06 user-mode security."
+  ],
+  "learningObjectives": [
+    "Choose SOQL or SOSL from the question.",
+    "Navigate declared lookup relationships.",
+    "Explain why a newly saved record may not immediately appear in search."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "SOQL queries records from a known object using structured fields and filters. It suits a request such as 'show Confirmed test drives scheduled tomorrow.' SOSL searches text across supported searchable fields and can return results from multiple object types. It suits 'find the customer named Irina across Contact, Lead, and Account.' The decision starts with the question, not with which language has fewer characters.",
+        "A child-to-parent SOQL relationship traverses a lookup using its relationship name. In the starter, Test_Drive__c.Customer__c points to Contact and Vehicle__c points to Vehicle__c, so expressions such as Customer__r.Name and Vehicle__r.Model__c provide related fields. These optional lookups may be null; the UI should not assume every row has a parent record.",
+        "Search indexes are updated asynchronously. After Anna creates a Contact, the record can be available through a direct ID query while a text search has not yet found it. That is a difference between the data store and search indexing, not proof that the save failed. For the immediate post-save screen, retain the created record ID rather than searching again to decide whether creation succeeded.",
+        "Neither query language replaces access control. State the running identity and use the intended access mode. Limit fields and result size to the UI's needs, validate search inputs, and avoid returning arbitrary object data. Search results also require a display contract: label the record type, distinguish people from companies, and handle ambiguous names instead of selecting the first match."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Choose structured filtering for a known record set and text search for discovery across searchable data."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Oleg wants tomorrow's confirmed appointments, ordered by time. A bounded SOQL query on Test_Drive__c answers this precisely. Anna wants to locate Irina, whose name might appear as a Contact or an unconverted Lead; SOSL can return object-specific result lists that the UI labels separately.",
+        "Create a synthetic Contact named Irina SAM Search. Save it and keep its Id. Compare direct retrieval by Id with a SOSL search immediately and later. If search already finds it, record that observation; do not force a delay or claim the index always takes a fixed number of seconds. The important point is that immediate search visibility is not a guarantee."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "If a newly created Contact is absent from SOSL, which identifier can still prove that the save succeeded?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "SOQL fragment; startAt/endAt are supplied Datetime bounds",
+          "code": "List<Test_Drive__c> visits = [\n    SELECT Id, Name, Scheduled_At__c, Customer__r.Name,\n           Vehicle__r.Model__c\n    FROM Test_Drive__c\n    WHERE Status__c = 'Confirmed'\n      AND Scheduled_At__c >= :startAt AND Scheduled_At__c < :endAt\n    WITH USER_MODE\n    ORDER BY Scheduled_At__c, Id LIMIT 100\n];"
+        },
+        {
+          "language": "apex",
+          "caption": "SOSL fragment; searchTerm is a validated string such as Irina*",
+          "code": "List<List<SObject>> found = [\n    FIND :searchTerm IN NAME FIELDS\n    RETURNING Contact(Id, Name), Lead(Id, Name), Account(Id, Name)\n    WITH USER_MODE\n];"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "No new custom fields are required. Use only synthetic Contact, Lead, and Account records and grant the test user the necessary access to the objects being queried."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Implement the appointment query",
+          "instruction": "Define a time-zone-aware date window, use an inclusive lower and exclusive upper bound, and display null parent relationships safely.",
+          "expected": "Boundary appointments appear in the intended day without overlap."
+        },
+        {
+          "title": "Build the multi-object search",
+          "instruction": "Return labeled Contact, Lead, and Account groups and ask the user to resolve ambiguous matches.",
+          "expected": "A company is not silently treated as the customer Contact."
+        },
+        {
+          "title": "Test save versus search",
+          "instruction": "Create a Contact, retrieve by returned Id, and observe text-search visibility. In SOSL unit tests use Test.setFixedSearchResults for deterministic fixtures.",
+          "expected": "Unit tests do not claim to measure live indexing latency."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Using a text search to establish whether the previous save succeeded can create accidental duplicates when the user retries a successful creation.",
+        "A hard-coded LIMIT can silently hide needed records. Define pagination or a visible result cap rather than presenting the first page as the complete dataset."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not promise immediate search indexing or use search as a substitute for CRUD/FLS and record-access checks."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build structured and discovery searches",
+    "brief": "Create the appointment list and customer search with distinct contracts.",
+    "steps": [
+      "Implement bounded SOQL.",
+      "Implement labeled SOSL results.",
+      "Record the immediate post-save experiment."
+    ],
+    "acceptance": [
+      "Date boundaries and null lookups are handled.",
+      "Multiple object types are distinguishable.",
+      "The indexing limitation is explained without fabricated timing."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why use SOQL for tomorrow's appointments?",
+      "answer": "The object and field predicates are known and require structured filtering."
+    },
+    {
+      "question": "Why can SOSL miss a fresh record?",
+      "answer": "Its search index may not yet reflect the committed data."
+    },
+    {
+      "question": "What does FixedSearchResults test?",
+      "answer": "Deterministic SOSL result handling in unit tests, not the live indexing system."
+    }
+  ],
+  "recap": [
+    "Match the query to the question.",
+    "Keep created IDs for immediate confirmation.",
+    "Handle security, ambiguity, and result bounds."
+  ],
+  "sources": [
+    {
+      "title": "User-mode query behavior",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "title": "SOQL and SOSL reference",
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/"
+    }
+  ],
+  "illustration": {
+    "subject": "a focused search over one record shelf beside a broader search across several shelves",
+    "alt": "A focused search over one record shelf beside a broader search across several shelves",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: SOQL and SOSL. Subject: a focused search over one record shelf beside a broader search across several shelves."
+  }
+}

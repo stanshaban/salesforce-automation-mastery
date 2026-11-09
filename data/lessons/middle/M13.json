@@ -1,0 +1,128 @@
+{
+  "id": "M13",
+  "track": "middle",
+  "title": "Batch Apex and independent execution scopes",
+  "minutes": 50,
+  "summary": "Process a larger appointment dataset in bounded transactions and report partial failure without implying whole-job atomicity.",
+  "prerequisites": [
+    "M10 cancellation tests.",
+    "M11 async selection and M12 visible job outcomes."
+  ],
+  "learningObjectives": [
+    "Explain start, execute, and finish.",
+    "Choose a scope from the work per record.",
+    "Distinguish instance state, static state, and persisted results."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Batch Apex separates selection from processing. The start method defines the dataset, execute receives a scope of records, and finish performs final coordination. Each execute invocation is a separate transaction with its own applicable limits. The job is therefore not one atomic transaction: a failure in a later scope does not automatically undo records committed by an earlier successful scope.",
+        "Scope size is a workload decision. Smaller scopes can reduce work and failure impact per transaction but increase transaction overhead. Larger scopes can be efficient until queries, writes, CPU, heap, or downstream automation make them unsafe. Estimate those costs from the actual operation rather than selecting 200 because it appears in an example. A scope also does not guarantee the order in which records are processed.",
+        "Database.Stateful preserves instance member values across the batch's transactions. It does not turn static fields into persistent counters, and it does not combine commits. Saving state has serialization cost, so retain a small summary rather than a growing collection of every record and error. Persist detailed errors in appropriate records when operators need durable inspection.",
+        "Use partial DML only if the business accepts partial success within a scope. Inspect every SaveResult and associate errors with the input record. An unhandled exception can roll back the whole scope; handled row failures may allow others to commit. Those are different policies, and the final report should say which occurred instead of describing every finish invocation as complete success."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A Batch job coordinates multiple transactions; its final status must account for their individual results."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use M10’s cancellation rule with a fixed cutoff. Prepare 401 appointments that meet the start query, plus separate protected-status fixtures. With a scope of 200, those 401 selected rows require three execute scopes. Count the start-query result before running: 401 total records with many filtered-out rows would not prove three scopes. Cause one declared validation failure on an eligible synthetic record during processing, and reconcile successes, protected records, and failures. Keep setup times compatible with the Junior time rule; a controlled future cutoff can test this logic without inserting forbidden past appointments.",
+        "For unit tests, keep each batch invocation's selected dataset within one execute scope. Salesforce's batch test limitation means a 401-record, scope-200 run should be a separate integration observation, not an assertion that one unit test executed several scopes. Unit tests can separately exercise the processing helper with mixed records and error policies."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "If the second scope fails, which changes from the first successful scope remain?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use existing Test Drive fields and the M10 service. If detailed error records are introduced, declare their object and fields in the submission; a structured result from the helper is sufficient for local unit tests."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Implement the three phases",
+          "instruction": "Select only potentially eligible records in start, recheck the rule in execute, and produce a clear summary in finish. Keep the cutoff fixed for the run.",
+          "expected": "Records do not become eligible merely because the clock advanced between scopes."
+        },
+        {
+          "title": "Measure and handle errors",
+          "instruction": "Choose a scope, record work per scope, and implement the stated atomic or partial-row policy. Use a small instance counter only if Database.Stateful is justified.",
+          "expected": "Counts and errors match the selected transaction policy."
+        },
+        {
+          "title": "Separate test evidence",
+          "instruction": "Run one-scope unit tests and an independent 401-record training run. Inspect Apex Jobs and actual record states, then remove synthetic test data.",
+          "expected": "The evidence distinguishes unit verification from multi-scope observation."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A static total can reset between scopes and produce an incorrect summary. A large Stateful map can increase overhead without making data durable for operators.",
+        "If finish sends a celebratory message while ignoring failed scopes or row errors, users receive an incorrect business result even though the callback executed."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not claim that Batch is all-or-nothing or that Database.Stateful persists static variables."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Process and account for 401 appointments",
+    "brief": "Build the cancellation Batch with visible success, skipped, and failed outcomes.",
+    "steps": [
+      "Implement one-scope tests.",
+      "Run the multi-scope training example.",
+      "Reconcile counts and demonstrate a safe rerun."
+    ],
+    "acceptance": [
+      "Protected statuses remain unchanged.",
+      "An error is visible and tied to its record or scope.",
+      "A repeat run does not corrupt already processed records."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What persists with Stateful?",
+      "answer": "Instance member state is retained across batch transactions; static state is not the same mechanism."
+    },
+    {
+      "question": "Why is scope not always 200?",
+      "answer": "The appropriate size depends on the actual work, limits, automation, and acceptable failure impact."
+    },
+    {
+      "question": "Why separate the 401-record run?",
+      "answer": "Apex batch unit tests are limited to one execute invocation per test; multi-scope behavior needs separately labeled evidence."
+    }
+  ],
+  "recap": [
+    "Design each scope as a transaction.",
+    "Report partial results honestly.",
+    "Keep retained state small."
+  ],
+  "sources": [
+    {
+      "title": "Batch Apex",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a large stack of records divided into three manageable processing groups",
+    "alt": "A large stack of records divided into three manageable processing groups",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Batch Apex. Subject: a large stack of records divided into three manageable processing groups."
+  }
+}

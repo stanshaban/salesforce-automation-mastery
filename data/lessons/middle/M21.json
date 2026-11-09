@@ -1,0 +1,140 @@
+{
+  "id": "M21",
+  "track": "middle",
+  "title": "Lightning Web Component lifecycle",
+  "minutes": 50,
+  "summary": "Observe creation, attachment, rendering, removal, and child-error handling without assuming a component renders only once.",
+  "prerequisites": [
+    "Junior JavaScript classes, LWC templates, and reactive fields.",
+    "A simple component deployed in a training Lightning page."
+  ],
+  "learningObjectives": [
+    "Explain the purpose of each lifecycle hook.",
+    "Avoid render-driven update loops.",
+    "Clean up listeners and subscriptions at the appropriate boundary."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "LWC manages component instances. A lifecycle hook is a method the framework calls at a particular stage, such as construction, connection to the document, rendering, or disconnection. The lifecycle concerns the instance, not a single Salesforce record save. A component may render many times as its state or inputs change, and an attached instance may later be removed and reinserted.",
+        "Use constructor for minimal initialization after super, not for querying child elements. connectedCallback is a place to begin work that requires attachment, but it can run again if the instance is reinserted. renderedCallback runs after rendering and can run repeatedly; changing reactive data there can schedule another render and create a loop. disconnectedCallback is where owned external resources often need cleanup.",
+        "Parent and child behavior matters. Connection flows from parent toward child, while rendered callbacks flow from child toward parent. Observing this order helps explain why a parent cannot assume a child's internal DOM exists during construction. Do not build business correctness around undocumented timing between a wire response and an unrelated promise; data arrival remains asynchronous.",
+        "errorCallback provides an error boundary for supported errors in descendant components. It is not a universal catch for every promise rejection, arbitrary event handler, or error in the boundary's own code. Handle asynchronous failures where they occur and show an appropriate UI state. The boundary should give the user a useful fallback rather than replacing diagnosis with a silent blank screen."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Lifecycle hooks describe repeatable instance phases; they are not one-time business workflow steps."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Create a parent with a button that shows or hides a child visit panel. The child displays a counter and logs connection, rendering, and disconnection. Incrementing the counter should cause rendering without creating a new component instance. Hiding and showing demonstrates removal and either reinsertion or a new instance depending on how the parent template manages it.",
+        "Use the complete controller and template below as a small observation component. Add the usual LWC metadata target file through the setup guide before deploying it. Console logs are temporary teaching instrumentation; remove noisy logs before a real release."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Why does clicking Update counter call renderedCallback without calling constructor again?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "Complete lifecycleProbe.js controller for the observation component",
+          "code": "import { LightningElement } from 'lwc';\nexport default class LifecycleProbe extends LightningElement {\n    count = 0;\n    constructor() { super(); console.log('constructed'); }\n    connectedCallback() { console.log('connected'); }\n    renderedCallback() { console.log('rendered', this.count); }\n    disconnectedCallback() { console.log('disconnected'); }\n    increment() { this.count += 1; }\n}"
+        },
+        {
+          "language": "html",
+          "caption": "Complete lifecycleProbe.html template",
+          "code": "<template>\n    <p>Observed updates: {count}</p>\n    <lightning-button label=\"Update counter\" onclick={increment}>\n    </lightning-button>\n</template>"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "The probe requires no custom Salesforce fields. A separate parent component controls whether c-lifecycle-probe is present. Add an error-boundary experiment as a separate component rather than throwing inside the base probe."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Observe one instance",
+          "instruction": "Deploy the probe, open browser developer tools, and record construction, connection, and first rendering. Increment the counter twice.",
+          "expected": "The same instance renders repeatedly."
+        },
+        {
+          "title": "Observe parent and child",
+          "instruction": "Add a parent with conditional child rendering. Show and hide the child and compare the parent and child hook logs.",
+          "expected": "The observation distinguishes attachment from rendering."
+        },
+        {
+          "title": "Audit resources",
+          "instruction": "If adding a window listener or subscription, retain the handler/reference and remove or release it when appropriate. Reopen the component and count callbacks.",
+          "expected": "One user action does not trigger duplicated listeners."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Assigning a changing reactive field in every renderedCallback can produce an endless rerender cycle. Derive display values from state or guard genuinely one-time DOM setup appropriately.",
+        "An unhandled promise rejection requires a catch in the asynchronous path; adding an errorCallback to a parent is not a substitute for that handling."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not query a child's private DOM or assume a wire result arrives at a particular lifecycle hook."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain an observed lifecycle trace",
+    "brief": "Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect.",
+    "steps": [
+      "Capture initial and repeat renders.",
+      "Toggle the child.",
+      "Explain and fix the chosen defect."
+    ],
+    "acceptance": [
+      "Hook order is observed rather than invented.",
+      "Repeated rendering is expected.",
+      "No duplicated external listener remains after reopening."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does renderedCallback run only once?",
+      "answer": "No. It can run after each relevant render."
+    },
+    {
+      "question": "Why can connectedCallback repeat?",
+      "answer": "An instance can be disconnected and later inserted again."
+    },
+    {
+      "question": "Does errorCallback catch every async error?",
+      "answer": "No. Promise failures still need handling in their own asynchronous path."
+    }
+  ],
+  "recap": [
+    "Separate construction, attachment, and rendering.",
+    "Keep render callbacks free of uncontrolled state changes.",
+    "Own and clean up external resources."
+  ],
+  "sources": [
+    {
+      "title": "LWC lifecycle hooks",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a component card moving through create, render and cleanup stages on one path",
+    "alt": "A component card moving through create, render and cleanup stages on one path",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Lifecycle. Subject: a component card moving through create, render and cleanup stages on one path."
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "id": "J07",
+  "track": "junior",
+  "title": "Choose Standard Objects Before Creating New Ones",
+  "minutes": 50,
+  "summary": "Classify customer information using Lead, Account, Contact, Opportunity, and Case, then explain why the course adds two custom objects.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Match standard objects to their purposes.",
+    "Explain the project-specific custom objects.",
+    "Distinguish the classroom model from a complete automotive implementation."
+  ],
+  "sections": [
+    {
+      "heading": "Match an object to the question it answers",
+      "body": [
+        "A standard object is supplied by Salesforce for a common category of work. A custom object is a structure a team adds for its own application. Starting with standard objects can preserve useful existing behaviour and familiar terminology. It is not a command to force every business concept into an unsuitable object.",
+        "A Lead commonly represents an early prospect whose suitability or next step is still being assessed. An Account commonly represents a business or organization, and a Contact represents a person associated with business relationships. An Opportunity tracks a potential sale, including its progress. A Case tracks an issue or service request that needs resolution. A customer can therefore be associated with several related records that describe different work, rather than being copied into unrelated 'Customer One' and 'Customer Two' objects."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Choose the object by the business information it represents, not by which screen looks easiest to customize."
+        }
+      ]
+    },
+    {
+      "heading": "Follow Irina without forcing a conversion story",
+      "body": [
+        "Irina asks about a City EV. Northstar might initially capture that enquiry as a Lead if its sales process qualifies enquiries that way. When it identifies a real sales opportunity, the team may maintain a Contact for Irina and an Opportunity for the possible purchase. A Lead is not required before every Opportunity: a salesperson can create an Opportunity for an existing relationship. Lead conversion is one supported process, not the definition of all selling.",
+        "After purchase, Irina reports a problem with a charging cable. That issue is a Case, not a new Opportunity merely because it concerns the same person. If she later considers another vehicle, a separate Opportunity can describe that new potential sale. The records represent different events and responsibilities even though they concern one customer.",
+        "Salesforce also offers Person Accounts for appropriate business-to-consumer designs. Their availability and adoption require a deliberate data-model decision. This Junior project uses a synthetic Contact because Test_Drive__c.Customer__c is explicitly a Contact lookup. Do not change that field to a different target midway through the labs, or assume the simplified classroom design is the only valid dealership architecture."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not enable a major account-model feature merely to complete this classification exercise. Work within the agreed training schema."
+        }
+      ]
+    },
+    {
+      "heading": "Explain the two course-specific objects",
+      "body": [
+        "The course uses Vehicle__c to describe an individual vehicle and Test_Drive__c to describe one requested appointment. Neither is automatically provided just because a Sales application exists. You will inspect or create these structures in your learning org, or use the supplied starter when the development setup guide is complete.",
+        "The useful question is whether existing capabilities already represent the requirement accurately. If Oleg wants to track a complaint, Case is worth examining before building a Complaint object. If he needs a distinct educational appointment linked to a vehicle, the course's Test Drive object gives us a clear small model. Explain what you gain and what you take responsibility for when choosing a custom object.",
+        "The inspection below is read-only. Sample data may use different names. Record the meanings you observe, and keep them separate from the particular sample records."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can you describe a customer, a possible sale, and a support issue without treating them as the same record?"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Inspect the standard objects",
+          "instruction": "In Setup → Object Manager, locate Lead, Account, Contact, Opportunity, and Case. Read their names and available fields.",
+          "expected": "You recognize existing structures without creating duplicates."
+        },
+        {
+          "title": "Classify five stories",
+          "instruction": "Use an unqualified enquiry, a company customer, a contact person, a possible sale, and a charging-cable problem.",
+          "expected": "Each story has a reasoned object choice."
+        },
+        {
+          "title": "Inspect the agreed model",
+          "instruction": "Use the schema list in the next section to identify the two lookups and their targets. If the objects already exist in Object Manager, inspect them rather than creating duplicates.",
+          "expected": "The next lesson has a known, matching starting model."
+        }
+      ]
+    },
+    {
+      "heading": "Prepare the core objects in the browser",
+      "body": [
+        "This step supplies the objects used from J08 onward. You do not need VS Code or a command line yet. If the starter has already been deployed, compare these definitions and skip creation of matching components. In API names, __c marks a custom object or field. The creation form adds that suffix itself: enter Vehicle in Object Name, not Vehicle__c.",
+        "A lookup stores a reference to another record. Here an appointment may point to one vehicle and one Contact. Keep both relationships optional and independent for now; later lessons teach required business information and ownership in detail. Use only fictional practice data."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Keep these exact API names and picklist values. Later examples reference them. Do not redeploy the unchanged starter over later browser changes: retrieve and reconcile those changes when setting up VS Code."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Create Vehicle",
+          "instruction": "Open Setup → Object Manager → Create → Custom Object. Use Label Vehicle, Plural Label Vehicles, Object Name Vehicle, Record Name Vehicle Name, and Text as its name type. Select Allow Reports, leave Allow Activities off, and set deployment status to Deployed. Save.",
+          "expected": "Object Manager shows Vehicle with API name Vehicle__c and a text Name field."
+        },
+        {
+          "title": "Create its fields",
+          "instruction": "Open Vehicle → Fields & Relationships → New. Add Model as Text, length 80; VIN as Text, length 17, Unique with case-insensitive comparison and External ID; and Status as a Picklist. Enter Available, Reserved, Unavailable on separate lines, use Available as the default, and restrict values to the defined list. Keep these fields optional. Follow Next through field visibility and page-layout selection, then Save each field.",
+          "expected": "The API names are Model__c, VIN__c, and Status__c. A duplicate synthetic VIN is prevented."
+        },
+        {
+          "title": "Create Test Drive",
+          "instruction": "Create another custom object: Label Test Drive, Plural Label Test Drives, Object Name Test_Drive. Choose Auto Number for Record Name Test Drive Number, display format TD-{0000}, starting number 1. Enable reports, leave activities off, and select Deployed. Save.",
+          "expected": "Test_Drive__c has an automatically assigned Name; the learner does not type an appointment number."
+        },
+        {
+          "title": "Create appointment relationships",
+          "instruction": "In Test Drive → Fields & Relationships → New, choose Lookup Relationship, Related To Vehicle, field label Vehicle and field name Vehicle. Keep it optional and choose to clear the field if the related record is deleted. Use Test_Drives as the child relationship name. Finish the visibility/layout screens. Repeat for Related To Contact with label Customer, field name Customer, and child relationship name Test_Drives.",
+          "expected": "Vehicle__c refers to Vehicle__c; Customer__c refers to Contact. Neither is Master-Detail."
+        },
+        {
+          "title": "Create appointment values",
+          "instruction": "Add Scheduled At as Date/Time, field name Scheduled_At. Add a restricted Status picklist with Requested, Confirmed, Completed, Cancelled; default Requested. Keep these fields optional at schema level.",
+          "expected": "Scheduled_At__c and Status__c match the lesson examples."
+        },
+        {
+          "title": "Check the baseline",
+          "instruction": "In Setup → Sharing Settings, edit organization-wide defaults for the two custom objects to Private and save. If external defaults are shown, keep them Private too. Do not change standard-object sharing for this step. In each object inspect Fields & Relationships and the definition just created. J10 creates navigation tabs and the application; J13 explains the private-access baseline in depth.",
+          "expected": "Both custom objects keep independent owners and match the starter definitions."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Write an object-selection note",
+    "brief": "Explain how Northstar should store five different pieces of customer work.",
+    "steps": [
+      "Map each story to a standard object and explain your choice.",
+      "Add Vehicle and Test Drive with one reason for each custom object.",
+      "Record one question that would require a business decision in a real consumer-sales implementation.",
+      "Create or inspect the two core objects using the browser steps, and record their API names and relationship targets."
+    ],
+    "acceptance": [
+      "An Opportunity is not described as requiring a Lead in every process.",
+      "The course Contact lookup and its limits are stated explicitly.",
+      "The learning org contains the core Vehicle and Test Drive schema needed by J08, without duplicate objects."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Is a customer complaint a new sale?",
+      "answer": "No. A Case is designed to track an issue; a separate sale would be an Opportunity."
+    },
+    {
+      "question": "Must every Opportunity start with Lead conversion?",
+      "answer": "No. Opportunities can also be created for existing relationships."
+    },
+    {
+      "question": "Why keep Vehicle and Test Drive separate?",
+      "answer": "One vehicle can participate in multiple appointments with different customers, dates, and outcomes."
+    }
+  ],
+  "recap": [
+    "Match standard objects to their purposes.",
+    "Explain the project-specific custom objects.",
+    "Distinguish the classroom model from a complete automotive implementation."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce CRM objects",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"
+    },
+    {
+      "title": "Data-model choices",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro"
+    },
+    {
+      "title": "Create a custom object",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/create-a-custom-object-quick-look/create-a-custom-object"
+    },
+    {
+      "title": "Custom object creation fields",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.dev_objectcreate.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "a restrained row of customer, company, opportunity and support record symbols connected by one path",
+    "alt": "A restrained row of customer, company, opportunity and support record symbols connected by one path",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Standard CRM Objects. Subject: a restrained row of customer, company, opportunity and support record symbols connected by one path."
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "id": "J12",
+  "track": "junior",
+  "title": "Grant a Small Set of Working Permissions",
+  "minutes": 50,
+  "summary": "Create an additive permission set that enables appointment work without broad administration.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Design grants from working operations.",
+    "Explain additive permissions.",
+    "Verify combined access and negative cases."
+  ],
+  "sections": [
+    {
+      "heading": "Start from the work",
+      "body": [
+        "Anna needs to read vehicles and contacts, create test-drive requests, and edit appointments she is allowed to manage. She does not need to delete the vehicle catalogue or configure user accounts. Write the required operations before opening a permission editor. This provides a business reason for each grant.",
+        "A permission set is a collection of permissions assigned to users. It generally adds to permissions already granted by the profile and other assignments. It is not a subtraction mechanism. If a profile grants Delete, leaving Delete unchecked in a new permission set does not remove that existing grant. Inspect the combined access rather than treating one configuration page as the entire user."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A narrow permission set produces narrow effective access only when the other assignments are appropriate too."
+        }
+      ]
+    },
+    {
+      "heading": "Define a deliberate learning assignment",
+      "body": [
+        "Create a permission set named SAM Appointment Editor. For this exercise, grant Read on Vehicle and Contact, and Read, Create, and Edit on Test Drive. Do not grant Delete, View All Records, Modify All Records, or broad administrative permissions. Configure the required field visibility and editability for Vehicle__c, Customer__c, Scheduled_At__c, and Status__c on Test Drive.",
+        "Auto-number and other system fields are not ordinary editable fields, so do not force them into an identical editability checklist. For Vehicle, allow the fields Anna needs to choose a vehicle, including Model. Decide explicitly whether this exercise requires VIN visibility. Lookup selection also depends on access to the referenced records; a visible relationship field does not make the entire related object available.",
+        "SAM_Lab_Basics in the starter is a convenience set with broader editing capabilities on both custom objects. Do not assign it alongside the narrow test set and then attribute every allowed action to SAM Appointment Editor. Use an appropriately restricted identity or inspect the complete combined grants. Permission-set assignment also depends on compatible user licensing. Investigate an assignment error instead of changing licenses without understanding the consequences."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not dismiss a failed lab check by granting System Administrator or Modify All Data."
+        }
+      ]
+    },
+    {
+      "heading": "Prove the useful permission and the boundary",
+      "body": [
+        "Configure the set in Setup, assign it to the intended restricted learning user, and inspect the resulting user access summary. Assignment confirms configuration, not behaviour. Sign in as that user or use an approved login-as route in your own org to test the actual operation.",
+        "Create an appointment using related records the user can access. Next attempt an explicitly excluded action, such as deleting a vehicle or changing a field deliberately excluded from all grants. If the negative test succeeds, investigate the profile and other assignments before modifying the new permission set. An unchecked box in one source is not proof of an effective denial.",
+        "Record access remains separate. Anna having Edit on Test Drive does not mean she should edit every private appointment. Begin the positive check with an appointment she owns, then compare another owner's record when suitable users are available. That separates object capability from access to a particular record.",
+        "Keep a reason beside every grant. 'Needed to select an existing vehicle' helps a reviewer assess the decision. 'It made the error disappear' does not establish whether the access is appropriate. This reasoning also makes later changes safer because you can identify which business operation depends on each permission."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "For an unexpectedly allowed operation, identify the source that grants it before making another change."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Create the set",
+          "instruction": "Open Setup → Permission Sets → New, enter SAM Appointment Editor, and choose a license setting compatible with the intended user. Save. Under Object Settings, open each relevant object → Edit, select the agreed object and field grants, then save. Use Manage Assignments → Add Assignments to choose the learning user; review all existing assignments before testing.",
+          "expected": "The configuration matches the written task."
+        },
+        {
+          "title": "Inspect the whole identity",
+          "instruction": "Assign the set to a compatible restricted user and review its other grants.",
+          "expected": "Additional permission sources are not hidden."
+        },
+        {
+          "title": "Run both directions",
+          "instruction": "Perform a permitted create and attempt a prohibited operation.",
+          "expected": "The useful action succeeds and the boundary remains enforced."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain a permission decision",
+    "brief": "Submit a small table connecting Anna to the operations and fields she needs.",
+    "steps": [
+      "List grants with business reasons.",
+      "Record the relevant complete assignments of the test identity.",
+      "Capture one permitted operation and two prohibited operations."
+    ],
+    "acceptance": [
+      "The evidence uses a restricted user.",
+      "The explanation recognizes additive permissions and independent record sharing."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does an unchecked Delete box remove another Delete grant?",
+      "answer": "No. The actual granting source must be inspected and changed when appropriate."
+    },
+    {
+      "question": "Why might a lookup still fail?",
+      "answer": "Related-object or related-record access may be missing."
+    },
+    {
+      "question": "Does assignment prove the workflow works?",
+      "answer": "No. The intended operation still needs to be tested."
+    }
+  ],
+  "recap": [
+    "Design grants from working operations.",
+    "Explain additive permissions.",
+    "Verify combined access and negative cases."
+  ],
+  "sources": [
+    {
+      "title": "Control object access",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_objects"
+    },
+    {
+      "title": "Create and assign permission sets",
+      "url": "https://help.salesforce.com/s/articleView?id=000206679&language=en_US&type=1"
+    }
+  ],
+  "illustration": {
+    "subject": "two small permission cards combining to open one lock on a record",
+    "alt": "Two small permission cards combining to open one lock on a record",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Permission Sets. Subject: two small permission cards combining to open one lock on a record."
+  }
+}

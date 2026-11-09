@@ -1,0 +1,131 @@
+{
+  "id": "J19",
+  "track": "junior",
+  "title": "Read and Change Records with SOQL and DML",
+  "minutes": 50,
+  "summary": "Write a bounded bulk operation with explicit user-mode access and separate reads from writes.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Distinguish SOQL from DML.",
+    "Use explicit operation access modes.",
+    "Verify a selective collection update."
+  ],
+  "sections": [
+    {
+      "heading": "A query reads; DML changes stored records",
+      "body": [
+        "SOQL, the Salesforce Object Query Language, selects records and fields. DML, or Data Manipulation Language, creates, updates, deletes, or otherwise changes records. Reading a Test Drive into an Apex variable does not itself change the stored appointment. Assigning a different value to that variable also does not persist it until an appropriate DML operation succeeds.",
+        "Oleg asks for a small function that cancels Requested appointments for a supplied set of vehicles. The caller supplies vehicle IDs, which identify records. The method should ignore an empty input, query eligible appointments once, prepare the changes, and update the collection once. It must not cancel Confirmed appointments merely because they concern the same vehicle."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Separate selecting eligible records, deciding changes, and writing those changes."
+        }
+      ]
+    },
+    {
+      "heading": "Make access mode explicit",
+      "body": [
+        "The example deliberately uses WITH USER_MODE for the query and update as user for DML. This makes the intended access mode visible instead of relying on version-sensitive defaults. The project targets API 68.0. Current documentation differs from older material about defaults, so use explicit modes and inspect the documentation version when maintaining older code.",
+        "User-mode operations enforce applicable user access, including object and field permissions and record-sharing behaviour. The fields used in query conditions matter too. A class declared with sharing is not, by itself, a complete statement that every object and field operation has been authorized. Keep class sharing and database-operation access mode conceptually separate.",
+        "The query selects only IDs needed for the update. New update objects contain only Id and Status__c, avoiding an unnecessary write payload of every selected field. Errors are not silently converted into success. The caller must receive and handle a failed operation appropriately; a returned count means the DML completed in this method's current transaction, not that all unrelated later work can never roll it back."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not switch to system mode simply to make a permission failure disappear. First determine whether the caller should have the requested capability."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "TestDriveCancellation.cls — API 68.0",
+          "code": "public with sharing class TestDriveCancellation {\n    public static Integer cancelRequested(Set<Id> vehicleIds) {\n        if (vehicleIds == null || vehicleIds.isEmpty()) return 0;\n        List<Test_Drive__c> changes = new List<Test_Drive__c>();\n        for (Test_Drive__c row : [\n            SELECT Id FROM Test_Drive__c\n            WHERE Vehicle__c IN :vehicleIds AND Status__c = 'Requested'\n            WITH USER_MODE\n        ]) {\n            changes.add(new Test_Drive__c(\n                Id = row.Id, Status__c = 'Cancelled'\n            ));\n        }\n        if (!changes.isEmpty()) update as user changes;\n        return changes.size();\n    }\n}"
+        }
+      ]
+    },
+    {
+      "heading": "Understand the size boundary",
+      "body": [
+        "A single-record example can hide a query or DML statement inside a loop. Repeating it for many input records then repeats those operations and consumes finite transaction limits. The sample method uses one query and one collection update. That is a bulk-aware shape, but it is not a claim of unlimited capacity: one vehicle could still have an enormous number of appointments.",
+        "For the Junior exercise, use a bounded synthetic dataset with 200 total eligible appointments. State that boundary. Larger datasets and recovery strategies belong in later lessons. Include a few Confirmed appointments that must remain unchanged, and a Requested appointment for a vehicle outside the supplied set.",
+        "Prepare the expected counts before invoking the method. After it runs, requery the records instead of trusting the method's returned number alone. Verify the eligible statuses changed and the excluded statuses did not. Run a restricted-user scenario separately so that an administrator's broad rights do not conceal a missing business permission.",
+        "Remember that updating records can run validation, Flow, and triggers already active in the org. Resource consumption and failures belong to the entire transaction, not only this short method. Record the active relevant automation with your results."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Verify both the changed set and the untouched set by reading stored records after execution."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Create the method",
+          "instruction": "Use the setup guide to create the class and API 68.0 metadata in the learning project.",
+          "expected": "The source declares an explicit access policy."
+        },
+        {
+          "title": "Prepare a bounded dataset",
+          "instruction": "Create eligible and ineligible appointments with known vehicle relationships.",
+          "expected": "Expected changes are countable before execution."
+        },
+        {
+          "title": "Run and requery",
+          "instruction": "Invoke the method for the chosen IDs and inspect the saved statuses.",
+          "expected": "The result matches eligibility, not merely input size."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Demonstrate selective bulk cancellation",
+    "brief": "Provide evidence for empty, single-record, and 200-record scenarios.",
+    "steps": [
+      "Include Confirmed records and another vehicle as exclusions.",
+      "Record query and DML behaviour using appropriate logs or test limits.",
+      "Test a permitted caller and document a restricted access failure."
+    ],
+    "acceptance": [
+      "No query or DML is executed once per appointment.",
+      "Only Requested appointments for supplied vehicles change.",
+      "The stated dataset boundary is honest."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does assigning a field in memory save it?",
+      "answer": "No. A successful DML operation is required to persist a change."
+    },
+    {
+      "question": "Why use explicit user mode?",
+      "answer": "It declares the intended access enforcement and avoids depending on changing defaults."
+    },
+    {
+      "question": "Does one query make the function infinitely scalable?",
+      "answer": "No. Query rows, memory, CPU, DML rows, and other transaction work still have limits."
+    }
+  ],
+  "recap": [
+    "Distinguish SOQL from DML.",
+    "Use explicit operation access modes.",
+    "Verify a selective collection update."
+  ],
+  "sources": [
+    {
+      "title": "Database access modes",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "title": "DML statements",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-dml-section.html"
+    }
+  ],
+  "illustration": {
+    "subject": "one data shelf with a clean read arrow and a separate update arrow returning one record",
+    "alt": "One data shelf with a clean read arrow and a separate update arrow returning one record",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: SOQL and DML. Subject: one data shelf with a clean read arrow and a separate update arrow returning one record."
+  }
+}

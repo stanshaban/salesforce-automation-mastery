@@ -1,0 +1,350 @@
+{
+  "id": "m",
+  "title": "Middle Salesforce Developer",
+  "entry": "Complete the Junior foundations or demonstrate a small feature with a sound data model, least-privilege access, bulk-safe Apex, meaningful tests, and a basic LWC. CRM and the Northstar actors are restated where needed; unfamiliar product licenses are not assumed.",
+  "exit": "Build and explain an integrated feature with explicit security, durable operation identity, controlled asynchronous work, failure recovery, usable UI states, and reproducible release evidence.",
+  "project": "Northstar Motors: Anna and Max manage customer test drives and warranty requests; Oleg supervises work; Irina is a fictional customer. The core project uses custom Vehicle and Test Drive records, then explicitly declared request and diagnostic metadata.",
+  "modules": [
+    {
+      "title": "Access design and Apex security",
+      "lessons": [
+        {
+          "id": "M01",
+          "title": "Designing and verifying an access model",
+          "outcome": "Turn a business request into separate object, field, record, and operation decisions. Build an access matrix for two sales branches before changing permissions.",
+          "task": "Prepare and verify a minimum-permission model for Anna, Max, and Oleg.",
+          "acceptance": "Every allowed row identifies its grant. At least three denied operations are tested. No administrator-only evidence is presented as salesperson verification.",
+          "interview": "Does object Read grant every record?",
+          "visual": "Four nested access gates surrounding one appointment card"
+        },
+        {
+          "id": "M02",
+          "title": "Permission Set Groups and muting",
+          "outcome": "Predict effective permissions when a permission set group mutes a grant that is also supplied elsewhere.",
+          "task": "Submit the four-path experiment with a small diagram and observed results.",
+          "acceptance": "The explanation distinguishes group-local muting from effective user permissions. All four assignment combinations are considered. Group recalculation and unchanged record access are recorded.",
+          "interview": "Does muting alter the reused permission set?",
+          "visual": "Several permission paths converging on one field with a single path blocked"
+        },
+        {
+          "id": "M03",
+          "title": "Manual and implicit sharing",
+          "outcome": "Identify why a record is visible and distinguish an explicit manual grant from access arising from supported standard relationships.",
+          "task": "Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship.",
+          "acceptance": "Each visibility result names an access mechanism. Remaining access after removal is investigated. No claim says all lookups automatically share records.",
+          "interview": "Does a manual Read share grant field Read?",
+          "visual": "One appointment reached by a manual bridge and a separate relationship bridge"
+        },
+        {
+          "id": "M04",
+          "title": "Apex managed sharing across a record lifecycle",
+          "outcome": "Maintain a manager's record access while preserving unrelated grants and handling bulk changes.",
+          "task": "Implement the transition table on Project__c and submit evidence of safe reconciliation.",
+          "acceptance": "No unrelated share is deleted. Cleared and changed managers remove the obsolete owned grant. Bulk and undelete behavior are explicitly tested.",
+          "interview": "Why use a custom reason?",
+          "visual": "A project card transfers one access key while an unrelated key remains untouched"
+        },
+        {
+          "id": "M05",
+          "title": "Restriction rules and supported access paths",
+          "outcome": "Filter an already accessible record set for selected users while recognizing object, edition, and execution-context boundaries.",
+          "task": "Create the North/South experiment and explain the result for two users.",
+          "acceptance": "No new access is attributed to the restriction. Supported object, edition, and context are recorded. Positive, negative, and unaffected-user cases are included.",
+          "interview": "Can the rule open a private appointment?",
+          "visual": "An already open collection of appointment cards passing through a regional filter"
+        },
+        {
+          "id": "M06",
+          "title": "Apex security and API-version defaults",
+          "outcome": "Separate class sharing context from database access mode and verify security when changing an Apex API version.",
+          "task": "Explain and verify one read path under explicit modes and API-version defaults.",
+          "acceptance": "The report separates sharing from CRUD/FLS. API versions are identified. No broad permission is added solely to make the test green.",
+          "interview": "Is omitted sharing always without sharing?",
+          "visual": "Two versioned execution lanes with separate record and field access gates"
+        }
+      ]
+    },
+    {
+      "title": "Maintainable business logic and tests",
+      "lessons": [
+        {
+          "id": "M07",
+          "title": "Choosing Flow or Apex for a business operation",
+          "outcome": "Choose an implementation from the shape of the work, its transaction boundaries, and the team's ability to maintain it.",
+          "task": "Choose and implement the confirmation rule, then explain how two larger variants would change your decision.",
+          "acceptance": "The choice mentions maintenance and volume. No duplicate automation performs the same responsibility. The failure policy is demonstrated rather than implied.",
+          "interview": "Is Flow always preferable for a simple UI?",
+          "visual": "One business operation branching toward three simple implementation tools"
+        },
+        {
+          "id": "M08",
+          "title": "Order of execution, recursion, and idempotency",
+          "outcome": "Explain repeated automation within a transaction and design a durable business result that is not duplicated by re-entry or retries.",
+          "task": "Build the declared receipt behavior and demonstrate repeated execution without duplicate results.",
+          "acceptance": "Exactly one receipt exists per defined key. Unrelated failures are not called successful retries. The confirmation-cycle limitation is explicit.",
+          "interview": "Why does static state not solve a later retry?",
+          "visual": "A circular automation path feeding a single durable receipt slot"
+        },
+        {
+          "id": "M09",
+          "title": "Structuring Apex and using Custom Metadata",
+          "outcome": "Separate warranty business rules, orchestration, and external access without adding layers that have no clear responsibility.",
+          "task": "Separate one policy and one business decision from a mixed orchestration sketch.",
+          "acceptance": "Dependencies are visible at the entry point. Local tests require no provider or real credentials. Each introduced layer has a stated responsibility.",
+          "interview": "Why is request progress ordinary data?",
+          "visual": "One large code block separated into policy orchestration and adapter blocks"
+        },
+        {
+          "id": "M10",
+          "title": "Testing a complete local business rule",
+          "outcome": "Build independent fixtures and meaningful assertions for normal, boundary, invalid, and bulk inputs before introducing network behavior.",
+          "task": "Submit a local test suite with boundaries, negative cases, and mixed bulk input.",
+          "acceptance": "No business records are read through SeeAllData. Strict cutoff and protected statuses are checked. The mutation fails a relevant assertion.",
+          "interview": "Why pass a cutoff instead of reading now everywhere?",
+          "visual": "A boundary marker separating one cancelled appointment from three protected appointments"
+        }
+      ]
+    },
+    {
+      "title": "Asynchronous processing",
+      "lessons": [
+        {
+          "id": "M11",
+          "title": "Selecting an asynchronous processing mechanism",
+          "outcome": "Match delayed work to its volume, timing, transaction, and recovery requirements without promising immediate execution.",
+          "task": "Choose mechanisms for five operations and state the visible result and recovery behavior of each.",
+          "acceptance": "Every delayed operation has a pending state or equivalent acknowledgement. Timing is described as a requirement, not an unsupported guarantee. Retry load is included.",
+          "interview": "Does enqueue success prove business success?",
+          "visual": "Five business tasks sorted into immediate queue batch schedule and event lanes"
+        },
+        {
+          "id": "M12",
+          "title": "Queueable Apex and observable request state",
+          "outcome": "Create a local background warranty check with a durable request identity, a job reference, and explicit outcomes before adding HTTP.",
+          "task": "Implement the local Queueable lifecycle and a bounded manual retry.",
+          "acceptance": "One key creates one business request. Job and request IDs are distinguishable. Failed work is visible and retries are bounded.",
+          "interview": "Why pass a request ID?",
+          "visual": "One warranty request card linked to two distinct background job attempts"
+        },
+        {
+          "id": "M13",
+          "title": "Batch Apex and independent execution scopes",
+          "outcome": "Process a larger appointment dataset in bounded transactions and report partial failure without implying whole-job atomicity.",
+          "task": "Build the cancellation Batch with visible success, skipped, and failed outcomes.",
+          "acceptance": "Protected statuses remain unchanged. An error is visible and tied to its record or scope. A repeat run does not corrupt already processed records.",
+          "interview": "What persists with Stateful?",
+          "visual": "Three processing trays with independent success and failure markers"
+        },
+        {
+          "id": "M14",
+          "title": "Scheduling, workload limits, and monitoring",
+          "outcome": "Run periodic work with a deliberate overlap policy, time-zone definition, and observable completion.",
+          "task": "Add a schedule and a documented monitoring and recovery procedure to M13.",
+          "acceptance": "Time-zone assumptions are explicit. Overlap and abandoned-run behavior are defined. The report distinguishes scheduling, execution, and business completion.",
+          "interview": "Why can a nightly job overlap?",
+          "visual": "A night schedule with one active processing window and a blocked overlapping run"
+        }
+      ]
+    },
+    {
+      "title": "Integration contracts and recovery",
+      "lessons": [
+        {
+          "id": "M15",
+          "title": "API contracts and credential boundaries",
+          "outcome": "Describe the warranty provider's request, response, errors, and identity before connecting a client.",
+          "task": "Create a contract and credential responsibility map that another developer can implement without guessing.",
+          "acceptance": "Business negative and transport failures differ. Identity and principal permission mapping are explicit. No secret appears in code or documentation.",
+          "interview": "What does the Named Credential contribute?",
+          "visual": "A request passing through a separate identity key and endpoint gate"
+        },
+        {
+          "id": "M16",
+          "title": "Working with REST and SOAP service contracts",
+          "outcome": "Read an existing provider interface, select the appropriate client and mock, and preserve its error and authentication semantics.",
+          "task": "Write a contract map and demonstrate the appropriate mock for one concrete client.",
+          "acceptance": "The selected mock matches the call mechanism. Example XML is not described as a complete WSDL. Live authentication remains an explicitly separate check.",
+          "interview": "Must a modern integration use REST?",
+          "visual": "Two request envelopes one structured JSON and one nested XML meeting a common result"
+        },
+        {
+          "id": "M17",
+          "title": "HTTP callouts, failures, and bounded retries",
+          "outcome": "Implement a small warranty client and test success, invalid responses, business absence, throttling, server failure, and transport errors locally.",
+          "task": "Implement the mock and bounded orchestration mapping around the supplied client.",
+          "acceptance": "All tests run without a provider. A valid negative answer differs from failure. Retry exhaustion is visible and does not loop indefinitely.",
+          "interview": "Is covered=false an error?",
+          "visual": "One HTTP response split into distinct success missing throttled and invalid outcomes"
+        },
+        {
+          "id": "M18",
+          "title": "Inbound APIs, external IDs, and duplicate protection",
+          "outcome": "Accept repeated incoming data without creating duplicate business requests, while distinguishing record identity from operation identity.",
+          "task": "Build and verify a stable inbound request contract with conflict handling.",
+          "acceptance": "One request exists for three identical deliveries. A successful request is not silently restarted. Conflicting key reuse returns an explicit error.",
+          "interview": "What does upsert guarantee conceptually?",
+          "visual": "Three repeated request envelopes entering one unique business-record slot"
+        },
+        {
+          "id": "M19",
+          "title": "Integration diagnostics and controlled recovery",
+          "outcome": "Trace a warranty request across attempts and give an operator enough evidence to retry safely without exposing secrets.",
+          "task": "Demonstrate how one request can be found, diagnosed, and safely retried.",
+          "acceptance": "History survives later success. One correlation key connects request and attempts. Retry authorization and eligibility are explicit.",
+          "interview": "Why retain failed attempts after success?",
+          "visual": "One request timeline with preserved failed and successful attempt markers"
+        },
+        {
+          "id": "M20",
+          "title": "Choosing SOQL or SOSL for a search requirement",
+          "outcome": "Use structured queries for known filters and indexed search for words across object types, while handling delayed search visibility.",
+          "task": "Create the appointment list and customer search with distinct contracts.",
+          "acceptance": "Date boundaries and null lookups are handled. Multiple object types are distinguishable. The indexing limitation is explained without fabricated timing.",
+          "interview": "Why use SOQL for tomorrow's appointments?",
+          "visual": "A precise calendar filter beside a magnifying glass spanning three record types"
+        }
+      ]
+    },
+    {
+      "title": "Lightning Web Components",
+      "lessons": [
+        {
+          "id": "M21",
+          "title": "Lightning Web Component lifecycle",
+          "outcome": "Observe creation, attachment, rendering, removal, and child-error handling without assuming a component renders only once.",
+          "task": "Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect.",
+          "acceptance": "Hook order is observed rather than invented. Repeated rendering is expected. No duplicated external listener remains after reopening.",
+          "interview": "Does renderedCallback run only once?",
+          "visual": "A component instance moving through creation attachment repeated rendering and removal"
+        },
+        {
+          "id": "M22",
+          "title": "Wire, imperative Apex, and refreshing data",
+          "outcome": "Separate reactive reads from explicit writes and refresh the cache that actually supplies the displayed data.",
+          "task": "Implement a reactive read and explicit confirmation with separate save and refresh outcomes.",
+          "acceptance": "The correct refresh API matches each data source. A successful save is not reported as a failed save. Rapid input changes do not display the wrong record.",
+          "interview": "What must be passed to refreshApex?",
+          "visual": "A saved appointment beside three distinct cache paths with one selected refresh arrow"
+        },
+        {
+          "id": "M23",
+          "title": "DOM events and Lightning Message Service",
+          "outcome": "Choose a communication contract for related components and for independent regions of the same Lightning application.",
+          "task": "Demonstrate DOM events for one component tree and LMS for a separate panel.",
+          "acceptance": "Payloads contain only needed identifiers. DOM and LMS responsibilities are distinct. Scope and cleanup behavior are explained.",
+          "interview": "When is a DOM event simpler?",
+          "visual": "A small upward component event beside a bridge between two independent page panels"
+        },
+        {
+          "id": "M24",
+          "title": "Accessible LWC states and Jest tests",
+          "outcome": "Test what a user can understand and operate, including keyboard interaction, empty results, failed loading, and selection events.",
+          "task": "Build the four UI states and verify selection and recovery behavior.",
+          "acceptance": "Tests pass independently with cleanup. Event payload and error recovery are asserted. Keyboard access and readable labels are demonstrated.",
+          "interview": "Why flush asynchronous updates?",
+          "visual": "An appointment selector with a visible keyboard focus path through four UI states"
+        },
+        {
+          "id": "M25",
+          "title": "Shadow DOM and component boundaries",
+          "outcome": "Keep DOM, styling, and event contracts inside their intended boundaries and understand the implications for optional legacy migration.",
+          "task": "Show owned queries, scoped styles, and a stable public event contract.",
+          "acceptance": "No private child DOM is accessed by the parent. The event detail carries the required business identity. Optional Aura work is labeled separately.",
+          "interview": "Why can a global selector fail?",
+          "visual": "Two component boxes with protected interiors connected by one public event port"
+        }
+      ]
+    },
+    {
+      "title": "Events, source control, and delivery",
+      "lessons": [
+        {
+          "id": "M26",
+          "title": "Platform Events and publication timing",
+          "outcome": "Publish a business fact with a deliberate relationship to commit, and verify the subscriber independently from the publisher.",
+          "task": "Create a minimal event path with explicit commit behavior and a duplicate-safe receipt.",
+          "acceptance": "Payload contains no unnecessary customer data. Publication timing is stated and checked. The receipt remains unique across repeated delivery.",
+          "interview": "Why prefer After Commit for this fact?",
+          "visual": "A committed appointment followed by separate publication delivery and receipt milestones"
+        },
+        {
+          "id": "M27",
+          "title": "Change Data Capture, replay, and duplicate delivery",
+          "outcome": "Choose a record-change stream or business event and recover from disconnection without treating replay IDs as permanent business identities.",
+          "task": "Analyze the supplied trace and design both short-disconnection and retention-gap recovery.",
+          "acceptance": "The duplicate produces one effect. Replay tokens are treated as opaque. Beyond-retention recovery is defined.",
+          "interview": "What does CDC communicate?",
+          "visual": "An interrupted event stream reconnecting with one repeated message safely ignored"
+        },
+        {
+          "id": "M28",
+          "title": "Git fetch, integration, and cherry-picking a fix",
+          "outcome": "Explain the state changed by common Git operations and transfer one focused correction without losing unrelated work.",
+          "task": "Create the controlled branch experiment and explain each state transition.",
+          "acceptance": "Working tree, index, branch, and remote-tracking state are distinguished. The selected commit is identified from real history. The final content is coherent and unrelated changes are preserved.",
+          "interview": "Does fetch update your current files?",
+          "visual": "A focused commit moving between two small branch histories"
+        },
+        {
+          "id": "M29",
+          "title": "Pull requests, CI checks, and controlled deployment",
+          "outcome": "Prepare a reviewable change with truthful validation, metadata dependencies, explicit target environment, and recovery steps.",
+          "task": "Create a focused PR and release checklist for one completed Middle feature.",
+          "acceptance": "No check is marked passed without evidence. Target org and permissions are explicit. Recovery includes data and external effects where relevant.",
+          "interview": "What does a local Jest pass prove?",
+          "visual": "A focused change passing through review validation deployment and user verification gates"
+        },
+        {
+          "id": "M30",
+          "title": "Verifying an application under failure",
+          "outcome": "Test the complete path from user action through background work and mocked provider response to the final visible result.",
+          "task": "Verify the integrated feature with controlled failures and one repaired defect.",
+          "acceptance": "Duplicate and denied-access cases are included. UI messages match persisted outcomes. No unexecuted check is reported as successful.",
+          "interview": "Why can isolated tests all pass while the feature fails?",
+          "visual": "A complete request path tested by several controlled failure switches"
+        }
+      ]
+    },
+    {
+      "title": "Product clinics and project review",
+      "lessons": [
+        {
+          "id": "M31",
+          "title": "Enhanced Omni-Channel routing",
+          "outcome": "Explain how queued service work becomes eligible for a person based on presence, capacity, and routing configuration, with a complete no-license simulation path.",
+          "task": "Submit the provided simulation with three condition changes and an optional separately labeled live observation.",
+          "acceptance": "Every chosen or excluded person has a reason. No unsupported tie-breaking rule is invented. Simulation and live evidence are clearly separated.",
+          "interview": "Why is a queue not enough?",
+          "visual": "One queued case passing presence capacity and skill gates toward a single eligible worker"
+        },
+        {
+          "id": "M32",
+          "title": "Agentforce tasks, actions, and evidence",
+          "outcome": "Build a clear mental model of an employee agent and verify one bounded read-only action before considering actions that change CRM data.",
+          "task": "Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action.",
+          "acceptance": "No artificial slot is described as real calendar availability. Unknown and denied inputs are handled explicitly. Simulation and live results are distinguished.",
+          "interview": "What does an action add beyond instructions?",
+          "visual": "A conversational request connected to one read-only action and a verified result card"
+        },
+        {
+          "id": "M33",
+          "title": "Automotive Cloud data modeling",
+          "outcome": "Compare the small custom vehicle model with Automotive Cloud's industry entities and decide what additional business requirements would justify the product.",
+          "task": "Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed.",
+          "acceptance": "Vehicle__c is not confused with the industry Vehicle API. Relationships are not invented from labels. No unavailable trial blocks the core course.",
+          "interview": "Why separate a Vehicle Definition?",
+          "visual": "One vehicle model definition linked to individual cars and their changing participant relationships"
+        },
+        {
+          "id": "M34",
+          "title": "Middle project review and technical defense",
+          "outcome": "Demonstrate a coherent Northstar feature, defend its design with evidence, and repair one unfamiliar failure without relying on optional product licenses.",
+          "task": "Deliver the integrated project and complete a short review plus one repair exercise.",
+          "acceptance": "Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence. The release plan declares dependencies and actual checks. Required clinic analyses are complete without mandatory live product licenses.",
+          "interview": "Which risks should be handed to the next developer?",
+          "visual": "A completed service feature surrounded by clear evidence cards and one repaired fault"
+        }
+      ]
+    }
+  ]
+}

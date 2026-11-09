@@ -1,0 +1,135 @@
+{
+  "id": "S09",
+  "track": "senior",
+  "title": "Archive History Without Losing the Business Record",
+  "minutes": 60,
+  "summary": "Separate active working data from historical information and design retrieval, reporting, and recovery before proposing deletion.",
+  "prerequisites": [
+    "Understand data relationships and large-volume query concerns.",
+    "Be able to explain Northstar's booking lifecycle and the difference between records and metadata."
+  ],
+  "learningObjectives": [
+    "Distinguish archiving, deletion, backup, and audit history.",
+    "Define access and reporting requirements for historical appointments.",
+    "Design an archive acceptance test without inventing a legal retention rule."
+  ],
+  "sections": [
+    {
+      "heading": "Older does not automatically mean unnecessary",
+      "body": [
+        "Anna usually needs upcoming appointments and recent follow-ups. Oleg also needs historical conversion reports, while Irina may ask about a past visit. These journeys have different access patterns. Archiving moves or manages information so it no longer burdens the main operational path while remaining available under an explicit retrieval policy. Deletion removes it from that path and may eventually make recovery impossible.",
+        "A backup supports recovery after loss or corruption. An archive supports deliberate long-term retention and retrieval. Audit history explains changes or events, and is not necessarily a complete copy of every business record and relationship. One mechanism may help with more than one purpose, but you must verify its actual guarantees rather than treating the labels as synonyms."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Choose the historical questions the business must still answer before choosing where the data will live."
+        }
+      ]
+    },
+    {
+      "heading": "Define policy as a set of testable decisions",
+      "body": [
+        "The fictional proposal below is an exercise, not a legal or compliance recommendation. Oleg suggests archiving completed appointments after a defined operational period, but the responsible business and data-governance owners must decide the real period, exceptions, and approval process. Do not infer a universal Salesforce or automotive retention requirement.",
+        "Classify records by lifecycle, not just CreatedDate. A very old appointment may still have an unresolved complaint, a linked obligation, or a correction in progress. Your selection rule needs exceptions and a way to prevent records from moving while they remain active. For the Vehicle__c lookup, decide whether the archive retains the relevant vehicle attributes, a stable reference, or both.",
+        "Define historical access separately from current Salesforce sharing. Copying a record to an external store can accidentally expose it to a different audience. Authentication, authorization, searchable fields, export rights, and deletion permissions need explicit owners in the destination."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "A retention rule must state who approves it, what can block archiving, and how exceptions are reviewed."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic archive decision sheet",
+          "code": "Candidate: completed Test_Drive__c records outside the agreed operational window\nExclude: unresolved complaint or pending correction\nRequired retrieval: find a fictional client's prior visit and its vehicle\nReporting: monthly completed-visit counts by dealer remain explainable\nOpen decisions: actual retention period, archive access, restoration target, deletion authority\nNo policy has been approved or executed by this lesson."
+        }
+      ]
+    },
+    {
+      "heading": "Compare storage choices against retrieval needs",
+      "body": [
+        "Keeping history in core Salesforce preserves familiar relationships and reporting, but it may maintain storage and access-maintenance costs. A supported archive product can provide managed policies and retrieval features, subject to its licensing and product constraints. An external archive can suit some access patterns but requires integration, authorization, search design, and operations. Big Objects or other storage options are not drop-in replacements for every ordinary object query or report.",
+        "Create a fit table rather than declaring one option cheapest. Compare required searches, reporting freshness, relationship preservation, restoration granularity, operating effort, product availability, and expected cost categories. If pricing or licensing is unknown, mark it as a question rather than filling in an invented dollar value.",
+        "A report that combines live and archived data must avoid double-counting records during transition. A watermark, batch identifier, or explicit archive state can help define which source owns each record at a point in time. The mechanism needs a consistency contract; simply reading both locations does not create one."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not delete source records merely because an export file exists; first verify completeness, readability, relationships, and approved recovery."
+        }
+      ]
+    },
+    {
+      "heading": "Measure recoverability, not only storage reduction",
+      "body": [
+        "A small proxy can use ten synthetic appointments and an archive manifest. A manifest is a list describing what was copied, its identifiers, counts, and verification information. Show that an allowed user can retrieve a selected historical visit, that an unauthorized persona cannot, and that the required report still reconciles.",
+        "Record retrieval time, missing references, mismatched counts, and restoration limitations. If you only designed the exercise, leave the observation cells empty and describe the planned checks. A storage estimate alone cannot show whether a customer's question can still be answered.",
+        "Separate rollback of an archive application change from restoration of archived records. Restoring relationships, preserving identifiers, handling records changed since export, and avoiding duplicate restoration may require a dedicated process. Write these decisions before treating the archive as an easy performance optimization."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Choose one historical customer question and prove the archive design can answer it under the correct permissions."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Design an archive acceptance pack",
+    "brief": "Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test.",
+    "steps": [
+      "Describe the active-user and historical-reporting journeys separately.",
+      "Write a candidate selection rule and at least two exclusions, leaving the actual retention period for the named owner to approve.",
+      "Compare core storage, a supported archive product, and an external store against the same requirements.",
+      "Create a manifest with stable source identities and relationship information.",
+      "Specify count reconciliation, permitted and denied retrieval, reporting continuity, and a single-record restoration test."
+    ],
+    "acceptance": [
+      "Archiving, backup, history, and deletion are not conflated.",
+      "The exercise does not present an invented retention period as a legal rule.",
+      "The design includes destination permissions and recovery, not only reduced live record count."
+    ],
+    "stretch": "Explain how you would prevent a record from being counted in both live and archived reporting during migration."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is a CSV export not a complete archive design?",
+      "answer": "It does not by itself establish retrieval, access control, relationship preservation, reporting, retention, or restoration behavior."
+    },
+    {
+      "question": "Can an old record still be operational?",
+      "answer": "Yes. Lifecycle state and unresolved business needs can keep it active even when its creation date is old."
+    },
+    {
+      "question": "What should determine the storage option?",
+      "answer": "The required retrieval and reporting contract, access model, recovery needs, availability, and operating costs."
+    }
+  ],
+  "recap": [
+    "Design historical journeys before moving records.",
+    "Carry identity, relationships, and authorization into the archive.",
+    "Verify retrieval and restoration before approving deletion."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce Archive policy configuration",
+      "url": "https://help.salesforce.com/s/articleView?id=xcloud.archive_create_policies.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Large data volume model design",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/large-data-volumes/design-your-data-model"
+    },
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    }
+  ],
+  "illustration": {
+    "subject": "recent records on an active shelf and older records in an archive with one reporting path",
+    "alt": "Recent records on an active shelf and older records in an archive with one reporting path",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Archiving and Reporting. Subject: recent records on an active shelf and older records in an archive with one reporting path."
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "junior",
+    "subject": "A clearly illustrated beginner developer at a desk assembling three simple building blocks into a small customer application; one contact card, one vehicle card and one next-action calendar. A calm accessible foundation, no complex architecture.",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Course overview junior. A clearly illustrated beginner developer at a desk assembling three simple building blocks into a small customer application; one contact card, one vehicle card and one next-action calendar. A calm accessible foundation, no complex architecture.",
+    "path": "public/course-images/junior.jpg",
+    "status": "generated"
+  },
+  {
+    "id": "middle",
+    "subject": "An illustrated developer connecting a simple application interface to two service systems through a clean three-part workflow, with one small confirmation check. Clear integration and application-building theme.",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Course overview middle. An illustrated developer connecting a simple application interface to two service systems through a clean three-part workflow, with one small confirmation check. Clear integration and application-building theme.",
+    "path": "public/course-images/middle.jpg",
+    "status": "generated"
+  },
+  {
+    "id": "senior",
+    "subject": "Two illustrated experienced developers examining one simple system map with a diagnostic magnifying glass and a balanced performance gauge. Calm architecture reasoning and measured improvement, no intricate network.",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Course overview senior. Two illustrated experienced developers examining one simple system map with a diagnostic magnifying glass and a balanced performance gauge. Calm architecture reasoning and measured improvement, no intricate network.",
+    "path": "public/course-images/senior.jpg",
+    "status": "generated"
+  },
+  {
+    "id": "jobs",
+    "subject": "An illustrated developer preparing a focused portfolio and CV at a desk, with one verified job opportunity card and a simple interview conversation symbol. Quiet professional preparation, no trophy or celebration.",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Course overview jobs. An illustrated developer preparing a focused portfolio and CV at a desk, with one verified job opportunity card and a simple interview conversation symbol. Quiet professional preparation, no trophy or celebration.",
+    "path": "public/course-images/jobs.jpg",
+    "status": "generated"
+  }
+]

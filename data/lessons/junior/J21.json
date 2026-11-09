@@ -1,0 +1,114 @@
+{
+  "id": "J21",
+  "track": "junior",
+  "title": "Trace Automation Through a Transaction",
+  "minutes": 50,
+  "summary": "Explain how several automations participate in one save and verify what a rollback actually removes.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Trace relevant automation within a transaction.",
+    "Distinguish memory from persisted data.",
+    "Verify rollback with a fresh query."
+  ],
+  "sections": [
+    {
+      "heading": "A user action can start more than one operation",
+      "body": [
+        "Anna edits an appointment once, but the platform may run validation, before-save automation, triggers, and after-save automation as part of processing that change. A transaction is a unit of database work with a commit or rollback outcome. Commit makes successful changes durable; rollback reverses the transaction changes covered by that rollback.",
+        "Use the official order-of-execution reference for the API and release you are working with. Do not memorize an old infographic as timeless truth. For this lesson, follow the relevant segments: before-save record-triggered Flow, before triggers, custom validation, later trigger and after-save automation stages, and the eventual commit. This is a focused route through the official sequence, not a complete replacement for it."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Draw the transaction boundary before drawing arrows between automation tools."
+        }
+      ]
+    },
+    {
+      "heading": "Predict interactions in the Northstar project",
+      "body": [
+        "Suppose the J20 handler rejects an incomplete Confirmed appointment. The fact that Anna clicked the final button does not mean the record committed before that rejection. Likewise, the J17 Flow may attempt to create a follow-up Task and reach its Custom Error fault route. In that designed failure case, the source save is rejected rather than leaving a valid appointment with a silently missing required Task.",
+        "Two automations can also affect one another. An after-save action that updates its triggering record can cause another save cycle. A condition that remains true on every edit may repeat work. Prefer an event and change condition tied to the requirement. Do not reach immediately for a global static Boolean; a blanket skip can hide legitimate records or later processing.",
+        "A separate asynchronous execution after commit has its own transaction boundary. Rolling back a later transaction does not automatically undo an earlier committed transaction. External side effects have additional considerations as well. The Junior exercise concentrates on database changes in one learning-org transaction and labels work outside that scope rather than pretending all effects share one rollback switch."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A log line saying an operation started or a variable containing an ID does not prove that the record remained committed."
+        }
+      ]
+    },
+    {
+      "heading": "Observe a small explicit rollback",
+      "body": [
+        "Use the short anonymous Apex experiment below only in the named learning org and with a user permitted to create and read Vehicle records. A savepoint marks a position to which the code can roll back database work. After inserting a synthetic vehicle, the example explicitly rolls back and queries by the ID held in memory.",
+        "The expected count is zero. The variable can still contain an ID even though the inserted database row no longer exists. That difference between in-memory state and persisted state is the point of the exercise. Existing validation or automation may affect the insert; record those conditions if your result differs.",
+        "Next revisit the controlled Flow fault from J17. Compare the appointment and Task counts before and after the failed operation. Read the user-facing error and the available debug information. Your explanation should connect the specific failure to the transaction outcome, not merely report that something red appeared on the screen.",
+        "Keep debugging focused: enable an appropriate trace for the actual executing identity, reproduce once with synthetic data, and inspect the relevant events. Excessive unrelated logging makes the causal sequence harder to see. Remove temporary diagnostic settings when finished."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Requery stored records after the operation. Do not infer persistence from an object variable alone."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Anonymous Apex: explicit rollback in the learning org",
+          "code": "Savepoint checkpoint = Database.setSavepoint();\nVehicle__c demo = new Vehicle__c(\n    Name = 'Rollback demonstration',\n    Model__c = 'City EV', Status__c = 'Available'\n);\ninsert as user demo;\nId attemptedId = demo.Id;\nDatabase.rollback(checkpoint);\nInteger remaining = [\n    SELECT COUNT() FROM Vehicle__c\n    WHERE Id = :attemptedId WITH USER_MODE\n];\nAssert.areEqual(0, remaining, 'The inserted row must not remain after rollback.');"
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain a failed save from start to finish",
+    "brief": "Produce a small timeline and before-and-after record evidence.",
+    "steps": [
+      "Identify the automations relevant to one appointment save.",
+      "Run the explicit rollback example and inspect the stored result.",
+      "Explain the controlled Flow failure using a transaction boundary."
+    ],
+    "acceptance": [
+      "The timeline is labelled as a relevant subset of the official order.",
+      "A retained variable ID is not mistaken for a committed record.",
+      "Separate asynchronous work is not described as the same transaction."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does a generated ID prove commit?",
+      "answer": "No. The transaction can roll back while the variable still retains its assigned ID."
+    },
+    {
+      "question": "Why can an after-save update cause repeated work?",
+      "answer": "It can start another save cycle whose conditions qualify again."
+    },
+    {
+      "question": "Does a later asynchronous rollback undo a prior commit?",
+      "answer": "Not automatically. It belongs to a separate transaction and may require explicit recovery design."
+    }
+  ],
+  "recap": [
+    "Trace relevant automation within a transaction.",
+    "Distinguish memory from persisted data.",
+    "Verify rollback with a fresh query."
+  ],
+  "sources": [
+    {
+      "title": "Official order of execution",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-triggers-order-of-execution.html"
+    },
+    {
+      "title": "Transaction control",
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_transaction_control.htm"
+    }
+  ],
+  "illustration": {
+    "subject": "an orderly sequence of four process tiles inside one transaction boundary",
+    "alt": "An orderly sequence of four process tiles inside one transaction boundary",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Execution Order and Transactions. Subject: an orderly sequence of four process tiles inside one transaction boundary."
+  }
+}

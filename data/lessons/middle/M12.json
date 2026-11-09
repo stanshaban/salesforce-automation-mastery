@@ -1,0 +1,139 @@
+{
+  "id": "M12",
+  "track": "middle",
+  "title": "Queueable Apex and observable request state",
+  "minutes": 50,
+  "summary": "Create a local background warranty check with a durable request identity, a job reference, and explicit outcomes before adding HTTP.",
+  "prerequisites": [
+    "M08 durable operation identity.",
+    "M10 tests and M11 async selection."
+  ],
+  "learningObjectives": [
+    "Persist a request before enqueueing work.",
+    "Separate job identity from business identity.",
+    "Handle repeated requests and visible failures."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A Queueable class implements Queueable and receives a QueueableContext when execute runs. System.enqueueJob returns a platform job ID. That ID is useful for diagnostics, but the business request should have its own durable identity: retries can create new job IDs for the same warranty request. Anna should track one request, not guess which platform job represents the latest attempt.",
+        "Create Warranty_Request__c with an Auto Number Name and Vehicle__c lookup to Vehicle__c. Add Request_Key__c Text(100), Unique, External ID; Status__c Picklist Queued, Processing, Succeeded, Failed, Unknown; Attempts__c Number(3,0), default 0; Result__c Text(255); Error_Code__c Text(80); and Job_Id__c Text(18). These are new training dependencies. Keep ownership private and grant required field access deliberately.",
+        "The entry service validates the vehicle and operation key, creates or finds the request, and enqueues bounded work. The job receives the request ID and reloads current state when it runs instead of relying on an old copied record. A terminal successful request should not be processed again merely because the enqueue button was pressed twice. Durable uniqueness and state transitions work together.",
+        "For this lesson, the background action is deterministic local code: Available vehicles produce a sample eligibility result and Unavailable vehicles produce a declared failure. It is not a real warranty decision. A limited retry policy can be modeled with an attempt counter and an explicit operator retry. Automatic delayed retries and actual callouts are later integration concerns; do not build an unbounded chain now."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "One business request may have several execution attempts, each with its own job identity."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna submits key WARRANTY-DEMO-001 for NS-001. The entry service creates one Queued request and stores the returned job ID. The job reloads that request, checks whether it is already terminal, evaluates the local demonstration rule, and persists Succeeded with a clearly labeled sample result. Submitting the same key again returns the existing request.",
+        "Repeat using an Unavailable vehicle. Anna should see Failed with a safe error code, rather than an indefinite spinner or a generic successful submission toast. If the job fails before your error record can be committed, Apex Jobs remains an additional diagnostic source; the business record alone is not a complete platform monitor."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "If a retry gets a new job ID, how does Anna still find the same business request?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Enqueue fragment; request creation and authorization are separate prerequisites",
+          "code": "Id jobId = System.enqueueJob(new DemoWarrantyJob(requestId));\n// DemoWarrantyJob is the Queueable class you implement in this lesson.\n// Persist jobId on the authorized Warranty_Request__c request.\n// Return the business request ID to the caller, not a fabricated result."
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create all declared Warranty Request fields before writing the service. Unit tests use synthetic Vehicle records and the local outcome function; no server, credential, or HTTP mock is needed yet."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Define transitions",
+          "instruction": "Write allowed transitions for Queued, Processing, Succeeded, and Failed. Define what a repeated key with a different vehicle means; reject conflicting reuse.",
+          "expected": "One key has one unambiguous business meaning."
+        },
+        {
+          "title": "Implement entry and worker",
+          "instruction": "Collect and validate inputs, persist the request, enqueue the worker, and reload state in execute. Keep failure messages safe and the retry count bounded.",
+          "expected": "The caller receives an accepted request, while completion is recorded later."
+        },
+        {
+          "title": "Verify success and failure",
+          "instruction": "Use Test.startTest/stopTest for the enqueued work, assert final data, and separately observe a real training run in Apex Jobs. Test repeated keys and exhausted retries.",
+          "expected": "Both platform execution and business state can be traced."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A chained job is another transaction; do not assume the whole chain executes inside one unit test's stopTest. Test each unit and transition explicitly.",
+        "Catching an exception does not guarantee that the catch-path status write will succeed. Keep platform job monitoring and a reconciliation plan for abandoned Processing requests."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Never label the local demo eligibility function as a genuine warranty-provider response."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build a visible background request",
+    "brief": "Implement the local Queueable lifecycle and a bounded manual retry.",
+    "steps": [
+      "Create schema and state rules.",
+      "Implement durable request and worker.",
+      "Verify success, failure, duplicate, and retry-limit cases."
+    ],
+    "acceptance": [
+      "One key creates one business request.",
+      "Job and request IDs are distinguishable.",
+      "Failed work is visible and retries are bounded."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why pass a request ID?",
+      "answer": "The worker can reload current state and avoid relying on stale copied data."
+    },
+    {
+      "question": "Why not use job ID as the business key?",
+      "answer": "A later attempt can have a different job ID while representing the same request."
+    },
+    {
+      "question": "Does a caught exception guarantee a saved Failed status?",
+      "answer": "No. Subsequent persistence can also fail, so platform monitoring and reconciliation remain necessary."
+    }
+  ],
+  "recap": [
+    "Persist business identity.",
+    "Reload current state in the worker.",
+    "Expose outcomes and bounded recovery."
+  ],
+  "sources": [
+    {
+      "title": "Async processing choices",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    },
+    {
+      "title": "Integration reliability patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    }
+  ],
+  "illustration": {
+    "subject": "three linked background job tiles with a small recovery branch",
+    "alt": "Three linked background job tiles with a small recovery branch",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Queueable Apex. Subject: three linked background job tiles with a small recovery branch."
+  }
+}

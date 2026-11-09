@@ -1,18 +1,22 @@
-# Northstar Motors: Agentforce demo actions
+# Northstar Motors Agentforce demo action
 
-Учебный дополнительно подключаемый DX-проект, API 68.0. Сначала разверни модель `starter/salesforce` в той же отдельной учебной org. Основной урок находится в `data/agentforce.json`.
+This separate DX add-on uses API 68.0. First deploy or reconcile the core starter/salesforce model in the same dedicated training org. The complete lesson is in data/agentforce.json and docs/agentforce-lesson.md.
 
-`SAMDemoSlotCatalog` — read-only Apex invocable action. Он читает доступные пользователю Vehicle__c по точному Model__c и возвращает два **искусственных** слота на следующий день (10:00 и 14:00 UTC). Это не подключение к внешнему календарю и не резервирование. Action не создаёт данные.
+SAMDemoSlotCatalog is a read-only Apex invocable action. It queries Vehicle__c by an exact Model__c visible to the running user and returns two artificial slots for the next UTC calendar date: 10:00 and 14:00 UTC. It does not contact an external calendar, reserve a vehicle, or create records.
 
-Урок отдельно описывает ручное создание полей Booking_Key__c/Duration_Minutes__c, Flow бронирования и Flow Case handoff. Эти Flow не включены как готовые metadata; их нужно построить и проверить по главам 4–5. Не активируй агент до проверки этих Flow.
+The lesson explains how to create Booking_Key__c and Duration_Minutes__c, a booking Flow, and a Case-handoff Flow. Those Flow are not included as completed metadata; build and verify them using chapters 4–5 before activating the agent.
 
-Из этой папки, после подключения правильной учебной org и выдачи себе минимальных прав на Vehicle__c:
+From this folder, after authorizing the intended org and granting the required Vehicle permissions:
 
 ```text
 sf project deploy start --source-dir force-app --target-org sam-training --wait 10
 sf apex run test --class-names SAMDemoSlotCatalogTest --target-org sam-training --result-format human --wait 10 --code-coverage
 ```
 
-Код и тесты подготовлены, но не скомпилированы и не запущены в Salesforce org при создании портала. Успешный JSON/XML check не заменяет deploy и Apex tests. Код использует `WITH USER_MODE`; отказ по CRUD/FLS надо исправлять минимальными разрешениями, а не заменять его на system mode. Системный DML в test setup создаёт только искусственные тестовые записи.
+The code and tests are supplied, but were not compiled or executed in Salesforce during portal authoring. JSON/XML validation does not replace deployment and Apex tests.
 
-Перед demo проверь активные Flow/validation из других заданий: они могут менять результат. Базовая среда урока — свежий starter, а не org со всеми работами сразу. Проверки ограниченного пользователя, доступ к агенту, Flow fault paths и действия после подтверждения описаны в уроке.
+The action uses WITH USER_MODE. Repair missing CRUD/FLS through the intended minimal permissions rather than switching to system mode. The system-mode DML in test setup creates synthetic test records only. The tests do not establish the full restricted-user behavior of your agent or Flow.
+
+The slot catalog is ordinary deterministic code that runs during the live demonstration. It is not HttpCalloutMock: HTTP mocks affect Apex unit tests and cannot control a live UI conversation.
+
+Use a clean core training environment for the main lesson. Flow and validation from other assignments can change its behavior; review them before reusing an existing org. The full lesson includes employee access, Flow fault paths, required confirmation, repeated booking, and the limitations of the minimal Case handoff.

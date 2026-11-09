@@ -1,0 +1,136 @@
+{
+  "id": "JR09",
+  "track": "jobs",
+  "title": "Practise Live Coding and Code Review",
+  "minutes": 60,
+  "summary": "Show your reasoning while solving a small problem and reviewing a flawed implementation.",
+  "prerequisites": [
+    "Junior Apex collections and testing lessons, or equivalent skills.",
+    "A separate training org with starter/salesforce deployed and access to create Apex classes and run tests.",
+    "The starter Test_Drive__c object and its Vehicle__c lookup, plus Vehicle__c records created inside each test fixture."
+  ],
+  "learningObjectives": [
+    "Clarify the contract.",
+    "Test examples before polishing.",
+    "Review impact before style."
+  ],
+  "sections": [
+    {
+      "heading": "Clarify the task before typing",
+      "body": [
+        "Live coding combines implementation with communication. Begin by restating the requirement and asking about ambiguous inputs, expected output and constraints. For a practice task, use this request: “Given a list of test-drive records, return the number of requests for each vehicle.” Clarify whether records without a vehicle should be ignored and whether the method only reads the supplied records.",
+        "For this lesson, ignore null vehicle references and do not query or update the database. The input list contains the data you need. This boundary makes the exercise small enough to discuss. If an interviewer adds database access or security requirements, treat that as a changed task and explain what additional decisions it creates.",
+        "Use the actual starter API names: Test_Drive__c is the appointment object and its Vehicle__c field is a lookup. Implement countByVehicle(List<Test_Drive__c> requests) returning Map<Id, Integer> in your own class. The starter does not include that class or its tests. Keep each class metadata file at the course API 68.0 baseline. If no suitable org is available, write the algorithm and cases, but mark compilation and Apex execution as outstanding."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A small clarification can prevent you from implementing the wrong problem very efficiently."
+        }
+      ]
+    },
+    {
+      "heading": "Sketch the algorithm and examples",
+      "body": [
+        "Use a map from vehicle ID to count. For each record with a vehicle, read the current count or use zero, add one and store the result. Walk through three records: two for vehicle A and one for vehicle B. The result should contain A with two and B with one. An empty list should produce an empty map.",
+        "Before coding, name the tests: empty input, repeated vehicle, multiple vehicles and a record without a vehicle. Decide how to handle a null list according to the agreed contract; you can reject it or return an empty result, but do not silently change the choice halfway through the exercise. These examples make your intended behaviour visible before syntax becomes a distraction.",
+        "In an isolated Apex test, create two synthetic Vehicle__c records and use their returned Id values in unsaved Test_Drive__c instances. Give vehicles a Name and any fields required by your own lab automation. Do not insert the appointments: their Vehicle__c values are enough for this input-only function. Test setup may perform DML; the method under review may not query or write. Place setup before Test.startTest(), then verify the result and that the method adds no SOQL or DML operations. Use real fixture Ids rather than guessing a custom-object Id prefix."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Explain the data structure and one sample by hand before opening the editor."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Input-only contract and fixture; implement the Apex method yourself",
+          "code": "Method: countByVehicle(List<Test_Drive__c> requests)\nResult: Map<Id, Integer>\nInput vehicle references: vehicleA.Id, vehicleA.Id, vehicleB.Id, null\nExpected map: vehicleA.Id -> 2; vehicleB.Id -> 1\nExpected empty input: empty map\nNo appointment query or DML is allowed inside the method.\nState and test your choices for a null list and null list elements."
+        }
+      ]
+    },
+    {
+      "heading": "Review a flawed approach systematically",
+      "body": [
+        "Imagine that a proposed solution queries all test drives for each vehicle inside a loop. It may return a correct count for a small example, yet it violates the stated input-only contract and repeats database work. A reviewer should first identify the mismatch in behaviour, then the scaling problem. “Queries in loops are bad” is less useful than explaining which unnecessary work occurs and how the input list already contains the needed information.",
+        "Review in a consistent order: requirement, correctness, security where applicable, resource use, maintainability and tests. Do not spend the first five minutes discussing variable names while a method counts the wrong records. In a real code review, distinguish a blocking issue from an optional improvement and give a concrete example that demonstrates the concern."
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Reusable working prompt or template",
+          "code": "Review note example:\nBlocking: this method queries records outside the supplied list.\nExample: the input contains two requests for vehicle A, but the org has ten.\nThe required answer is 2; the database count can return 10.\nSuggested direction: aggregate the supplied records in a Map<Id, Integer>.\nVerification: test repeated vehicles, empty input and missing vehicle references."
+        }
+      ]
+    },
+    {
+      "heading": "Narrate decisions and recover from mistakes",
+      "body": [
+        "While coding, explain changes in your approach rather than every keystroke. “I am using a map so that each record updates one count” is helpful. If you make a syntax error, read the message, isolate the issue and correct it. Calm diagnosis is part of the work; pretending the error did not happen makes the reasoning harder to follow.",
+        "Finish by running the agreed examples and reviewing the implementation against the contract. If time runs out, state what works, what remains and the next test you would run. Do not claim that unexecuted tests passed. For peer practice, alternate roles: one person implements the task and the other records clarifications, decisions and missed checks."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "The observer can explain your algorithm, one rejected alternative and the evidence that the result is correct."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Implement the input-only count method, then review a deliberately flawed alternative.",
+    "steps": [
+      "Write the input and output contract, including null-list, null-element, and missing-vehicle handling.",
+      "Sketch the map algorithm with three records.",
+      "In a training org with the starter installed, implement the method and isolated Apex tests using test-created vehicle Ids and unsaved appointment inputs.",
+      "Review a query-per-record alternative and write two prioritised comments.",
+      "Record what you verified and what remains untested."
+    ],
+    "acceptance": [
+      "Counts use only the supplied list.",
+      "Empty input and repeated vehicles are covered.",
+      "The review identifies behaviour and scaling issues before style preferences.",
+      "The report names the tested class, API version, actual test result and zero-query/zero-DML method check; unexecuted org checks are labelled outstanding."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why clarify whether database queries are allowed?",
+      "answer": "It defines the source of truth and prevents counting records outside the intended input."
+    },
+    {
+      "question": "What makes a review comment actionable?",
+      "answer": "It names the issue, explains its impact, gives an example and suggests a direction or verification."
+    },
+    {
+      "question": "What should you report if a test was not run?",
+      "answer": "Say it was not run and explain the intended check; do not present it as passing evidence."
+    }
+  ],
+  "recap": [
+    "Clarify the contract.",
+    "Test examples before polishing.",
+    "Review impact before style."
+  ],
+  "sources": [
+    {
+      "title": "Apex Map methods",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-methods-system-map.html"
+    },
+    {
+      "title": "Apex unit tests and isolated test data",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro"
+    },
+    {
+      "title": "Salesforce tech and product careers: interview context",
+      "url": "https://www.salesforce.com/company/careers/teams/tech-and-product/"
+    }
+  ],
+  "illustration": {
+    "subject": "a code card with one highlighted flaw beside a small timer and test cases",
+    "alt": "A code card with one highlighted flaw beside a small timer and test cases",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Live Coding and Review. Subject: a code card with one highlighted flaw beside a small timer and test cases."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "S06",
+  "track": "senior",
+  "title": "Read Query Plans and Data Selectivity",
+  "minutes": 65,
+  "summary": "Explain why a query can slow down without a code change, and use query plans without mistaking a small data set for a scale benchmark.",
+  "prerequisites": [
+    "Be comfortable writing SOQL filters and reading a Salesforce object model.",
+    "Understand S03's distinction between database work and Apex CPU."
+  ],
+  "learningObjectives": [
+    "Define selectivity and explain why an index is not a performance guarantee.",
+    "Compare query plans against actual data distribution.",
+    "Design a small-org query experiment and state its scale limitations."
+  ],
+  "sections": [
+    {
+      "heading": "Indexes narrow a search only when the filter helps",
+      "body": [
+        "An index is a data structure the platform may use to locate matching records efficiently. Selectivity describes how narrowly a condition reduces the candidate data set, under the optimizer's rules. A field can have an index while a particular value matches most records. In that case, following the index may not be the cheapest plan.",
+        "Anna opens active appointments at her dealer. A year ago, Status__c = 'Requested' matched a small fraction of appointments. In the synthetic growth case, a failed completion process leaves most appointments Requested. The query text is unchanged, but the data distribution is different. Adding an index without examining that distribution may leave the underlying problem untouched."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Ask 'How many records match this value?' rather than only 'Is this field indexed?'"
+        }
+      ]
+    },
+    {
+      "heading": "Read a plan as an estimate",
+      "body": [
+        "The Query Plan tool exposes candidate plans and estimates such as cardinality and relative cost. Cardinality is the estimated number of matching rows. A plan is evidence about how the optimizer sees this query in this environment; it is not a promise of a particular number of milliseconds. Different filters, values, and data volumes can produce different plans.",
+        "The synthetic snapshots below deliberately omit exact platform threshold calculations. They show a broad status filter and a narrower combination of dealer and date. In the starter, Dealer_Code__c is a proposed exercise field, not existing metadata. If you add it for a local experiment, record its definition and whether an index is actually available. Do not label an arbitrary custom field 'indexed' because its name sounds important.",
+        "Check whether a proposed filter preserves the business requirement. Restricting to recent appointments is useful if Anna asked for upcoming work; it is incorrect if Oleg requested a complete historical report. A faster query that silently excludes required history has changed the product contract."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "A plan comparison should include the exact query, relevant values, data distribution, and the user or access context."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic large-volume reasoning snapshots",
+          "code": "Snapshot A: 2,000,000 appointments; Requested matches 1,600,000.\nSnapshot B: same dataset; a particular dealer and date range matches 420.\nQuestion: which predicate is more useful for narrowing candidates?\nUnknown: available indexes, supported operations, final optimizer plan, actual elapsed time.\nThese counts are invented exercise inputs, not results from a Salesforce org."
+        }
+      ]
+    },
+    {
+      "heading": "Keep query design and application design connected",
+      "body": [
+        "Request only fields needed for the current operation, use appropriate filters, and paginate when the user cannot meaningfully consume every row at once. Reducing selected fields can reduce payload and memory even when it does not change the leading query plan. Pagination choices have their own contracts: SOQL OFFSET has a maximum offset and does not provide a stable snapshot across changing data.",
+        "Do not move a broad query into Batch and conclude that the query is fixed. Batch can change how work is divided, but start still needs a viable selection strategy. Likewise, replacing the query with a cache creates freshness, invalidation, and authorization questions. Consider those alternatives only when they fit the business journey.",
+        "Some indexing and query behaviors depend on field type, operator, platform support, and org configuration. Use current documentation and actual plan output for the final choice. Avoid treating a remembered selectivity percentage as a universal answer to every query shape."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A low estimated plan cost and a measured user-visible response time are different kinds of evidence."
+        }
+      ]
+    },
+    {
+      "heading": "Build a useful small-org proxy",
+      "body": [
+        "Create a modest synthetic fixture, perhaps forty appointments distributed across two dealers and several dates. Compare result correctness for a broad and a narrow query, inspect any available plan output, and record counters or elapsed observations under consistent conditions. The small fixture can prove that the filter returns the intended subset; it cannot reproduce the selectivity decisions of a two-million-record production object.",
+        "Submit the actual local plan separately from your interpretation of the supplied large-volume snapshots. If the small org chooses the same plan for both queries, record that result rather than altering the evidence to match the lesson. The transferable skill is reasoning from requirements, distribution, and observed plans."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Preserve a readable query and data-distribution note alongside any screenshot of Query Plan."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain a query regression without changing the requirement",
+    "brief": "Compare the two synthetic snapshots and design a correct upcoming-appointments query for Anna.",
+    "steps": [
+      "State whether Anna needs all history or only a defined upcoming period.",
+      "Write broad and narrowed SOQL examples using real starter fields or explicitly declared exercise fields.",
+      "Calculate the match fractions in the supplied snapshots and identify missing information.",
+      "Optionally create a small synthetic fixture and record real result counts and plan output.",
+      "Prepare a recommendation that distinguishes a query change, data-quality repair, indexing question, and interface pagination decision."
+    ],
+    "acceptance": [
+      "The answer explains why unchanged code can behave differently after data growth.",
+      "The narrower query retains all records required by the stated user journey.",
+      "Small-org observations and large-volume assumptions are reported separately."
+    ],
+    "stretch": "Describe how a backfill that changes many Status__c values could alter the query's behavior."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does an index guarantee fast execution?",
+      "answer": "No. Supported filter operations, selectivity, data distribution, and optimizer estimates influence whether using it is beneficial."
+    },
+    {
+      "question": "What does cardinality mean in a query plan?",
+      "answer": "It is an estimate of matching row count for the plan or operation, not an elapsed-time measurement."
+    },
+    {
+      "question": "Why not demonstrate scale by importing millions of rows into a training org?",
+      "answer": "The environment is not representative and has its own constraints. A small correctness experiment plus explicit scale analysis is more honest and useful."
+    }
+  ],
+  "recap": [
+    "Interpret indexes together with value distribution.",
+    "Preserve the business result while narrowing work.",
+    "Treat query plans as environment-specific evidence."
+  ],
+  "sources": [
+    {
+      "title": "Developer Console Query Plan FAQ",
+      "url": "https://help.salesforce.com/s/articleView?id=000199003&language=en_US&type=1"
+    },
+    {
+      "title": "Lightning Platform query optimizer",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-large-data-volumes-bp/guide/ldv-deployments-infrastructure-salesforce-query-optimizer.html"
+    },
+    {
+      "title": "SOQL OFFSET",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-select-offset.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a magnifying glass choosing a narrow indexed route through a large orderly data grid",
+    "alt": "A magnifying glass choosing a narrow indexed route through a large orderly data grid",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Query Plans. Subject: a magnifying glass choosing a narrow indexed route through a large orderly data grid."
+  }
+}

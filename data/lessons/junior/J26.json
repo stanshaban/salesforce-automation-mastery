@@ -1,0 +1,129 @@
+{
+  "id": "J26",
+  "track": "junior",
+  "title": "Investigate a Failure from Symptom to Cause",
+  "minutes": 50,
+  "summary": "Use a reproducible case, a focused hypothesis, and the right evidence from the browser or Salesforce.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Write a reproducible bug report.",
+    "Choose evidence appropriate to the failing layer.",
+    "Verify a minimal correction with a regression check."
+  ],
+  "sections": [
+    {
+      "heading": "Describe what failed without guessing the layer",
+      "body": [
+        "A useful bug report starts with a person and an action. 'Max selected Touring, but the selected ID remained None' is more actionable than 'the component is broken.' Record the current user, page, relevant synthetic record, steps, expected result, and actual result. Include whether the problem happens every time and whether another user sees the same behaviour.",
+        "Separate the observation from the hypothesis. The unchanged selected ID is an observation. 'The child event name does not match the listener' is a hypothesis. 'Salesforce is slow' is another hypothesis, but it needs evidence. Keeping those categories separate prevents the first plausible explanation from becoming an untested conclusion."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Collect evidence that could disprove your hypothesis, not only evidence that seems to support it."
+        }
+      ]
+    },
+    {
+      "heading": "Work through a browser-side example",
+      "body": [
+        "Use the two-component picker from J25. In a disposable learning change, rename the parent's event listener from onselectappointment to onappointmentselect while leaving the child event type unchanged. The child still dispatches selectappointment, but the parent is listening for a different event. The parent value remains unchanged.",
+        "Open the browser developer tools. The Console helps inspect JavaScript errors and carefully chosen diagnostic messages. A breakpoint in the child handler can confirm it runs. A breakpoint in the parent handler can show that it is not reached. You do not need to inspect a Salesforce database query to explain this particular mismatch because the example performs no server request.",
+        "Restore the matching event name and repeat the same steps. Verify both the first and second item, not merely the one you used during investigation. Remove temporary logging that would clutter the interface or expose unnecessary information. A successful fix includes a clear explanation of the broken contract and a check that protects it from recurrence."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not paste authentication tokens, real customer data, or complete private logs into public submissions."
+        }
+      ]
+    },
+    {
+      "heading": "Choose different evidence for server-side failures",
+      "body": [
+        "Now consider a real record edit rejected by the J08 time rule. The browser can show the request outcome and user-facing validation message, but the business rule is enforced on the server. Changing the visual colour of the error does not correct the input or the requirement. Read the message, inspect the relevant rule, and test a valid future time.",
+        "For Apex behaviour, use an appropriately scoped debug log for the actual executing identity. Reproduce once and inspect the relevant exception or operation sequence. For the reminder Flow, inspect the active version and fault path. A wrong Task Status value, missing activity support, and a denied record edit are different causes even when each ends with a failed save.",
+        "Avoid solving all three examples by increasing user permissions. A JavaScript event mismatch has nothing to do with sharing. An invalid time is not an access failure. A missing Flow prerequisite needs the specific configuration change already described in J17. Diagnosis determines the remedy.",
+        "Finish with a short incident note: reproduction, cause, change, verification, and any remaining limitation. The goal is not a long diary of every click. Another developer should be able to understand why the change is justified and repeat the relevant check. If you cannot reproduce a reported failure, state that honestly and list the evidence still needed."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Your final explanation should connect the observed symptom to a specific cause and a repeatable verification."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Create the controlled defect",
+          "instruction": "Mismatch the parent listener in the simulated picker on a learning branch.",
+          "expected": "The symptom is reproducible without touching Salesforce records."
+        },
+        {
+          "title": "Inspect both handlers",
+          "instruction": "Use browser breakpoints or minimal diagnostics to compare child and parent execution.",
+          "expected": "The missing communication boundary is identified."
+        },
+        {
+          "title": "Fix and retest",
+          "instruction": "Restore the matching listener and select both sample items.",
+          "expected": "The parent updates consistently."
+        },
+        {
+          "title": "Compare a server rejection",
+          "instruction": "Run an intentionally invalid time edit and inspect its validation response.",
+          "expected": "You distinguish UI communication from server business validation."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit one complete investigation",
+    "brief": "Choose the event mismatch or another controlled learning failure and explain it from symptom to proof.",
+    "steps": [
+      "Write exact reproduction steps and an initial hypothesis.",
+      "Capture only the evidence needed to locate the cause.",
+      "Record the smallest correction and repeat the original plus one adjacent scenario."
+    ],
+    "acceptance": [
+      "The note separates observed facts from hypotheses.",
+      "The correction addresses the demonstrated cause.",
+      "Private data and credentials are excluded."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is a hypothesis different from an observation?",
+      "answer": "A hypothesis proposes an explanation that still needs testing; an observation records what actually happened."
+    },
+    {
+      "question": "Would sharing changes fix the simulated event mismatch?",
+      "answer": "No. The example has a browser communication defect and no database request."
+    },
+    {
+      "question": "Why test an adjacent scenario after the fix?",
+      "answer": "It helps detect a correction that only works for the exact demonstration input."
+    }
+  ],
+  "recap": [
+    "Write a reproducible bug report.",
+    "Choose evidence appropriate to the failing layer.",
+    "Verify a minimal correction with a regression check."
+  ],
+  "sources": [
+    {
+      "title": "LWC debugging",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/debug-intro.html"
+    },
+    {
+      "title": "Custom events",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a magnifying glass isolating one highlighted break in an otherwise clean code path",
+    "alt": "A magnifying glass isolating one highlighted break in an otherwise clean code path",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Debugging. Subject: a magnifying glass isolating one highlighted break in an otherwise clean code path."
+  }
+}

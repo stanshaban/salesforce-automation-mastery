@@ -53,7 +53,7 @@ public with sharing class SAMDemoSlotCatalog {
                 byModel.get(key).add(vehicle);
             }
         }
-        Date day = fixedDay == null ? Date.today().addDays(1) : fixedDay;
+        Date day = fixedDay == null ? Datetime.now().dateGmt().addDays(1) : fixedDay;
         Datetime firstStart = Datetime.newInstanceGmt(day, Time.newInstance(10, 0, 0, 0));
         Datetime secondStart = Datetime.newInstanceGmt(day, Time.newInstance(14, 0, 0, 0));
 
@@ -82,7 +82,7 @@ public with sharing class SAMDemoSlotCatalog {
                     result.slotTwoStart = secondStart;
                     result.slotOneKey = String.valueOf(vehicle.Id) + ':' + firstStart.formatGmt('yyyyMMddHHmm');
                     result.slotTwoKey = String.valueOf(vehicle.Id) + ':' + secondStart.formatGmt('yyyyMMddHHmm');
-                    result.message = 'Demo slots only: tomorrow at 10:00 or 14:00 UTC, 30 minutes. A slot is reserved only after the booking Flow succeeds.';
+                    result.message = 'Demo slots only: tomorrow by UTC date, at 10:00 or 14:00 UTC, 30 minutes. A slot is reserved only after the booking Flow succeeds.';
                 }
             }
             results.add(result);

@@ -1,0 +1,109 @@
+{
+  "id": "JR05",
+  "track": "jobs",
+  "title": "Write a Clear and Honest Salesforce CV",
+  "minutes": 60,
+  "summary": "Create a readable CV that connects your skills to relevant work without inventing experience.",
+  "prerequisites": [
+    "JR01 and JR04: a target role and evidence-based experience accounts."
+  ],
+  "learningObjectives": [
+    "Use a readable structure.",
+    "Support skills with examples.",
+    "Inspect the final exported file."
+  ],
+  "sections": [
+    {
+      "heading": "Give the reader a clear route through your experience",
+      "body": [
+        "A CV helps an employer decide what to ask you about. It should make your target role, relevant experience and strongest evidence easy to find. Start with your name and contact information, a short role-focused summary, experience or projects, skills and education or certifications where relevant. The order can change with your background; a career changer may place relevant projects before unrelated employment.",
+        "Use ordinary section names and readable formatting. Keep your contact details as text, and check that the exported file preserves selectable text. There is no universal layout that guarantees success in every applicant tracking system. A simple document is a practical choice because both people and software need to identify its information."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "The CV is an invitation to a detailed conversation. Every important claim should lead to an example you can explain."
+        }
+      ]
+    },
+    {
+      "heading": "Write the summary after collecting evidence",
+      "body": [
+        "Use the target from JR01 and the evidence from JR04. A useful summary might say: “Developer building Salesforce applications with Apex and Lightning Web Components. Completed a test-drive training application with validation, automated tests and a documented review workflow. Seeking a role focused on application development and learning integration support.” Adjust this to your actual background rather than copying it as a personal claim.",
+        "Avoid broad labels such as “expert in all Salesforce technologies.” They do not help a reader assess your depth and are difficult to defend. A summary is usually a few focused lines, not a biography or a long list of personality traits. Save the detail for the work examples below it."
+      ]
+    },
+    {
+      "heading": "Connect skills to work examples",
+      "body": [
+        "List skills at the depth you can support. If Apex appears in your skills section, a project or experience entry should show where you used it. Distinguish hands-on practice from production responsibility. For a training project, include the project name, its learning context, the problem, your implementation and a repository or demonstration link when it is safe to share.",
+        "Use a consistent bullet pattern: action, object and evidence. “Implemented validation for unavailable vehicles and added tests for mixed-record updates” is clearer than “Responsible for high-quality innovative solutions.” Include dates honestly and identify certification status accurately. A planned exam is not a completed credential. You do not need to hide a career change; explain the relevant transferable work and the Salesforce work you have completed."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Draft three project or experience bullets before polishing the visual layout. If the evidence is weak, formatting will not fix it."
+        }
+      ]
+    },
+    {
+      "heading": "Review the exported document as a reader",
+      "body": [
+        "Export the CV in the format requested by the employer. Open that exact file, select its text and copy a paragraph into a plain text editor. Check the reading order, missing characters, broken links and accidental truncation. Verify that the file name is descriptive and that the contact details are current. This is a simple quality check, not proof of compatibility with every hiring system.",
+        "Ask another person to answer three questions after a brief read: what role are you targeting, what have you actually built, and which example should they ask about first? If the answers are unclear, revise the content. Keep a master CV with your full evidence so that later tailoring changes emphasis rather than rewriting your history."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Open the final attachment, not only the editable source. A good draft can still become a broken export."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Produce a master CV based only on experience and projects you can substantiate.",
+    "steps": [
+      "Choose a simple readable structure.",
+      "Write a short target-role summary.",
+      "Add evidence-based experience or project bullets.",
+      "Check skills and credential claims against your records.",
+      "Export and inspect the exact file you would submit."
+    ],
+    "acceptance": [
+      "The target role and two relevant examples are easy to find.",
+      "No training project is presented as commercial employment.",
+      "The exported file has readable text, working links and current contact details."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Should you claim expertise in a tool you used once?",
+      "answer": "No. Describe the task you practised and the depth you can demonstrate."
+    },
+    {
+      "question": "Can one CV layout guarantee an interview?",
+      "answer": "No. Layout supports readability; suitability and hiring decisions involve more than formatting."
+    },
+    {
+      "question": "When should you list a certification as completed?",
+      "answer": "Only after earning it. Planned or in-progress study must be labelled separately."
+    }
+  ],
+  "recap": [
+    "Use a readable structure.",
+    "Support skills with examples.",
+    "Inspect the final exported file."
+  ],
+  "sources": [
+    {
+      "title": "Career development: land your next opportunity",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/career-development-planning/land-your-next-opportunity"
+    }
+  ],
+  "illustration": {
+    "subject": "a clean resume page linked to a small tested project and a factual evidence card",
+    "alt": "A clean resume page linked to a small tested project and a factual evidence card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Write a Clear CV. Subject: a clean resume page linked to a small tested project and a factual evidence card."
+  }
+}

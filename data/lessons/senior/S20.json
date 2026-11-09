@@ -1,0 +1,144 @@
+{
+  "id": "S20",
+  "track": "senior",
+  "title": "Release Metadata and Data Changes in Separate Stages",
+  "minutes": 70,
+  "summary": "Use an expand, migrate, and contract sequence so a new booking field can be introduced without pretending a code revert restores data.",
+  "prerequisites": [
+    "Understand deployment, source control, and data backfills.",
+    "Know integration contracts and the distinction between metadata and business records."
+  ],
+  "learningObjectives": [
+    "Separate deploying capability from moving data and switching users.",
+    "Design a restartable backfill with verification gates.",
+    "Explain code rollback and data recovery as different procedures."
+  ],
+  "sections": [
+    {
+      "heading": "A green deployment is only one milestone",
+      "body": [
+        "Northstar adds Booking_Reference__c to store the scheduling provider's stable reservation reference. The field is a proposed extension to the starter, not existing metadata. Old appointments do not yet have values, old clients do not send the field, and some new provider responses arrive while migration is running.",
+        "Deploying the field and Apex changes makes the new capability available. A backfill populates appropriate existing records. A cutover changes which behavior users or integrations rely on. These steps have different failure modes. Metadata can deploy successfully while the backfill skips records or the consumer reads incomplete data."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Release readiness means the business journey works through the transition, not merely that metadata passed deployment validation."
+        }
+      ]
+    },
+    {
+      "heading": "Expand while keeping old clients functional",
+      "body": [
+        "Expand means adding the new structure and compatible behavior before removing the old contract. Introduce the field without immediately requiring a value for every historical appointment. Give the appropriate personas only the permissions they need. Teach the application how to handle an appointment whose reference has not yet been populated.",
+        "Define the authoritative source for the new value. If the scheduling service owns reservation references, do not generate fictional references in Salesforce simply to satisfy a not-null check. Decide how a new booking obtains the reference and what status it has while that result is pending.",
+        "The synthetic state table below makes the transitional cases visible. A feature flag or other supported configuration switch can separate deployment from exposure, but both paths need tests. A flag that nobody can safely operate is not a recovery plan."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Test an old record, an old client, a new client, and a new record before allowing the new field to become mandatory."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic transition matrix",
+          "code": "Historical appointment, no known reservation: explicitly unresolved or not applicable\nHistorical appointment, authoritative reservation found: eligible for backfill\nNew booking during migration: follows the new write contract\nOld integration client: remains supported during agreed compatibility period\nCutover gate: required population and consumer behavior verified"
+        }
+      ]
+    },
+    {
+      "heading": "Make migration restartable and race-aware",
+      "body": [
+        "A restartable backfill can continue after interruption without corrupting records already processed. Use stable selection and business identifiers, record progress, and define what qualifies as completed. Do not rely only on a remembered page number if the underlying set changes during the run.",
+        "Concurrent writes matter. If a new booking obtains a current reservation reference while the backfill holds an older snapshot, the backfill must not overwrite it blindly. Use a supported conditional-write/version check, or lock the relevant record, read its fresh state, compare, and update within one short transaction. A plain re-query followed by an unprotected write can still race. In Apex, FOR UPDATE can support that local critical section, but its locks are released by a callout; do not assume a lock protects a read-callout-write sequence. Record conflicts for review rather than treating every mismatch as a retryable technical error.",
+        "Reconcile counts and values: selected, updated, skipped for an approved reason, failed, and unresolved. Check a sample of relationships and business outcomes as well as the aggregate count. Matching row counts alone cannot prove that each appointment received the correct reference.",
+        "In a small training org, a dozen synthetic records can demonstrate idempotent selection and a simulated concurrent update. It cannot validate production batch duration. Keep any throughput estimate separate from actual observations."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Design the second run before running the first: what prevents a repeated migration from overwriting correct newer data?"
+        }
+      ]
+    },
+    {
+      "heading": "Contract only after the transition is proven",
+      "body": [
+        "Contract means retiring the obsolete path after consumers and data are ready. Removing a field, tightening validation, or withdrawing an old API shape can be difficult to reverse. Require explicit evidence that no supported user or integration still depends on it.",
+        "A code rollback restores an earlier application revision where possible. It does not automatically restore overwritten values, recreate deleted records, or undo remote reservations. Data recovery needs its own source, identity mapping, conflict rules, and verification. Keep the previous compatible application path available long enough to make the planned rollback realistic.",
+        "Define a stop decision at each gate. If the backfill has unexplained mismatches, keep the old compatible behavior rather than forcing cutover to meet a date. Oleg should receive a plain-language status: capability deployed, migration progress, unresolved exceptions, and whether users have switched."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not use 'rollback' as one word covering both reversible metadata changes and irreversible data effects."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Plan the Booking Reference release",
+    "brief": "Write a staged release plan for adding the provider reference to existing and new appointments.",
+    "steps": [
+      "Define the field, ownership, permissions, and behavior when a value is absent.",
+      "Write expand, migrate, cutover, and contract gates with evidence for each.",
+      "Create twelve synthetic migration rows, including missing references, duplicates, and a record changed during migration.",
+      "Specify restart behavior, reconciliation totals, and conflict handling.",
+      "Write separate procedures for code rollback and data recovery; perform no production deployment."
+    ],
+    "acceptance": [
+      "Old supported clients remain compatible during the agreed transition.",
+      "The backfill does not overwrite a newer authoritative value blindly.",
+      "Code rollback and data recovery have separate inputs, owners, and checks."
+    ],
+    "stretch": "Describe the decision if the new code is healthy but five percent of historical rows remain unresolved."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can deployment success coexist with release failure?",
+      "answer": "The metadata may be valid while data migration, permissions, consumer compatibility, or the user cutover is incomplete."
+    },
+    {
+      "question": "What makes a backfill restartable?",
+      "answer": "Stable identity and selection, recorded progress, safe repeated application, and explicit handling of concurrent changes and unresolved rows."
+    },
+    {
+      "question": "Why is a code revert insufficient after data deletion?",
+      "answer": "Source control does not restore deleted business records or their relationships; recovery requires a separate verified data process."
+    }
+  ],
+  "recap": [
+    "Deploy capability before requiring migrated data.",
+    "Make the migration repeatable and conflict-aware.",
+    "Retire old behavior only after evidence supports the cutover."
+  ],
+  "sources": [
+    {
+      "title": "Continuous integration and deployment preparation",
+      "url": "https://developer.salesforce.com/blogs/2022/01/set-up-continuous-integration-for-your-salesforce-projects"
+    },
+    {
+      "title": "Disposable development and validation environments",
+      "url": "https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-scratch-orgs.html"
+    },
+    {
+      "title": "Integration compatibility and data ownership",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Git revert",
+      "url": "https://git-scm.com/docs/git-revert"
+    },
+    {
+      "title": "Apex locking statements and callout boundaries",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/langcon-apex-locking-statements.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a database schema transitioning through expand, migrate and retire stages",
+    "alt": "A database schema transitioning through expand, migrate and retire stages",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Data Migrations. Subject: a database schema transitioning through expand, migrate and retire stages."
+  }
+}

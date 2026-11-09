@@ -1,0 +1,139 @@
+{
+  "id": "M06",
+  "track": "middle",
+  "title": "Apex security and API-version defaults",
+  "minutes": 50,
+  "summary": "Separate class sharing context from database access mode and verify security when changing an Apex API version.",
+  "prerequisites": [
+    "M01–M05: CRUD, FLS, record access, and restrictions.",
+    "Apex classes, SOQL, DML, and test users."
+  ],
+  "learningObjectives": [
+    "Distinguish record-sharing context from operation access mode.",
+    "Explain the API 67 default changes.",
+    "Write explicit-mode comparisons and negative tests."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Apex security questions become easier when you name two separate decisions. The class sharing declaration describes record-sharing behavior in the relevant execution context. A database operation's access mode determines whether it enforces user-level permissions or deliberately runs with elevated behavior. Saying only 'this class is with sharing' does not explain every field or object check.",
+        "Defaults are versioned. In API 67.0 and later, classes without an explicit sharing declaration default to with sharing, and database operations default to user mode. In older versions, omission of a sharing declaration preserves the current sharing context rather than being a synonym for an explicit without sharing declaration; older database operations default to system mode. Read the current reference when migrating an existing class.",
+        "An explicitly user-mode query applies the running user's record access, object permissions, and field-level security. If a required field is inaccessible, the operation can fail rather than silently returning a sanitized response. Decide whether the product needs a clear error or an intentionally reduced response, and implement that choice. Do not catch every security error and return an empty list that looks like a legitimate absence of records.",
+        "System mode is not a shortcut for fixing permission errors. Some backend operations legitimately require privileges, but their entry point, allowed records, inputs, and output must be constrained. In system mode, the calling class's sharing declaration remains relevant to record-level behavior. Trigger context has its own rules; an API 67+ user-mode database operation still enforces its user-mode requirements even inside a trigger."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Review sharing context and database operation mode separately, and include the class API version in the review."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna owns TD-A, while Max owns a private TD-B. Remove Anna's field Read for a field selected by the experiment. Compare an explicit user-mode query with a separately justified system-mode version, using the same identity and data. A correct result is not necessarily a row count: the user-mode operation may reject inaccessible fields before returning results.",
+        "Then compare copies of the small class compiled at API 66.0 and 68.0 with omitted declarations or modes. Record the actual differences without changing the data or persona. This is a migration experiment, not permission advice. The final application should state critical security choices explicitly so that intent is visible during review."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Does with sharing alone prove that every returned field is readable to Anna?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Query fragment: explicit user-mode read of starter fields",
+          "code": "List<Test_Drive__c> visits = [\n    SELECT Id, Name, Status__c, Scheduled_At__c\n    FROM Test_Drive__c\n    WHERE Status__c = 'Requested'\n    WITH USER_MODE\n];"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use existing starter fields. Keep comparison classes separate and record their .cls-meta.xml API versions. Do not deploy experimental privileged endpoints to a shared or production environment."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Prepare the security matrix",
+          "instruction": "Define visible/hidden records and readable/hidden fields for a restricted user. Ensure the administrator can create fixtures without being used as the test persona.",
+          "expected": "The matrix predicts both rows and field-related failures."
+        },
+        {
+          "title": "Run explicit-mode comparisons",
+          "instruction": "Execute the same selected fields and filters with clearly stated class context and operation mode. Capture success or the specific access failure.",
+          "expected": "Results can be explained without relying on an ambiguous default."
+        },
+        {
+          "title": "Evaluate a version upgrade",
+          "instruction": "Run the controlled API 66/68 comparison, then make critical declarations explicit and repeat the intended application tests.",
+          "expected": "The change is reviewed as a behavior change, not merely an XML edit."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "An administrator test can conceal FLS defects. System.runAs changes the test identity, but it does not by itself turn every system-mode database operation into a user-mode operation.",
+        "Returning raw exception messages can reveal implementation details. Report an appropriate user-facing error while preserving a safe diagnostic reference for the developer."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Never teach 'Apex always runs in system mode' as an unversioned rule for current Salesforce."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Produce an Apex security comparison",
+    "brief": "Explain and verify one read path under explicit modes and API-version defaults.",
+    "steps": [
+      "Create restricted fixtures.",
+      "Compare modes and versions.",
+      "Write the final explicit policy and negative tests."
+    ],
+    "acceptance": [
+      "The report separates sharing from CRUD/FLS.",
+      "API versions are identified.",
+      "No broad permission is added solely to make the test green."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Is omitted sharing always without sharing?",
+      "answer": "No. Older omission preserves context; API 67+ defaults to with sharing."
+    },
+    {
+      "question": "What does user mode change?",
+      "answer": "It enforces the user's permissions and sharing for that database operation."
+    },
+    {
+      "question": "Why review an API-version upgrade?",
+      "answer": "Versioned defaults can change data access and failures even when the business code is unchanged."
+    }
+  ],
+  "recap": [
+    "Name both security decisions.",
+    "Treat defaults as versioned.",
+    "Prove behavior under a restricted identity."
+  ],
+  "sources": [
+    {
+      "title": "Database access modes",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
+    },
+    {
+      "title": "Current Apex REST security defaults",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-rest-exposing-data.html"
+    }
+  ],
+  "illustration": {
+    "subject": "two versioned code sheets beside a shield and explicit access-control switch",
+    "alt": "Two versioned code sheets beside a shield and explicit access-control switch",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Execution Context. Subject: two versioned code sheets beside a shield and explicit access-control switch."
+  }
+}

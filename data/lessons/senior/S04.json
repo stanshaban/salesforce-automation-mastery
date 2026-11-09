@@ -1,0 +1,133 @@
+{
+  "id": "S04",
+  "track": "senior",
+  "title": "Estimate Resource Demand Before Increasing Traffic",
+  "minutes": 60,
+  "summary": "Build a small capacity model that separates transaction limits, organization allocations, and the rate at which background work can finish.",
+  "prerequisites": [
+    "Understand transactions and the measurement boundaries from S01–S03.",
+    "Know how bulk Apex uses collections and how asynchronous work is queued."
+  ],
+  "learningObjectives": [
+    "Separate per-transaction constraints from shared allocations.",
+    "Calculate demand using explicit, reviewable assumptions.",
+    "Identify the first constraint that needs a real workload experiment."
+  ],
+  "sections": [
+    {
+      "heading": "A limit and an allocation answer different questions",
+      "body": [
+        "A per-transaction limit bounds one execution. An allocation can constrain an organization over a period or another shared scope. Capacity is the amount of useful work a system can complete under defined conditions. These concepts are related, but they are not interchangeable. An appointment handler can fit comfortably inside its own transaction limits while thousands of invocations consume a shared allowance or overwhelm a downstream service.",
+        "Northstar expects more dealers to use Anna's booking process. Oleg asks whether ten times as many appointments means ten times as much CPU in one transaction. Usually the first question is how requests are grouped. Ten independent requests differ from one bulk update containing many records, and both differ from a background process that queries additional related data. State the execution shape before doing arithmetic."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Write the unit beside every number: per record, per transaction, per minute, per day, or concurrent execution."
+        }
+      ]
+    },
+    {
+      "heading": "Calculate a transparent demand model",
+      "body": [
+        "The fixture assumes one notification request per accepted booking and a separate reconciliation request per group of fifty bookings. These are invented design inputs. At 100 bookings per minute, the model predicts 100 notification requests and two reconciliation requests per minute, before retries. Multiply by the active minutes in the business day rather than automatically assuming round-the-clock traffic. Include a separate allowance for replays, retries, and administrative operations.",
+        "Now inspect the work inside a save. A handler that issues one query per appointment grows differently from a handler that queries relevant vehicles once for the whole collection. Do not extrapolate CPU as perfectly linear without measuring it: branching, sharing checks, record distribution, and downstream automation can change the relationship. Use the small experiment to identify the shape of the work, then retain uncertainty around its production cost.",
+        "Read current limits for the precise execution context and product. Do not copy a number from a synchronous example into a Batch execute budget, and do not assume every asynchronous mechanism shares the same rules. Runtime Limits methods help inspect supported transaction counters. Org allocations, licensing, and event/API consumption need their own sources."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "If a number has no unit, owner, or source, it is not ready to support a capacity decision."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic assumptions for a spreadsheet, not measured capacity",
+          "code": "Traffic scenarios: 10 / 100 / 1000 accepted bookings per minute\nActive business period: 600 minutes per day\nNotification demand: 1 request per booking\nReconciliation demand: 1 request per 50 bookings\nRetry planning factor: model both 0% and 5% additional attempts\nUnknowns: service response time, worker throughput, concurrency, actual org allocations"
+        }
+      ]
+    },
+    {
+      "heading": "Queue growth reveals a different failure",
+      "body": [
+        "Suppose a simulated worker completes 80 notifications per minute while 100 arrive. The backlog grows by approximately twenty per minute under those assumptions. Moving the publisher into Queueable does not remove that difference. It changes when the user waits and which execution limits apply. Queue age, the time the oldest pending item has waited, often describes business impact better than queue length alone.",
+        "During recovery, capacity must serve new arrivals and reduce old work. A worker that merely matches current arrival rate cannot drain the accumulated backlog. This is a planning equation, not a promise that Salesforce will provide a constant worker rate. Async scheduling is affected by shared resources and platform policies; avoid presenting it as an exact start-time guarantee."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Increasing enqueue rate is not evidence of increased completion capacity."
+        }
+      ]
+    },
+    {
+      "heading": "Turn the estimate into a verification plan",
+      "body": [
+        "Use a small set of synthetic records to compare bulk and single-record execution. Record relevant counters before and after a bounded operation, preserve the same business assertions, and note other automation that ran. A tiny org cannot validate an enterprise rate forecast, but it can reveal an obvious query-per-record pattern.",
+        "Produce a capacity sheet with assumptions, derived demand, current documented constraints, and unknowns. Highlight the constraint that could be reached first. Recommend a controlled test in an authorized representative environment, including a stop condition for errors or queue growth. The useful output is an honest decision boundary, not a large spreadsheet full of unverified precision."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Maintain separate rows for demand you calculated, limits you verified, and throughput you actually observed."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build Northstar's capacity sheet",
+    "brief": "Model all three traffic scenarios using the supplied assumptions and a small optional collection experiment.",
+    "steps": [
+      "Calculate notification, reconciliation, and retry demand per minute and business day.",
+      "Create separate sections for transaction counters, organization allocations, downstream capacity, and queue delay.",
+      "Compare one-record and small bulk execution if a training org is available; otherwise write the measurement procedure.",
+      "Model a worker completing 80 items per minute with 100 arrivals, then calculate backlog after 30 minutes.",
+      "Name the first production validation you would request and the condition that would stop it."
+    ],
+    "acceptance": [
+      "Every calculated value includes its unit and assumptions.",
+      "The 80-versus-100 example produces 600 additional waiting items after 30 minutes.",
+      "No small-org result is described as a validated 1000-bookings-per-minute capacity."
+    ],
+    "stretch": "Add a recovery scenario with ongoing arrivals and explain the extra capacity required to reduce backlog."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can safe transactions still exhaust shared capacity?",
+      "answer": "Many individually valid executions can collectively consume an allocation or create more work than a worker or downstream service can finish."
+    },
+    {
+      "question": "Does async imply an execution-time SLA?",
+      "answer": "No. Background work uses finite resources and scheduling policies; its start and completion times need observation and an appropriate business contract."
+    },
+    {
+      "question": "Why include retry traffic?",
+      "answer": "Retries consume resources too. A model based only on successful first attempts understates demand during failures and recovery."
+    }
+  ],
+  "recap": [
+    "Budget execution work and shared demand separately.",
+    "Treat queue growth as a measurable capacity mismatch.",
+    "Use a small proxy to test mechanisms, not to certify enterprise throughput."
+  ],
+  "sources": [
+    {
+      "title": "Asynchronous processing decision guide",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    },
+    {
+      "title": "Architecture basics",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/architecture-basics"
+    },
+    {
+      "title": "Bulk API limits and allocations",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-app-limits-cheatsheet/guide/salesforce-app-limits-platform-bulkapi.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a small resource budget gauge beside a group of efficiently processed records",
+    "alt": "A small resource budget gauge beside a group of efficiently processed records",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Limits. Subject: a small resource budget gauge beside a group of efficiently processed records."
+  }
+}

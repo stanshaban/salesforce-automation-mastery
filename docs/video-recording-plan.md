@@ -1,107 +1,109 @@
-# План записи: рабочее место Salesforce-разработчика
+# Recording plan: a Salesforce developer workspace
 
-Статус: сценарий записи, 9 ноября 2026. Видео ещё не записаны. Текстовые шаги и проверенные ссылки находятся в `data/setup-guide.json`. Записывай интерфейс актуальных версий: название команды в старом ролике может отличаться.
+Status: recording script, November 9, 2026. Videos have not been recorded. Text instructions and source links are in `data/setup-guide.json`. Record the current interfaces: commands in an old video may have different names.
 
-Аудитория уже прошла введение: CRM хранит сведения о клиентах и работе с ними; объект задаёт вид информации, поле — отдельное свойство, запись — один конкретный экземпляр. Учебная компания Northstar Motors продаёт автомобили. Продавец записывает клиента на тест-драйв, руководитель проверяет работу команды, разработчик меняет приложение. Этот ввод повторяем в начале, прежде чем показывать metadata и инструменты.
+The audience has completed the introduction: a CRM keeps customer information and related work; an object defines a kind of information, a field defines a property, and a record is one instance. The fictional Northstar Motors dealership sells vehicles. A salesperson records a customer's test-drive request, a manager reviews the team's work, and a developer changes the application. Repeat this context before showing metadata and tools.
 
-Каждый ролик: понятный результат → объяснение на схеме → действия на экране → одна типичная ошибка → самостоятельная проверка. В конце зритель делает небольшое действие сам. Длительность — ориентир монтажа, не ограничение времени обучения.
+Each video follows a clear result, a diagram, screen actions, one common failure, and an independent check. End with a small action for the learner. Durations guide editing, not the learner's pace.
 
-| Глава | Время | Результат зрителя |
-|---|---:|---|
-| 1. CRM, учебная org и инструменты разработчика | 5–7 мин | Различает запись в Salesforce, файл проекта, CLI и историю Git |
-| 2. Установка VS Code и Git | 5–8 мин | Открывает папку и терминал |
-| 3. Установка Salesforce CLI и Java | 5–8 мин | Проверяет команды и понимает назначение Java |
-| 4. Salesforce Extension Pack и интерфейс VS Code | 6–8 мин | Находит команду расширения и вывод ошибки |
-| 5. Учебный репозиторий и структура DX-проекта | 7–9 мин | Открывает правильную папку и отличает metadata от данных |
-| 6. Подключение учебной Salesforce org | 5–7 мин | Проверяет org перед выполнением команды |
-| 7. Перенос metadata из проекта в org | 6–8 мин | Делает ограниченный deploy и проверяет результат |
-| 8. Получение metadata из org и просмотр diff | 6–8 мин | Видит изменение поля в файле и Git |
-| 9. Apex tests и Debug Logs | 8–12 мин | Отличает assertion, coverage и ошибку выполнения |
-| 10. Отправка файлов или PR на проверку | 7–10 мин | Создаёт понятную заявку reviewer |
+| Chapter | Duration | Learner result |
+| --- | ---: | --- |
+| 1. CRM, the training org, and developer tools | 5–7 min | Distinguishes a Salesforce record, project file, CLI, and Git history |
+| 2. Install VS Code and Git | 5–8 min | Opens a folder and terminal |
+| 3. Install Salesforce CLI and Java | 5–8 min | Checks commands and explains Java's role |
+| 4. Salesforce Extension Pack and the VS Code interface | 6–8 min | Finds an extension command and error output |
+| 5. The learning repository and DX project | 7–9 min | Opens the correct folder and separates metadata from data |
+| 6. Connect a training Salesforce org | 5–7 min | Verifies the target org before running a command |
+| 7. Send project metadata to an org | 6–8 min | Deploys a bounded change and verifies its result |
+| 8. Retrieve metadata and inspect a diff | 6–8 min | Finds an org field change in files and Git |
+| 9. Apex tests and Debug Logs | 8–12 min | Distinguishes an assertion, coverage, and execution failure |
+| 10. Submit files or a PR for review | 7–10 min | Prepares a clear review submission |
 
-## 1. CRM, учебная org и инструменты разработчика
+## 1. CRM, the training org, and developer tools
 
-Первый кадр: три карточки — автомобиль, клиент, тест-драйв. На реальной учебной записи покажи модель, дату и статус. Объясни, кто вводит данные и зачем компании хранить их вместе. Org — отдельная среда Salesforce со своими данными, настройками и пользователями.
+Open with three cards: vehicle, customer, and test drive. On a real synthetic training record, show model, date, and status. Explain who enters each value and why the business keeps the information together. An org is a separate Salesforce environment with its own data, configuration, and users.
 
-Кадры: запись тест-драйва → Object Manager с определением поля → соответствующий XML в VS Code → схема «файлы ↔ CLI ↔ учебная org». Потом добавь Git как историю файлов и GitHub как место совместного review. Подпись: «Сохранение файла меняет файл; deploy отправляет выбранную настройку в org».
+Show the appointment record, its field definition in Object Manager, the corresponding XML in VS Code, and a diagram: files ↔ CLI ↔ training org. Add Git as file history and GitHub as a review workspace. Caption: “Saving a file changes that file; deployment sends selected configuration to the org.”
 
-Пауза ученику: назвать, где находится значение даты клиента, а где описание самого поля даты. Не вводить Apex/Flow как обязательную терминологию до соответствующих уроков.
+Pause: ask the learner where the customer's date value lives and where the date field itself is defined. Do not require Apex or Flow vocabulary before its lessons.
 
-## 2. Установка VS Code и Git
+## 2. Install VS Code and Git
 
-Кадры macOS: официальный сайт, выбор сборки под процессор, Applications, палитра команд для `code` в PATH. Отдельная вставка Windows: User Installer, настройка PATH, новый терминал. Не смешивать интерфейсы в одном непрерывном показе.
+For macOS, show the official download, processor-appropriate build, Applications folder, and Command Palette action that puts `code` on PATH. Make Windows a separate segment showing User Installer, PATH setup, and a new terminal; do not mix interfaces into one continuous walkthrough.
 
-Покажи `code --version` и `git --version`. Затем папку проекта через File → Open Folder. Ошибка: терминал открыт до установки и ещё не видит новую команду. Пауза: зритель проверяет версии на своей машине. Установка дополнительных AI-пакетов не нужна для этой главы.
+Show `code --version` and `git --version`, then File → Open Folder. Demonstrate a terminal opened before installation that cannot yet find the new command. Pause for learners to check versions on their machines. Additional AI extensions are unnecessary for this chapter.
 
-## 3. Установка Salesforce CLI и Java
+## 3. Install Salesforce CLI and Java
 
-Кадры: официальная страница Salesforce CLI → подходящий installer → новый терминал с `sf --version`. Объясни CLI как программу, принимающую текстовую команду. Покажи JDK 21 и `java -version`; Java нужна Apex Language Server для помощи редактора, а не для запуска Salesforce на ноутбуке.
+Show the official Salesforce CLI page, installer, and a new terminal running `sf --version`. Explain that a CLI is a program controlled with text commands. Show JDK 21 and `java -version`: Java supports the Apex Language Server's editor assistance; it does not run a Salesforce org on the laptop.
 
-Вставки: macOS `/usr/libexec/java_home -v 21`; Windows `where.exe java`. Покажи user setting Java Home, когда автоматическое определение не сработало. Ошибка: путь указывает на исполняемый файл вместо папки JDK. Пауза: команды возвращают версии, редактор не сообщает о пропавшей Java.
+Include macOS `/usr/libexec/java_home -v 21` and Windows `where.exe java`. Show the Java Home user setting when automatic detection fails. Demonstrate an incorrect path to the executable instead of the JDK folder. Pause: version commands work and the editor no longer reports missing Java.
 
-## 4. Salesforce Extension Pack и интерфейс VS Code
+## 4. Salesforce Extension Pack and the VS Code interface
 
-Кадры: Extensions → pack `salesforce.salesforcedx-vscode` → проверка издателя Salesforce → Install. Слева постоянно небольшая карта окна: Explorer, Extensions, Editor, Terminal/Output, Status Bar.
+Show Extensions, `salesforce.salesforcedx-vscode`, the Salesforce publisher, and installation. Keep a small window map visible: Explorer, Extensions, Editor, Terminal/Output, and Status Bar.
 
-Покажи Command Palette: Cmd+Shift+P / Ctrl+Shift+P; поиск Salesforce-команды; затем Output и Problems. Терминал выводит результат CLI, Output показывает сообщения расширения — это разные места. Пауза: зритель находит установленный pack и открывает нужный канал Output.
+Open Command Palette with Cmd+Shift+P or Ctrl+Shift+P, find a Salesforce command, then show Output and Problems. Terminal holds CLI results; Output holds extension messages. Pause: the learner locates the installed pack and the relevant Output channel.
 
-## 5. Учебный репозиторий и структура DX-проекта
+## 5. The repository and DX project
 
-Кадры: публичный SAM → личная копия через Use this template, если шаблон доступен → clone → открытие `starter/salesforce`. Если шаблон пока не включён, покажи fork как отдельный поддержанный путь, не притворяйся, что кнопка доступна.
+Show the public SAM repository, a personal copy through **Use this template** when available, cloning, and opening `starter/salesforce`. If template creation is unavailable, show a fork as a separate supported route without pretending the button exists.
 
-Объясни `sfdx-project.json`, `force-app/main/default`, папки objects, permissionsets, classes и lwc. Уточни: starter содержит модель данных, готовых решений заданий в нём нет. Покажи корень Git выше DX-папки и место карточки сдачи `starter/submissions`.
+Explain `sfdx-project.json`, `force-app/main/default`, and the objects, permissionsets, classes, and lwc directories. The core starter supplies a data model, not completed assignment solutions. Show the Git root above the DX folder and the evidence area at `starter/submissions`.
 
-Пауза: зритель находит Vehicle__c и объясняет отличие поля VIN от реального VIN автомобиля. Не создавать новый проект поверх starter.
+Pause: locate Vehicle__c and explain the difference between a VIN field definition and an actual vehicle's VIN value. Do not create a new project over the starter. If Junior browser lessons already changed the org, identify those changes now and retrieve/reconcile them before deploying original starter files.
 
-## 6. Подключение учебной Salesforce org
+## 6. Connect a training Salesforce org
 
-Кадры: схема browser login → локальная CLI-сессия → alias `sam-training`. Выполни соответствующий типу org вход; страницу пароля и согласия показывай без ввода секретов в запись. После входа проверяй org list и открывай org явной командой с alias.
+Diagram browser login → local CLI authorization → alias `sam-training`. Use the login route appropriate to the org type. Keep credential entry and consent details out of the recording. After login, inspect the org list and open the org with its explicit alias.
 
-Покажи различие Developer Edition и sandbox URL. Объясни: alias — удобное локальное имя, не доказательство, что это нужная org. Подчеркни проверку домена/учётной записи перед deploy. Пауза: зритель открывает свою учебную org, не передавая доступ преподавателю.
+Show the distinction between Developer Edition and sandbox login URLs. An alias is a convenient local name, not proof that it points to the intended environment. Verify the domain and account before deployment. Pause: the learner opens their own org without giving the instructor its credentials.
 
-## 7. Перенос metadata из проекта в org
+## 7. Send metadata to an org
 
-Кадры: выделенные starter metadata → команда deploy с `--target-org sam-training` → итог CLI → Object Manager. Затем открой Permission Set SAM_Lab_Basics и объясни, что его существование не назначает права автоматически и не даёт доступ ко всем чужим записям.
+For a fresh learning org, show selected starter metadata, deployment with `--target-org sam-training`, the actual CLI result, and Object Manager. Open SAM_Lab_Basics and explain that deploying a permission set neither assigns it nor grants every other user's records.
 
-Ошибка: успешный deploy поля не создал реальные автомобили. Добавь одну искусственную запись через интерфейс. Пауза: ученик проверяет объект и поле, а не только зелёную строку CLI.
+For an org already used in J07–J17, show retrieval and reconciliation first. Preserve browser-created fields, Flow, activity settings, and permission changes. Do not overwrite them with unchanged starter metadata.
 
-## 8. Получение metadata из org и просмотр diff
+Demonstrate that deploying a field creates no actual vehicle records. Add one synthetic record through the interface. Pause: the learner checks the object and field in the org, not only a green CLI line.
 
-Кадры: простое изменение поля Vehicle в Setup → ограниченный retrieve → Source Control → сравнение двух версий файла. До retrieve покажи, что незакоммиченные локальные изменения сохранены и не будут случайно потеряны.
+## 8. Retrieve metadata and inspect a diff
 
-Подписи: retrieve = org → файлы; deploy = файлы → org; commit = сохранить историю файлов. Ошибка: retrieve всей org создаёт шум вместо понятного изменения. Пауза: зритель описывает одну изменённую строку и её эффект в приложении.
+Show one Vehicle field change in Setup, a focused retrieval, Source Control, and the before/after file diff. Before retrieval, preserve and inspect uncommitted local work so it is not accidentally overwritten.
 
-## 9. Apex tests и Debug Logs
+Use explicit arrows: retrieve = org → files; deploy = files → org; commit = saved file history. Demonstrate the noise from retrieving unrelated metadata without actually needing a whole-org retrieval. Pause: the learner explains one changed line and its effect.
 
-Записывается после урока Apex и J-L04: ученику уже объяснены класс, метод, входные данные и проверка ожидаемого результата. В starter этого готового класса нет.
+## 9. Apex tests and Debug Logs
 
-Кадры: свой TestDriveStatusServiceTest → конкретный assertion → запуск → итог. Затем намеренно испорти условие в локальной демонстрационной ветке: тот же тест должен упасть. Верни исправление и перезапусти. Покажи один полезный фрагмент Debug Log без полного дампа данных.
+Record after the Apex lessons and the relevant coding lab. The learner should already understand a class, method, input, and expected result. The core starter does not include a completed test solution.
 
-Объясни, почему coverage показывает выполненные строки, но не качество утверждений. Если CLI вернул ID асинхронного запуска, получи его итог до заявления «тест пройден». Пауза: ученик прикладывает реальный результат собственного запуска.
+Show the learner-created `SlotPlannerTest` from J22, a specific assertion, execution, and the observed outcome. On a disposable demonstration branch, break the occupied-slot check; the same test should fail. Restore the implementation and rerun. Show one useful sanitized Debug Log excerpt rather than dumping all records.
 
-## 10. Отправка файлов или PR на проверку
+Explain that coverage reports executed lines, not assertion quality. If the CLI returns an asynchronous test-run ID, retrieve its result before claiming success. Pause: learners attach evidence from their own execution.
 
-Кадры пути A: задача в портале → выбранные metadata, README и test evidence → понятные названия файлов → отправка → статус заявки. Кадры пути B: личная ветка → staged diff → commit → PR в main собственной копии → PR URL в портале.
+## 10. Submit files or a PR
 
-Покажи описание: задача, что изменено, как повторить, что проверено, что осталось неизвестным. На учебной заявке покажи замечание reviewer и обновление той же работы. GitHub issue объясняется как резервный, необязательный путь. Email и профиль Skool не помещаются в публичный PR.
+Route A: portal assignment → selected metadata, README, and test evidence → descriptive file labels → submission → status. Route B: personal branch → staged diff → commit → PR into the learner's own main → PR URL in the portal.
 
-Пауза: зритель проверяет, что доказательства относятся к последней версии. Загрузка или зелёная проверка структуры не равны зачёту качества решения.
+Show a description containing the requirement, changes, reproduction steps, checks, and remaining uncertainty. On a training submission, demonstrate reviewer feedback and a new version. Explain public Issues only as an optional fallback. Keep email and Skool identity out of public PRs.
 
-## Подготовка и монтаж
+Pause: verify that the evidence matches the latest version. Upload success or a green structure check is not assignment acceptance.
 
-- Записывай 1920×1080 или выше, увеличь шрифт редактора и терминала до удобного чтения. Один кадр — одно действие.
-- Используй постоянные цвета: файлы — синий, org — бирюзовый, Git — фиолетовый, ошибка — янтарный. Цвет дублируется текстом.
-- Стрелки retrieve/deploy рисуй между подписанными блоками. Сначала покажи всю схему, затем выделяй текущую область.
-- Сними удачный путь и по одной реальной типичной ошибке. Не вставляй заранее нарисованный успешный вывод CLI.
-- Убирай из записи email, org IDs, токены, client IDs и данные клиентов. Учётная запись, которую зритель видит, должна быть демонстрационной.
-- В описании каждого ролика укажи дату, ОС, версии VS Code/CLI/Java, assignment ID и ссылки на первичные инструкции. При изменении интерфейса обновляй конкретную главу.
-- Обложки делаются после финальной записи: название главы и реальный фрагмент интерфейса. Фиктивных thumbnails и ссылок на несуществующие видео не добавлять.
+## Recording and editing
 
-## Основные источники
+- Record at 1920×1080 or higher with readable editor and terminal text. Show one action at a time.
+- Use consistent colors: files blue, org teal, Git purple, errors amber. Repeat the meaning in text.
+- Draw retrieve/deploy arrows between labelled areas. Show the complete diagram before highlighting one boundary.
+- Record the working path and one real common failure. Never insert fabricated successful CLI output.
+- Remove email, org IDs, tokens, client IDs, and customer data from footage. Use a demonstration account.
+- Include recording date, OS, VS Code/CLI/Java versions, assignment ID, and primary-source links in each description. Update the affected chapter when an interface changes.
+- Make video covers after final recording using the chapter name and actual interface. Do not add thumbnails or links that imply nonexistent videos are available.
 
-- [Salesforce Extensions: установка](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html)
-- [Apex Language Server: Java](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/java-setup.html)
-- [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
-- [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli)
-- [VS Code: macOS](https://code.visualstudio.com/docs/setup/mac), [Windows](https://code.visualstudio.com/docs/setup/windows)
-- [GitHub: создание PR](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request)
+## Primary sources
+
+- [Install Salesforce Extensions](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html).
+- [Apex Language Server Java setup](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/java-setup.html).
+- [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode).
+- [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli).
+- [VS Code for macOS](https://code.visualstudio.com/docs/setup/mac) and [Windows](https://code.visualstudio.com/docs/setup/windows).
+- [Create a GitHub pull request](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request).

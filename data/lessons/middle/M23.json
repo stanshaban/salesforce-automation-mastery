@@ -1,0 +1,140 @@
+{
+  "id": "M23",
+  "track": "middle",
+  "title": "DOM events and Lightning Message Service",
+  "minutes": 50,
+  "summary": "Choose a communication contract for related components and for independent regions of the same Lightning application.",
+  "prerequisites": [
+    "M21 lifecycle and M22 data ownership.",
+    "JavaScript events and component public inputs."
+  ],
+  "learningObjectives": [
+    "Use public properties down and events up a component tree.",
+    "Use LMS for appropriate cross-DOM communication.",
+    "Manage subscription scope and lifecycle."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A child component should not reach into its parent's internal state. It can receive input through @api and announce an interaction through a DOM CustomEvent. The parent handles that event and decides what to do. This makes the child reusable: a visit row can announce a selected record without knowing whether the parent opens a panel, navigates, or updates a filter.",
+        "Lightning Message Service communicates across supported component regions in a Lightning page or application. It can connect components without a convenient common parent, including supported Aura or Visualforce integration points. A message channel defines the shared contract. LMS is a client-side application communication mechanism, not the server event bus used by Platform Events.",
+        "Keep messages small and meaningful. A selection message needs a recordId and perhaps an event type, not the entire customer record or a mutable object owned by another component. A subscriber should read current data through its authorized data source. Treat received IDs as input rather than proof that the user is allowed to access the record.",
+        "Choose subscription scope deliberately. Application-wide scope can deliver messages beyond the currently active region, which may be useful for a utility but surprising for a cached workspace component. Understand the component's lifetime, avoid duplicate subscriptions, and release resources appropriately. A hidden or cached component is not always equivalent to a destroyed component."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Use the narrowest communication boundary that matches the relationship between components."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "A Test Drive list contains individual row components. Each row dispatches visitselect with its ID; the list's parent manages selectedId and passes it into the detail component. No message service is necessary for that ordinary tree relationship.",
+        "Now add an independent warranty panel in another Lightning page region. It needs to react when the salesperson selects a different visit. Publish a small message on a new SAM_Visit_Selected__c message channel. The warranty panel subscribes and reloads authorized details, rather than trusting a payload containing customer and VIN information."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Would publishing this message notify a separate backend integration that is not running in the Lightning application?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "Child event fragment; parent listens with onvisitselect",
+          "code": "this.dispatchEvent(new CustomEvent('visitselect', {\n    detail: { recordId: this.recordId }\n}));"
+        },
+        {
+          "language": "xml",
+          "caption": "Complete SAM_Visit_Selected.messageChannel-meta.xml declaration",
+          "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<LightningMessageChannel xmlns=\"http://soap.sforce.com/2006/04/metadata\">\n    <masterLabel>SAM Visit Selected</masterLabel>\n    <isExposed>true</isExposed>\n    <description>Selected training appointment identifier.</description>\n    <lightningMessageFields>\n        <fieldName>recordId</fieldName>\n        <description>Selected Test Drive ID.</description>\n    </lightningMessageFields>\n</LightningMessageChannel>"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create the message-channel metadata under force-app/main/default/messageChannels. Its imported schema name includes __c. No new Salesforce object or field is required."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Build the parent-child path",
+          "instruction": "Dispatch a narrow selection event and handle it in the parent. Keep input ownership in the parent and avoid mutating the passed record.",
+          "expected": "The child works without knowing its surrounding page layout."
+        },
+        {
+          "title": "Add the independent subscriber",
+          "instruction": "Use lightning/messageService with the declared channel, a MessageContext, and a guarded subscription. Publish only recordId and reload details through the subscriber's data source.",
+          "expected": "The independent panel follows selection without sharing private DOM."
+        },
+        {
+          "title": "Test lifetime and scope",
+          "instruction": "Open, close, and revisit the page or workspace. Compare the intended active-area behavior with application scope where supported, and count handler calls.",
+          "expected": "One published selection causes one intended update per active subscriber."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "An overly broad message can make unrelated components react and create difficult-to-trace loops. Define event names and which component is authoritative for selection.",
+        "Messages are not a durable record of business completion. If the user reloads the page, recover state from the appropriate data source rather than expecting old LMS messages to replay."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not describe LMS as a durable server-side event stream or as a replacement for authorization."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Connect a list and an independent panel",
+    "brief": "Demonstrate DOM events for one component tree and LMS for a separate panel.",
+    "steps": [
+      "Implement the narrow event contract.",
+      "Deploy the message channel and subscriber.",
+      "Test duplicate subscriptions and page lifetime."
+    ],
+    "acceptance": [
+      "Payloads contain only needed identifiers.",
+      "DOM and LMS responsibilities are distinct.",
+      "Scope and cleanup behavior are explained."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "When is a DOM event simpler?",
+      "answer": "When a child can communicate through its ordinary parent relationship."
+    },
+    {
+      "question": "Does LMS replace Platform Events?",
+      "answer": "No. They serve different client-application and server-integration boundaries."
+    },
+    {
+      "question": "Should the payload contain the whole customer?",
+      "answer": "Usually no. Send the minimal identity and let the subscriber read authorized current data."
+    }
+  ],
+  "recap": [
+    "Prefer narrow contracts.",
+    "Use LMS for the right boundary.",
+    "Test scope and lifetime."
+  ],
+  "sources": [
+    {
+      "title": "Lightning Message Service",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/use-message-channel.html"
+    }
+  ],
+  "illustration": {
+    "subject": "two sibling components using a shared message hub and one local parent-child arrow",
+    "alt": "Two sibling components using a shared message hub and one local parent-child arrow",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Events and Lightning Message Service. Subject: two sibling components using a shared message hub and one local parent-child arrow."
+  }
+}

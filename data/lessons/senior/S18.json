@@ -1,0 +1,135 @@
+{
+  "id": "S18",
+  "track": "senior",
+  "title": "Refactor Legacy Automation in Small Verified Steps",
+  "minutes": 65,
+  "summary": "Capture existing behavior, isolate one responsibility, and change a legacy booking handler without requiring a complete rewrite.",
+  "prerequisites": [
+    "Understand Apex triggers, handlers, bulk processing, and assertions.",
+    "Know Northstar's appointment statuses and the API 68.0 security baseline."
+  ],
+  "learningObjectives": [
+    "Explain characterization tests and their limits.",
+    "Choose a small boundary for extracting legacy behavior.",
+    "Separate structural refactoring from intentional behavior changes."
+  ],
+  "sections": [
+    {
+      "heading": "First discover what the old code actually does",
+      "body": [
+        "Northstar's appointment trigger validates status changes, updates a vehicle summary, creates a reminder, and calls a helper with unclear side effects. Nobody can confidently explain why some conditions are repeated. Oleg wants a new cancellation rule, but a full rewrite would change too many behaviors at once.",
+        "A characterization test records the behavior of the existing implementation for a defined input. It is useful when documentation is incomplete. It does not declare every observed behavior correct. If the old handler creates duplicate reminders, a characterization test can reveal that fact, but the business still needs to decide the intended behavior before a corrective change."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Preserve behavior deliberately; do not preserve a defect accidentally because a test happened to capture it."
+        }
+      ]
+    },
+    {
+      "heading": "Build a behavior map before choosing a new design",
+      "body": [
+        "List entry points, records read, records changed, external effects, and the conditions controlling each effect. Include other automation that can run in the same transaction. A trigger handler is not isolated merely because it is stored in one class. A Flow may update the record again, and an integration may enter through a different route.",
+        "Use the synthetic cases below to define a minimal behavior envelope. An envelope is the set of behavior you intend to keep stable during the first change. Include empty input, a normal transition, an unchanged status, a mixed bulk collection, and a rejected transition. Count side effects as well as checking the final field value.",
+        "Record the current class API versions and access modes. Raising an old class to API 68.0 can change default security behavior independently of your refactor. Do not combine an unexplained version migration with a structural extraction and then struggle to identify which change caused a regression."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "For each case, state which records may change and which must remain untouched."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic characterization cases",
+          "code": "C1: Requested -> Confirmed: one intended reminder\nC2: Confirmed -> Confirmed: no new reminder\nC3: Confirmed -> Cancelled: cancellation behavior requires clarification\nC4: bulk collection includes C1 and C2: each record handled independently\nC5: invalid past appointment confirmation: clear rejection\nThese are proposed expectations to review, not results from an executed org."
+        }
+      ]
+    },
+    {
+      "heading": "Extract one responsibility behind a seam",
+      "body": [
+        "A seam is a boundary where one part of the implementation can be replaced or tested independently. Start by extracting a pure status-decision function: given old and new state, what action should occur? Keep the trigger's collection handling and persistence contract stable while this decision logic moves. A pure function returns a result without performing hidden database or network work, which makes it easier to test.",
+        "Do not immediately create a large framework with many layers. The first extraction should reduce a specific source of uncertainty. For example, separating 'should create a reminder' from 'insert reminder records' lets tests verify transition decisions without making every test depend on a complete org configuration.",
+        "Once the behavior envelope is stable, make the intentional change in a separate reviewable step. If the business approves a new cancellation rule, add a failing expectation for that rule, implement it, and show why the change is deliberate. Keep structural cleanup and product behavior distinguishable in the diff and explanation."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Make the first pull request small enough that a reviewer can compare the old decision path with the extracted one."
+        }
+      ]
+    },
+    {
+      "heading": "Use meaningful regression evidence",
+      "body": [
+        "Tests should verify outcomes and absence of unintended work. A line-coverage number only shows which lines executed; it does not prove that a reminder was created once, that a denied transition stayed denied, or that a later batch of trigger records was processed.",
+        "An early return controlled by one transaction-wide static Boolean is a useful review target. It can suppress legitimate later work as well as recursion. Prefer business transition checks and deliberately scoped coordination over a blanket 'already ran' flag. Any stateful guard should explain what it tracks and when repeated processing is valid.",
+        "In a training org, test a small synthetic collection and document the actual result. Without an org, submit the behavior table, the pure-function tests or pseudocode, and the proposed extraction. Mark database behavior as unverified. The goal is a defensible small change, not an unsupported claim that every legacy interaction has been reproduced."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A successful narrow refactor does not certify unrelated automation that your behavior map did not cover."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Extract the reminder decision",
+    "brief": "Design a small refactor that separates status-transition decisions from reminder persistence.",
+    "steps": [
+      "Map the legacy handler's reads, writes, and possible repeated entry paths.",
+      "Turn the five cases into explicit expected actions and unresolved business questions.",
+      "Extract or sketch a pure decision function with no DML.",
+      "Write assertions for a mixed collection and an unchanged status.",
+      "Prepare a small diff plan and a separate follow-up for the approved cancellation behavior."
+    ],
+    "acceptance": [
+      "Existing behavior and intended corrected behavior are labelled separately.",
+      "The first change has one responsibility and a clear comparison path.",
+      "Tests check side-effect counts and bulk behavior, not only line coverage."
+    ],
+    "stretch": "Explain how to migrate the class API version separately while testing restricted-user behavior."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does a characterization test prove the old behavior is desirable?",
+      "answer": "No. It records observed behavior for comparison; the business may decide that behavior is a defect."
+    },
+    {
+      "question": "Why extract a pure decision function first?",
+      "answer": "It creates a small testable seam and reduces dependence on database setup while preserving the persistence boundary."
+    },
+    {
+      "question": "Why separate API-version migration from refactoring?",
+      "answer": "Versioned defaults can change security behavior, making a combined change harder to diagnose and review."
+    }
+  ],
+  "recap": [
+    "Map behavior before redesigning structure.",
+    "Extract one useful seam.",
+    "Separate intended behavior changes from structural cleanup."
+  ],
+  "sources": [
+    {
+      "title": "Record-triggered automation design",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered-automation"
+    },
+    {
+      "title": "Apex testing introduction",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro"
+    },
+    {
+      "title": "Versioned Apex behavior",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html"
+    }
+  ],
+  "illustration": {
+    "subject": "an older code structure receiving one small supported replacement piece",
+    "alt": "An older code structure receiving one small supported replacement piece",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Legacy Code Changes. Subject: an older code structure receiving one small supported replacement piece."
+  }
+}

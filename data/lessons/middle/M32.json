@@ -1,0 +1,136 @@
+{
+  "id": "M32",
+  "track": "middle",
+  "title": "Agentforce tasks, actions, and evidence",
+  "minutes": 50,
+  "summary": "Build a clear mental model of an employee agent and verify one bounded read-only action before considering actions that change CRM data.",
+  "prerequisites": [
+    "M01 security layers and M30 evidence.",
+    "The core vehicle model; no AI product entitlement is required for the simulation."
+  ],
+  "learningObjectives": [
+    "Distinguish conversation, subagent routing, and deterministic action behavior.",
+    "Define a narrow read-only action contract.",
+    "Test unknown input, denied access, and misleading success."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Northstar's salesperson already has a business task: find useful test-drive information for Irina. An employee agent offers a conversational way to reach a permitted operation. It should not replace the underlying data model or invent missing availability. Explain the task and its evidence first: the salesperson asks about a model, an action reads or calculates a bounded result, and the answer accurately describes that result.",
+        "In the current Agentforce Builder, subagents organize task-specific behavior and the Router selects an appropriate area. Actions perform concrete operations through supported mechanisms such as Flow or an invocable Apex method. Instructions help select and describe actions, while code, permissions, and data constraints enforce the actual operation. A well-written prompt is not a substitute for authorized database access.",
+        "Employee agents operate in the logged-in user's context, but custom Apex and Flow still need security review because their configured execution can be privileged. Verify object, field, record, and action access. Returning a record ID from a conversation does not prove that the user is authorized to use it in a later write. The action must validate its own inputs and intended scope.",
+        "The mandatory clinic uses a provided response simulation and test matrix. The optional live path uses the standalone starter/agentforce SAMDemoSlotCatalog action and a suitable Employee Agent org. It reads Vehicle__c and returns explicitly artificial tomorrow slots. This is a controlled demonstration, not a real dealer calendar, production agent, or Automotive Cloud entitlement."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Evaluate the action and its evidence, not the confidence of the generated sentence."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use three controlled results: City EV returns OK and two demo times; Tourer Hybrid returns UNAVAILABLE; an unknown model returns NOT_FOUND. A missing model requires clarification. If two visible vehicles share the exact model, the provided action returns AMBIGUOUS rather than choosing the first. The agent should explain these outcomes without making up a booking.",
+        "Test ten cases: clear request, paraphrased request, missing model, unknown model, unavailable model, ambiguous model, denied field access, denied record access, unrelated request, and a request to ignore restrictions. For each, state the expected action or clarification and whether any data should change. The read-only clinic should create no Test Drive or Case records."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What observable evidence distinguishes a generated answer from a successful authorized action?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Mandatory simulation needs only the listed fixture outcomes. Optional live path: obtain the official special Agentforce Employee Developer Edition, deploy starter/salesforce and starter/agentforce, grant minimal Apex/data access, and verify the action's tests first."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Write the action contract",
+          "instruction": "Document model input, result codes, minimal outputs, mock limitation, and the fact that no data is written. Map each of the ten test cases to an expected result.",
+          "expected": "The agent has a bounded, reviewable responsibility."
+        },
+        {
+          "title": "Optional current Builder setup",
+          "instruction": "Open Agentforce Studio → New Agent → Employee Agent. Create a test-drive information subagent and add the deployed Apex invocable action. Require the model input and keep action outputs clearly labeled as demo data.",
+          "expected": "The configured action matches the tested Apex contract."
+        },
+        {
+          "title": "Run and inspect",
+          "instruction": "Analyze the simulation or use Preview in the entitled org. Inspect selected action, inputs, outputs, and actual record counts. Mark which mode was used.",
+          "expected": "A fluent answer cannot conceal an unauthorized or missing result."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "An action failure must not be rewritten as 'no warranty' or 'no availability' unless that is the actual business result. Unknown and denied access are not successful negative answers.",
+        "Adding a write action later introduces a new risk boundary. It needs explicit confirmation, backend validation, duplicate protection, and new tests; the read-only clinic does not prove those properties."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A portal simulation does not validate live Agentforce licensing, permissions, model behavior, or Salesforce writes."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Evaluate a bounded employee agent",
+    "brief": "Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action.",
+    "steps": [
+      "Define expected behavior.",
+      "Run or analyze all ten cases.",
+      "Record actions and evidence, not only final prose."
+    ],
+    "acceptance": [
+      "No artificial slot is described as real calendar availability.",
+      "Unknown and denied inputs are handled explicitly.",
+      "Simulation and live results are distinguished."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What does an action add beyond instructions?",
+      "answer": "A concrete executable operation with defined inputs, outputs, and implementation constraints."
+    },
+    {
+      "question": "Why still review custom action security?",
+      "answer": "Apex or Flow can have privileged behavior that needs explicit control even inside an employee-agent scenario."
+    },
+    {
+      "question": "Does a successful conversation prove production readiness?",
+      "answer": "No. It does not establish broader security, reliability, licensing, volume, or integration behavior."
+    }
+  ],
+  "recap": [
+    "Start from the business task.",
+    "Bound and test the action.",
+    "Treat generated language as a presentation of verified results."
+  ],
+  "sources": [
+    {
+      "title": "Current Employee Agent Builder",
+      "url": "https://developer.salesforce.com/workshops/agentforce-new-workshop/employee-agents/1-get-started"
+    },
+    {
+      "title": "Agent trust and custom action boundaries",
+      "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/agentic-enterprise-trust.html"
+    },
+    {
+      "title": "Official Employee Agent training org",
+      "url": "https://trailhead.salesforce.com/content/learn/projects/quick-start-create-employee-agents-in-agentforce/enable-agentforce-and-review-default-topics-and-actions"
+    }
+  ],
+  "illustration": {
+    "subject": "a restrained agent symbol choosing one permitted action from three clear tool cards",
+    "alt": "A restrained agent symbol choosing one permitted action from three clear tool cards",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Agentforce Basics. Subject: a restrained agent symbol choosing one permitted action from three clear tool cards."
+  }
+}

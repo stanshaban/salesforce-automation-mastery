@@ -1,46 +1,59 @@
 # Salesforce Automation Mastery
 
-SAM — мастерская Salesforce для разработчиков: Junior, Middle и Senior. Здесь собраны проекты, самопроверка с вариантами вопросов, настройка рабочего места и отправка решений преподавателю.
+SAM is an English-language Salesforce developer workshop with 98 complete lessons: Junior (28), Middle (34), Senior (25), and Job Research (11), plus a separate ten-chapter Agentforce project. Lessons include explanations, worked examples, practical tasks, answered self-checks, and an individual generated illustration. The portal also provides 90 quiz families with 30 semantic variants, workspace setup, and assignment submissions for instructor review.
 
-[Открыть портал](https://sam-portal-production.up.railway.app) · [Проверить доступность сервера](https://sam-portal-production.up.railway.app/api/health) · [Репозиторий](https://github.com/stanshaban/salesforce-automation-mastery)
+[Open the portal](https://sam-portal-production.up.railway.app) · [Server health](https://sam-portal-production.up.railway.app/api/health) · [Repository](https://github.com/stanshaban/salesforce-automation-mastery)
 
-Ссылка на окружение не заменяет проверку релиза: после каждого deployment проверь вход, загрузку и чтение работы по инструкции в [operations](docs/operations.md).
+The environment URL is not release verification. After each deployment, check login, uploads, and submission access using the [operations guide](docs/operations.md).
 
-## Участнику
+## For learners
 
-1. Открой портал и выбери свой уровень. Материалы и самопроверка доступны гостю; гостевой прогресс хранится в его браузере.
-2. Пройди настройку VS Code и Salesforce CLI. Для заданий используй собственную учебную Salesforce org.
-3. Для личного кабинета получи у преподавателя одноразовое приглашение. Введи email и имя в Skool. Пароль участнику не нужен.
-4. Прикрепи решение и подпиши файлы. Можно добавить ссылку на PR в своей GitHub-репозитории. Работа, комментарий преподавателя и новые версии остаются в кабинете.
+1. Open the portal and choose your track. Learning materials and self-checks are available to guests; guest progress stays in that browser.
+2. Complete the browser foundations, then the VS Code and Salesforce CLI setup when the lessons introduce development tools. Use your own training Salesforce org.
+3. Ask the instructor for a single-use invitation to create your learner account. Enter your email and Skool username. Learners do not need a password.
+4. Upload your solution and label the files. You can also attach a pull-request URL from your own GitHub repository. Submissions, instructor feedback, and later versions remain in your account.
 
-Подробности: [отправка работ](docs/submissions.md), [критерии проверки](docs/reviewer-guide.md), [Salesforce DX starter](starter/salesforce/README.md).
+Read the [submission guide](docs/submissions.md), [review criteria](docs/reviewer-guide.md), and [Salesforce DX starter guide](starter/salesforce/README.md).
 
-Email сохраняется без подтверждения адреса. Согласие на уведомления добровольное, по умолчанию выключено и меняется в профиле. Отправка писем не подключена. Вход через приглашение не проверяет подписку в Skool автоматически; приглашения выдаёт преподаватель.
+Email addresses are stored without address verification. Notification consent is optional, off by default, and changeable in the profile. Email delivery is not connected. Invitations do not automatically verify Skool membership or payment; the instructor issues them.
 
-## Локальный запуск
+## Course content and publishing
 
-Нужен **Node.js 24**. Сервер использует встроенный SQLite, Express и Multer. Отдельная база данных и почтовый сервис не нужны.
+Read the complete lessons in the portal. Each lesson and learning path has a downloadable text export. The [illustration library](https://sam-portal-production.up.railway.app/illustrations.html) shows all lesson covers. See the [Skool publishing guide](docs/skool-publishing-guide.md) for quote-style callouts and manual transfer of text and images.
+
+The canonical lesson files live in `data/lessons/`. After editing lessons or course metadata, regenerate the public curriculum and text exports:
+
+```sh
+npm run build:content
+npm run check
+```
+
+The repository includes 99 lesson covers and four course covers. Exact generation prompts are recorded in `docs/image-prompts/`. These are illustrations, not screenshots or measured architecture diagrams.
+
+## Run locally
+
+Use **Node.js 24**. The server uses built-in SQLite, Express, and Multer. It needs neither a separate database server nor an email provider.
 
 ```sh
 npm ci
 cp .env.example .env
 ```
 
-В `.env` задай `ADMIN_EMAIL`, случайный `ADMIN_PASSWORD` длиной не меньше 16 символов и отдельный `SESSION_SECRET` длиной не меньше 32 символов. Оставь `NODE_ENV=development`, `APP_URL=http://localhost:3000` и `DATA_DIR=./.runtime` для локальной работы. Для каждого секрета можно отдельно выполнить:
+In `.env`, set `ADMIN_EMAIL`, a random `ADMIN_PASSWORD` of at least 16 characters, and a separate `SESSION_SECRET` of at least 32 characters. For local work, keep `NODE_ENV=development`, `APP_URL=http://localhost:3000`, and `DATA_DIR=./.runtime`. Generate each secret separately:
 
 ```sh
 node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"
 ```
 
-Затем:
+Start the application:
 
 ```sh
 node --env-file=.env server/index.mjs
 ```
 
-Открой `http://localhost:3000`. В разделе «Вход» войди преподавателем, создай приглашение и проверь его в отдельном профиле браузера. Не добавляй `.env`, базу, загруженные работы или ссылки-приглашения в Git.
+Open `http://localhost:3000`. On the login page, sign in as the instructor, create an invitation, and test it in a separate browser profile. Never commit `.env`, the database, uploaded work, or invitation URLs.
 
-## Проверки
+## Checks
 
 ```sh
 npm test
@@ -48,17 +61,17 @@ npm run check
 node scripts/check-submission.mjs --root .
 ```
 
-HTTP-тесты проверяют вход, одноразовые ссылки, разграничение доступа, прогресс, загрузки, review и сохранность данных после перезапуска. Проверка учебного проекта читает структуру файлов. Она не запускает Apex и не подтверждает безопасность Salesforce-конфигурации: для этого нужны тесты в учебной org и review.
+HTTP tests cover authentication, single-use invitations, access isolation, progress, uploads, reviews, and persistence after restart. The learner-project checker reads file structure. It does not execute Apex or establish Salesforce configuration security; those require training-org tests and review.
 
-## Структура
+## Repository layout
 
-| Каталог | Назначение |
+| Directory | Purpose |
 | --- | --- |
-| `public/` | Интерфейс портала |
-| `data/` | Публичные учебные материалы и вопросы |
-| `server/` | Вход, приглашения, SQLite, загрузки и проверка работ |
-| `starter/` | Учебные Salesforce-проекты |
-| `docs/` | Отправка, review и эксплуатация |
-| `test/` | Проверки сервера и тренажёра |
+| `public/` | Portal interface |
+| `data/` | Public lessons, course metadata, and questions |
+| `server/` | Authentication, invitations, SQLite, uploads, and reviews |
+| `starter/` | Salesforce learning projects |
+| `docs/` | Submission, review, recording, and operating guides |
+| `test/` | Server and quiz checks |
 
-Публичная репозитория содержит учебные формулировки и ссылки на источники, а не личные записи собеседований или работы участников. Лицензия на распространение материалов пока не выбрана; файл `LICENSE` автоматически не добавлялся.
+The public repository contains educational scenarios and source references, not private interview notes or learner submissions. A redistribution license has not been selected; no `LICENSE` file has been added automatically.

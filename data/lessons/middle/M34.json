@@ -1,0 +1,141 @@
+{
+  "id": "M34",
+  "track": "middle",
+  "title": "Middle project review and technical defense",
+  "minutes": 50,
+  "summary": "Demonstrate a coherent Northstar feature, defend its design with evidence, and repair one unfamiliar failure without relying on optional product licenses.",
+  "prerequisites": [
+    "M01–M30 core concepts and completed integrated feature.",
+    "M31–M33 clinic analyses or separately labeled optional live labs."
+  ],
+  "learningObjectives": [
+    "Present the business result and architecture clearly.",
+    "Use evidence to explain security, retries, failures, and release readiness.",
+    "Diagnose and repair one new defect."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "The Middle project combines skills into a feature that another developer can understand and operate. Northstar's salesperson submits a warranty or service-related request for a known vehicle, receives an honest accepted state, and later sees a result or actionable failure. The feature includes access control, durable identity, bounded background work, controlled provider responses, and a user interface that reflects persisted state.",
+        "A defense is not a recital of every Salesforce term. Begin with the business problem, actors, data, and success criteria. Anna and Max are salespeople, Oleg supervises work, and Irina is a customer Contact. Explain which user performs each operation and which components or transactions are responsible. The listener should understand the process before seeing a class diagram.",
+        "Evidence must match the submitted version. A passing test from an earlier branch does not validate a later change. Include source, metadata dependencies, real test results, controlled failure observations, and the deployment/recovery plan. Label the provider as mocked when it is mocked. Identify unavailable restricted-user, live integration, or product checks instead of hiding them behind a general 'tested' claim.",
+        "The product clinics broaden judgment but are not mandatory product deployments. A correct Omni-Channel routing simulation, a bounded Agentforce action analysis, and an Automotive model comparison satisfy the required awareness path. A learner should not need three separate paid entitlements to demonstrate competent core development. An optional live clinic can enrich the project without compensating for broken core access or duplicate handling."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Defend decisions with the requirement, the implementation boundary, and the evidence that supports it."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use a five-minute demonstration: Anna submits a request, the UI shows accepted work, the explicitly labelled local demo adapter supplies a result, and the final record is visible. Repeat the same key and show one business request. Trigger a controlled failure and show its safe operator recovery. Finally, attempt an unauthorized operation as a restricted user or clearly identify that check as outstanding.",
+        "For the repair exercise, the reviewer introduces one new condition: a 200 response lacks covered, a refresh fails after a successful write, a repeated key changes vehicle, or a request stays Processing after a job failure. Investigate from the correlation key and boundary evidence. Explain the hypothesis before changing code, then verify the smallest responsible correction and relevant regression tests."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can another developer reproduce your result using only the repository and submission instructions?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Submit the implemented core feature, not every optional experiment in one deployment. List the custom objects and fields introduced by the lessons you used, their permissions, active Flow versions, and required configuration.",
+        "HttpCalloutMock and Test.setMock operate in Apex test context; they do not intercept an ordinary browser-triggered callout. Separate three kinds of evidence: Apex tests with controlled HTTP mocks; LWC Jest tests with controlled Apex responses; and a real training-org UI run using M12’s explicitly labelled local deterministic demo adapter. For that last path, select the demo adapter through controlled training configuration, never from an untrusted browser flag; do not send the .invalid endpoint. A real end-to-end HTTP run needs a separately owned test endpoint and credential setup. Do not combine these observations into a claim that the test mock ran behind the live screen."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Prepare the review package",
+          "instruction": "Create a focused PR or portal file submission with a README, dependency list, setup/deploy order, scenario matrix, and known limitations. Remove credentials and real customer data.",
+          "expected": "The reviewer has a reproducible starting point."
+        },
+        {
+          "title": "Demonstrate and defend",
+          "instruction": "Show success, repeat, failure, and access behavior. Explain one alternative architecture and why your chosen design fits the current workload and team.",
+          "expected": "Tradeoffs are connected to requirements rather than personal preference."
+        },
+        {
+          "title": "Repair the unfamiliar condition",
+          "instruction": "Trace the defect to a boundary, implement a focused correction, run the affected checks, and explain any remaining uncertainty.",
+          "expected": "The repair improves the intended behavior without hiding another failure."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A polished demo can conceal missing metadata, administrator-only access, or a mocked success that never persisted. The reviewer should inspect records and configuration as well as the screen.",
+        "Adding more products or architectural layers does not improve a project whose basic operation identity and recovery rules are unclear. Keep the defense centered on a coherent feature."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not claim production readiness, live provider compatibility, or tested product entitlements that the evidence does not establish."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit and defend the Northstar feature",
+    "brief": "Deliver the integrated project and complete a short review plus one repair exercise.",
+    "steps": [
+      "Prepare reproducible evidence.",
+      "Demonstrate the four core outcomes.",
+      "Explain and fix one unfamiliar failure."
+    ],
+    "acceptance": [
+      "Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence.",
+      "The release plan declares dependencies and actual checks.",
+      "Required clinic analyses are complete without mandatory live product licenses."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Which risks should be handed to the next developer?",
+      "answer": "The most material unverified boundaries, known recovery limitations, and capacity or security assumptions, each with a proposed next check."
+    },
+    {
+      "question": "Why must evidence match a commit or version?",
+      "answer": "Otherwise the reported result may describe different behavior from the submitted implementation."
+    },
+    {
+      "question": "What makes a repair convincing?",
+      "answer": "A clear cause, a focused change, a demonstrated corrected outcome, and checks that protect neighboring behavior."
+    }
+  ],
+  "recap": [
+    "Present the business result first.",
+    "Defend boundaries with evidence.",
+    "Repair carefully and state limits."
+  ],
+  "sources": [
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Reviewing changes through PRs",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request"
+    },
+    {
+      "title": "Asynchronous processing",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    },
+    {
+      "title": "HTTP mock behavior in test context",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-restful-http-testing-httpcalloutmock.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a service application connecting a vehicle, a warranty response and a background job",
+    "alt": "A service application connecting a vehicle, a warranty response and a background job",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Middle Project. Subject: a service application connecting a vehicle, a warranty response and a background job."
+  }
+}

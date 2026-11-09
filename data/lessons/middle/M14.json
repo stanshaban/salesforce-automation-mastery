@@ -1,0 +1,132 @@
+{
+  "id": "M14",
+  "track": "middle",
+  "title": "Scheduling, workload limits, and monitoring",
+  "minutes": 50,
+  "summary": "Run periodic work with a deliberate overlap policy, time-zone definition, and observable completion.",
+  "prerequisites": [
+    "M11–M13 async jobs and Batch.",
+    "Apex tests and persisted status."
+  ],
+  "learningObjectives": [
+    "Explain what the scheduler does and does not guarantee.",
+    "Prevent or detect overlapping runs.",
+    "Define operational evidence and recovery."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A schedule decides when work should be requested. It does not guarantee that a long job finishes before the next scheduled occurrence, and it does not remove transaction or org limits. Northstar's nightly cancellation process therefore needs both a calendar rule and an execution policy. 'Run every night' is incomplete without a time zone, cutoff definition, and response to a missed or still-running job.",
+        "Scheduled Apex implements Schedulable; its execute method typically starts a bounded service or Batch. A scheduled Flow can be appropriate for declarative recurring processing. Choose from the required selection, volume, maintenance, and error behavior rather than assuming the scheduling mechanism performs the entire workload. Review the execution context and access of the work it launches.",
+        "Overlap occurs when a new run starts while a prior run is active. Checking Apex Jobs and then starting work is helpful observation, but a check alone can race with another launcher. A stronger design uses a durable coordination record or unique run identity with an authorized atomic claim and an expiry/recovery policy. Do not invent a never-expiring lock that blocks processing forever after a failure.",
+        "Monitoring should describe business progress, not only platform status. Oleg needs to know the selected date window, processed count, failures, oldest pending request, and whether another run was skipped. Set an expected operating window and a human response. A run that completes with 30 failed rows is different from a run that never started, and each needs a different recovery action."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A recurring schedule needs a policy for overlap, missed execution, and failed work."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Northstar processes appointments before midnight in its agreed business time zone. The 01:00 run selects that fixed cutoff and normally takes ten minutes. On a busy day it is still active when an operator requests a manual rerun. Choose either to reject the duplicate launch with an observable reason or to resume a defined unprocessed partition. Do not let both workers silently process the same set.",
+        "Create Processing_Run__c only if implementing durable coordination: Auto Number Name, Run_Key__c Text(80) Unique External ID, Status__c Picklist Running/Succeeded/Failed, Started_At__c and Finished_At__c DateTime, and Summary__c Text(255). Use a key such as 'cancel:2030-04-10'. These are new fields. A failed run requires an authorized recovery transition, not deletion of evidence."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What happens if yesterday's run is still marked Running after its worker failed?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use a dedicated training schedule and remove it when the experiment ends. Document the scheduling user's time zone and the business cutoff; do not infer both from the laptop clock."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Define the operational contract",
+          "instruction": "Write schedule time, time zone, selection cutoff, expected duration, overlap response, and missed-run recovery.",
+          "expected": "Another developer can predict the intended date window."
+        },
+        {
+          "title": "Build a bounded launcher",
+          "instruction": "Implement a small Schedulable or scheduled Flow that invokes the chosen bounded workload. Add an explicit coordination policy if duplicate launches are possible.",
+          "expected": "The launcher does not perform an uncontrolled scan itself."
+        },
+        {
+          "title": "Observe and clean up",
+          "instruction": "Test the launcher locally, observe one training run, force the overlap scenario, and inspect both platform and business status. Remove the recurring schedule afterward.",
+          "expected": "No unattended training job remains active."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Scheduling work separately for every record can consume scarce scheduling capacity and complicate operations. Prefer a deliberate recurring selection when that matches the requirement.",
+        "A permanent Running flag without expiry, ownership, or reconciliation can block work after a crash. Conversely, clearing it automatically without checking the worker can permit overlapping activity."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not treat a scheduler's configured time as proof that business processing completed at that time."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Operate a nightly job",
+    "brief": "Add a schedule and a documented monitoring and recovery procedure to M13.",
+    "steps": [
+      "Specify time and cutoff.",
+      "Demonstrate overlap handling.",
+      "Capture one run and clean up the schedule."
+    ],
+    "acceptance": [
+      "Time-zone assumptions are explicit.",
+      "Overlap and abandoned-run behavior are defined.",
+      "The report distinguishes scheduling, execution, and business completion."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can a nightly job overlap?",
+      "answer": "Its previous execution or a manual run can still be active when another launch is requested."
+    },
+    {
+      "question": "Why is a check-then-start query insufficient alone?",
+      "answer": "Two launchers can both observe no active work before either starts it."
+    },
+    {
+      "question": "What should a run summary contain?",
+      "answer": "Its business window, processed and failed results, timing, and enough identity to investigate or recover."
+    }
+  ],
+  "recap": [
+    "Separate schedule from workload.",
+    "Coordinate duplicate launches.",
+    "Monitor business outcomes."
+  ],
+  "sources": [
+    {
+      "title": "Apex scheduler",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-scheduler.html"
+    },
+    {
+      "title": "Async decision guide",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    }
+  ],
+  "illustration": {
+    "subject": "a clean clock connected to a background job and a small status monitor",
+    "alt": "A clean clock connected to a background job and a small status monitor",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Scheduling and Monitoring. Subject: a clean clock connected to a background job and a small status monitor."
+  }
+}

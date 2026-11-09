@@ -1,0 +1,129 @@
+{
+  "id": "J17",
+  "track": "junior",
+  "title": "Create a Record-Triggered Flow with a Clear Failure Path",
+  "minutes": 50,
+  "summary": "Create one follow-up Task for a new appointment request, avoid update duplicates, and make a failed reminder visible.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Specify a Flow event and action.",
+    "Include prerequisites and explicit field mapping.",
+    "Verify duplicate avoidance and a visible failure outcome."
+  ],
+  "sections": [
+    {
+      "heading": "Define the event and the business action",
+      "body": [
+        "A Flow is a configured sequence of operations. A record-triggered Flow starts when an eligible record is created, updated, or deleted, according to its configuration. Our requirement is deliberately small: when a new Requested Test Drive with a scheduled time is created, create one Task for its owner to follow up. A Task is a Salesforce work item. Creating it is not the same as sending an email or displaying a timed desktop reminder.",
+        "Choose an after-save record-triggered Flow because it creates a separate related record. A before-save flow is useful for certain changes to the triggering record itself, but that is not this action. Limiting the trigger to record creation prevents an ordinary later edit from creating another Task. This is a specific duplicate-prevention design, not a universal guarantee against duplicate source appointments."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Describe the event, qualifying condition, action, and failure outcome before adding elements."
+        }
+      ]
+    },
+    {
+      "heading": "Prepare the actual starter requirements",
+      "body": [
+        "The core Test Drive object currently has activities disabled. Enable Allow Activities on this custom object in the learning org before using its ID as Task.WhatId, and include that metadata change in your submission. Task.WhatId identifies the related business record. Without the prerequisite, a seemingly correct Create Records element can fail.",
+        "Use a user-owned synthetic appointment. Configure Task.Subject as 'SAM reminder: ' followed by the appointment number, OwnerId as the appointment OwnerId, WhatId as the appointment Id, and ActivityDate as the date derived from Scheduled_At__c. Select valid Task Status and Priority values available in your org; do not assume a translated label is a valid API value.",
+        "Record-triggered automation can execute with elevated context. Its Task creation is not proof that the salesperson independently has all the corresponding Task permissions. Review who can create the source appointment and whether this automated action is an intended consequence. Do not use automation as an unexplained way to bypass an access requirement."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "The starter does not enable activities. Configure and retrieve that explicit prerequisite before relating Tasks to Test Drive records."
+        }
+      ]
+    },
+    {
+      "heading": "Connect success and failure deliberately",
+      "body": [
+        "Create the Flow for Test_Drive__c, triggered when a record is created. Require Status__c equal Requested and Scheduled_At__c not blank. Optimize for Actions and Related Records. Add a Create Records element for the Task with the fields described above.",
+        "Connect the create element's fault path to a Custom Error element supported by the record-triggered Flow. Use a business-readable message such as 'The appointment could not be saved because its follow-up task failed. Contact the learning administrator.' This design rejects the source save rather than silently leaving an appointment without its required Task. Do not expose a raw fault message containing internal details to an ordinary user.",
+        "Test the normal route with a future appointment. Confirm one Task exists, then edit an unrelated appointment value and confirm the Task count remains one. To test failure in the isolated learning org, temporarily use a narrowly targeted Task validation rule that rejects new Subjects beginning with SAM reminder. Confirm that the source appointment save is rejected and no completed reminder is left behind. Disable that test-only rule afterward and rerun the valid case.",
+        "Flow Debug is helpful, but activation and an actual record save are separate checks. Document which version is active and which execution you observed. A debug run configured to roll back does not prove that a persistent appointment or Task was created."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Compare both record counts and the message shown to the user. A visible path in Flow Builder is not execution evidence."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Configure the prerequisite",
+          "instruction": "Enable activities on Test Drive and record the metadata change.",
+          "expected": "Task.WhatId can reference the intended object."
+        },
+        {
+          "title": "Build the create-only path",
+          "instruction": "Set the trigger conditions and map the Task fields explicitly.",
+          "expected": "A new eligible appointment produces one follow-up Task."
+        },
+        {
+          "title": "Add the failure response",
+          "instruction": "Connect the fault path to a suitable Custom Error.",
+          "expected": "A required reminder failure blocks the save visibly."
+        },
+        {
+          "title": "Exercise both routes",
+          "instruction": "Test creation, a later edit, and the temporary controlled fault.",
+          "expected": "Counts and user-visible results match the written requirement."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit a predictable reminder Flow",
+    "brief": "Deliver the Flow, activity-setting change, and a three-case result table.",
+    "steps": [
+      "Demonstrate one Task after an eligible create.",
+      "Demonstrate no additional Task after an update.",
+      "Demonstrate the controlled failure and remove the temporary fault injection."
+    ],
+    "acceptance": [
+      "The activity prerequisite is included.",
+      "The submission distinguishes a Task from an email notification.",
+      "The active version and observed transaction outcome are stated."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why choose after-save here?",
+      "answer": "The action creates a separate Task related to the saved appointment."
+    },
+    {
+      "question": "Why does an edit not create another Task?",
+      "answer": "The Flow is configured for record creation only."
+    },
+    {
+      "question": "Does Task creation prove the user had direct Task creation permission?",
+      "answer": "No. The automation execution context must be considered separately."
+    }
+  ],
+  "recap": [
+    "Specify a Flow event and action.",
+    "Include prerequisites and explicit field mapping.",
+    "Verify duplicate avoidance and a visible failure outcome."
+  ],
+  "sources": [
+    {
+      "title": "Record-triggered Flow",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/record-triggered-flows/get-started-with-triggered-flows"
+    },
+    {
+      "title": "Rollback and custom errors",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/flow-implementation-2/roll-back-changes-after-an-error"
+    }
+  ],
+  "illustration": {
+    "subject": "three simple flow nodes transforming a saved appointment into a reminder card",
+    "alt": "Three simple flow nodes transforming a saved appointment into a reminder card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Record Triggered Flow. Subject: three simple flow nodes transforming a saved appointment into a reminder card."
+  }
+}

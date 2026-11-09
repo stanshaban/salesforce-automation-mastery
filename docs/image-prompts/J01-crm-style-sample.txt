@@ -1,0 +1,9 @@
+Use case: illustration-story
+Asset type: restrained landscape lesson-cover illustration for SAM Salesforce Developer Studio
+Primary request: explain visually why a small company keeps customer information in a shared CRM.
+Subject: two simply drawn colleagues at one shared work surface, with one central customer record card connecting a conversation symbol and a small calendar tile. The record has abstract lines only, no readable personal data. One small stylized car silhouette quietly anchors the fictional car-dealership example.
+Style: sophisticated editorial vector-like illustration rendered as a bitmap; flat geometric forms, fine navy linework, gentle rounded shapes, very subtle paper texture. People are clearly drawn abstract figures with simplified faces, never photographs or realistic portraits.
+Composition: wide 16:9, a single clear central scene, generous empty margins, no collage, no crowded dashboard, no tiny decorative objects.
+Palette: warm ivory background #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86, small sage accents.
+Mood: calm, professional, thoughtful, useful for adults learning software development.
+Text: none. No letters, numerals, titles, slogans, speech text, logos, watermarks, Salesforce mascots, emoji, gradients, glossy 3D or hyperrealistic people.

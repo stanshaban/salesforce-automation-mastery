@@ -1,0 +1,134 @@
+{
+  "id": "S10",
+  "track": "senior",
+  "title": "Design Record Access for a Dealer Network",
+  "minutes": 65,
+  "summary": "Model dealer isolation, central service access, and staff changes without copying the organization chart into an oversized role hierarchy.",
+  "prerequisites": [
+    "Understand object permissions, FLS, OWD, roles, groups, and sharing rules.",
+    "Know that Test_Drive__c has independent ownership through a lookup relationship."
+  ],
+  "learningObjectives": [
+    "Separate job capabilities from record visibility.",
+    "Compare access models using both daily work and organizational changes.",
+    "Define positive and negative access tests for realistic personas."
+  ],
+  "sections": [
+    {
+      "heading": "Start with people doing work",
+      "body": [
+        "Anna sells vehicles at Northstar East. Max works at Northstar West. Oleg manages both dealers, and a central service team handles appointments across selected branches. Irina is a fictional client represented by business data, not automatically a Salesforce user. These roles describe business responsibilities; they do not yet prescribe profiles, Salesforce roles, or licenses.",
+        "Object and field permissions define what a user can do with a kind of record and its fields. Record access determines which particular records are available. A permission set for booking work should not automatically imply visibility into every dealer. Conversely, a sharing rule that exposes an appointment does not supply missing object or field permissions."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Create two linked matrices: permitted operations by job, and visible records by business relationship."
+        }
+      ]
+    },
+    {
+      "heading": "Compare two plausible record models",
+      "body": [
+        "In one model, appointments are owned by individual salespeople, with a compact managerial role structure and dealer-specific sharing groups. In another, ownership is more centralized and access is assigned through explicit business groups. Neither is universally correct. Individual ownership supports some workflows naturally but makes staff turnover and transfers important. Central ownership can simplify one process while concentrating records and making sharing maintenance expensive.",
+        "Role hierarchy access normally opens records upward through the hierarchy; two peers do not automatically gain each other's records just because their job titles match. Custom objects can have relevant hierarchy settings, so record the actual configuration. Public groups collect users or supported membership types for access rules; their maintenance and nesting also need operational ownership.",
+        "The synthetic matrix below expresses the desired read access. An Edit column would need a separate requirement. It is deliberately incomplete about service exceptions so you must ask which branches and appointment states the central team needs. 'All service staff need everything' is a broad assumption, not a discovered requirement."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Review the model against a record owned by a peer, not only against records owned by the test user."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic target matrix for Test_Drive__c read access",
+          "code": "Anna / East appointment: allow\nAnna / West appointment: deny unless an approved exception exists\nMax / East appointment: deny unless an approved exception exists\nOleg / East and West appointments: allow\nCentral service / selected appointments: requirement still needs precise criteria\nIrina: no Salesforce login is implied by this matrix"
+        }
+      ]
+    },
+    {
+      "heading": "Design for changes, not only today's screenshot",
+      "body": [
+        "Test a transfer: Anna moves from East to West. Decide whether her historical East appointments remain visible, move to another owner, or follow a separate historical policy. Removing her from a group may not close access if she still owns the records or another sharing path remains. Changing role membership or ownership at scale can trigger expensive access recalculation.",
+        "Test opening a third dealer, replacing a manager, and adding a temporary service exception. Count the kinds of configuration changes required rather than promising a precise recalculation time. A model requiring hundreds of manual shares every week has a different support burden from a rule based on stable business criteria.",
+        "Manual sharing may suit a specific exception, but its lifecycle must be explicit. Current Salesforce includes a setting that can preserve manual shares during owner transfer. Do not rely on the old unconditional statement that every manual share disappears on transfer. For programmatic reasons, use the supported sharing mechanism for the object and API version."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Add a lifecycle column to each grant: why it exists, who owns it, and what event should remove it."
+        }
+      ]
+    },
+    {
+      "heading": "Validate a small matrix and review scale separately",
+      "body": [
+        "Use two or three internal test personas as licensing permits, or rotate permissions carefully in a training org while recording each configuration. Check both allowed and denied operations through the actual user-facing path. An administrator's successful query does not prove Anna's access is correct.",
+        "Your small matrix verifies intended access semantics. It does not benchmark a network-wide role reorganization. For scale, document likely high-impact changes, record ownership concentration, group maintenance, and a representative-environment validation plan. Keep a business-readable diagram beside the technical configuration so Oleg can verify that the rules match responsibility."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not resolve a failing negative test by granting View All or Modify All unless that broad access is actually the approved requirement."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Choose a Northstar access model",
+    "brief": "Compare individual appointment ownership with a centralized ownership alternative using the same business matrix.",
+    "steps": [
+      "Write CRUD/FLS requirements separately from record visibility for Anna, Max, Oleg, and central service.",
+      "Specify OWD, ownership, hierarchy behavior, groups, rules, and exception lifecycle for both alternatives.",
+      "Walk through Anna's branch transfer and a new dealer opening.",
+      "Prepare positive and negative checks for an East and a West appointment.",
+      "Recommend one model with a clear operating tradeoff and an unresolved scale question."
+    ],
+    "acceptance": [
+      "Peer access is not assumed from job title or role name.",
+      "Removing one grant is not automatically treated as removal of every access path.",
+      "The decision includes staff movement and exception cleanup as well as today's visibility."
+    ],
+    "stretch": "Add a temporary cross-dealer collaboration requirement without granting permanent global access."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why separate permissions from sharing?",
+      "answer": "They answer different questions: permitted operations and fields versus access to individual records. Both can be necessary for the same user action."
+    },
+    {
+      "question": "What makes staff transfer a useful test?",
+      "answer": "It exposes ownership, historic-access, group membership, and grant-removal assumptions that a static matrix can hide."
+    },
+    {
+      "question": "Why not reproduce every reporting line as a role?",
+      "answer": "A role design should support record access and manageable changes; the full organization chart may introduce unnecessary complexity and recalculation."
+    }
+  ],
+  "recap": [
+    "Model capabilities and record visibility separately.",
+    "Test lifecycle events and alternative access paths.",
+    "Validate semantics locally and scale behavior in an appropriate environment."
+  ],
+  "sources": [
+    {
+      "title": "Platform sharing architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture"
+    },
+    {
+      "title": "Manual shares and custom row causes",
+      "url": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects"
+    },
+    {
+      "title": "Ownership data skew",
+      "url": "https://developer.salesforce.com/docs/platform/draes/guide/draes-group-membership-data-skew.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a small network of dealership locations with deliberate grouped access boundaries",
+    "alt": "A small network of dealership locations with deliberate grouped access boundaries",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Sharing at Scale. Subject: a small network of dealership locations with deliberate grouped access boundaries."
+  }
+}

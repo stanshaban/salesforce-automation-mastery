@@ -1,0 +1,139 @@
+{
+  "id": "S23",
+  "track": "senior",
+  "title": "Compare Core Salesforce, Automotive Cloud, and a DMS",
+  "minutes": 65,
+  "summary": "Evaluate build, buy, and integration options against the same business requirements rather than choosing by product name or coding preference.",
+  "prerequisites": [
+    "Know the custom Vehicle__c and Test_Drive__c learning model.",
+    "Understand integration ownership and the operational cost of custom code."
+  ],
+  "learningObjectives": [
+    "Create a fit-gap comparison with explicit assumptions.",
+    "Distinguish the learning model from an industry product's data model.",
+    "Identify the proof and commercial questions needed before a recommendation."
+  ],
+  "sections": [
+    {
+      "heading": "The learning project is not an industry implementation",
+      "body": [
+        "The SAM starter uses custom Vehicle__c and Test_Drive__c objects to teach Salesforce development. Automotive Cloud has its own documented industry data model and capabilities. Creating a custom object with a similar name does not install that product or reproduce its behavior, entitlements, interfaces, or support model.",
+        "Current Salesforce material may use Agentforce Automotive branding while developer documentation still describes Automotive Cloud. Confirm the actual product, edition, features, and contractual scope under discussion. A name change is not evidence that every capability or license in an old article applies to a proposed purchase."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Compare the business capability you need, not the similarity between two object labels."
+        }
+      ]
+    },
+    {
+      "heading": "Define fit and gap in concrete terms",
+      "body": [
+        "A fit is a requirement an option can satisfy under the relevant configuration and constraints. A gap is something missing, uncertain, or requiring extension. Northstar needs vehicle and stakeholder relationships, test-drive coordination, selected workshop history, dealer access, and integration with an existing DMS. Each requirement needs a representative scenario and acceptance condition.",
+        "Core Salesforce customization may fit a narrow workflow and allow a small initial implementation. The organization also owns the long-term design, tests, upgrades, and support of those custom features. An industry product may supply useful domain structure and capabilities, but adoption can require data migration, configuration, licensing, and process change. Keeping a function in the DMS can preserve an established authoritative workflow while creating integration and user-experience responsibilities.",
+        "Do not mark a feature as a fit solely because a brochure names it. Ask what objects, relationships, actions, permissions, and operational constraints are involved. A short proof of concept should test the difficult part of the requirement, not only demonstrate a polished standard screen."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Every 'fit' claim should point to documentation, a demonstrated scenario, or a clearly labelled assumption."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic fit-gap rows",
+          "code": "R1: identify a vehicle and its changing customer relationships\nR2: let Anna request a test-drive with controlled dealer access\nR3: preserve the DMS as authority for workshop reservations\nR4: retrieve selected historical service information\nR5: support reporting and future dealer onboarding\nOptions: custom core model / Automotive Cloud extension / DMS-led workflow with Salesforce integration"
+        }
+      ]
+    },
+    {
+      "heading": "Compare total responsibility, not only initial coding",
+      "body": [
+        "Use the same comparison columns for all options: functional fit, access model, integration ownership, data migration, release process, operational support, product availability, and cost categories. Cost categories include licensing, implementation, ongoing administration, custom maintenance, data movement, and training. Do not invent current prices or use an unsupported total to make one option appear cheapest.",
+        "Migration deserves its own scenario. Mapping custom Vehicle__c records into an industry model can involve more than copying names and VIN values. Relationships, identifiers, historical ownership, downstream references, and reports may need redesign. Keep the source authoritative until a reviewed cutover proves the destination's correctness.",
+        "An option that requires less custom code can be technically stronger when it matches a stable business process and reduces maintenance. It can also be inappropriate if it adds complexity the organization cannot operate. The decision should expose the consequences rather than treating build and buy as opposing professional identities."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Write one reason each option could be the right choice before recommending one."
+        }
+      ]
+    },
+    {
+      "heading": "Design a narrow evaluation without assuming a license",
+      "body": [
+        "Use official data-model documentation to map a small fictional scenario: one vehicle, Irina's relationship to it, one appointment request, and a DMS reservation. Mark which parts are directly supported, need configuration, need code, or remain uncertain. If an appropriate trial or licensed environment is available, execute only the agreed proof scenario and record the environment.",
+        "An ordinary Trailhead Playground or Developer Edition does not automatically guarantee every industry feature. If you cannot access the required product, complete the fit-gap document and list the exact tests still needed. A diagram derived from documentation is useful evidence of analysis, but it is not a successful product implementation.",
+        "Your recommendation can be conditional: retain the learning model for the course, evaluate a specific industry capability for a real customer, and keep scheduling authority in the DMS until requirements justify a change. Separate the pedagogical choice from a procurement or production architecture decision."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A course's convenient custom schema should not become a default recommendation for every automotive organization."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Write a conditional product recommendation",
+    "brief": "Compare the three options for the five synthetic requirements and identify the next decision-changing proof.",
+    "steps": [
+      "Create a fit-gap table using the same columns and evidence standard for all options.",
+      "Map one fictional vehicle/customer/appointment scenario to the documented industry model without changing the starter.",
+      "List migration and integration implications for each option.",
+      "Name missing licensing, feature, pricing, and environment information rather than inventing it.",
+      "Recommend a narrow proof of concept and state which result would change your recommendation."
+    ],
+    "acceptance": [
+      "Vehicle__c is not described as the installed Automotive Cloud Vehicle model.",
+      "All options receive a fair comparison with operating consequences.",
+      "Unverified capabilities and commercial assumptions are clearly labelled."
+    ],
+    "stretch": "Explain when keeping workshop scheduling outside Salesforce is the strongest design choice."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What is a fit-gap analysis?",
+      "answer": "A structured comparison of requirements that an option satisfies, requires extending, cannot satisfy, or has not yet been verified to satisfy."
+    },
+    {
+      "question": "Why is less custom code not automatically better?",
+      "answer": "The chosen product still needs suitable capabilities, configuration, access, integration, operating skills, and justified cost."
+    },
+    {
+      "question": "What can documentation-only evaluation establish?",
+      "answer": "It can support a model and identify likely capabilities and questions, but it does not prove a licensed environment or an end-to-end implementation works."
+    }
+  ],
+  "recap": [
+    "Distinguish the teaching schema from the industry product.",
+    "Compare total responsibility under the same requirements.",
+    "Recommend the next useful proof, not an unsupported purchase decision."
+  ],
+  "sources": [
+    {
+      "title": "Automotive Cloud data-model overview",
+      "url": "https://developer.salesforce.com/docs/platform/data-models/guide/automotive-cloud-overview.html"
+    },
+    {
+      "title": "Automotive Cloud developer guide",
+      "url": "https://developer.salesforce.com/docs/industries/automotive-cloud/guide/dev-guide.html"
+    },
+    {
+      "title": "Current automotive product terminology",
+      "url": "https://www.salesforce.com/automotive/cloud/guide/"
+    },
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    }
+  ],
+  "illustration": {
+    "subject": "three calm product option blocks compared against one requirement card",
+    "alt": "Three calm product option blocks compared against one requirement card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Build or Buy Decisions. Subject: three calm product option blocks compared against one requirement card."
+  }
+}

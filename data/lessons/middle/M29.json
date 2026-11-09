@@ -1,0 +1,139 @@
+{
+  "id": "M29",
+  "track": "middle",
+  "title": "Pull requests, CI checks, and controlled deployment",
+  "minutes": 50,
+  "summary": "Prepare a reviewable change with truthful validation, metadata dependencies, explicit target environment, and recovery steps.",
+  "prerequisites": [
+    "M28 Git state and focused changes.",
+    "Setup guide deployment and M10/M24 tests."
+  ],
+  "learningObjectives": [
+    "Distinguish repository checks, org validation, deployment, and smoke testing.",
+    "Describe dependencies and permission changes.",
+    "Plan recovery beyond reverting source files."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A pull request is a review boundary: it presents a proposed change, its reason, and evidence that helps another person assess it. A useful description begins with a concrete trigger and resulting behavior. For Northstar, 'repeated warranty submissions now return the existing request' is more informative than a list of files or a claim that the integration was improved.",
+        "Continuous integration runs repeatable checks when code changes. Formatting, static analysis, local JavaScript tests, and metadata structure checks can run without a Salesforce org. Apex execution and deployment validation require an appropriate org and authentication. State which checks actually ran. A green repository workflow does not mean Apex passed if no org was connected.",
+        "A deployment plan includes the complete dependency set: custom fields, objects, permission sets, classes, Flow versions, configuration records, and any post-deploy activation or data preparation. Credentials require secure provisioning outside source code. Validate the selected package against the intended environment and make the target explicit; a default alias is not a sufficient safeguard against using the wrong org.",
+        "Review, validation, deployment, and smoke testing answer different questions. Review examines design and risks; validation checks deployability and selected tests; deployment changes the target; smoke testing verifies a small real user path afterward. The recovery plan must distinguish code rollback from data repair and external effects. Reverting a commit does not cancel a request already sent to another system."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Each green check proves a particular property; name that property and do not claim more."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Prepare a PR for the M18 duplicate-request correction. Include the unique key field if it is new, the service changes, tests, and any permission changes. Describe the before/after case: the same key delivered three times previously created repeated work; now it returns one existing request, while conflicting payload reuse is rejected.",
+        "Your release checklist should identify a target training org, expected validation command, required secret provisioning, activation order, and one restricted-user smoke test. If only local checks are available, mark org validation Not run rather than fabricating a passed result. This still creates a reviewable artifact and clearly identifies the remaining gate."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which evidence proves the restricted user can use the deployed feature, rather than merely that the metadata parsed?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Review evidence checklist, not an automatically executed pipeline",
+          "code": "Change: repeated WARRANTY-100 returns the existing request\nLocal checks: command + observed result\nApex tests: org alias + test names + observed result, or Not run\nDependencies: object/field/permission/Flow configuration\nDeploy target: explicitly named training org\nSmoke test: restricted user + repeat request + expected record count\nRecovery: source rollback, data repair, and external-effect handling"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use a PR inside your personal training repository or the approved submission workflow. Do not put Salesforce tokens in the PR, repository files, screenshots, or untrusted pull-request workflow environments."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Create a focused PR",
+          "instruction": "Inspect the complete diff and remove unrelated metadata. Write the problem, behavior, validation, dependencies, and limitations.",
+          "expected": "A reviewer can understand the change without reading the entire chat history."
+        },
+        {
+          "title": "Run appropriate checks",
+          "instruction": "Execute available local tests and, when an authorized training org is connected, the selected org validation/tests. Record commands, target, and actual outcome.",
+          "expected": "Every reported result is tied to a real execution."
+        },
+        {
+          "title": "Plan deployment and recovery",
+          "instruction": "Order schema, code, permissions, activation, and data preparation as needed. Define stop conditions and a post-deploy user smoke test.",
+          "expected": "The plan covers failure after deployment as well as before it."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A CI workflow that exposes deployment credentials to untrusted code can turn review into an unintended privileged operation. Keep validation identities and execution boundaries deliberate.",
+        "A successful deploy can still leave a Flow inactive or a user without a needed permission. These post-deploy conditions belong in the checklist and smoke test."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not equate a reverted Git commit with reversal of data migrations or external side effects."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Prepare a reviewable release",
+    "brief": "Create a focused PR and release checklist for one completed Middle feature.",
+    "steps": [
+      "Explain the before/after behavior.",
+      "Attach actual check results and dependencies.",
+      "Write deployment, smoke, and recovery steps."
+    ],
+    "acceptance": [
+      "No check is marked passed without evidence.",
+      "Target org and permissions are explicit.",
+      "Recovery includes data and external effects where relevant."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What does a local Jest pass prove?",
+      "answer": "The mocked component behavior covered by those tests, not live Apex or org permissions."
+    },
+    {
+      "question": "Why list metadata dependencies?",
+      "answer": "A class or Flow may work in the development org only because undeclared fields or configuration already exist there."
+    },
+    {
+      "question": "What may require forward repair?",
+      "answer": "Data changes or external actions that a source rollback cannot automatically undo."
+    }
+  ],
+  "recap": [
+    "Keep the PR focused.",
+    "State what was actually validated.",
+    "Plan the complete change lifecycle."
+  ],
+  "sources": [
+    {
+      "title": "Creating a pull request",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request"
+    },
+    {
+      "title": "Salesforce deployment command",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_project_deploy_start.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a reviewed code card passing through tests and validation toward a deployment box",
+    "alt": "A reviewed code card passing through tests and validation toward a deployment box",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Continuous Delivery. Subject: a reviewed code card passing through tests and validation toward a deployment box."
+  }
+}

@@ -1,46 +1,46 @@
-# Как сдать задачу SAM
+# Submit a SAM assignment
 
-Основной путь — карточка задания в портале. Ты прикладываешь файлы, отмечаешь, что проверил, и отправляешь работу в очередь преподавателя. GitHub PR — дополнительный удобный способ показать изменения построчно.
+Use the assignment card in the portal as the primary submission route. Attach your files, describe what you checked, and send the work to the instructor queue. A GitHub pull request is an optional way to show changes line by line.
 
-Самопроверка помогает найти пробел. Отправка работы запрашивает review; она не означает автоматический зачёт, покупку или гарантированный срок личной проверки.
+Self-checks help identify gaps. Submitting work requests a review; it does not automatically pass the assignment, buy a service, or guarantee a personal review deadline.
 
-## 1. Подготовь понятную сдачу
+## 1. Prepare a reviewable package
 
-Выбери один ID задания, например `J-L01`. В отдельную папку собери:
+Choose one assignment ID, such as `J-L01`. Collect the following in a separate folder:
 
-- Только metadata и код этого задания из учебной org.
-- Короткий README: требование, что изменено, как повторить, известное ограничение.
-- Таблицу критериев: что прошло, что не прошло и чем это подтверждается.
-- Результаты проверок, которые ты действительно запускал. Для Apex добавь имена тестов и их результат, для declarative-задачи — сценарии воспроизведения.
-- Краткое объяснение спорного решения и использования AI.
+- Only the assignment's metadata and code from your training org.
+- A short README: requirement, changes, reproduction steps, and known limitation.
+- Acceptance criteria with actual results and supporting evidence.
+- Results of checks you really ran. For Apex, include test names and outcomes; for declarative work, include reproducible scenarios.
+- A brief explanation of a significant design decision and any AI assistance.
 
-Используй только синтетические записи. Не включай `.sf`, `.sfdx`, `.git`, `node_modules`, `.env`, ключи, auth URL, токены, клиентские выгрузки и полные необработанные логи. Скриншот подтверждает наблюдение, но не заменяет исходники. Перед отправкой просмотри содержимое архива и diff.
+Use synthetic records only. Exclude `.sf`, `.sfdx`, `.git`, `node_modules`, `.env`, keys, authentication URLs, tokens, customer exports, and full unfiltered logs. A screenshot supports an observation but does not replace source files. Inspect the archive and diff before submission.
 
-В репозитории есть шаблон доказательств: `starter/submissions/TEMPLATE/submission.example.json`. Скопируй его в `starter/submissions/<ID>/submission.json`, замени примеры своими наблюдениями и запусти из корня:
+The evidence template is `starter/submissions/TEMPLATE/submission.example.json`. Copy it to `starter/submissions/<ID>/submission.json`, replace examples with your observations, and run from the repository root:
 
 ```sh
 node scripts/check-submission.mjs
 ```
 
-Он проверяет структуру и некоторые опасные файлы. Он **не** компилирует Apex, не запускает Salesforce-тесты и не доказывает правильность прав.
+This checks structure and some potentially unsafe files. It **does not** compile Apex, run Salesforce tests, or prove correct permissions.
 
-## 2. Отправь через портал
+## 2. Submit through the portal
 
-1. Открой карточку задания и нажми «Сдать работу».
-2. Войди способом, указанным на странице. Укажи своё имя в Skool, чтобы преподаватель мог сопоставить работу с участником.
-3. Прикрепи подготовленные файлы и короткое описание. При наличии добавь ссылку на PR в своём GitHub-репозитории.
-4. Проверь ID задания и список вложений. Нажми кнопку отправки только после проверки.
-5. Сохрани номер сдачи. После замечаний отправь новую версию, явно указав, что исправлено; не выдавай прежний результат теста за результат новой версии.
+1. Open the assignment card and choose **Submit work**.
+2. Sign in with the instructor-issued invitation. Enter your Skool username so the instructor can identify your membership.
+3. Attach the prepared files and a short description. Optionally add the PR URL from your own GitHub repository.
+4. Check the assignment ID, file labels, and attachment list before submitting.
+5. Keep the submission ID. After feedback, open that submission and send a new version describing the correction. Do not present an old test result as evidence for changed code.
 
-Ограничения формата и размера файла показаны в форме. Портал не должен просить пароль от Salesforce, GitHub token или доступ администратора к рабочей org. Персональная проверка и её объём согласуются с преподавателем отдельно от простой отправки файлов.
+A submission accepts up to 5 files, at most 10 MiB each and 25 MiB in total. The portal does not need your Salesforce password, GitHub token, or administrator access to a work org. Personal review and its scope are agreed separately from file submission. Email delivery is not connected.
 
-## 3. Альтернатива: разработческий путь через GitHub
+## 3. Optional GitHub workflow
 
-Используй его, если хочешь практиковать обычный PR-процесс и получать комментарии к конкретным строкам.
+Use this route to practice pull requests and receive comments on specific lines.
 
-1. Открой [шаблон SAM](https://github.com/stanshaban/salesforce-automation-mastery) → **Use this template → Create a new repository**. Создай свою репозиторий из default branch. Выбери public, если готов показать учебный код всем, либо private.
-2. Склонируй **свою** репозиторий. `origin` должен указывать на неё.
-3. Создай ветку задания от своего `main`:
+1. Open the [SAM template](https://github.com/stanshaban/salesforce-automation-mastery) and select **Use this template → Create a new repository**, using the default branch. Choose public only if you want everyone to see your learning code; private is also supported.
+2. Clone **your own** repository. Confirm that `origin` points to it.
+3. Create an assignment branch from your `main`:
 
 ```sh
 git switch main
@@ -48,8 +48,8 @@ git pull --ff-only
 git switch -c submission/J-L01
 ```
 
-4. Работай внутри `starter/salesforce`. Получай из org только нужные metadata. В VS Code Source Control просматривай diff перед commit.
-5. Добавляй конкретные пути, а не всё содержимое домашней папки:
+4. Work inside `starter/salesforce`. Retrieve only the metadata required for your change. Inspect the diff in VS Code Source Control before committing.
+5. Stage specific paths:
 
 ```sh
 git add starter/salesforce/force-app starter/submissions/J-L01
@@ -58,35 +58,35 @@ git commit -m "Complete J-L01 data model"
 git push -u origin submission/J-L01
 ```
 
-6. Создай PR **в своём репозитории**: `submission/J-L01` → `main`. Заполни шаблон PR. Не отправляй решение как PR в репозиторий учебного портала.
-7. Если твой репозиторий private, заранее предоставь согласованному преподавателю доступ. Одна ссылка не даёт доступа к private-коду. Не делай репозиторий публичной только ради сдачи, если не хочешь этого.
-8. Добавь PR URL в сдачу через портал. После последнего commit сохрани его идентификатор:
+6. Create a PR **inside your repository**, from `submission/J-L01` to `main`. Complete the PR template. Do not submit your solution as a PR to the course repository.
+7. For a private repository, give the agreed instructor access before review. A URL alone does not grant private-code access. You do not need to make the repository public to submit.
+8. Add the PR URL to your portal submission. Record the final commit identifier:
 
 ```sh
 git rev-parse HEAD
 ```
 
-9. Оставь PR открытым. Исправления добавляй новыми commit в ту же ветку. Обнови номер версии/commit в сообщении преподавателю. После review ты сам можешь объединить работу в свой `main`.
+9. Keep the PR open. Add corrections as new commits on the same branch, and identify the updated commit in your review notes. After review, you may merge the work into your own `main`.
 
-Шаблон создаёт независимый репозиторий. Поэтому PR идёт между ветками **твоего** репозитория. Курсовые исходники остаются отдельно, а решения студентов не смешиваются с ними.
+A template creates an independent repository. Your PR therefore connects branches in **your repository**, keeping learner solutions separate from course source.
 
-## Резервная очередь через Issues
+## Public Issues as a fallback
 
-Если портал временно недоступен, можно использовать [форму Submission](https://github.com/stanshaban/salesforce-automation-mastery/issues/new?template=submission.yml). Эта очередь **публичная**: только ID задания, PR URL, commit SHA и краткий нейтральный статус. Не указывай email, имя из Skool, содержимое private-кода, файлы или результаты с персональными данными.
+If the portal is unavailable, the [Submission issue form](https://github.com/stanshaban/salesforce-automation-mastery/issues/new?template=submission.yml) is a backup route. This queue is **public**. Include only the assignment ID, PR URL, commit SHA, and a short neutral status. Do not include email, Skool identity, private code, attachments, or evidence containing personal data.
 
-Для непубличной работы используй согласованный канал преподавателя, если даже факт ссылки на private-репозиторий нежелателен. Заполнение Issue — резервный вариант, а не обязательная часть портальной сдачи.
+Use the instructor's agreed private channel if even a link to a private repository should remain private. An issue is optional, not a required step in a portal submission.
 
-## Что означает зелёный GitHub check
+## What a green GitHub check means
 
-`Learner structure checks` читает metadata и manifest сдачи. Проверяющий скрипт берётся из base commit PR; предложенные файлы не выполняются. Job не использует Salesforce credentials, не подключается к org и не деплоит код.
+`Learner structure checks` reads metadata and the submission manifest. It uses the checker from the PR's base commit and does not execute proposed learner files. The job has no Salesforce credentials, connects to no org, and deploys no code.
 
-Зелёная проверка означает только, что статические проверки структуры прошли. Правильность, безопасность, bulk-поведение и качество решения проверяются по реальным тестам и review.
+A green result means that the limited structural checks passed. Correctness, access control, bulk behavior, and solution quality still need actual test evidence and review.
 
-## Источники
+## Sources
 
-- [GitHub: создать репозиторий из шаблона](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-- [GitHub: шаблоны pull request](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository).
-- [GitHub: безопасность Actions](https://docs.github.com/en/actions/reference/security/secure-use).
-- [Salesforce: структура DX-проекта](https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-ws-config.html).
+- [GitHub: create a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+- [GitHub: pull-request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository).
+- [GitHub: secure Actions use](https://docs.github.com/en/actions/reference/security/secure-use).
+- [Salesforce DX project configuration](https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-ws-config.html).
 
-Проверено 9 ноября 2026.
+Reviewed November 9, 2026.

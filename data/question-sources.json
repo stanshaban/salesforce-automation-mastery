@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "checkedAt": "2026-11-09",
-  "language": "ru",
-  "purpose": "Авторские вопросы для самопроверки. Темы обобщены из учебного интервью; персональные данные и стенограмма в банк не включены.",
+  "language": "en",
+  "purpose": "Original self-check questions based on generalized learning and interview themes. The bank contains no personal information or interview transcript.",
   "counts": {
     "base": 90,
     "variants": 30,
@@ -17,54 +17,54 @@
       "senior": 9
     }
   },
-  "reviewPolicy": "Перепроверять версии и доступность функций при каждом сезонном релизе. Источники обосновывают технические факты; сценарии и варианты ответов написаны для SAM.",
+  "reviewPolicy": "Recheck version behavior and feature availability with every seasonal release. Sources support the technical facts; SAM authored the scenarios and answer options. All 90 families and 30 semantic variants were reviewed for plausible technical distractors on 2026-11-09; incorrect options target real misconceptions and include specific feedback.",
   "versionCaveats": [
     {
       "topic": "Apex API 67.0",
-      "note": "С API 67.0 database operations по умолчанию user mode; ≤66.0 — system mode. Для класса без sharing keyword API67 default with sharing; до67 отсутствие keyword сохраняет текущий sharing context, а не универсально without sharing. WITH SECURITY_ENFORCED не поддерживается с67.0.",
+      "note": "At Apex API 67.0, database operations default to user mode; at 66.0 and earlier they default to system mode. A class without a sharing keyword defaults to with sharing at 67.0. Before 67.0, omitting the keyword preserves the current sharing context, rather than universally meaning without sharing. WITH SECURITY_ENFORCED is unsupported from 67.0.",
       "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html"
     },
     {
       "topic": "Explicit access mode",
-      "note": "WITH USER_MODE применяет sharing, CRUD/FLS, даже если класс without sharing. В system mode record sharing зависит от class keyword; system mode не следует автоматически приравнивать к without sharing.",
+      "note": "WITH USER_MODE applies sharing and CRUD/FLS even inside a without sharing class. In system mode, record sharing depends on the class keyword; system mode is not automatically equivalent to without sharing.",
       "sourceUrl": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-enforce-usermode.html"
     },
     {
-      "topic": "Manual shares и API68",
-      "note": "Сохранение Manual shares при transfer зависит от Keep Manual Shares when Transferring Records. Sharing reasons для поддерживаемых standard objects доступны с Metadata API68.0; на detail master-detail без share object это не распространяется.",
+      "topic": "Manual shares and API 68",
+      "note": "Preservation of Manual shares during an ownership transfer depends on Keep Manual Shares when Transferring Records. Sharing reasons for supported standard objects are available from Metadata API 68.0; this does not cover master-detail children without a share object.",
       "sourceUrl": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html",
       "additionalSourceUrl": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects"
     },
     {
       "topic": "Restriction rules",
-      "note": "Работают только для поддерживаемых объектов/контекстов. Сужают существующий доступ, не дают новый. Критерии надо проектировать так, чтобы пользователю соответствовала одна активная rule; две rules не означают гарантированный AND.",
+      "note": "Restriction rules apply only to supported objects and contexts. They narrow existing access rather than granting new access. Design user criteria so that one active rule applies to each user; two matching rules do not guarantee AND composition.",
       "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5"
     },
     {
       "topic": "Deferred sharing rules",
-      "note": "Требует доступности функции в org. После Resume обязателен полный Recalculate накопленных изменений. Пауза не останавливает все механизмы sharing, включая manual shares.",
+      "note": "The feature must be available in the org. After Resume, run a full Recalculate for accumulated changes. The pause does not stop every sharing mechanism, including manual shares.",
       "sourceUrl": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_rule_recalculation.htm&language=en_US&type=5"
     },
     {
       "topic": "Platform Events",
-      "note": "Стандартная retention PE/CDC —72часа; Replay ID непрозрачен и не служит универсальным уникальным ключом. Publish After Commit зависит от commit; Immediately может опередить commit или пережить rollback. Успешный SaveResult публикации не подтверждает обработку подписчиком.",
+      "note": "Standard Platform Event and CDC retention is 72 hours. Replay ID is opaque and is not a universally unique identifier. Publish After Commit depends on a successful commit; Publish Immediately can precede commit or survive rollback. A successful publication SaveResult does not confirm subscriber processing.",
       "sourceUrl": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html",
       "additionalSourceUrl": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-publish-callbacks.html"
     },
     {
       "topic": "LWC",
-      "note": "Не полагаться на фиксированный TTL Apex cache. refreshApex получает wire emission, notifyRecordUpdateAvailable обновляет знания LDS о записанных через Apex records. @track не наблюдает внутренние изменения Date/Set/Map.",
+      "note": "Do not assume a fixed Apex cache TTL. refreshApex takes the value emitted by the Apex wire; notifyRecordUpdateAvailable refreshes LDS knowledge of records changed through Apex. @track does not observe internal Date, Set, or Map mutations.",
       "sourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/apex-result-caching.html",
       "additionalSourceUrl": "https://developer.salesforce.com/docs/platform/lwc/guide/reactivity-fields.html"
     },
     {
       "topic": "Omni-Channel",
-      "note": "Standard Omni-Channel retired в Summer’26; актуальные практики сверять с Enhanced Omni-Channel.",
+      "note": "Standard Omni-Channel retired in Summer '26. Verify current labs against Enhanced Omni-Channel.",
       "sourceUrl": "https://help.salesforce.com/s/articleView?id=sf.omnichannel_std_vs_enhanced.htm&language=en_US&type=5"
     },
     {
       "topic": "Agentforce",
-      "note": "На дату проверки agent testing в документации доступно в sandboxes, тесты могут менять данные. Data360-запросы во время тестов могут потреблять credits.",
+      "note": "As of the review date, the referenced documentation supports agent testing in sandboxes and warns that tests can change data. Data 360 queries during tests can consume credits.",
       "sourceUrl": "https://developer.salesforce.com/docs/ai/agentforce/guide/testing-api-get-started.html"
     }
   ],
@@ -380,7 +380,7 @@
     },
     {
       "id": "mock",
-      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex_classes_restful_http_testing.html",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-restful-http-testing.html",
       "provider": "Salesforce",
       "checkedAt": "2026-11-09",
       "questionIds": [

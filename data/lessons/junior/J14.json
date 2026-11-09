@@ -1,0 +1,129 @@
+{
+  "id": "J14",
+  "track": "junior",
+  "title": "Share One Record and Test an Ownership Change",
+  "minutes": 50,
+  "summary": "Use manual sharing for a specific handover and verify transfer behaviour in the actual org configuration.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Use manual sharing for a bounded exception.",
+    "Separate ownership from additional access.",
+    "Test transfer behaviour against current settings."
+  ],
+  "sections": [
+    {
+      "heading": "Choose a specific exception",
+      "body": [
+        "Anna is absent tomorrow and asks Max to help with one appointment. If the need is temporary and specific, manual sharing may fit better than granting access to every sales record. Manual sharing allows an owner or another sufficiently authorized user to grant supported access to an individual record.",
+        "The share remains one part of the permission picture. Max still needs the required object and field permissions. Read Only sharing does not authorize editing, and Read/Write sharing does not replace object Edit when it is missing. Reuse the layered model from J11 rather than assuming a Share action bypasses the rest of the access design."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Repeated identical manual exceptions suggest a recurring process or rule that deserves a deliberate design."
+        }
+      ]
+    },
+    {
+      "heading": "Distinguish a share from ownership",
+      "body": [
+        "Ownership identifies the responsible owner of a record. Sharing can add access for another recipient without changing that owner. Anna can remain the owner while Max receives access. Transferring ownership changes a different relationship and may alter other access paths as well.",
+        "Do not memorize the outdated absolute statement that manual shares always disappear after transfer. Current Salesforce documentation describes an org-level setting named Keep manual shares when transferring records. The default behaviour removes manual shares when ownership changes; enabling the setting changes that behaviour. Inspect and record the actual setting before predicting your result.",
+        "Other grants can conceal what happened. Max may continue seeing the appointment because he became its owner, is above the new owner in a hierarchy, or qualifies through a sharing rule. Continuing visibility is therefore not proof that a manual share survived. You must distinguish the share itself from the total effective access of its recipient.",
+        "Object-specific limitations also matter. Use the supported Sharing action for the object and interface. If it is unavailable, inspect sharing configuration, page actions, and your authority to share rather than assuming every object offers the same control to every user."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Ownership-transfer behaviour depends on current settings and object considerations. Record the conditions behind your observation."
+        }
+      ]
+    },
+    {
+      "heading": "Isolate a transfer experiment",
+      "body": [
+        "Choose an expendable Requested Test Drive with a known owner. Using Requested helps avoid the Confirmed-service rule created in J13, although you must still inspect any other grants. Record the intended recipient and sharing level before making the change. Give only the access needed for the handover.",
+        "Before transferring the record, write the predicted new owner and the retention setting. After transfer, inspect available sharing information and repeat the recipient action. Keep before-and-after evidence. If your training org has only two suitable users, the recipient may also become the new owner; that does not isolate whether the original manual share remains. Label the limitation instead of presenting an ambiguous outcome as proof.",
+        "Finally consider the end of the business exception. When Max no longer needs temporary access, remove the relevant temporary share where permitted and retest. If another route still grants access, explain it. A cleanup check is useful precisely because removing one grant does not always remove every grant.",
+        "In a working team, Oleg should define how handovers are requested and reviewed. A developer should not invent an unrecorded permanent access policy because a one-off demonstration was convenient. Your submission should explain the intended duration of the exception and the way its completion is verified."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Explain both the manual share and alternative routes that could preserve recipient access."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Record the retention setting",
+          "instruction": "Inspect Sharing Settings and note the ownership-transfer option without changing unrelated configuration.",
+          "expected": "The prediction is tied to this org."
+        },
+        {
+          "title": "Share one appointment",
+          "instruction": "Grant the required recipient the minimum supported access.",
+          "expected": "The requested one-record operation succeeds."
+        },
+        {
+          "title": "Transfer and inspect",
+          "instruction": "Change ownership in the controlled example and inspect sharing information plus effective access.",
+          "expected": "Ownership and retained sharing are not confused."
+        },
+        {
+          "title": "Review the exception",
+          "instruction": "Remove temporary access when appropriate and retry the recipient operation.",
+          "expected": "Any remaining access has an identified explanation."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Write a transfer observation",
+    "brief": "Explain the behaviour of one manual share before and after ownership changes.",
+    "steps": [
+      "Record owner, recipient, sharing level, and retention setting.",
+      "Predict and test the result where suitable identities exist.",
+      "Describe other granting routes and any test you could not isolate."
+    ],
+    "acceptance": [
+      "The explanation does not say manual shares always disappear.",
+      "New ownership is not mistaken for retained manual sharing."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does sharing transfer ownership?",
+      "answer": "No. The two operations change different relationships."
+    },
+    {
+      "question": "Why inspect the retention setting?",
+      "answer": "It changes the default handling of manual shares during transfer."
+    },
+    {
+      "question": "Why is the recipient becoming owner a weak isolation test?",
+      "answer": "Ownership itself can explain continued access regardless of the manual share."
+    }
+  ],
+  "recap": [
+    "Use manual sharing for a bounded exception.",
+    "Separate ownership from additional access.",
+    "Test transfer behaviour against current settings."
+  ],
+  "sources": [
+    {
+      "title": "Keep manual shares on transfer",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_keep_manual_transfer.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Manual sharing considerations",
+      "url": "https://help.salesforce.com/s/articleView?id=sf.manual_sharing_considerations_lex.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "one drawn colleague handing a single record card to another through a permission key",
+    "alt": "One drawn colleague handing a single record card to another through a permission key",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Manual Sharing. Subject: one drawn colleague handing a single record card to another through a permission key."
+  }
+}

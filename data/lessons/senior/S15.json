@@ -1,0 +1,137 @@
+{
+  "id": "S15",
+  "track": "senior",
+  "title": "Handle Duplicate and Out-of-Order Events",
+  "minutes": 70,
+  "summary": "Design a consumer that produces a consistent business outcome when messages repeat or arrive in an unexpected sequence.",
+  "prerequisites": [
+    "Understand Platform Events and transaction boundaries.",
+    "Complete S14's data-ownership decisions and know stable business identifiers."
+  ],
+  "learningObjectives": [
+    "Separate event identity, operation identity, and stream position.",
+    "Define an explicit policy for duplicates and older versions.",
+    "Explain why one durable business effect requires more than a replay checkpoint."
+  ],
+  "sections": [
+    {
+      "heading": "Delivery and business effects have different identities",
+      "body": [
+        "Northstar receives appointment-status events from its scheduling service. An event identifier names a particular message. A business operation identifier names the action that message represents. A replay position tells a subscriber where it is in a stream. These values may be related, but they are not interchangeable.",
+        "A publisher can send the same business operation again as a new event after a timeout. Deduplicating only the event identifier would not recognize that second message as the same operation. Conversely, two valid updates to the same appointment are not duplicates merely because they share an appointment Id. Define the unit you intend to apply once."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Write the business sentence first: 'Confirm reservation R once,' rather than 'Process every message once.'"
+        }
+      ]
+    },
+    {
+      "heading": "Choose a version policy that matches the payload",
+      "body": [
+        "The synthetic events below carry a complete current status and a monotonically increasing version assigned by the authoritative scheduling system. Under that explicit contract, version 3 can replace version 1, and a later arrival of version 2 should not move the appointment backward. The version is scoped to one appointment; it does not order all activity across every dealer.",
+        "A delta event, such as 'increase reserved capacity by one,' needs different treatment. Skipping an earlier delta because a higher version arrived can lose part of the calculation. Do not reuse the snapshot-state policy without checking the payload meaning. You may need ordered processing, gap detection, or reconciliation with the source.",
+        "For an equal version with a different payload, record a conflict rather than silently accepting whichever arrived last. Equal version plus matching operation and payload can be a harmless repeat. The distinction makes final state explainable and helps detect a publisher defect.",
+        "These are external status snapshots, not direct DML input for the starter. Rescheduled is absent from its restricted Status__c picklist. The local exercise keeps the external state in its own object. For an org implementation, declare separate source-status and source-version fields or an approved mapping first; never write an unmapped external label directly into Status__c. The exercise does not provide the time needed to update Scheduled_At__c after a reschedule."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Ordering guarantees must specify their scope: one entity, one producer, one stream, or the business process."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "json",
+          "caption": "Synthetic complete-state events in arrival order",
+          "code": "[\n  {\"appointmentKey\":\"A-101\",\"operationKey\":\"confirm-7\",\"version\":1,\"status\":\"Confirmed\"},\n  {\"appointmentKey\":\"A-101\",\"operationKey\":\"cancel-9\",\"version\":3,\"status\":\"Cancelled\"},\n  {\"appointmentKey\":\"A-101\",\"operationKey\":\"reschedule-8\",\"version\":2,\"status\":\"Rescheduled\"},\n  {\"appointmentKey\":\"A-101\",\"operationKey\":\"cancel-9\",\"version\":3,\"status\":\"Cancelled\"}\n]"
+        }
+      ]
+    },
+    {
+      "heading": "Make the state change and deduplication durable",
+      "body": [
+        "An in-memory Set disappears when the worker restarts. For effects that must survive a restart, use durable state: for example, an operation ledger or a stored source version with a suitable uniqueness and concurrency strategy. If two workers can race, a check-then-insert sequence without protection can allow both to act. Explain where uniqueness or transaction coordination closes that gap.",
+        "When both the ledger update and the business update occur inside one Salesforce transaction, they can be designed to commit or fail together. A remote email or external reservation is outside that local database transaction. Its own idempotency key, acknowledgment, and recovery contract are still necessary. A Salesforce rollback cannot unsend a remote message already accepted elsewhere.",
+        "Checkpoint only according to the subscriber's documented delivery model and your durability boundary. A replay checkpoint is not a substitute for recording whether the business effect committed. Platform Event replay identifiers are opaque; do not calculate a next value by adding one. For Pub/Sub Platform Events, event.id serves a different purpose from replay_id, and source business identity still matters."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not promise universal exactly-once delivery. Define and test the narrower business effect your system can make idempotent."
+        }
+      ]
+    },
+    {
+      "heading": "Test restart and conflict, not only the happy sequence",
+      "body": [
+        "A local table or pure function can apply the four supplied events without a live event bus. The expected final state under the stated snapshot contract is version 3, Cancelled, with one cancellation business effect. Preserve a reason for ignoring the older version and recognizing the repeat.",
+        "Then simulate a crash between receiving an event and committing the result. Repeat the event and verify the intended behavior. Add equal-version conflicting data and an unknown appointment. Count applied operations, harmless duplicates, stale events, conflicts, and unresolved items. Keep these categories visible rather than reporting every discarded message as a success.",
+        "If you later test in a training org, distinguish consumer logic tests from a real end-to-end delivery test. A correct function cannot alone prove the transport, permissions, publication timing, or subscriber configuration."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Keep an event-to-decision ledger so a reviewer can reconstruct why the final state is correct."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build an explainable event reducer",
+    "brief": "Apply the synthetic events to an appointment state and record a decision for every arrival.",
+    "steps": [
+      "Define operation identity, entity identity, version authority, and snapshot semantics.",
+      "Implement a small pure reducer or a spreadsheet decision table.",
+      "Apply the four events and show one final Cancelled state at version 3.",
+      "Add a restart, an equal-version conflict, and an unknown appointment.",
+      "Describe where a durable ledger and concurrency protection belong in a Salesforce implementation."
+    ],
+    "acceptance": [
+      "The older version cannot revert the newer state.",
+      "The duplicate cancellation does not repeat the business effect.",
+      "The answer explains why the same policy would not automatically work for delta events.",
+      "External status labels stay separate from the starter picklist until a documented mapping or metadata extension exists."
+    ],
+    "stretch": "Add a remote notification and design its idempotency and uncertain-response handling separately."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is replay_id not the business idempotency key?",
+      "answer": "It identifies a stream position, not necessarily the same business operation across retries or republishing, and it is opaque."
+    },
+    {
+      "question": "Can a higher version always replace earlier events?",
+      "answer": "Only under a suitable contract, such as complete current-state snapshots. Delta events may require all earlier effects or explicit gap recovery."
+    },
+    {
+      "question": "What is wrong with an in-memory duplicate Set?",
+      "answer": "It does not survive restarts and does not by itself coordinate concurrent workers or remote effects."
+    }
+  ],
+  "recap": [
+    "Separate transport identity from business identity.",
+    "Choose ordering rules from payload semantics.",
+    "Make important effects and recovery state durable."
+  ],
+  "sources": [
+    {
+      "title": "Pub/Sub event durability and replay",
+      "url": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html"
+    },
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Decoupled event processes",
+      "url": "https://developer.salesforce.com/docs/platform/platform-events/guide/platform-events-considerations-decoupled-processes.html"
+    }
+  ],
+  "illustration": {
+    "subject": "out-of-order message cards being placed into a coherent sequence with a duplicate set aside",
+    "alt": "Out-of-order message cards being placed into a coherent sequence with a duplicate set aside",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Event Ordering and Deduplication. Subject: out-of-order message cards being placed into a coherent sequence with a duplicate set aside."
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "id": "J24",
+  "track": "junior",
+  "title": "Read and Edit a Record with Lightning Data Service",
+  "minutes": 50,
+  "summary": "Use a standard record form for an ordinary edit and verify the result under a restricted user.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Use a record-page context deliberately.",
+    "Choose standard data components for ordinary edits.",
+    "Verify saved data and permission boundaries."
+  ],
+  "sections": [
+    {
+      "heading": "Choose the smallest useful data component",
+      "body": [
+        "The preview from J23 contained only browser data. Anna now needs to edit the scheduled time and status of a real Test Drive record that she can access. For a standard record-editing task, begin with Salesforce base components backed by Lightning Data Service rather than immediately writing a custom Apex controller.",
+        "Lightning Data Service, often abbreviated LDS, supports record access for these components and works with the platform's permission model. The standard record form can display and edit selected fields, handle a normal save, and show supported errors. This reduces code you would otherwise need to write and maintain. It does not mean the application no longer needs testing or a correct underlying sharing design."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A standard component is useful when its contract matches the task. Custom code needs a concrete reason."
+        }
+      ]
+    },
+    {
+      "heading": "Use the current record context",
+      "body": [
+        "A record page has a current record. The public recordId property receives that context when the component is placed in a supported record-page environment. The @api decorator marks the property as part of the component's public interface. It does not magically supply an ID in every possible container. A component on an ordinary App Page needs a different, explicit way to identify a record.",
+        "The JavaScript imports object and field references from the Salesforce schema. These imports make the intended metadata dependencies visible. The fields array contains only Scheduled At and Status for this task, not every field in the object. The form uses mode edit and provides its own standard save and cancel behaviour.",
+        "The metadata limits this example to Test Drive record pages. Create the appointmentEditor bundle separately from the simulated preview. Do not pass demo-1 from J23 as its recordId: that was an illustrative browser key, not a Salesforce ID. Open a real synthetic Test Drive in your learning org before evaluating this component."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "The example needs a real accessible Test Drive record and a supported record-page context."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "appointmentEditor.js",
+          "code": "import { LightningElement, api } from 'lwc';\nimport TEST_DRIVE from '@salesforce/schema/Test_Drive__c';\nimport SCHEDULED_AT from '@salesforce/schema/Test_Drive__c.Scheduled_At__c';\nimport STATUS from '@salesforce/schema/Test_Drive__c.Status__c';\nexport default class AppointmentEditor extends LightningElement {\n    @api recordId;\n    objectApiName = TEST_DRIVE;\n    fields = [SCHEDULED_AT, STATUS];\n}"
+        },
+        {
+          "language": "html",
+          "caption": "appointmentEditor.html",
+          "code": "<template>\n    <lightning-card title=\"Edit this test drive\">\n        <div class=\"slds-p-around_medium\">\n            <lightning-record-form\n                record-id={recordId}\n                object-api-name={objectApiName}\n                fields={fields}\n                mode=\"edit\">\n            </lightning-record-form>\n        </div>\n    </lightning-card>\n</template>"
+        },
+        {
+          "language": "xml",
+          "caption": "appointmentEditor.js-meta.xml",
+          "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<LightningComponentBundle xmlns=\"http://soap.sforce.com/2006/04/metadata\">\n    <apiVersion>68.0</apiVersion><isExposed>true</isExposed>\n    <targets><target>lightning__RecordPage</target></targets>\n    <targetConfigs>\n        <targetConfig targets=\"lightning__RecordPage\">\n            <objects><object>Test_Drive__c</object></objects>\n        </targetConfig>\n    </targetConfigs>\n</LightningComponentBundle>"
+        }
+      ]
+    },
+    {
+      "heading": "Verify the saved outcome and the access boundary",
+      "body": [
+        "Open an appointment owned by the intended test user, edit its scheduled time to a valid future value, and save. Reopen or refresh the record and confirm the stored value. A value changed in an input box is not proof that the save succeeded. Repeat with a value rejected by the J08 time rule and check the error without assuming that the UI validation replaces server-side enforcement.",
+        "Test with field access deliberately limited according to the agreed persona. Confirm that the user cannot use this form to edit a field that should be unavailable. Also inspect record access: placing a component on a page does not make otherwise private records accessible. An administrator-only screenshot would miss both of these requirements.",
+        "If you need a custom arrangement or more control over submission events, investigate lightning-record-edit-form and its documented load, submit, success, and error events. That is a justified next step only when the simpler form no longer fits. Do not mix an unnecessary custom Apex save with a standard data form and then assume both data paths share identical refresh behaviour.",
+        "In your review note, explain why LDS fits this task and name one requirement that could require a different approach, such as a specialized multi-record business operation. The point is to choose based on behaviour, not to avoid learning Apex or to use Apex everywhere."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Verify an actual stored value, a validation failure, and a restricted-user boundary."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Deploy and place",
+          "instruction": "Add appointmentEditor to a Test Drive record page and activate the intended page assignment.",
+          "expected": "A real record ID reaches the public property."
+        },
+        {
+          "title": "Test the valid edit",
+          "instruction": "Change a permitted future time and inspect the saved record.",
+          "expected": "The displayed result matches stored data."
+        },
+        {
+          "title": "Test the invalid edit",
+          "instruction": "Use a past newly supplied time and inspect the validation response.",
+          "expected": "The invalid save is rejected visibly."
+        },
+        {
+          "title": "Test limited access",
+          "instruction": "Repeat under the intended restricted persona.",
+          "expected": "The form respects the applicable object, field, and record boundaries."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain a standard-form decision",
+    "brief": "Deliver the working editor and a short comparison with a custom Apex alternative.",
+    "steps": [
+      "Identify the component context and schema dependencies.",
+      "Capture valid, invalid, and restricted-user outcomes.",
+      "Describe one requirement outside this simple form."
+    ],
+    "acceptance": [
+      "No synthetic preview ID is used as a Salesforce record ID.",
+      "The outcome is verified after save.",
+      "The choice of standard components is justified."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does @api recordId always populate in every container?",
+      "answer": "No. It depends on the supported context or a value explicitly supplied by a parent."
+    },
+    {
+      "question": "Why import schema references?",
+      "answer": "They make the object and field dependencies explicit to the platform tooling."
+    },
+    {
+      "question": "Does a record form remove the need for access tests?",
+      "answer": "No. The complete configuration must still be tested under the intended user."
+    }
+  ],
+  "recap": [
+    "Use a record-page context deliberately.",
+    "Choose standard data components for ordinary edits.",
+    "Verify saved data and permission boundaries."
+  ],
+  "sources": [
+    {
+      "title": "Edit a record",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/data-edit-record"
+    },
+    {
+      "title": "Record form reference",
+      "url": "https://developer.salesforce.com/docs/platform/lightning-component-reference/guide/lightning-record-form.html?type=Develop"
+    }
+  ],
+  "illustration": {
+    "subject": "a small component window connected to a shared data cache and a record card",
+    "alt": "A small component window connected to a shared data cache and a record card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Data Access. Subject: a small component window connected to a shared data cache and a record card."
+  }
+}

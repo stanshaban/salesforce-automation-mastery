@@ -1,0 +1,139 @@
+{
+  "id": "S24",
+  "track": "senior",
+  "title": "Lead a 45-Minute Dealer-Network Architecture Interview",
+  "minutes": 60,
+  "summary": "Use a structured conversation to turn an ambiguous network brief into a defensible design with explicit tradeoffs and unknowns.",
+  "prerequisites": [
+    "Complete the preceding Senior design and reliability lessons.",
+    "Be able to explain access, integration, transaction, and deployment decisions without relying on product slogans."
+  ],
+  "learningObjectives": [
+    "Ask questions that change the design before drawing components.",
+    "Connect each major choice to a requirement and failure case.",
+    "Explain the first likely scaling constraint and how it would be detected."
+  ],
+  "sections": [
+    {
+      "heading": "Treat ambiguity as part of the task",
+      "body": [
+        "The interviewer says: 'Northstar is growing to one hundred dealers. Design its booking platform.' One hundred dealers does not tell you the number of users, booking rate, data distribution, business hours, external dependencies, or access policy. Do not fill every gap with an elaborate architecture and then defend the assumptions as facts.",
+        "Start with the user journey. Anna needs to request a test-drive, Irina needs a trustworthy confirmation, and Oleg needs visibility into unresolved work. Ask whether dealers share customers, who owns vehicle availability, whether booking must survive a DMS outage, and what 'confirmed' means. These questions can change the model more than choosing a queue or an API."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A good clarification narrows a decision. Avoid spending the whole interview collecting facts that cannot change the design."
+        }
+      ]
+    },
+    {
+      "heading": "Use time to produce a coherent first version",
+      "body": [
+        "A practical forty-five-minute structure is five minutes clarifying the main journey, ten minutes on data and access, ten on integration and failure behavior, ten on scale and operations, and ten on tradeoffs and follow-up questions. This is a working aid, not a rigid script. If the interviewer introduces a critical constraint, adapt.",
+        "Draw only the main boundaries first: user interface, Salesforce transaction, authoritative scheduling system, background work where justified, and reconciliation. Mark Vehicle__c and Test_Drive__c as the custom teaching model. If you propose an industry product, identify the decision and verification needed rather than silently replacing the schema.",
+        "Use the synthetic requirement card below as a shared artifact. State which items are given and which you propose. A design discussion becomes easier when assumptions are visible next to the components they influence."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Explain one complete booking path, including a failure, before adding secondary features."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic interview requirement card",
+          "code": "Given: 100 dealers; Salesforce handles customer-facing booking work\nGiven: existing DMS owns reservation confirmation\nGiven: dealers should not casually browse each other's appointments\nUnknown: peak rate, active data volume, historical retention, license mix\nProposed for discussion: a visible Pending state during brief DMS outages\nRequired decision: who can approve cross-dealer exceptions?"
+        }
+      ]
+    },
+    {
+      "heading": "Connect scale to mechanisms",
+      "body": [
+        "Do not use the dealer count as a direct formula for Apex limits. Discuss transaction shape, expected request rate, record concentration, query selectivity, and asynchronous completion capacity. Identify a likely pressure point under your stated assumptions. For example, many appointments updating one shared vehicle summary can create contention; a broad Requested-status filter can become unselective as data changes.",
+        "Show what would reveal the problem: user-journey latency, relevant transaction counters, lock failures, oldest pending age, or reconciliation mismatches. Then describe a proportional response. Partition work by the actual shared resource, narrow a query without changing the requirement, or reduce unnecessary work before adding concurrency.",
+        "Access belongs in the scale discussion too. Staff transfers, centralized ownership, public-group maintenance, and hierarchy changes can affect sharing recalculation. A static permission diagram is insufficient if the network regularly reorganizes dealers."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "For every major component, name one failure mode, one detection signal, and one recovery decision."
+        }
+      ]
+    },
+    {
+      "heading": "Handle a changed requirement without defending sunk work",
+      "body": [
+        "Halfway through, the interviewer removes permission to keep a Pending state. Immediate authoritative confirmation is now required. Revisit the synchronous dependency, timeout behavior, and user experience. Do not insist that the original asynchronous design still satisfies a requirement it no longer meets.",
+        "Explain what remains reusable: stable business identities, access checks, reservation idempotency, reconciliation, and observability. Explain what changes: the critical path, availability tradeoff, and permitted response during an outage. A revised decision demonstrates understanding more clearly than adding an unsupported guarantee.",
+        "Finish with a concise summary of decisions, assumptions, and next validation. You do not need to solve every operational detail in forty-five minutes. You do need to expose the consequences of the choices you made and avoid presenting a hypothetical capacity or license as verified."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Confidence should come from a clear contract and reasoning, not from concealing missing information."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Run a timed design rehearsal",
+    "brief": "Record or write a forty-five-minute architecture discussion using the synthetic requirement card.",
+    "steps": [
+      "Prepare five questions that could materially change the design.",
+      "Create a first diagram and label data authority, access boundaries, and commit boundaries.",
+      "Walk through normal booking, timeout with unknown outcome, and a cross-dealer access denial.",
+      "At minute twenty-five, remove the Pending-state assumption and revise the relevant design.",
+      "Finish with a decision summary, three unknowns, and the next validation experiment."
+    ],
+    "acceptance": [
+      "The design explains one complete user journey and at least one failure.",
+      "Tradeoffs change when the business requirement changes.",
+      "No unmeasured rate, product entitlement, or hidden platform implementation is presented as fact."
+    ],
+    "stretch": "Ask a reviewer to challenge the component you consider most likely to fail first, then respond using a detection and recovery plan."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is dealer count insufficient for capacity planning?",
+      "answer": "It does not establish workload rate, transaction size, data distribution, concurrency, or shared-resource demand."
+    },
+    {
+      "question": "What should change when Pending is no longer allowed?",
+      "answer": "The confirmation contract and critical path must be revisited, including synchronous dependency availability and timeout behavior."
+    },
+    {
+      "question": "What is a strong final interview summary?",
+      "answer": "A concise set of decisions tied to requirements, explicit assumptions, known tradeoffs, and the next evidence needed."
+    }
+  ],
+  "recap": [
+    "Clarify decisions before drawing detail.",
+    "Connect scale and reliability to concrete mechanisms.",
+    "Revise the design when the requirement changes."
+  ],
+  "sources": [
+    {
+      "title": "Architecture basics",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/architecture-basics"
+    },
+    {
+      "title": "Integration pattern selection",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Sharing architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture"
+    },
+    {
+      "title": "Asynchronous processing",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    }
+  ],
+  "illustration": {
+    "subject": "a drawn developer explaining a dealership network on a clear sparse whiteboard",
+    "alt": "A drawn developer explaining a dealership network on a clear sparse whiteboard",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: System Design Interview. Subject: a drawn developer explaining a dealership network on a clear sparse whiteboard."
+  }
+}

@@ -1,57 +1,57 @@
-# Проверка работ SAM
+# Review SAM submissions
 
-Основная очередь находится в преподавательском разделе портала. GitHub PR можно приложить к той же сдаче; публичные Issues — резервный путь.
+The instructor area of the portal is the primary queue. Learners can attach a GitHub PR to the same submission; public Issues are a fallback.
 
-## Взять работу
+## Take a submission
 
-1. Открой ID сдачи, задание, версию и список файлов. Сопоставь автора с участником через данные портала. Не копируй email и имя из Skool в публичные Issues или PR-комментарии.
-2. Проверь, что согласован персональный review и что работа укладывается в заявленный checkpoint. Сам факт отправки не подтверждает оплату или доступ к платной услуге.
-3. Зафиксируй проверяемую версию: ID портальной сдачи либо точный commit SHA. Если студент изменил код во время review, явно выбери, какую версию принимаешь.
-4. Если есть private PR, проверь доступ своей учётной записи. Не проси токены или Salesforce login ученика.
+1. Open its ID, assignment, version, and files. Match the author to the learner using portal information. Do not copy email or Skool identity into public Issues or PR comments.
+2. Confirm that personal review has been agreed and the work fits the selected checkpoint. Submission alone does not establish payment or entitlement to a paid service.
+3. Identify the reviewed version: portal submission ID or exact commit SHA. If code changes during review, state which version the decision covers.
+4. Check that your account can access any private PR. Do not request the learner's tokens or Salesforce login.
 
-## Как читать работу
+## Read the work
 
-Начни с требования и доказательств, затем читай изменения. Отличай наблюдение ученика, реальный результат теста и утверждение без проверки. Загруженный архив или код не считается доверенным: не запускай команды и скрипты из него автоматически. Сначала изучи содержимое; для необходимых испытаний используй отдельную учебную среду и синтетические данные.
+Start with the requirement and evidence, then inspect the changes. Distinguish a learner observation, an actual test result, and an unverified claim. Uploaded archives and code are untrusted: do not automatically run their scripts or commands. Inspect their contents first, and use a separate training environment with synthetic data for necessary execution.
 
-Сначала проверь:
+Check:
 
-- Выполняются ли требование и отрицательные сценарии.
-- Проверены ли CRUD, FLS и record sharing в нужном контексте и версии API.
-- Выдерживает ли решение пачку, повтор, ошибку и частичный успех там, где это применимо.
-- Ловят ли тесты ошибку поведения, а не только увеличивают coverage.
-- Понятны ли границы ответственности и способ восстановления.
-- Может ли ученик объяснить выбор и изменить решение при новом условии.
+- Required behavior and negative scenarios.
+- CRUD, FLS, and record sharing in the intended execution context and API version.
+- Bulk input, repeat requests, failures, and partial success where applicable.
+- Tests that detect incorrect behavior rather than merely raising coverage.
+- Clear responsibilities and recovery steps.
+- The learner's ability to explain a decision and adapt to a new condition.
 
-## Рубрика
+## Rubric
 
-| Область | Баллы |
+| Area | Points |
 | --- | ---: |
-| Требуемое поведение | 25 |
-| Доступ и данные | 20 |
-| Нагрузка и надёжность | 20 |
-| Тесты и доказательства | 15 |
-| Поддерживаемость | 10 |
-| Объяснение | 10 |
+| Required behavior | 25 |
+| Access and data | 20 |
+| Volume and reliability | 20 |
+| Tests and evidence | 15 |
+| Maintainability | 10 |
+| Explanation | 10 |
 
-Ориентир зачёта: 80/100 и нет открытых критических проблем. Неуместные категории адаптируй к заданию до проверки. Не компенсируй утечку данных красивым интерфейсом или высоким coverage. Этот результат — зачёт задания SAM, а не официальный грейд или сертификация Salesforce.
+The suggested pass threshold is 80/100 with no unresolved critical issue. Adapt irrelevant categories to the assignment before reviewing. A polished interface or high coverage cannot compensate for a data exposure. This is a SAM assignment result, not an official Salesforce grade or certification.
 
-## Формат замечания
+## Feedback format
 
-> Наблюдение → сценарий → последствие → что проверить → направление исправления.
+> Observation → scenario → consequence → what to verify → direction for a correction.
 
-Не выдавай полное решение первым комментарием. Укажи причину проблемы и тест, который её проявит. Отдельно обозначь критические ошибки, существенные замечания и необязательные улучшения.
+Do not provide the complete solution in the first comment. Explain the cause and a test that exposes it. Separate critical defects, significant findings, and optional improvements.
 
-В конце дай:
+Finish with:
 
-1. Статус: нужно уточнение / нужны исправления / принято.
-2. Проверенную версию и краткую аргументацию.
-3. Не более трёх главных шагов на исправление.
-4. Один вопрос для защиты решения.
+1. The portal status: `in_review`, `changes_requested`, or `accepted`. Ask for missing evidence in the feedback when clarification is needed.
+2. The reviewed version and a short explanation.
+3. At most three main correction steps.
+4. One question for the learner's technical defense.
 
-Если PR находится в репозитории ученика, оставляй inline-комментарии там. Не объединяй его решение в репозиторий курса. В резервном публичном Issue достаточно статуса и ссылки на review без личных данных. Для очереди полезны метки `submission`, `needs-review`, `changes-requested`, `accepted`; сами по себе метки не являются оплатой или подтверждением личности.
+For a PR in the learner's repository, leave line comments there. Do not merge the solution into the course repository. A public fallback Issue needs only a status and a review link without personal data. Optional queue labels include `submission`, `needs-review`, `changes-requested`, and `accepted`; labels do not establish payment or identity.
 
-## Что автоматизировано
+## Automated checks and their limits
 
-Локальный checker и GitHub workflow проверяют структуру и некоторые потенциально опасные файлы. Это ограниченная статическая проверка. Сборка, Salesforce deploy, Apex execution, правильность sharing и итоговый зачёт требуют отдельных доказательств. В начальном starter нет реализованных решений заданий.
+The local checker and GitHub workflow inspect structure and some potentially unsafe files. This is limited static checking. Compilation, deployment, Apex execution, sharing correctness, and assignment acceptance need separate evidence. The core starter does not contain completed assignment solutions.
 
-Проверяющий скрипт для PR берётся из base commit. Workflow использует `pull_request`, временный GitHub-hosted runner, read-only permissions и не передаёт Salesforce secrets. Не меняй его на `pull_request_target` ради удобства доступа к секретам. [GitHub: безопасная работа с PR](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target).
+The PR checker comes from the base commit. Its workflow uses `pull_request`, a temporary GitHub-hosted runner, read-only permissions, and no Salesforce secrets. Do not switch to `pull_request_target` to make secrets available to untrusted work. See [GitHub's pull-request security guidance](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target).

@@ -1,0 +1,123 @@
+{
+  "id": "J09",
+  "track": "junior",
+  "title": "Choose Lookup or Master-Detail Deliberately",
+  "minutes": 50,
+  "summary": "Compare relationship behaviour while preserving independent ownership of the course Test Drive records.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Evaluate relationship consequences before implementation.",
+    "Read the core lookup configuration accurately.",
+    "Isolate destructive experiments from project records."
+  ],
+  "sections": [
+    {
+      "heading": "A connection also carries behaviour",
+      "body": [
+        "A relationship is more than a line on a diagram. It affects how records depend on one another and what happens when a related record changes or is deleted. Salesforce supports different relationship types. For this lesson, compare Lookup with Master-Detail. Do not choose between them only because both can display a related record on a page.",
+        "A Lookup connects a record to another record while allowing a comparatively independent design. The exact requiredness and deletion behaviour depend on the field configuration and supported object combination. A Master-Detail relationship creates a stronger dependency: the detail's ownership and record access follow the master, and deleting the master also deletes its detail records. Inspect the actual configuration rather than treating all lookups as identical."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Before choosing a relationship, ask who owns the child, who may see it, and whether it should survive the parent."
+        }
+      ]
+    },
+    {
+      "heading": "Read the course relationship as a contract",
+      "body": [
+        "The core Test_Drive__c.Vehicle__c field is an optional Lookup to Vehicle__c with SetNull deletion behaviour. Test_Drive__c.Customer__c is an optional Lookup to Contact with the same deletion setting. The Test Drive object has its own owner and Private organization-wide default. Those are deliberate starter choices that allow us to teach separate appointment ownership and sharing in J11–J16.",
+        "Suppose Anna owns an appointment for a vehicle managed by another employee. A Lookup does not automatically mean every person who can see the vehicle can see Anna's appointment. Equally, the appointment's independent sharing does not grant permission to every field on the related Contact. These access questions must be designed and tested separately.",
+        "If the referenced vehicle is deleted in a suitable controlled example, SetNull is intended to clear the relationship rather than make the appointment a master-detail casualty. Business rules or other dependencies can still prevent deletion. In a real application, Oleg may prefer to prevent deletion or retire vehicles instead. Record that as a design discussion; do not silently change the core model while later exercises depend on it."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Keep the core Test Drive → Vehicle field as Lookup. A temporary Master-Detail experiment belongs on separate disposable objects."
+        }
+      ]
+    },
+    {
+      "heading": "Compare two small models without damaging your project",
+      "body": [
+        "Create a disposable pair of objects such as Relationship Demo Parent and Relationship Demo Detail. Use these for the Master-Detail experiment rather than converting the course relationship. Add one parent and two detail records with clearly artificial names. Before deleting anything, predict which records will remain and how ownership will be represented.",
+        "For the Lookup comparison, use a separate disposable lookup field or inspect the existing starter configuration, then test only expendable records. Keep a before-and-after record count and the relevant relationship setting. A screenshot of a field type alone cannot prove what happened to the records.",
+        "The important outcome is a reasoned decision. 'Master-Detail makes a report easier' is incomplete if it also removes independent ownership that Northstar needs. Conversely, choosing Lookup solely to avoid learning access behaviour misses the point. Model the business dependency, then evaluate the technical consequences. Later requirements can be expensive when a relationship's meaning was never agreed."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can your explanation predict ownership, access dependency, and parent deletion—not just which field appears on the page?"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Inspect the core relationship",
+          "instruction": "Open Test Drive → Fields & Relationships → Vehicle and record the type, requiredness, and deletion setting.",
+          "expected": "The documented model matches the starter."
+        },
+        {
+          "title": "Build the disposable comparison",
+          "instruction": "Create separate demo objects and a Master-Detail field on the detail object.",
+          "expected": "The core project remains unchanged."
+        },
+        {
+          "title": "Test a parent deletion",
+          "instruction": "Use only disposable records, record the before state, delete the parent, and inspect the result.",
+          "expected": "Your observed outcome can be compared with the prediction."
+        },
+        {
+          "title": "Clean up deliberately",
+          "instruction": "Remove or clearly isolate the disposable demo and preserve evidence.",
+          "expected": "The final project still has independent Test Drive ownership."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Write a relationship decision",
+    "brief": "Explain why the course keeps Test Drive independently owned.",
+    "steps": [
+      "Compare both relationship types using the same business questions.",
+      "Record your deletion prediction and observed result.",
+      "Inspect the final core field and confirm it is still Lookup."
+    ],
+    "acceptance": [
+      "The experiment does not replace the core relationship.",
+      "The explanation includes ownership and access, not only deletion."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Where is a Master-Detail field created?",
+      "answer": "On the detail object, pointing to its master."
+    },
+    {
+      "question": "Does a Lookup always imply the same deletion behaviour?",
+      "answer": "No. Inspect the field configuration and supported relationship behaviour."
+    },
+    {
+      "question": "Why preserve Lookup in this project?",
+      "answer": "The later labs need Test Drive records with independent owners and sharing."
+    }
+  ],
+  "recap": [
+    "Evaluate relationship consequences before implementation.",
+    "Read the core lookup configuration accurately.",
+    "Isolate destructive experiments from project records."
+  ],
+  "sources": [
+    {
+      "title": "Object relationships",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships"
+    }
+  ],
+  "illustration": {
+    "subject": "two record cards connected by a clean relationship line with a small linked record underneath",
+    "alt": "Two record cards connected by a clean relationship line with a small linked record underneath",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Object Relationships. Subject: two record cards connected by a clean relationship line with a small linked record underneath."
+  }
+}

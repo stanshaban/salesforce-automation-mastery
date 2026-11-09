@@ -1,0 +1,141 @@
+{
+  "id": "J23",
+  "track": "junior",
+  "title": "HTML, JavaScript, and Your First Lightning Web Component",
+  "minutes": 75,
+  "summary": "Learn the browser-language basics and build an explicitly simulated appointment preview with four visible states.",
+  "prerequisites": [
+    "Complete the workspace setup guide; basic HTML and JavaScript are introduced in this lesson.",
+    "Complete J01–J22 or understand the project data model and learning-org workflow."
+  ],
+  "learningObjectives": [
+    "Read basic HTML and JavaScript structures.",
+    "Explain template bindings and state.",
+    "Build distinguishable UI outcomes."
+  ],
+  "sections": [
+    {
+      "heading": "Understand markup and behaviour separately",
+      "body": [
+        "HTML describes the structure of a web interface. A paragraph uses a p element; a list can use ul and li elements. Elements have opening and closing tags, and attributes describe additional information. A Lightning Web Component, or LWC, combines an HTML template with JavaScript behaviour and a metadata configuration file. It is not an Apex class running in the browser.",
+        "JavaScript stores values and responds to events in the browser. A string is text, an array is an ordered collection written with square brackets, and an object groups named values inside braces. The sample row { id: 'demo-1', label: 'City EV appointment' } is an object in browser memory. It is not automatically a saved Salesforce record. The strict equality operator === compares values without the same coercion behaviour as loose equality."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Component state is what the interface currently knows. Database state is what the server has actually stored."
+        }
+      ]
+    },
+    {
+      "heading": "Read the component contract",
+      "body": [
+        "import loads a named capability from another JavaScript module. The class extends LightningElement so it can participate in the LWC framework. A property such as state stores the current display state. A method such as showSample runs when its button is clicked. A getter, written with get, derives a value from current properties without being called with parentheses in the template.",
+        "The template uses curly-brace bindings such as {isLoading} to read JavaScript properties. lwc:if, lwc:elseif, and lwc:else select the visible branch. Keep the branches adjacent. The list directive repeats markup for each row, and key supplies a stable identity for each rendered item. Do not use an array position as the meaningful identity of a changing business record.",
+        "This first component intentionally has no server connection. Its buttons reproduce loading, empty, success, and error states so you can inspect the interface before introducing data access. The sample label is not a claim that an appointment was booked. J24 connects a separate component to real accessible records through standard data components."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Show this component as a UI demonstration. Its sample IDs and rows must not be presented as Salesforce records."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "appointmentPreview.js",
+          "code": "import { LightningElement } from 'lwc';\nexport default class AppointmentPreview extends LightningElement {\n    state = 'empty';\n    rows = [];\n    get isLoading() { return this.state === 'loading'; }\n    get hasError() { return this.state === 'error'; }\n    get hasRows() { return this.rows.length > 0; }\n    showLoading() { this.rows = []; this.state = 'loading'; }\n    showError() { this.rows = []; this.state = 'error'; }\n    reset() { this.rows = []; this.state = 'empty'; }\n    showSample() {\n        this.rows = [{ id: 'demo-1', label: 'City EV — sample appointment' }];\n        this.state = 'ready';\n    }\n}"
+        },
+        {
+          "language": "html",
+          "caption": "appointmentPreview.html",
+          "code": "<template>\n    <lightning-card title=\"Appointment preview — demonstration\">\n        <div class=\"slds-p-around_medium\">\n            <lightning-button label=\"Loading\" onclick={showLoading}></lightning-button>\n            <lightning-button label=\"Sample\" onclick={showSample}></lightning-button>\n            <lightning-button label=\"Error\" onclick={showError}></lightning-button>\n            <lightning-button label=\"Empty\" onclick={reset}></lightning-button>\n            <template lwc:if={isLoading}><p role=\"status\">Loading appointments.</p></template>\n            <template lwc:elseif={hasError}><p role=\"alert\">The preview could not load. Try again.</p></template>\n            <template lwc:elseif={hasRows}>\n                <ul><template for:each={rows} for:item=\"row\">\n                    <li key={row.id}>{row.label}</li>\n                </template></ul>\n            </template>\n            <template lwc:else><p>No appointments to display.</p></template>\n        </div>\n    </lightning-card>\n</template>"
+        },
+        {
+          "language": "xml",
+          "caption": "appointmentPreview.js-meta.xml",
+          "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<LightningComponentBundle xmlns=\"http://soap.sforce.com/2006/04/metadata\">\n    <apiVersion>68.0</apiVersion>\n    <isExposed>true</isExposed>\n    <targets><target>lightning__AppPage</target></targets>\n</LightningComponentBundle>"
+        }
+      ]
+    },
+    {
+      "heading": "Observe state changes deliberately",
+      "body": [
+        "Create the appointmentPreview bundle using the workspace guide, deploy it to the learning org, and add it to a Lightning App Page. The metadata exposes it to that page type. File and folder names must agree. A component cannot appear on an unsupported page merely because its HTML is correct.",
+        "Select each demonstration state and read the resulting message. Use keyboard navigation as well as a mouse. A blank panel is not a helpful empty state, and an error should not look like a successful empty response. Return from Error to Sample and verify that the stale error disappears.",
+        "Describe each line in your own words before extending the example. In particular, explain why assigning a new rows array changes the displayed information but does not create a database record. This separation makes the next lesson on real data much easier to reason about."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "The four states must be distinguishable without relying on colour alone."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare the bundle",
+          "instruction": "Create the three matching files and verify the learning-org target.",
+          "expected": "The component deploys with API 68.0 metadata."
+        },
+        {
+          "title": "Place the component",
+          "instruction": "Add it to a supported Lightning App Page in the learning application.",
+          "expected": "The preview is visible in its intended container."
+        },
+        {
+          "title": "Exercise all states",
+          "instruction": "Use each button, including a recovery from Error to Sample.",
+          "expected": "Messages and rows match the current state without stale content."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build a clear four-state preview",
+    "brief": "Extend the simulated preview with a second sample appointment while preserving honest labels.",
+    "steps": [
+      "Explain the array, row object, getter, and click handler.",
+      "Show loading, empty, success, and error states.",
+      "Test keyboard operation and recovery from an error."
+    ],
+    "acceptance": [
+      "The interface is explicitly labelled as a demonstration.",
+      "Sample rows are not claimed to be persisted.",
+      "Every rendered row has a stable key."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does assigning rows create Salesforce records?",
+      "answer": "No. It changes browser component state only."
+    },
+    {
+      "question": "What does a getter do here?",
+      "answer": "It derives a display condition from the current state."
+    },
+    {
+      "question": "Why show an explicit empty message?",
+      "answer": "Users need to distinguish a successful empty result from loading or failure."
+    }
+  ],
+  "recap": [
+    "Read basic HTML and JavaScript structures.",
+    "Explain template bindings and state.",
+    "Build distinguishable UI outcomes."
+  ],
+  "sources": [
+    {
+      "title": "LWC HTML files",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-components-html-file.html"
+    },
+    {
+      "title": "Conditional rendering",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-conditional.html"
+    }
+  ],
+  "illustration": {
+    "subject": "three clean interface building blocks assembling into one component card",
+    "alt": "Three clean interface building blocks assembling into one component card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Lightning Web Components. Subject: three clean interface building blocks assembling into one component card."
+  }
+}

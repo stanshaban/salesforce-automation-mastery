@@ -1,0 +1,122 @@
+{
+  "id": "J04",
+  "track": "junior",
+  "title": "Finding Your Way Around Salesforce",
+  "minutes": 35,
+  "summary": "Recognize an application, navigation item, list, record page, and Setup without assuming previous Salesforce use.",
+  "prerequisites": [
+    "J03: a personal learning org that you can launch from Trailhead."
+  ],
+  "learningObjectives": [
+    "Navigate from an application to a list and a record.",
+    "Recognize Setup as configuration.",
+    "Investigate a view before assuming a record is missing."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the screen before changing it",
+      "body": [
+        "An interface is the collection of pages, menus, fields, and controls through which a person uses software. Lightning Experience is Salesforce's main modern desktop interface. Your learning org may show different applications or labels from an illustration because its language, configuration, and permissions can differ. We will explain the purpose of each area rather than rely on a pixel-perfect screenshot.",
+        "The App Launcher, commonly shown as a grid of dots, helps you find available applications and items. Search for Sales to open a sales workspace if it is available. The application name helps you recognize where you are. Its navigation items lead to areas such as Contacts. A contact is information about a person; we will examine the underlying data model in J05 and J07."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Before every exercise, identify the org and application you are using. This avoids changing the right thing in the wrong place."
+        }
+      ]
+    },
+    {
+      "heading": "Move from several records to one record",
+      "body": [
+        "A record is information about one specific item, such as one person or one test drive. A list shows several records so that you can find and compare them. A list view is a selected way of displaying that list, often with conditions that determine which records appear. 'Recently Viewed' is therefore not a promise to display every contact in the org.",
+        "Suppose Anna wants Irina's telephone number. She opens Contacts, finds the appropriate person, and opens the record. The record page presents information about that one contact. A Details area commonly displays field values, while Related presents associated information where the page supports it. The list and the record page are different views of the same stored information, not separate copies of the person.",
+        "If Irina is absent from one list, first inspect the selected view and its conditions. A missing row can mean that the view excludes it, that your access excludes it, or that no matching record exists. Immediately creating another Irina may produce a duplicate. Searching and explaining the current view is a better first move."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Explain which question a list answers and which question a record page answers."
+        }
+      ]
+    },
+    {
+      "heading": "Keep configuration separate from daily work",
+      "body": [
+        "Setup is the configuration area of Salesforce. When permitted, you can reach it through the gear menu. It is where an administrator manages features such as users and object definitions. Entering a telephone number for one customer is everyday data work. Adding a new kind of field to store telephone numbers is a configuration change that can affect many records.",
+        "A missing Setup option can reflect permissions. A missing application may reflect availability or configuration. Do not assume a broken installation or ask for broad access before understanding the symptom. At this stage, your goal is to recognize the route and describe what you see. You are not expected to troubleshoot every permission or customize every page.",
+        "Write a short navigation diary. Describe where you started, the item you selected, and the information you expected. This habit becomes useful when reporting a bug: 'I cannot find the record in Recently Viewed' is much more precise than 'Salesforce is broken.'"
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not change unfamiliar settings merely to make your screen match a screenshot."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Find an application",
+          "instruction": "Use App Launcher to locate Sales, or record the available application names if it is absent.",
+          "expected": "You can identify an application and its navigation."
+        },
+        {
+          "title": "Compare two pages",
+          "instruction": "Open a list of sample contacts and then one sample record.",
+          "expected": "You can distinguish the collection from a single item."
+        },
+        {
+          "title": "Locate Setup",
+          "instruction": "Find the gear menu and Setup in your own learning org, if permitted.",
+          "expected": "You can identify configuration without changing it."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Draw Anna's route",
+    "brief": "Create a simple map showing how Anna finds a customer and where an administrator changes configuration.",
+    "steps": [
+      "Include App Launcher, application, navigation item, list, and record page.",
+      "Mark Setup as a separate configuration route.",
+      "Describe why a missing row in a filtered list does not prove deletion."
+    ],
+    "acceptance": [
+      "Each interface area has a plain-language purpose.",
+      "The map distinguishes navigation, stored data, and configuration."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does Recently Viewed contain every record?",
+      "answer": "No. It is a particular list view, not a complete inventory of all accessible records."
+    },
+    {
+      "question": "Where should Anna read one customer's telephone number?",
+      "answer": "On that customer's record page, provided the field and record are accessible."
+    },
+    {
+      "question": "Why might Setup be unavailable?",
+      "answer": "The signed-in user may lack permission; the absence is not by itself evidence of a software failure."
+    }
+  ],
+  "recap": [
+    "Navigate from an application to a list and a record.",
+    "Recognize Setup as configuration.",
+    "Investigate a view before assuming a record is missing."
+  ],
+  "sources": [
+    {
+      "title": "Navigate Salesforce and Setup",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+    },
+    {
+      "title": "Work with lists and records",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started"
+    }
+  ],
+  "illustration": {
+    "subject": "one clean application window opening into a list and a single record card",
+    "alt": "One clean application window opening into a list and a single record card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Salesforce Navigation. Subject: one clean application window opening into a list and a single record card."
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "M30",
+  "track": "middle",
+  "title": "Verifying an application under failure",
+  "minutes": 50,
+  "summary": "Test the complete path from user action through background work and mocked provider response to the final visible result.",
+  "prerequisites": [
+    "M12 and M17–M19 warranty flow.",
+    "M22 UI state and M29 release evidence."
+  ],
+  "learningObjectives": [
+    "Define end-to-end outcomes for several failure modes.",
+    "Trace one request across all components.",
+    "Decide readiness from evidence rather than a happy-path demo."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A feature can have passing unit tests in every layer while its combined path fails. The LWC may submit the wrong key, the service may enqueue work twice, or the worker may save a result that the UI never reloads. End-to-end verification follows the actual user intention across boundaries and checks the final business state, not merely each method's isolated return value.",
+        "For Northstar, the path is Anna's request, authorized vehicle lookup, durable warranty request, background attempt, provider classification, persisted outcome, and visible UI state. The provider can remain mocked for the required course exercise. Clearly label that boundary: the test verifies your application against controlled responses, not real provider authentication, network behavior, or production throughput.",
+        "Use a scenario matrix with initial data, identity, action, injected condition, expected state, expected user message, and evidence. Include success, valid negative answer, transport error, duplicate request, missing access, and bulk input. The same 'no exception' assertion cannot prove all of these. Some correct outcomes are refusals or unchanged records rather than successful writes.",
+        "Failures between stages deserve special attention. The provider result may be obtained but local persistence may fail; the write may succeed while UI refresh fails; a job may be accepted but delayed. Define how these incomplete states are detected and recovered. A visible Unknown or Pending state with a clear next action is more honest than a premature success message."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Readiness is a set of demonstrated outcomes and known limits, not a single successful conversation or click."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Run WARRANTY-200 with a mock 200 covered=true response and verify one request, one appropriate attempt, and a visible completed result. Repeat the same key: the business result must remain singular. Then deny Anna access to the vehicle and try a new key. No privileged workaround should quietly create work on her behalf.",
+        "Next, make the UI refresh fail after the request is successfully accepted or completed. The interface should preserve the known operation status and offer to reload, not tell Anna to submit another request. This cross-layer case often reveals a defect that neither an Apex unit test nor a purely rendered LWC test catches alone."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which final record and user-visible state prove that each scenario behaved correctly?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use the schema and implementations from prior lessons. Test only synthetic data in a training org. When an org or restricted-user license is unavailable, label simulated or unexecuted checks rather than treating them as equivalent evidence.",
+        "HttpCalloutMock and Test.setMock operate in Apex test context; they do not intercept an ordinary browser-triggered callout. Separate three kinds of evidence: Apex tests with controlled HTTP mocks; LWC Jest tests with controlled Apex responses; and a real training-org UI run using M12’s explicitly labelled local deterministic demo adapter. For that last path, select the demo adapter through controlled training configuration, never from an untrusted browser flag; do not send the .invalid endpoint. A real end-to-end HTTP run needs a separately owned test endpoint and credential setup. Do not combine these observations into a claim that the test mock ran behind the live screen."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Build the scenario matrix",
+          "instruction": "Write at least six scenarios before running them, including a denied operation and a repeated request. State exact expected counts and terminal or pending states.",
+          "expected": "The expected result can be evaluated without interpretation after the fact."
+        },
+        {
+          "title": "Trace the whole path",
+          "instruction": "Record request key, attempt number, job ID, result category, persisted state, and UI state. Use the correlation approach from M19.",
+          "expected": "One user action can be followed across every relevant boundary."
+        },
+        {
+          "title": "Investigate one unexpected result",
+          "instruction": "Choose a failing scenario, isolate the broken boundary, fix the smallest responsible layer, and rerun the affected scenario plus its regression checks.",
+          "expected": "The evidence shows cause, correction, and preserved neighboring behavior."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Deleting logs and recreating data until the demo looks clean removes the information needed to understand the failure. Keep a small sanitized record of the original defect and the correction.",
+        "Testing only as the administrator can produce a complete-looking path that no salesperson can actually use. Include the real restricted persona or mark that test explicitly outstanding."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A mocked provider and a small dataset do not establish production integration compatibility or large-volume performance."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create a release-readiness evidence pack",
+    "brief": "Verify the integrated feature with controlled failures and one repaired defect.",
+    "steps": [
+      "Run the scenario matrix.",
+      "Attach correlated evidence.",
+      "Explain the remaining unverified boundaries and release decision."
+    ],
+    "acceptance": [
+      "Duplicate and denied-access cases are included.",
+      "UI messages match persisted outcomes.",
+      "No unexecuted check is reported as successful."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can isolated tests all pass while the feature fails?",
+      "answer": "The connections and assumptions between layers may be wrong even when each unit behaves correctly with its mocks."
+    },
+    {
+      "question": "What does the mock boundary leave unverified?",
+      "answer": "Real credentials, provider compatibility, actual network conditions, and other live integration properties."
+    },
+    {
+      "question": "What is useful evidence of a fix?",
+      "answer": "The original failure, its identified cause, the changed behavior, and relevant regression results."
+    }
+  ],
+  "recap": [
+    "Trace the full business intention.",
+    "Test incomplete and denied outcomes.",
+    "State the remaining limits honestly."
+  ],
+  "sources": [
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Asynchronous processing",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    },
+    {
+      "title": "HTTP mock behavior in test context",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-restful-http-testing-httpcalloutmock.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a feature workflow with one intentionally interrupted connection and a visible recovery route",
+    "alt": "A feature workflow with one intentionally interrupted connection and a visible recovery route",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Failure Testing. Subject: a feature workflow with one intentionally interrupted connection and a visible recovery route."
+  }
+}

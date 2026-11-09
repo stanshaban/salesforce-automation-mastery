@@ -1,0 +1,144 @@
+{
+  "id": "M16",
+  "track": "middle",
+  "title": "Working with REST and SOAP service contracts",
+  "minutes": 50,
+  "summary": "Read an existing provider interface, select the appropriate client and mock, and preserve its error and authentication semantics.",
+  "prerequisites": [
+    "M15 HTTP and credential contract.",
+    "Apex types and M15 JSON/HTTP introduction; XML and generated SOAP types are explained here."
+  ],
+  "learningObjectives": [
+    "Compare REST resource calls with SOAP operations.",
+    "Explain WSDL-generated Apex dependencies.",
+    "Choose HttpCalloutMock or WebServiceMock correctly."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "REST and SOAP are integration styles with different contract shapes. A REST warranty API might expose a resource path and JSON representation. A SOAP service exposes named operations with typed XML messages described by WSDL. The choice is often already made by the provider. Replacing a supported SOAP operation with an imagined REST endpoint is not an implementation decision available to the caller.",
+        "XML uses matching opening and closing tags to name structured values; an xmlns declaration identifies a namespace so similarly named elements can be distinguished. WSDL is an XML contract describing operations, message structures, and service bindings. Reading the illustrative body below does not require writing a WSDL from scratch. In the linked official example, follow its actual generated class definitions before running its mock test.",
+        "For a REST client, inspect the HTTP method, URL construction, headers, response status, and JSON schema. For SOAP, inspect the service endpoint, operation, request and response types, and fault structure. Authentication remains a separate concern in both cases. A well-formed XML message can still be unauthorized, and a 200 transport response is not by itself proof of a successful SOAP business result.",
+        "WSDL2Apex generates Apex classes from a supported WSDL contract. Those generated types reflect the provider's schema and operation names, so example class names cannot be assumed to exist in your org. Keep generated code separate from the small adapter that the application calls. A schema change may require regeneration and regression tests rather than hand-editing generated definitions throughout business logic.",
+        "Use the matching test seam. An HTTP client using Http.send is tested with HttpCalloutMock. A generated SOAP client invoking WebServiceCallout.invoke is tested with WebServiceMock. The mocks return the appropriate response shape without a running provider. This allows you to test request translation and response handling while clearly leaving real authentication and provider compatibility for a later integration test."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Adapt to the provider's actual contract and mock the mechanism your client really invokes."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Northstar's fictional REST response says covered=true. An equivalent SOAP operation might return a typed CoverageResult with an eligibility flag and expiry date. The application should consume a small common result rather than exposing provider-specific XML types throughout its UI and Queueable code. A fault such as UnknownVehicle is not the same as a connection failure.",
+        "For the SOAP inspection exercise, use Salesforce's official generated WSDL2Apex example linked in Sources. It supplies actual generated class definitions and the associated web-service test pattern. Identify the generated operation and response element from that example before adapting the idea to a hypothetical warranty contract. The sample's operation is not presented as a live Northstar warranty API."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Would an HttpCalloutMock necessarily intercept a generated WebServiceCallout.invoke call?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "xml",
+          "caption": "Illustrative SOAP-style body only; not a complete WSDL or deployable client",
+          "code": "<CheckWarranty xmlns=\"urn:northstar:demo\">\n  <vin>SAM00000000000001</vin>\n</CheckWarranty>"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "No server is required. Compare both contracts, then run the official generated SOAP sample and its supplied WebServiceMock pattern. If you choose the REST alternative, complete M17’s client first and return to this comparison. Do not assume a REST adapter already exists at this point. Label which path was executed and which was analyzed."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Trace both interfaces",
+          "instruction": "For the fictional REST contract and official SOAP sample, locate endpoint, operation, request fields, result type, error form, and authentication configuration.",
+          "expected": "The two paths are compared on concrete boundaries."
+        },
+        {
+          "title": "Inspect generated code",
+          "instruction": "Identify the SOAP port class, request/response element types, and invocation call. Wrap provider details behind a small application-facing result.",
+          "expected": "Application logic need not depend on every generated XML type."
+        },
+        {
+          "title": "Select and run the mock",
+          "instruction": "Use the correct mock interface for the chosen client. Assert one successful result and one fault or rejection; do not contact the example endpoint.",
+          "expected": "The test proves local translation without claiming live provider compatibility."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "WSDL support has constraints; a failed import does not justify inventing generated methods. Record the parser failure and inspect the supported schema or provider-approved simplified contract.",
+        "Changing an endpoint string does not change a SOAP client's types or operation binding. Keep endpoint configuration and contract versioning as separate review items."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Generated class and operation names belong to a particular WSDL; never paste placeholder names as if they were real Salesforce APIs."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Compare two warranty integration designs",
+    "brief": "Write a contract map and demonstrate the appropriate mock for one concrete client.",
+    "steps": [
+      "Map REST and SOAP request/response shapes.",
+      "Identify the generated SOAP dependencies.",
+      "Run a local success and failure test without a provider."
+    ],
+    "acceptance": [
+      "The selected mock matches the call mechanism.",
+      "Example XML is not described as a complete WSDL.",
+      "Live authentication remains an explicitly separate check."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Must a modern integration use REST?",
+      "answer": "No. Use the provider's supported contract and the requirements of the system."
+    },
+    {
+      "question": "Why wrap generated SOAP classes?",
+      "answer": "It limits provider-schema coupling in business logic and makes changes easier to isolate."
+    },
+    {
+      "question": "Which mock tests WSDL-generated invocations?",
+      "answer": "WebServiceMock, registered with Test.setMock, supplies the generated response shape."
+    }
+  ],
+  "recap": [
+    "Read the actual contract.",
+    "Separate generated code from business adaptation.",
+    "Use the correct mock boundary."
+  ],
+  "sources": [
+    {
+      "title": "Testing generated web-service callouts",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-callouts-wsdl2apex-testing.html"
+    },
+    {
+      "title": "Official generated WSDL2Apex example",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-callouts-wsdl2apex-gen-code.html"
+    },
+    {
+      "title": "Testing HTTP callouts",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-restful-http-testing.html"
+    }
+  ],
+  "illustration": {
+    "subject": "two distinct structured message envelopes exchanged between the same systems",
+    "alt": "Two distinct structured message envelopes exchanged between the same systems",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: REST and SOAP. Subject: two distinct structured message envelopes exchanged between the same systems."
+  }
+}

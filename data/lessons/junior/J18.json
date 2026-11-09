@@ -1,0 +1,148 @@
+{
+  "id": "J18",
+  "track": "junior",
+  "title": "Apex Syntax, Variables, Collections, and Methods",
+  "minutes": 50,
+  "summary": "Read and write a small pure Apex function before introducing database operations.",
+  "prerequisites": [
+    "J01–J17 and the workspace setup guide; preserve browser-built metadata before deploying source files."
+  ],
+  "learningObjectives": [
+    "Read basic Apex syntax.",
+    "Choose collections by their purpose.",
+    "Define and trace a method contract."
+  ],
+  "sections": [
+    {
+      "heading": "Read the language one construct at a time",
+      "body": [
+        "Apex is a programming language used on the Salesforce platform. A variable names a value, and its type describes what kind of value it can hold. Integer represents a whole number, String represents text, and Boolean represents true or false. An assignment such as Integer minute = 600 stores a value. A comparison such as minute == 600 asks a question; the two operations are different.",
+        "A class groups related code. A method is a named operation with inputs, a return type, and a body between braces. public makes the method available to callers allowed by the language; static lets it be called on the class without creating an instance. return supplies the result. An if statement chooses a branch, and a for loop repeats a block for elements in a collection. Semicolons finish statements, while braces group their bodies."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Read a method as input → rules → output before thinking about Salesforce records."
+        }
+      ]
+    },
+    {
+      "heading": "Choose a collection for a purpose",
+      "body": [
+        "A List keeps elements in an indexed sequence and can contain duplicates. A Set keeps unique elements without promising a useful display order. A Map connects unique keys to values, such as an appointment ID to a prepared label. These choices express different needs; replacing every list with a map does not automatically make code better.",
+        "Our example uses minutes after midnight as a simple integer exercise. 600 means 10:00 and 840 means 14:00. This is not a complete scheduling model: it has no date, time zone, duration, or vehicle. The function removes occupied values, ignores invalid or missing numbers, removes duplicates, and returns the remaining minutes in ascending order. Those decisions are explicit parts of its contract.",
+        "Null means that a reference has no value. It is different from an empty collection, which exists but contains no items. The method below returns an empty list for a null request list and treats a null occupied set as no occupied values. Another application could choose to reject null; what matters is documenting and testing the choice."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "This pure function does not reserve a real appointment or prove that a vehicle is available."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "SlotPlanner.cls — no database access",
+          "code": "public with sharing class SlotPlanner {\n    public static List<Integer> available(\n        List<Integer> requested, Set<Integer> occupied\n    ) {\n        Set<Integer> uniqueMinutes = new Set<Integer>();\n        if (requested == null) return new List<Integer>();\n        for (Integer minute : requested) {\n            if (minute == null || minute < 0 || minute > 1439) continue;\n            if (occupied == null || !occupied.contains(minute)) {\n                uniqueMinutes.add(minute);\n            }\n        }\n        List<Integer> result = new List<Integer>(uniqueMinutes);\n        result.sort();\n        return result;\n    }\n}"
+        }
+      ]
+    },
+    {
+      "heading": "Trace the example before running it",
+      "body": [
+        "For requested values 600, 840, 600, and 1500, with 840 occupied, the result is a single value: 600. The duplicate collapses in the Set, the invalid 1500 is skipped, and the occupied value is excluded. Sorting makes the returned order explicit instead of relying on Set iteration.",
+        "Complete the separate workspace setup guide before creating an Apex class in VS Code. Your org already contains browser-built changes from J07–J17: retrieve and reconcile that metadata first, rather than overwriting it with the original starter. Create SlotPlanner.cls in force-app/main/default/classes with its matching metadata file. From starter/salesforce, deploy the classes directory to the explicit learning alias. Save the short invocation below in scripts/apex/slot-planner-demo.apex, then run sf apex run --file scripts/apex/slot-planner-demo.apex --target-org sam-training. System.debug is exploratory output; J22 adds assertions.",
+        "For a Map exercise, build a Map<Integer, String> containing 600 → Morning and 840 → Afternoon. Use containsKey before relying on a lookup when a missing key has business meaning. Avoid an unnecessary nested loop that searches the same label list repeatedly.",
+        "Make one deliberate syntax mistake in a disposable copy, such as removing a semicolon, and read the compiler message. Restore the correct code. Learning to connect a message to a small line of code is more valuable than repeatedly pasting a whole replacement class."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Trace every requested value on paper and explain why it is included, excluded, or deduplicated."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prepare the development route",
+          "instruction": "Complete the setup guide and confirm the target is the learning org.",
+          "expected": "You can create and deploy a class deliberately."
+        },
+        {
+          "title": "Trace and execute",
+          "instruction": "Predict the sample result, then run the same inputs.",
+          "expected": "The returned list contains only 600."
+        },
+        {
+          "title": "Vary the input",
+          "instruction": "Try an empty list, null input, duplicate valid values, and all occupied values.",
+          "expected": "Each outcome follows the documented contract."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "xml",
+          "caption": "SlotPlanner.cls-meta.xml",
+          "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ApexClass xmlns=\"http://soap.sforce.com/2006/04/metadata\">\n    <apiVersion>68.0</apiVersion>\n    <status>Active</status>\n</ApexClass>"
+        },
+        {
+          "language": "apex",
+          "caption": "scripts/apex/slot-planner-demo.apex, after deploying SlotPlanner",
+          "code": "System.debug(SlotPlanner.available(\n    new List<Integer>{600, 840, 600, 1500},\n    new Set<Integer>{840}\n));"
+        },
+        {
+          "language": "shell",
+          "caption": "Run from starter/salesforce; sam-training must identify your learning org",
+          "code": "sf project deploy start --source-dir force-app/main/default/classes --target-org sam-training\nsf apex run --file scripts/apex/slot-planner-demo.apex --target-org sam-training"
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Extend a pure function safely",
+    "brief": "Add a method that returns labels for available minutes using a Map.",
+    "steps": [
+      "Explain every variable type and method input.",
+      "Define how missing labels should be handled.",
+      "Record results for normal, duplicate, empty, and invalid inputs."
+    ],
+    "acceptance": [
+      "The code performs no database operation.",
+      "Returned ordering and null behaviour are explicit.",
+      "The explanation distinguishes List, Set, and Map."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "How does assignment differ from comparison?",
+      "answer": "Assignment stores a value; comparison produces a true or false result."
+    },
+    {
+      "question": "Why sort after converting the Set to a List?",
+      "answer": "The display order should be explicit rather than depend on Set iteration."
+    },
+    {
+      "question": "Is null the same as an empty List?",
+      "answer": "No. Null is no referenced value; an empty List is a collection with zero elements."
+    }
+  ],
+  "recap": [
+    "Read basic Apex syntax.",
+    "Choose collections by their purpose.",
+    "Define and trace a method contract."
+  ],
+  "sources": [
+    {
+      "title": "Apex collections",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/langcon-apex-collections.html"
+    },
+    {
+      "title": "Iterating collections",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/langcon-apex-collections-iterating.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a calm developer workspace with a small code card, a collection of blocks and a method-shaped container",
+    "alt": "A calm developer workspace with a small code card, a collection of blocks and a method-shaped container",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Foundations. Subject: a calm developer workspace with a small code card, a collection of blocks and a method-shaped container."
+  }
+}

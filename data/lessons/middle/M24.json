@@ -1,0 +1,146 @@
+{
+  "id": "M24",
+  "track": "middle",
+  "title": "Accessible LWC states and Jest tests",
+  "minutes": 50,
+  "summary": "Test what a user can understand and operate, including keyboard interaction, empty results, failed loading, and selection events.",
+  "prerequisites": [
+    "M21–M23 component behavior and events.",
+    "JavaScript promises and local development tools."
+  ],
+  "learningObjectives": [
+    "Define accessible loading, empty, success, and error states.",
+    "Write isolated Jest tests for observable behavior.",
+    "Explain what still requires a real org or browser."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "An accessible component communicates state and supports operation without relying only on a mouse or color. A spinner needs meaningful context, an error needs understandable text, and a selectable row needs a keyboard-operable control. Use appropriate Lightning base components and semantic HTML before inventing custom interaction patterns. A visually attractive card can still be unusable when focus disappears after an update.",
+        "Jest runs LWC unit tests locally. The tests create a component instance, supply controlled inputs or mocks, perform an interaction, and assert rendered output or dispatched events. They do not deploy to Salesforce or verify live object permissions. Mocking a successful Apex response does not prove that the actual Apex method returns that response for a restricted user.",
+        "Test the public behavior rather than private implementation details. If selecting a visit should dispatch visitselect with its recordId, assert that event. If an empty response should display a clear message, assert that message and the absence of false data rows. Avoid coupling the test to every nested DOM node inside a base component; those internals are not your component's contract.",
+        "LWC updates render asynchronously. After changing a property or resolving a mocked promise, allow the microtask work to complete before asserting the DOM. Clean up document.body and mock state between tests so a previous component does not influence the next one. A test that passes only when run after another test indicates hidden shared setup."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Test the behavior a user or parent component relies on, and keep the test's limitations visible."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna opens an appointment list. While loading, she sees a contextual loading indication. If there are no appointments, she sees 'No test drives match this filter.' If loading fails, she receives a readable error and Retry control. Selecting TD-A with a keyboard-operable button dispatches its ID to the parent.",
+        "Create a visitCard component with a public recordId and a button labelled 'Select test drive'. Its handler dispatches visitselect with detail containing recordId, following M23. The complete test file below checks that public contract; the component itself is your small implementation task. This is a local UI test, not evidence of live Salesforce permissions."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which parts of this test would still pass even if the real user lacked Salesforce access?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "Complete visitCard/__tests__/visitCard.test.js; requires your c/visitCard component",
+          "code": "import { createElement } from 'lwc';\nimport VisitCard from 'c/visitCard';\n\ndescribe('c-visit-card', () => {\n    afterEach(() => {\n        while (document.body.firstChild) {\n            document.body.removeChild(document.body.firstChild);\n        }\n        jest.clearAllMocks();\n    });\n    it('announces the selected appointment', () => {\n        const element = createElement('c-visit-card', { is: VisitCard });\n        element.recordId = 'a00000000000001AAA'; // local fixture only\n        const selected = jest.fn();\n        element.addEventListener('visitselect', selected);\n        document.body.appendChild(element);\n        element.shadowRoot.querySelector('lightning-button').click();\n        expect(selected).toHaveBeenCalledTimes(1);\n        expect(selected.mock.calls[0][0].detail.recordId).toBe(element.recordId);\n    });\n});"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Install a supported Node.js LTS version with npm, then check node --version and npm --version. Run the setup commands below from starter/salesforce, the directory containing sfdx-project.json, not the portal root. The Salesforce setup command installs the local Jest dependency and project configuration. Inspect the resulting package.json and lockfile and keep them with your learner project. Tests belong under force-app/main/default/lwc/visitCard/__tests__. Confirm .forceignore excludes **/__tests__/** so local tests are not deployed as component metadata."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Specify four states",
+          "instruction": "Write the visible text, available controls, and focus behavior for loading, empty, loaded, and failed states before implementation.",
+          "expected": "No state is represented by an unexplained blank area."
+        },
+        {
+          "title": "Write behavior tests",
+          "instruction": "Mock data success, empty results, and rejection. Assert selection events, understandable error text, and Retry behavior after flushing asynchronous updates.",
+          "expected": "The tests detect a wrong event payload or missing recovery control."
+        },
+        {
+          "title": "Check actual interaction",
+          "instruction": "Use keyboard-only navigation in the training Lightning page. Verify labels, focus order, visible focus, and state announcements where applicable.",
+          "expected": "Local unit tests are complemented by real interaction evidence."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "shell",
+          "caption": "One-time setup and local execution from starter/salesforce",
+          "code": "node --version\nnpm --version\nsf force lightning lwc test setup\nnpx sfdx-lwc-jest -- --runInBand"
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A test that only compares a snapshot can miss a broken interaction. Include a concrete user action and expected event or state transition.",
+        "An icon without an accessible name may look obvious to a sighted mouse user but be meaningless to assistive technology. Do not use color alone to distinguish success from failure."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Jest mocks do not verify real Apex execution, Salesforce security, browser layout, or complete accessibility."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Test a usable appointment selector",
+    "brief": "Build the four UI states and verify selection and recovery behavior.",
+    "steps": [
+      "Create explicit state descriptions.",
+      "Add isolated Jest tests.",
+      "Record a keyboard-only check in the org."
+    ],
+    "acceptance": [
+      "Tests pass independently with cleanup.",
+      "Event payload and error recovery are asserted.",
+      "Keyboard access and readable labels are demonstrated."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why flush asynchronous updates?",
+      "answer": "Property and promise changes may not have reached the rendered DOM when the immediate assertion runs."
+    },
+    {
+      "question": "What should a selection test assert?",
+      "answer": "The public event and intended record ID, not unrelated private implementation details."
+    },
+    {
+      "question": "Why still test in the org?",
+      "answer": "Jest does not establish live permissions, actual Apex results, integration, or complete browser accessibility."
+    }
+  ],
+  "recap": [
+    "Design meaningful states.",
+    "Test public behavior.",
+    "Combine unit and real-user checks."
+  ],
+  "sources": [
+    {
+      "title": "Writing LWC Jest tests",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/unit-testing-using-jest-create-tests.html"
+    },
+    {
+      "title": "Install LWC Jest",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/unit-testing-using-jest-installation.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a clean accessible interface with a keyboard focus outline and a small automated test check",
+    "alt": "A clean accessible interface with a keyboard focus outline and a small automated test check",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Accessibility and Jest. Subject: a clean accessible interface with a keyboard focus outline and a small automated test check."
+  }
+}

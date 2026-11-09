@@ -1,0 +1,135 @@
+{
+  "id": "M25",
+  "track": "middle",
+  "title": "Shadow DOM and component boundaries",
+  "minutes": 50,
+  "summary": "Keep DOM, styling, and event contracts inside their intended boundaries and understand the implications for optional legacy migration.",
+  "prerequisites": [
+    "M21 lifecycle.",
+    "M23 events and M24 behavior tests."
+  ],
+  "learningObjectives": [
+    "Query only DOM owned by the component.",
+    "Explain CSS scope and event retargeting.",
+    "Preserve public contracts when replacing a legacy component."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Shadow DOM defines an encapsulated internal tree for a component. The component's markup is not a public collection of elements for unrelated code to manipulate. LWC's platform implementation can differ between supported rendering modes and releases, but the design principle remains: interact through public properties, methods, events, and supported styling mechanisms rather than depending on another component's private DOM.",
+        "Within a shadow-rendered LWC, this.template.querySelector accesses elements owned by that component. A document-level selector is not the correct way to find a child's private input. Timing matters too: an element may not exist before rendering or while a conditional template branch is absent. A null query result can be expected state, not a reason to bypass encapsulation.",
+        "CSS scope prevents a parent's ordinary stylesheet from freely styling a child's internal elements. Use a declared styling hook or a public presentation option when supported. Forcing a selector through implementation-generated attributes couples the application to details that may change. If you need a different child appearance, expose a deliberate contract rather than searching for a clever global selector.",
+        "Events can cross component boundaries according to their propagation configuration. Retargeting makes the observed target appropriate to the listener's scope, protecting internal details. A parent should consume the event's documented detail payload, not assume event.target identifies the exact private button deep inside the child. Broad bubbling and composed settings expand the public event surface and should be used intentionally."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A component's internal markup is an implementation detail; its public contract is the integration boundary."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Northstar's visitCard contains an internal button. Its parent needs the selected Test Drive ID, not access to the button element. The child dispatches visitselect with that ID, and the parent updates its selected record. Later, the child changes the button to a different accessible control. The parent should continue to work because the event contract has not changed.",
+        "For an optional Aura migration, write down the legacy component's page inputs, output events, navigation behavior, and required styling before replacing it. Move a small boundary at a time and test supported coexistence. The core lesson is complete without owning or building an Aura component; migration is an extension, not an assumed prerequisite."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What should the parent know if the child's internal button markup changes?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "javascript",
+          "caption": "Owned-element access fragment after the relevant template has rendered",
+          "code": "const retryButton = this.template.querySelector('[data-id=\"retry\"]');\nif (retryButton) {\n    retryButton.focus();\n}\n// The matching data-id belongs to this component's own template.\n// Do not replace this with a selector into another component's internals."
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create two small LWC components with their own templates and styles. Use the existing visit-selection event contract. No Salesforce schema changes are required."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Observe ownership",
+          "instruction": "Add an element marked data-id in the child. Query it from the child after rendering, then compare the parent's attempt to query its own template.",
+          "expected": "The parent does not rely on the child's private internal element."
+        },
+        {
+          "title": "Compare styling and events",
+          "instruction": "Apply a parent paragraph style and a separate child style. Dispatch a documented event and inspect the listener's target and detail at each boundary.",
+          "expected": "The explanation separates styling scope, event payload, and retargeting."
+        },
+        {
+          "title": "Preserve the contract",
+          "instruction": "Change the child's internal layout while retaining its public input and selection event. Run the parent behavior tests and keyboard check.",
+          "expected": "The parent still works without selector repairs."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A test can accidentally reach into private DOM more aggressively than production code should. Unit inspection of a component's own shadow root is useful, but parent integration should still assert public contracts.",
+        "Making every event composed and bubbling can create collisions or expose internal interactions. Choose the narrowest propagation needed for the intended consumer."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not build cross-component behavior around undocumented DOM attributes or selectors that pierce another component's internals."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Demonstrate an encapsulated component pair",
+    "brief": "Show owned queries, scoped styles, and a stable public event contract.",
+    "steps": [
+      "Build the two components.",
+      "Record ownership and propagation observations.",
+      "Change child markup and rerun parent tests."
+    ],
+    "acceptance": [
+      "No private child DOM is accessed by the parent.",
+      "The event detail carries the required business identity.",
+      "Optional Aura work is labeled separately."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can a global selector fail?",
+      "answer": "The desired element may be inside an encapsulated component tree rather than the document's accessible query scope."
+    },
+    {
+      "question": "What is retargeting for?",
+      "answer": "It exposes an event target appropriate to the listener's scope instead of leaking private internal elements."
+    },
+    {
+      "question": "How should a parent survive markup changes?",
+      "answer": "By depending on documented public properties and events rather than child selectors."
+    }
+  ],
+  "recap": [
+    "Respect DOM ownership.",
+    "Use supported styling contracts.",
+    "Expose narrow, stable events."
+  ],
+  "sources": [
+    {
+      "title": "LWC Shadow DOM",
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-dom.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a component's internal structure enclosed in a clear boundary within a larger page",
+    "alt": "A component's internal structure enclosed in a clear boundary within a larger page",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Shadow DOM. Subject: a component's internal structure enclosed in a clear boundary within a larger page."
+  }
+}

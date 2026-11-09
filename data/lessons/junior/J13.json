@@ -1,0 +1,120 @@
+{
+  "id": "J13",
+  "track": "junior",
+  "title": "Set a Record-Access Baseline and Add Exceptions",
+  "minutes": 50,
+  "summary": "Use Private defaults, roles, and a focused sharing rule to explain appointment visibility.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Explain OWD as a baseline.",
+    "Distinguish roles from profiles.",
+    "Validate a targeted sharing exception."
+  ],
+  "sections": [
+    {
+      "heading": "Start with the baseline",
+      "body": [
+        "Organization-wide defaults, commonly called OWD, define a baseline for access to records users do not own. The course starter sets Vehicle and Test Drive to Private. Private does not mean that nobody except the owner can ever see a record. Ownership, hierarchy behaviour where applicable, explicit sharing, and elevated permissions can provide additional access.",
+        "Keep object and field permissions separate. If Max has no Read permission on Test Drive, widening record visibility is not the whole solution. Conversely, Read on Test Drive does not mean all private appointments are visible. You are combining the layers introduced in J11, not replacing them with a single Sharing Settings screen."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Begin with a restrictive baseline and explain each intended path that expands record access."
+        }
+      ]
+    },
+    {
+      "heading": "Separate a hierarchy position from a permission profile",
+      "body": [
+        "A role represents a position in a record-access hierarchy. It is not the same thing as a profile or a job title printed on a business card. In a controlled example, Anna and Max can occupy peer sales roles while Oleg sits above them. Inspect the custom object's Grant Access Using Hierarchies setting before predicting Oleg's access. Record the actual configuration rather than assuming standard and custom objects behave identically.",
+        "A public group collects users or other supported members for uses such as sharing recipients. Create a Northstar Service Review group containing a suitable test user. A criteria-based sharing rule can grant that group Read access to appointments whose Status is Confirmed. The business reason is that service staff prepare for agreed visits.",
+        "The rule does not confirm an appointment, grant missing object permissions, or revoke another access path. It adds a grant for records meeting its condition. It also does not create a branch boundary: the core starter has no Branch field. A real branch-specific requirement would first need suitable data and a complete sharing design. Avoid claiming that this small demonstration implements a requirement its data cannot express."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Sharing rules grant access; they are not deny rules that cancel ownership, hierarchy, or other grants."
+        }
+      ]
+    },
+    {
+      "heading": "Use records that distinguish the possible outcomes",
+      "body": [
+        "Prepare Anna's Confirmed appointment and Anna's Requested appointment. Predict what the service reviewer should see through the new rule. The Confirmed appointment qualifies; the Requested appointment does not. If a third record owned by a peer is available, include it to make ownership differences visible.",
+        "Before calling an observation a failure, inspect other access paths. The reviewer might own the record, sit above its owner in a hierarchy, or hold View All Records. A matching role name does not by itself grant access to peer records. Your explanation needs an actual configured path, not an assumption about organizational seniority.",
+        "Sharing changes may require recalculation. Note the change time, wait for relevant processing, and refresh before checking again. Repeatedly adding permissions while a change is being applied makes the experiment harder to interpret. Record any unperformed checks if the training org lacks suitable distinct users.",
+        "Create an access map containing the baseline, record owners, hierarchy setting, group members, rule condition, and observations. A screenshot of the rule is only one part of that map. The reviewer needs enough context to explain why both the included and excluded record behaved as expected."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "For each visible record, identify a configured route that could grant access and verify it."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Inspect OWD",
+          "instruction": "Record the actual Test Drive baseline and custom-object hierarchy setting.",
+          "expected": "The prediction matches the environment."
+        },
+        {
+          "title": "Configure one exception",
+          "instruction": "Create a small public group and a Read rule for Confirmed appointments.",
+          "expected": "The condition and recipient have clear business purposes."
+        },
+        {
+          "title": "Test contrasting records",
+          "instruction": "Compare Confirmed and Requested appointments under the intended reviewer.",
+          "expected": "The result distinguishes this rule from unrelated grants."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Document one access map",
+    "brief": "Explain the intended owner, peer, manager, and service-reviewer access.",
+    "steps": [
+      "Draw hierarchy positions and public-group membership.",
+      "List the baseline and sharing condition.",
+      "Test matching and nonmatching records with the available identities."
+    ],
+    "acceptance": [
+      "A role is not confused with a profile.",
+      "No unsupported branch isolation is claimed.",
+      "Other granting sources are investigated when results differ."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does Private prevent all non-owner access?",
+      "answer": "No. Additional configured access routes can grant it."
+    },
+    {
+      "question": "Does a sharing rule change Status?",
+      "answer": "No. It evaluates the stored status to decide which records qualify."
+    },
+    {
+      "question": "Does sharing a role automatically share peer records?",
+      "answer": "No. Identify an actual configured granting mechanism."
+    }
+  ],
+  "recap": [
+    "Explain OWD as a baseline.",
+    "Distinguish roles from profiles.",
+    "Validate a targeted sharing exception."
+  ],
+  "sources": [
+    {
+      "title": "Control access to records",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records"
+    }
+  ],
+  "illustration": {
+    "subject": "a simple team hierarchy above three record cards with carefully drawn access paths",
+    "alt": "A simple team hierarchy above three record cards with carefully drawn access paths",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Record Access. Subject: a simple team hierarchy above three record cards with carefully drawn access paths."
+  }
+}

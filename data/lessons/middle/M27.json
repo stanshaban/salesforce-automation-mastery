@@ -1,0 +1,139 @@
+{
+  "id": "M27",
+  "track": "middle",
+  "title": "Change Data Capture, replay, and duplicate delivery",
+  "minutes": 50,
+  "summary": "Choose a record-change stream or business event and recover from disconnection without treating replay IDs as permanent business identities.",
+  "prerequisites": [
+    "M26 producer, subscriber, and durable deduplication.",
+    "M18 entity and operation identity."
+  ],
+  "learningObjectives": [
+    "Distinguish CDC from a custom business event.",
+    "Explain replay and retention boundaries.",
+    "Apply repeat-safe consumption to a provided event trace."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Change Data Capture describes supported changes to Salesforce records. A custom Platform Event describes a business message chosen by your application. If a downstream system needs a replica of selected record changes, CDC may fit. If it needs the explicit fact that a test drive confirmation was accepted under a particular rule, a custom business event can provide a clearer contract than interpreting every field update.",
+        "Replay lets a subscriber resume from a previously recorded position within the available event retention window. The replay ID is a stream position token, not a VIN, request ID, or universal permanent event identity. Do not generate it, increment it, or assume it is a consecutive sequence. Store the value supplied by the platform using the subscription mechanism's documented format.",
+        "Current documentation describes a 72-hour retention window for Platform Events and CDC events, but recovery planning should always check current product guarantees and maintenance limitations. A consumer offline beyond available retention cannot assume replay will reconstruct every missed change. It needs reconciliation, such as a controlled data comparison or snapshot followed by a coordinated restart.",
+        "Durable processing coordinates the business effect, deduplication record, and checkpoint. If the checkpoint advances before the effect is saved, a restart can skip work. If the effect commits but the checkpoint does not, replay can repeat it. A repeat-safe operation handles that latter case without a second unwanted effect. Exactly-once business outcomes require deliberate design, not a slogan about event-driven architecture."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A replay position helps resume delivery; a business identity helps avoid repeated effects."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Analyze the provided trace: event E1 with business key confirm:A is processed; E2 with confirm:B is processed but the checkpoint write fails; the connection drops; after reconnect E2 is delivered again, followed by E3 with confirm:C. A correct receipt consumer ends with A, B, and C once each. The repeated delivery is expected recovery behavior, not evidence that the system is broken.",
+        "For CDC, inspect the documented ChangeEventHeader fields and the affected record IDs. A change event can represent more than the one-record mental model. Define how your consumer identifies a change or converges the destination state. Do not blindly apply the custom Platform Event's EventUuid rule to a different event schema without checking its documented identity fields."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Why should the replay of confirm:B be safe even though its first effect already committed?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Provided simulation trace; opaque replay tokens are illustrative, not arithmetic IDs",
+          "code": "deliver token=qA  businessKey=confirm:A  effect=saved  checkpoint=saved\n deliver token=rZ  businessKey=confirm:B  effect=saved  checkpoint=failed\nconnection lost\nresume from stored token=qA\n deliver token=rZ  businessKey=confirm:B  effect=already present\n deliver token=tM  businessKey=confirm:C  effect=saved  checkpoint=saved"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "The trace analysis is mandatory and requires no paid product or external subscriber. A live CDC subscription is optional when your org supports the selected object and you have an appropriate client; label it separately."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Choose the message contract",
+          "instruction": "Compare a Vehicle record synchronization requirement with a Test Drive confirmation notification. Select CDC or a custom event for each and explain the consumer's required information.",
+          "expected": "The selection follows the meaning of the data, not fashion."
+        },
+        {
+          "title": "Process the supplied trace",
+          "instruction": "Maintain a table of durable receipts and checkpoint state after each line. Repeat the exercise with a crash before the effect is saved.",
+          "expected": "Neither crash point loses a required result or creates a duplicate effect."
+        },
+        {
+          "title": "Plan retention-gap recovery",
+          "instruction": "Describe what happens after a gap beyond available retention. Identify the authoritative source, reconciliation window, and how to avoid applying an older update over a newer state.",
+          "expected": "Recovery does not depend on unavailable historical messages."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Checkpointing receipt of a message before committing its effect can lose work. Advancing the position should follow the consumer's safe processing policy.",
+        "Out-of-order business updates or stale replay can overwrite newer state if the destination uses no version or convergence rule. State the ordering assumptions and validate them against the chosen channel."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not use replay ID as a permanent business primary key or promise exactly-once delivery."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Recover a disconnected consumer",
+    "brief": "Analyze the supplied trace and design both short-disconnection and retention-gap recovery.",
+    "steps": [
+      "Choose event type for two requirements.",
+      "Track effects and checkpoints line by line.",
+      "Write the reconciliation procedure."
+    ],
+    "acceptance": [
+      "The duplicate produces one effect.",
+      "Replay tokens are treated as opaque.",
+      "Beyond-retention recovery is defined."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What does CDC communicate?",
+      "answer": "Changes to supported Salesforce records, with a platform-defined change-event schema."
+    },
+    {
+      "question": "Why can a processed event appear again?",
+      "answer": "Its effect may have committed before the consumer's checkpoint, so replay safely redelivers it."
+    },
+    {
+      "question": "What if retention has expired?",
+      "answer": "Use a defined reconciliation or snapshot strategy; unavailable events cannot be recovered by inventing a replay token."
+    }
+  ],
+  "recap": [
+    "Choose the right message meaning.",
+    "Coordinate effects and checkpoints.",
+    "Design for duplicates and retention gaps."
+  ],
+  "sources": [
+    {
+      "title": "CDC delivery",
+      "url": "https://developer.salesforce.com/docs/platform/change-data-capture/guide/cdc-subscribe-delivery.html"
+    },
+    {
+      "title": "Event durability and retention",
+      "url": "https://developer.salesforce.com/docs/platform/pub-sub-api/guide/event-message-durability.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a stream of record changes with a replay bookmark and a duplicate-handling gate",
+    "alt": "A stream of record changes with a replay bookmark and a duplicate-handling gate",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Change Data Capture. Subject: a stream of record changes with a replay bookmark and a duplicate-handling gate."
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "M03",
+  "track": "middle",
+  "title": "Manual and implicit sharing",
+  "minutes": 50,
+  "summary": "Identify why a record is visible and distinguish an explicit manual grant from access arising from supported standard relationships.",
+  "prerequisites": [
+    "M01 access layers and ownership.",
+    "The difference between Account, Contact, Case, and a custom lookup."
+  ],
+  "learningObjectives": [
+    "Identify the source of record access.",
+    "Test removal of one grant without assuming all access disappears.",
+    "Recognize that custom lookups do not universally imply sharing."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Manual sharing is a deliberate record-level grant to another user or group. It can solve a small exception such as Anna asking Max to help with one appointment. It does not grant object Read or field permissions. An owner may give a record-level permission that Max cannot effectively use until the other security layers allow the operation.",
+        "Implicit sharing describes access Salesforce derives from particular supported relationships and ownership rules, especially around Account and related standard records. It is platform-managed behavior, not a generic consequence of any lookup. The exact result depends on the objects and sharing configuration. Explain the documented relationship involved rather than claiming that every parent automatically shares all children.",
+        "The core Northstar Vehicle lookup is deliberately useful for comparison. Test_Drive__c has its own owner and private sharing. Giving Max access to Vehicle NS-001 does not, merely because of the lookup, promise access to Anna's appointment. A master-detail design would have different ownership and sharing consequences; changing relationship type is therefore an architectural change, not a cosmetic repair.",
+        "Removing a manual share removes that reason for access. It does not remove ownership, a role hierarchy path, a sharing rule, or a different share. Manual shares also have lifecycle considerations around owner changes. Current standard-object options and settings can affect behavior, so record the object and actual configuration rather than memorizing one universal sentence from an old interview answer."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Record visibility is the combined result of access paths; deleting one path is not necessarily a denial."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Start with Anna owning TD-A and Max unable to read it. Give Max object Read and the necessary FLS, then manually share TD-A with Read. Max should see the appointment but should not gain Edit from this read-only grant alone. Remove the share and test again. If Max still sees it, investigate the remaining paths instead of assuming the deletion failed.",
+        "For a reproducible parent-implicit example, use Account and Case with Private internal sharing in an isolated training org. Give Max object Read and required field visibility for both, but no View All, broad data permission, account share, or hierarchy path. Anna owns a synthetic Account and a Case whose Account Name points to it. Confirm Max initially sees neither. Manually share only the Case with Max, Read Only. Max can then read the related Account through parent implicit sharing, while this path does not grant Account Edit. Access to a child solely through View All is not this experiment. Restore temporary sharing settings afterward; changes affect more than these two records."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can you explain a visible record without pointing to any manual share?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "No additional custom fields are needed. Use a disposable synthetic Account/Contact/Case dataset. If your edition or license limits a standard-object experiment, mark the live part unavailable and analyze the documented configuration."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Make the manual exception",
+          "instruction": "Capture Max's denied baseline, add a Read manual share to TD-A, and verify the same read operation.",
+          "expected": "One explicit grant explains the changed result."
+        },
+        {
+          "title": "Remove and investigate",
+          "instruction": "Remove that share. Compare the result with your access matrix and inspect other grants if visibility remains.",
+          "expected": "The explanation includes every still-effective path."
+        },
+        {
+          "title": "Compare relationship behavior",
+          "instruction": "Run the isolated Account/Case steps above: denied baseline → Case Read share → Account Read. Compare this with Vehicle/Test Drive, whose custom lookup does not supply that parent-implicit path. Capture object permissions, owners, sharing settings, and identities.",
+          "expected": "The comparison does not infer platform behavior from a lookup icon."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A user high in a role hierarchy may already see the record, making the manual-share experiment inconclusive. Choose a persona without that baseline path.",
+        "Some implicit shares are platform-managed and cannot be edited as arbitrary share rows. Do not attempt to repair them by deleting records from a share table; change the legitimate configuration that controls the relationship."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Neither an absent share row nor a deleted manual grant proves that a user has no access."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Document two sources of record access",
+    "brief": "Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship.",
+    "steps": [
+      "List ownership and sharing settings.",
+      "Predict visibility, then test restricted identities.",
+      "Explain the custom lookup counterexample."
+    ],
+    "acceptance": [
+      "Each visibility result names an access mechanism.",
+      "Remaining access after removal is investigated.",
+      "No claim says all lookups automatically share records."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does a manual Read share grant field Read?",
+      "answer": "No. Object and field permissions remain separate requirements."
+    },
+    {
+      "question": "Why might access survive removal?",
+      "answer": "Another path, such as hierarchy, ownership, or a rule, can still grant it."
+    },
+    {
+      "question": "Why compare a custom lookup?",
+      "answer": "It exposes the mistaken assumption that every relationship uses the standard-object implicit-sharing model."
+    }
+  ],
+  "recap": [
+    "Name the source of access.",
+    "Treat supported standard relationships explicitly.",
+    "Verify lifecycle effects on the actual object and configuration."
+  ],
+  "sources": [
+    {
+      "title": "Sharing and record access",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.managing_the_sharing_model.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Current sharing-reason metadata",
+      "url": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html"
+    },
+    {
+      "title": "Implicit sharing: parent Account access",
+      "url": "https://help.salesforce.com/s/articleView?id=sharing_across_objects.htm&language=en_US&type=0"
+    }
+  ],
+  "illustration": {
+    "subject": "one record connected by a deliberate handoff path and a quieter parent relationship path",
+    "alt": "One record connected by a deliberate handoff path and a quieter parent relationship path",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Manual and Implicit Sharing. Subject: one record connected by a deliberate handoff path and a quieter parent relationship path."
+  }
+}

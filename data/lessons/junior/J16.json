@@ -1,0 +1,129 @@
+{
+  "id": "J16",
+  "track": "junior",
+  "title": "Verify Access for Sales, Service, and Management",
+  "minutes": 50,
+  "summary": "Turn a written access matrix into repeatable positive and negative checks for three working personas.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Translate working personas into specific checks.",
+    "Test allowed and denied actions.",
+    "Document evidence limits without overstating completeness."
+  ],
+  "sections": [
+    {
+      "heading": "Define the personas before configuring them",
+      "body": [
+        "A persona is a description of a type of user and the work that user needs to perform. It is not automatically a Salesforce profile, role, or permission set. For this capstone, Anna represents sales work, Max represents service preparation for the exercise, and Oleg represents management. Max is normally another salesperson in the story; assigning him a temporary service-review responsibility here is an explicit test scenario.",
+        "Anna should create and manage the appointments she owns. The service reviewer should read Confirmed appointments needed for preparation, without changing appointment data. Oleg should read the appointments covered by the agreed management hierarchy. Do not assume Oleg should edit every record merely because he is a manager. Write the requirement and configure only what it needs."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A persona states a business need. The implementation can combine several configuration mechanisms."
+        }
+      ]
+    },
+    {
+      "heading": "Create an executable matrix",
+      "body": [
+        "Make a matrix whose rows are actions and whose columns are personas. Use concrete records: Anna's Requested appointment, Anna's Confirmed appointment, and an unrelated peer appointment where suitable users exist. Include read, edit, and delete actions, plus at least one field-level restriction. Mark the expected result and the reason for it.",
+        "For example, the service reviewer may read Anna's Confirmed appointment through the focused sharing rule but should not edit its scheduled time because object Edit is absent. Anna may edit her own appointment but should not gain broad vehicle deletion. Oleg's visibility must be explained through the actual role positions and custom-object hierarchy setting, not through an administrator profile.",
+        "Lookups add dependencies. A persona might be able to open an appointment while lacking sufficient access to its related Contact or Vehicle for a particular screen action. Decide what the task requires and include those related-record checks. Otherwise, the main appointment may appear correct while the real user journey still fails."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not count an administrator session or a changed page layout as a substitute for a restricted-user test."
+        }
+      ]
+    },
+    {
+      "heading": "Execute within the available licenses",
+      "body": [
+        "A small learning org may not provide enough active licenses for three simultaneous restricted users. Inspect what is actually available. Where appropriate, test permission personas sequentially with a restricted identity and restore a documented baseline between runs. That can demonstrate object and field behaviour, but it cannot fully reproduce every simultaneous ownership and hierarchy relationship.",
+        "Clearly label design-only or unperformed checks. A reviewer can still assess the intended model and the evidence you were able to obtain. They should not have to infer that 'passed' really meant 'the diagram looked plausible.' If the goal requires a distinct-owner experiment, arrange the appropriate environment before claiming it is complete.",
+        "For each executed case, record the persona, relevant assignments, record, action, expected result, and observed result. Keep the evidence concise. A short demonstration of a successful allowed action followed by a genuinely denied action is more convincing than scrolling through many setup screens.",
+        "When a result differs, use J15 to diagnose the source. Avoid changing the expected result after the fact simply to make the matrix green. If the requirement itself changes, record Oleg's decision separately and rerun affected tests. The final matrix should explain both what the system permits and what it deliberately does not permit."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Every passed cell needs an observation under the intended identity; every untested cell needs a visible reason."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Write the matrix",
+          "instruction": "Use named synthetic records and precise operations for sales, service review, and management.",
+          "expected": "Expected results exist before execution."
+        },
+        {
+          "title": "Inspect effective identities",
+          "instruction": "Record profile, permission assignments, role, and relevant group membership for each test.",
+          "expected": "The chosen identity matches its persona."
+        },
+        {
+          "title": "Run and capture",
+          "instruction": "Perform the positive and negative actions in a controlled order.",
+          "expected": "The evidence can be compared with the matrix."
+        },
+        {
+          "title": "Review differences",
+          "instruction": "Investigate mismatches and rerun after justified corrections.",
+          "expected": "The final result has an explanation, not merely a pass label."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Demonstrate the access model",
+    "brief": "Deliver a short access demonstration and an evidence matrix for Oleg.",
+    "steps": [
+      "Include at least two allowed and two denied operations per persona where executable.",
+      "Document related Contact and Vehicle access.",
+      "List license constraints and unperformed distinct-user scenarios."
+    ],
+    "acceptance": [
+      "No broad grant was added solely to make a test pass.",
+      "Every executed result names the tested persona.",
+      "Untested cells remain distinguishable from successful ones."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Is a persona the same as a role?",
+      "answer": "No. A persona describes work; a role is one possible part of its Salesforce access implementation."
+    },
+    {
+      "question": "Can sequential identity changes prove every hierarchy scenario?",
+      "answer": "No. Some scenarios need distinct concurrent owners or users."
+    },
+    {
+      "question": "What should happen after an unexpected pass?",
+      "answer": "Investigate the extra granting source; a prohibited action succeeding is a defect against the stated matrix."
+    }
+  ],
+  "recap": [
+    "Translate working personas into specific checks.",
+    "Test allowed and denied actions.",
+    "Document evidence limits without overstating completeness."
+  ],
+  "sources": [
+    {
+      "title": "Control access to records",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security/data_security_records"
+    },
+    {
+      "title": "User Access Summary",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.users_access_summary.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "two drawn workplace roles facing the same records with different visible subsets",
+    "alt": "Two drawn workplace roles facing the same records with different visible subsets",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Testing Team Permissions. Subject: two drawn workplace roles facing the same records with different visible subsets."
+  }
+}

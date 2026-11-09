@@ -1,0 +1,139 @@
+{
+  "id": "M31",
+  "track": "middle",
+  "title": "Enhanced Omni-Channel routing",
+  "minutes": 50,
+  "summary": "Explain how queued service work becomes eligible for a person based on presence, capacity, and routing configuration, with a complete no-license simulation path.",
+  "prerequisites": [
+    "Standard Case records and queues.",
+    "M01 access requirements and M30 observable outcomes."
+  ],
+  "learningObjectives": [
+    "Distinguish ownership assignment from active work routing.",
+    "Evaluate presence and capacity using a concrete trace.",
+    "Separate a simulated clinic from an optional live product lab."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A Case records a customer's service issue. A queue groups work that a team can handle. An assignment rule can place a Case with an owner or queue, but that is not the same as deciding which available employee should receive the next item. Omni-Channel adds routing behavior based on configured eligibility, workload, priority, and, when used, skills.",
+        "Presence describes whether a person is available for the relevant work. Capacity describes how much work the configuration allows them to handle. A work item consumes capacity according to the chosen model. Queue membership alone does not prove that a person is currently eligible: they may be offline, at capacity, missing a needed skill, or unavailable for the relevant service channel.",
+        "Use current Enhanced Omni-Channel documentation rather than building a new learning path around retired Standard Omni-Channel instructions. The product and its available channels depend on edition, licenses, and org configuration. This clinic's mandatory path is the supplied routing simulation. A live setup is optional in a suitably entitled training org and must not be required to complete the core Middle project.",
+        "Omni-Channel and OmniStudio are different things. Omni-Channel routes service work; OmniStudio provides tools for guided interactions and related integration/data experiences. Similar names do not make them interchangeable. The useful interview answer explains the business operation and the configured routing stages rather than listing both products together."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Being a queue member is only one condition; presence, capacity, and the routing policy determine current eligibility."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use this simplified capacity model: each employee has capacity 4 and each Case costs 2 units. Anna is online with 2 units used; Max is online with all 4 used; Oleg is offline with 0 used. All three belong to the support queue. Only Anna is eligible for the next item. After accepting it, she reaches 4 and a second item must wait unless someone else's eligibility changes.",
+        "Now Max completes work and drops to 2 used units. He becomes eligible under the simple queue scenario. Add a required EV-service skill that only Anna has: Max's free capacity is no longer sufficient to qualify him. These examples intentionally avoid a tie between equally eligible employees, so they do not invent the product's tie-breaking algorithm."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Why is Oleg ineligible even though his capacity usage is zero?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Provided routing simulation; capacity units are an explicit teaching assumption",
+          "code": "Person   Presence   Used/Limit   EV skill\nAnna     Online     2/4          Yes\nMax      Online     4/4          No\nOleg     Offline    0/4          Yes\nIncoming Case cost: 2\nBasic queue eligibility: Anna\nAfter Anna accepts: no eligible person until a condition changes"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Mandatory: work through the provided trace and explain decisions. Optional live lab: verify Enhanced Omni-Channel entitlement, use synthetic Cases, and record the actual capacity model and configuration; do not assume it matches the simplified simulation."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Trace eligibility",
+          "instruction": "For each person, evaluate queue membership, presence, available capacity, and any required skill. Record the first failed condition.",
+          "expected": "Every routing decision has a concrete explanation."
+        },
+        {
+          "title": "Change one condition",
+          "instruction": "Simulate Max completing work, Anna going offline, and an EV skill requirement. Predict each result before changing the trace.",
+          "expected": "Capacity and skill are not confused with one another."
+        },
+        {
+          "title": "Optional live verification",
+          "instruction": "In an entitled training org, configure a Case service channel, routing configuration, queue membership, presence settings, and the appropriate console utility. Test one online worker and one ineligible worker.",
+          "expected": "Evidence names the actual configuration and distinguishes it from simulation."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A Case sitting in a queue is not proof that routing is broken. Check the service channel, eligible presence, capacity, membership, and routing configuration before changing ownership arbitrarily.",
+        "Closing a browser or changing a record status may interact with the configured capacity model differently than assumed. Verify the actual model instead of transferring simulation rules without inspection."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "No paid license or trial is required for the mandatory clinic; mark live product steps Not run when unavailable."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Explain a routing decision",
+    "brief": "Submit the provided simulation with three condition changes and an optional separately labeled live observation.",
+    "steps": [
+      "Compute eligibility.",
+      "Explain waiting work.",
+      "Compare assignment ownership with active routing."
+    ],
+    "acceptance": [
+      "Every chosen or excluded person has a reason.",
+      "No unsupported tie-breaking rule is invented.",
+      "Simulation and live evidence are clearly separated."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is a queue not enough?",
+      "answer": "Membership identifies a team, but current presence, capacity, and routing requirements still determine eligibility."
+    },
+    {
+      "question": "How does an assignment rule differ?",
+      "answer": "It assigns ownership; Omni-Channel handles configured distribution of eligible work to available recipients."
+    },
+    {
+      "question": "Is OmniStudio the routing engine?",
+      "answer": "No. It is a different product family with different purposes."
+    }
+  ],
+  "recap": [
+    "Check eligibility in stages.",
+    "Use current Enhanced documentation.",
+    "Keep product entitlement optional for the core course."
+  ],
+  "sources": [
+    {
+      "title": "Enhanced Omni-Channel overview",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/enhanced-omni-channel/explore-enhanced-omni-channel"
+    },
+    {
+      "title": "Omni-Channel administrator guide",
+      "url": "https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/service_presence_administrators.pdf"
+    }
+  ],
+  "illustration": {
+    "subject": "two customer work cards routed through an availability hub to two drawn support staff",
+    "alt": "Two customer work cards routed through an availability hub to two drawn support staff",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Omni Channel. Subject: two customer work cards routed through an availability hub to two drawn support staff."
+  }
+}

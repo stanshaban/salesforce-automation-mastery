@@ -18,6 +18,8 @@ async function fixture(t, options = {}) {
   mkdirSync(publicDir); mkdirSync(contentDir);
   writeFileSync(path.join(publicDir, 'index.html'), '<h1>SAM test portal</h1>');
   writeFileSync(path.join(contentDir, 'curriculum.json'), '{"courses":[]}');
+  mkdirSync(path.join(contentDir, 'lessons', 'junior'), {recursive:true});
+  writeFileSync(path.join(contentDir, 'lessons', 'junior', 'J01.json'), JSON.stringify({id:'J01', sections:[{heading:'CRM basics', body:['A shared record.']}]}));
   writeFileSync(path.join(contentDir, 'private.json'), '{"secret":"must not be served"}');
   const env = {NODE_ENV: 'test', APP_URL, ADMIN_EMAIL, ADMIN_PASSWORD, SESSION_SECRET: 'test-only-session-secret-at-least-32-characters', ...options.env};
   let app = createApp({...options, env, dataDir, publicDir, contentDir});
@@ -63,7 +65,7 @@ async function fixture(t, options = {}) {
   return {app, request, login, invite, join, learner, dataDir, restart};
 }
 
-function workForm({title = 'Bulk-safe implementation', assignmentId = 'J-L04', description = 'Учебная работа', githubUrl = '', parentId = '', files = [{name: 'Solution.cls', content: 'public with sharing class Solution {}', label: 'Apex source'}]} = {}) {
+function workForm({title = 'Bulk-safe implementation', assignmentId = 'J-L04', description = 'Training submission', githubUrl = '', parentId = '', files = [{name: 'Solution.cls', content: 'public with sharing class Solution {}', label: 'Apex source'}]} = {}) {
   const form = new FormData();
   for (const [key, value] of Object.entries({title, assignmentId, description, githubUrl, parentId})) form.set(key, value);
   form.set('fileLabels', JSON.stringify(files.map(file => file.label || file.name)));
@@ -77,6 +79,11 @@ test('public health/content work; private storage and unlisted content are not p
   assert.deepEqual((await request('/api/me')).data, {user: null});
   assert.equal((await request('/join')).status, 200);
   assert.equal((await request('/data/curriculum.json')).status, 200);
+  const lesson = await request('/data/lessons/J01');
+  assert.equal(lesson.status, 200);
+  assert.equal(lesson.data.id, 'J01');
+  assert.ok(lesson.data.sections.length > 0);
+  for (const route of ['/data/lessons/J00', '/data/lessons/J99', '/data/lessons/private', '/data/lessons/J01.json', '/data/lessons/..%2F..%2F.env']) assert.equal((await request(route)).status, 404, route);
   for (const route of ['/data/sam.sqlite', '/data/private.json', '/.sam-data/sam.sqlite', '/uploads/example.bin', '/api/missing']) assert.equal((await request(route)).status, 404, route);
 });
 

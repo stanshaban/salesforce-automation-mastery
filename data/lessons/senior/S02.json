@@ -1,0 +1,135 @@
+{
+  "id": "S02",
+  "track": "senior",
+  "title": "Turn a Performance Complaint into a Measurable Requirement",
+  "minutes": 55,
+  "summary": "Convert 'Salesforce is slow' into a specific user journey, a comparison method, and an agreed improvement target.",
+  "prerequisites": [
+    "Understand the transaction map from S01.",
+    "Be able to distinguish browser rendering, an Apex request, and background work."
+  ],
+  "learningObjectives": [
+    "Define latency, throughput, and backlog in plain terms.",
+    "Choose a user-centered start and finish point for a measurement.",
+    "Write an evidence request that separates observations from explanations."
+  ],
+  "sections": [
+    {
+      "heading": "One complaint can describe four different problems",
+      "body": [
+        "Oleg says that Salesforce is slow, but Anna says booking a test-drive is acceptable. Max says opening the vehicle list is frustrating, and the integration team says the overnight import finishes after staff arrive. These statements do not contradict each other. They refer to different operations, users, data sets, and finish lines. Treat the complaint as a request to investigate, not as proof that Apex or the database is responsible.",
+        "Latency is how long one operation takes from a defined start to a defined finish. Throughput is how many useful operations finish in a period. Backlog is work waiting to finish. Improving one does not guarantee improving the others. Moving work into a queue can reduce Anna's wait while increasing the time before Oleg sees an updated report."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Use the name of a user action, not the name of a technology, as the first row of a performance requirement."
+        }
+      ]
+    },
+    {
+      "heading": "Make the measurement boundary explicit",
+      "body": [
+        "For a vehicle search, a useful start is Max submitting the search, and a useful finish is the moment the result rows can be used. A network response arriving is an intermediate point if the browser then spends another second rendering. For a booking, distinguish 'saved in Salesforce' from 'confirmed by the external scheduling system.' If the product only promises the first, measuring the second without saying so creates an impossible comparison.",
+        "Write the population beside the metric: user persona, permissions, browser, device, network, selected filters, approximate record distribution, and relevant automation. A broad-access administrator can produce different results from Anna. A warm cache can hide the cost of a fresh visit. Record these conditions before comparing a change, and keep them reasonably consistent afterward.",
+        "A percentile summarizes a distribution. The 95th percentile, usually written p95, describes a value at or below which roughly 95 percent of observations fall, under a stated calculation method. A median alone can hide a minority of very slow interactions. With ten observations, do not present p95 as a stable enterprise service commitment; report the small sample and individual values."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "A reviewer should be able to reproduce the start, finish, population, and sample rules from your measurement note."
+        }
+      ]
+    },
+    {
+      "heading": "Read the case without inventing evidence",
+      "body": [
+        "The table below is a synthetic intake artifact. It contains business complaints and possible targets, not verified timings. 'Usually three seconds' is a person's estimate. It is useful for prioritization, but it is not a measured baseline. A target becomes meaningful only after the business confirms that the finish line represents useful work.",
+        "Prioritize the list-open journey if Max repeats it many times per hour and the wasted time is material. Investigate the import separately because its deadline and recovery needs differ. Do not merge them into a single average named 'Salesforce performance.' Assign an owner to each measurement and define how a missed target changes the business process, such as delayed customer calls.",
+        "Your first hypothesis might be that a large initial payload makes the list slow. Write the evidence that would support or reject it: response size, transfer time, browser rendering time, and the selected columns. A hypothesis should be testable. 'The platform is bad' and 'we need more asynchronous Apex' do not specify observations that could prove them wrong."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Ask for one representative slow example and one comparable acceptable example before requesting a broad production data export."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic intake sheet",
+          "code": "Journey | Reported symptom | Business finish line\nVehicle list | Max estimates 3–8 seconds | First useful filtered rows visible\nBooking save | Anna estimates 2 seconds | Appointment Id shown after commit\nNightly import | Oleg reports missed opening time | Valid rows reconciled by 08:00\nNotification | Some clients receive it late | Provider acknowledges delivery request"
+        }
+      ]
+    },
+    {
+      "heading": "Agree on a target and a stop condition",
+      "body": [
+        "An improvement statement could be: 'For the defined vehicle-list journey, reduce measured user wait while preserving the same visible records, columns required for the task, and access rules.' Add a numerical target only after obtaining a baseline and business agreement. Avoid a precise promised speedup derived from a synthetic example.",
+        "Specify guardrails alongside the target. For example, no increase in authorization errors, no missing required rows, and no unacceptable shift of work into a growing queue. These are conditions under which an apparent speedup should be rejected. A faster page with incorrect data is not a successful optimization.",
+        "For a small-org proxy, collect a modest set of repeatable observations on two controlled views rather than manufacturing millions of records. A proxy demonstrates measurement technique and reveals local behavior. It does not establish how a dealer network will behave under concurrent traffic. Record the additional workload and environment validation needed before making that claim."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not turn a small local experiment into a contractual service level or a forecast for a much larger organization."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Write a performance investigation brief",
+    "brief": "Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg.",
+    "steps": [
+      "For each journey, define start, finish, user persona, useful output, and failure conditions.",
+      "Write one observation, two competing hypotheses, and the evidence needed to distinguish them.",
+      "Create a blank measurement table with run Id, conditions, elapsed time, outcome, and whether the sample was warm or cold.",
+      "Collect a few observations in a training environment if available, or keep the table explicitly unmeasured.",
+      "Propose a target-setting conversation and name a guardrail that could invalidate a speedup."
+    ],
+    "acceptance": [
+      "Latency, throughput, and backlog are not treated as interchangeable.",
+      "Synthetic estimates and actual observations are visibly separated.",
+      "The brief states sample limitations and a next evidence-gathering step."
+    ],
+    "stretch": "Explain how you would investigate a problem reported only by users with restricted record access."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is 'API response returned' sometimes the wrong finish line?",
+      "answer": "The user may still wait for rendering or a separate confirmation. Measure the finish line that matches the promised business outcome."
+    },
+    {
+      "question": "Can a median prove that almost all users have a good experience?",
+      "answer": "No. A median describes the middle observation; it does not describe the slower tail or the representativeness of the sample."
+    },
+    {
+      "question": "What distinguishes a hypothesis from an observation?",
+      "answer": "An observation is recorded evidence. A hypothesis explains it and should state what evidence would support or contradict the explanation."
+    }
+  ],
+  "recap": [
+    "Define one journey before choosing an optimization.",
+    "Record conditions and distributions, not a single impressive timing.",
+    "Agree on correctness guardrails and the limits of the evidence."
+  ],
+  "sources": [
+    {
+      "title": "Resource and cost optimization",
+      "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/resource-and-cost-optimization.html"
+    },
+    {
+      "title": "Architecture basics",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/architecture-basics"
+    },
+    {
+      "title": "Asynchronous processing decision guide",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    }
+  ],
+  "illustration": {
+    "subject": "a simple stopwatch beside a user journey and a measurable target marker",
+    "alt": "A simple stopwatch beside a user journey and a measurable target marker",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Performance Requirements. Subject: a simple stopwatch beside a user journey and a measurable target marker."
+  }
+}

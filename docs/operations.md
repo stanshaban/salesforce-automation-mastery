@@ -1,71 +1,69 @@
-# Эксплуатация SAM
+# Operate SAM
 
-Адрес окружения: [sam-portal-production.up.railway.app](https://sam-portal-production.up.railway.app). Исходный код: [stanshaban/salesforce-automation-mastery](https://github.com/stanshaban/salesforce-automation-mastery). Этот документ описывает настройку и проверки, а не подтверждает доступность конкретного deployment.
+Environment: [sam-portal-production.up.railway.app](https://sam-portal-production.up.railway.app). Source: [stanshaban/salesforce-automation-mastery](https://github.com/stanshaban/salesforce-automation-mastery). This guide describes setup and verification; it does not certify the availability of a particular deployment.
 
-## Railway
+## Railway configuration
 
-Используй `Dockerfile` из корня репозитории. Он запускает Node.js 24 и `node server/index.mjs`. `railway.json` задаёт health check `/api/health`. Приложение слушает `0.0.0.0` и порт из переменной `PORT`.
+Use the repository's root `Dockerfile`. It runs Node.js 24 and `node server/index.mjs`. `railway.json` defines `/api/health` as the health check. The application listens on `0.0.0.0` and the port in `PORT`.
 
-Подключи к сервису **один постоянный volume с mount path `/data`**. В `DATA_DIR` также должно быть `/data`. Volume доступен приложению во время работы, а не во время сборки. [Railway: volumes](https://docs.railway.com/volumes).
+Attach **one persistent volume mounted at `/data`** and set `DATA_DIR=/data`. The volume is available at runtime, not during the build. See [Railway volumes](https://docs.railway.com/volumes).
 
-Оставь **одну реплику и один процесс приложения**: SQLite, очистка временных загрузок и счётчики запросов рассчитаны на такой режим. Увеличение числа реплик требует другого хранения файлов, общей базы и общих лимитов запросов.
+Keep **one replica and one application process**. SQLite, temporary-upload cleanup, and request counters assume that configuration. Multiple replicas require shared database/file storage and shared rate limits.
 
-Переменные сервиса:
-
-| Переменная | Значение |
+| Variable | Value |
 | --- | --- |
 | `NODE_ENV` | `production` |
 | `APP_URL` | `https://sam-portal-production.up.railway.app` |
 | `DATA_DIR` | `/data` |
-| `ADMIN_EMAIL` | Email преподавателя; одно значение |
-| `ADMIN_PASSWORD` | Отдельный случайный секрет, не меньше 16 символов |
-| `SESSION_SECRET` | Другой случайный секрет, не меньше 32 символов |
-| `PORT` | Порт сервиса; по умолчанию `3000` |
+| `ADMIN_EMAIL` | One instructor email address |
+| `ADMIN_PASSWORD` | A separate random secret, at least 16 characters |
+| `SESSION_SECRET` | Another random secret, at least 32 characters |
+| `PORT` | Service port; defaults to `3000` |
 
-`ADMIN_EMAILS`, SMTP, Resend и другие почтовые переменные не используются. Секреты задай в Railway Variables и сохрани в менеджере паролей. Значения из `.env.example` нужно заменить. `APP_URL` должен точно соответствовать адресу браузера: сервер проверяет Origin для изменений и требует HTTPS в production.
+`ADMIN_EMAILS`, SMTP, Resend, and other mail variables are unused. Set secrets in Railway Variables and keep them in a password manager. Replace the example values in `.env.example`. `APP_URL` must exactly match the browser origin: state-changing requests check Origin, and production requires HTTPS.
 
-`/data` на диске и URL `/data/*.json` — разные пространства. URL разрешает только перечисленные публичные учебные JSON. База `/data/sam.sqlite` и каталог `/data/uploads` напрямую не раздаются.
+The disk directory `/data` and public URLs under `/data/*.json` are separate. Only explicitly allowed learning JSON is public. `/data/sam.sqlite` and `/data/uploads` are not served directly.
 
-## Вход и приглашения
+## Authentication and invitations
 
-Преподаватель входит через «Вход → Преподаватель»: email из `ADMIN_EMAIL` и пароль из `ADMIN_PASSWORD`. Создание новой записи с тем же email не даёт роль администратора.
+The instructor signs in on the instructor login form using `ADMIN_EMAIL` and `ADMIN_PASSWORD`. Creating a learner record with the same email does not grant an administrator role.
 
-В кабинете преподавателя создай приглашение для нового участника. Ссылка показывается **один раз**; передай её участнику по привычному личному каналу. В базе хранится хеш. Секрет находится после `#token=` и не отправляется в URL-запросе к серверу. При входе он передаётся в теле запроса.
+In the instructor area, create an invitation for a new learner. The raw link is shown **once**; deliver it through your agreed private channel. The database stores a hash. Its secret follows `#token=`, so it is not included in the browser's URL request to the server; redemption sends it in the request body.
 
-Приглашение действует 7 дней по умолчанию; в форме доступны 1, 7 и 30 дней. После использования или отзыва оно не работает. Ссылка даёт доступ тому, кто ею владеет, поэтому не публикуй её в общем чате или Issue.
+Invitations expire after 7 days by default; the form offers 1, 7, and 30 days. Used or revoked invitations cannot be redeemed. Anyone holding the link can attempt to use it, so do not publish it in a shared chat or Issue.
 
-Для повторного входа выбери **существующего участника** при создании ссылки. Новый адрес с произвольным приглашением не может присоединиться к существующему аккаунту. Новая ссылка для выбранного участника отзывает его прежние неиспользованные ссылки. Email нужно ввести тот же, что записан в профиле.
+For a returning learner, select the **existing user** when creating a new link. A general invitation cannot attach to an existing account merely by supplying its email. A new targeted link revokes that user's older unused links. The learner must enter the email stored on that profile.
 
-Сессия длится 30 дней. В production cookie имеет HttpOnly, Secure и SameSite=Lax; выход удаляет текущую сессию. Email и имя в Skool указывает сам участник: это не проверка владения email и не автоматическая проверка оплаты Skool. Почтовая отправка отсутствует. Согласие на будущие уведомления хранится отдельно и отзывается в профиле.
+Sessions last 30 days. Production cookies use HttpOnly, Secure, and SameSite=Lax; logout removes the current session. Learners supply their own email and Skool username: this does not verify email ownership or Skool payment. Email sending is absent. Optional future-notification consent is stored separately and can be withdrawn in the profile.
 
-## Работы и лимиты
+## Submissions and limits
 
-Участник видит свои работы, преподаватель — общую очередь. Для новой версии участник открывает прошлую работу и выбирает повторную отправку. Преподаватель меняет статус и оставляет комментарий; предыдущая версия сохраняется.
+Learners see their own submissions; the instructor sees the full queue. For a new version, the learner opens a previous submission and resubmits. The instructor changes its status and leaves feedback; earlier versions remain available.
 
-Одна работа: до **5 файлов**, до **10 МиБ каждый**, до **25 МиБ вместе**. Поддерживается HTTPS-ссылка на GitHub. Общий лимит сохранённых вложений — **800 МиБ**. Для базы, временных загрузок и резервных копий нужен дополнительный запас volume. Настройка `MAX_STORAGE_MB` не читается сервером; текущий предел задан в `server/app.mjs`.
+Each submission accepts up to **5 files**, at most **10 MiB each** and **25 MiB combined**, plus an optional HTTPS GitHub URL. Total committed attachments are capped at **800 MiB**. Leave additional volume space for the database, temporary uploads, and backups. The server does not read a `MAX_STORAGE_MB` setting; the current limit is defined in `server/app.mjs`.
 
-Загруженные файлы получают случайные имена. Сервер не исполняет код, не распаковывает архивы и выдаёт файл как attachment после проверки владельца или роли преподавателя. Это не антивирус и не автоматическая проверка Salesforce. Просматривай неизвестные решения в отдельной учебной среде без рабочих секретов.
+Files receive generated storage names. The server neither executes uploaded code nor extracts archives. It downloads files as attachments after checking ownership or the instructor role. This is not antivirus scanning or automatic Salesforce validation. Inspect unfamiliar solutions in a separate learning environment without work credentials.
 
-Сейчас нет интерфейса массового удаления, выгрузки пользователей, переноса владельца или отзыва отдельной активной сессии. Не удаляй файлы из `uploads` отдельно от их записей в базе: это сломает скачивание. Для планового удаления сначала сохрани резервную копию и подготовь согласованное обслуживание базы и файлов. Статусы не связаны с оплатой; обещанный объём review согласуется отдельно.
+There is currently no interface for bulk deletion, user export, ownership transfer, or revoking an individual active session. Do not delete files from `uploads` independently of their database records: downloads would break. Before planned deletion, take a backup and prepare coordinated database/file maintenance. Review statuses are unrelated to payment; agree the scope of personal review separately.
 
-## Резервная копия и восстановление
+## Backup and restore
 
-В Railway включи расписание backup для volume и создай ручную копию перед изменением структуры базы. Убедись, что в копию входит весь volume: SQLite и загруженные файлы должны восстанавливаться вместе. Расписание, срок хранения и ограничения проверь в текущей вкладке Backups. [Railway: backups](https://docs.railway.com/volumes/backups).
+Enable volume backup scheduling in Railway and take a manual backup before database-structure changes. Include the whole volume: SQLite and uploaded files must be restored together. Check current scheduling, retention, and limits in the Backups tab. See [Railway backups](https://docs.railway.com/volumes/backups).
 
-Не копируй отдельно только `sam.sqlite` во время работы сервера: последние записи могут находиться в `sam.sqlite-wal`. Для ручной файловой копии сначала останови приложение и сохрани весь каталог данных. Копия содержит email, работы, комментарии и хеши сессий; держи её в закрытом хранилище.
+Do not copy only `sam.sqlite` while the application is running: recent writes can be in `sam.sqlite-wal`. For a manual file copy, stop the application first and preserve the entire data directory. Backups contain email, submissions, feedback, and session hashes; keep them in private storage.
 
-При восстановлении сначала зафиксируй текущую копию и время выбранного backup. В Railway выбери нужную копию → Restore, проверь подготовленную замену volume и примени deployment. Railway сохраняет прежний volume отдельно; не удаляй его до проверки. Новые работы после времени backup в восстановленной версии отсутствуют. [Railway: восстановление](https://docs.railway.com/volumes/backups).
+Before restoring, preserve the current state and record the selected backup time. In Railway, select the backup, choose Restore, review the replacement volume, and apply the deployment. Railway retains the previous volume separately; do not remove it before verification. Submissions created after the backup time will be absent from the restored state. Follow the current [Railway restoration procedure](https://docs.railway.com/volumes/backups).
 
-После восстановления проверь вход, список работ, скачивание одного вложения и запись прогресса. При смене `SESSION_SECRET` все старые cookie перестанут подходить: преподаватель входит паролем, участникам выдаются новые ссылки. Простая смена `ADMIN_PASSWORD` уже открытые сессии не отзывает. Отдельного интерфейса отзыва всех активных приглашений пока нет — отзови их в кабинете до повторной выдачи при необходимости.
+After restoration, check login, the submission list, one attachment download, and a progress update. Changing `SESSION_SECRET` invalidates old cookies: the instructor signs in with the password, and learners need fresh links. Changing `ADMIN_PASSWORD` alone does not revoke existing sessions. There is no bulk active-invitation revocation interface; revoke relevant invitations individually in the instructor area before reissuing them when needed.
 
-## Проверка после deployment
+## Verify after deployment
 
-1. Открой `/api/health`: ожидается HTTP 200 и `{"ok":true,"service":"sam"}`. Это проверка ответа процесса, не полноценный тест backup или доступа к файлам.
-2. Проверь главную страницу, три уровня, тренажёр и настройку рабочего места. В консоли браузера не должно быть ошибок загрузки учебных JSON.
-3. Войди преподавателем. Создай тестовое приглашение и используй его в другом профиле браузера. Повторное использование должно завершиться отказом.
-4. Тестовым участником сохрани прогресс, отправь небольшой учебный файл с подписью. Убедись, что преподаватель видит его и может оставить review, а другой участник — нет.
-5. Перезапусти сервис. Проверь, что профиль, прогресс, работа и файл сохранились. Если данные исчезли, проверь volume и `DATA_DIR` до выдачи новых приглашений.
+1. Open `/api/health`. Expect HTTP 200 and `{"ok":true,"service":"sam"}`. This proves that the process responds; it is not a backup or attachment-access test.
+2. Check the home page, all three tracks, self-checks, and workspace guide. The browser console should show no failed learning-data requests.
+3. Sign in as instructor. Create a test invitation and redeem it in a separate browser profile. A second redemption must be rejected.
+4. As that learner, save progress and submit a small synthetic file with a label. Verify that the instructor can read and review it and a different learner cannot.
+5. Restart the service. Verify that the profile, progress, submission, and file persist. If data disappears, check the volume and `DATA_DIR` before issuing more invitations.
 
-При HTTP 403 на сохранении проверь `APP_URL` и домен браузера. При 429 подожди указанный `Retry-After`; лимиты запросов хранятся в памяти процесса. При 507 проверь заполнение хранилища. При ошибке запуска проверь Node 24, секреты, доступ к volume и логи без публикации их личных данных.
+For HTTP 403 on a write, check `APP_URL` against the browser domain. For 429, wait for `Retry-After`; rate counters are in process memory. For 507, inspect storage usage. For startup failures, check Node 24, secrets, volume access, and logs without publishing personal data from them.
 
-CI `portal-tests.yml` проверяет HTTP-сценарии и учебные данные в отдельной временной среде. CI не получает Railway-секреты и не разворачивает приложение. `learner-checks.yml` отдельно проверяет структуру учебного проекта и не запускает присланный Apex.
+`portal-tests.yml` checks HTTP scenarios and course data in an isolated temporary environment. CI receives no Railway secrets and does not deploy. `learner-checks.yml` separately checks the learner-project structure and does not execute submitted Apex.

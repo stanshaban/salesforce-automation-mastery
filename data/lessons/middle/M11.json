@@ -1,0 +1,140 @@
+{
+  "id": "M11",
+  "track": "middle",
+  "title": "Selecting an asynchronous processing mechanism",
+  "minutes": 50,
+  "summary": "Match delayed work to its volume, timing, transaction, and recovery requirements without promising immediate execution.",
+  "prerequisites": [
+    "Transactions and governor limits.",
+    "M07 tool selection and M10 local tests."
+  ],
+  "learningObjectives": [
+    "Compare synchronous work, Queueable, Batch, schedules, and events.",
+    "Explain a user-visible pending state.",
+    "Estimate work per transaction and per day."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "Synchronous work runs as part of the operation the user is waiting for. Asynchronous work is accepted for later processing in another execution context. Moving work out of the save can improve responsiveness, but the user now needs a way to learn whether it succeeded. A message saying 'request accepted' is different from 'warranty verified.'",
+        "Queueable Apex suits a defined background unit that can carry serializable inputs and expose a job identity. Batch Apex partitions a larger selected dataset into separate execute transactions. Scheduled Apex or a scheduled Flow starts work according to a schedule; scheduling does not transform an unlimited amount of processing into a safe single transaction. An asynchronous Flow path can handle appropriate declarative follow-up work after the original save.",
+        "Events decouple a producer from subscribers. They are appropriate when the business fact should be consumed independently, rather than merely because a developer wants to avoid a method call. An event publisher does not receive proof that every subscriber completed. Similarly, enqueueing a job is not evidence that its final business write happened.",
+        "Capacity is finite. There are transaction limits, concurrent-work considerations, and org-level allocations. Queue-based processing can be delayed, and execution order or exact start times should not be promised without a documented guarantee. Use current org limits and observed load for planning. A developer should describe an acceptable delay and recovery path, not invent a one-second service-level agreement."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Async changes the contract from an immediate result to accepted work plus a later observable outcome."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Classify five Northstar operations. Rejecting a missing customer before confirmation belongs in the synchronous validation path. A warranty check may be queued with Pending status. Cancelling many overdue appointments may use Batch. Starting the cancellation selection nightly requires a schedule. Announcing a committed confirmation to independent consumers may justify an event.",
+        "Suppose Anna requests 20 warranty checks and Oleg imports 20,000 vehicles. The first number may fit a bounded background design; the second requires workload analysis. Count expected requests, retries, callouts, records read, and writes. Do not conclude 'Queueable scales' from one small demonstration. The appropriate design may include aggregation, partitioning, or a slower accepted processing window."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What will Anna see if accepted work has not started after several minutes?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Complete NoOpObservationJob.cls, API 68.0; no business record changes",
+          "code": "public with sharing class NoOpObservationJob implements Queueable {\n    public void execute(QueueableContext context) {\n        System.debug('Observation job: ' + context.getJobId());\n    }\n}"
+        },
+        {
+          "language": "apex",
+          "caption": "Anonymous Apex after deploying the class and metadata",
+          "code": "Id jobId = System.enqueueJob(new NoOpObservationJob());\nSystem.debug(jobId);"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "This lesson is a design-and-observation exercise using the existing core model. No paid product, external provider, or new custom object is required."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Create a decision sheet",
+          "instruction": "For each of the five operations, record maximum expected volume, acceptable delay, required transaction behavior, and what the user needs to see.",
+          "expected": "A mechanism is justified by constraints."
+        },
+        {
+          "title": "Observe one small async run",
+          "instruction": "Deploy NoOpObservationJob and its API 68.0 Apex metadata using the Junior class workflow. Run the supplied Anonymous Apex in the learning org, then open Setup → Apex Jobs and find its class/job identity. A quick run may already be Completed; do not invent intermediate observations.",
+          "expected": "The job has an identity and observable lifecycle."
+        },
+        {
+          "title": "Estimate the busy day",
+          "instruction": "Add retries to your workload estimate and identify per-transaction and org-wide constraints from current documentation and org limits.",
+          "expected": "The plan includes a queue backlog and recovery response."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Splitting work into one job per record can create avoidable queue pressure. Conversely, putting all records in one job can exceed transaction limits. Batch size and grouping are design choices, not universal constants.",
+        "An async job can fail after the original save succeeds. If the interface has only Success and Error for the original click, users cannot distinguish accepted work from completed work."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not promise that Queueable starts at an exact time or that async work has unlimited capacity."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Design the Northstar processing map",
+    "brief": "Choose mechanisms for five operations and state the visible result and recovery behavior of each.",
+    "steps": [
+      "Fill the constraints first.",
+      "Choose and explain a mechanism.",
+      "Record one observed job and a capacity estimate."
+    ],
+    "acceptance": [
+      "Every delayed operation has a pending state or equivalent acknowledgement.",
+      "Timing is described as a requirement, not an unsupported guarantee.",
+      "Retry load is included."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Does enqueue success prove business success?",
+      "answer": "No. It confirms acceptance of work, whose later execution may fail."
+    },
+    {
+      "question": "What does Batch add?",
+      "answer": "It divides a selected dataset into separate execution transactions rather than treating it as one atomic job."
+    },
+    {
+      "question": "Why use an event?",
+      "answer": "To announce a fact or coordinate independent consumers when that decoupling meets the business requirement."
+    }
+  ],
+  "recap": [
+    "Select by workload and recovery needs.",
+    "Expose pending and failed states.",
+    "Plan finite capacity."
+  ],
+  "sources": [
+    {
+      "title": "Asynchronous processing decision guide",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    }
+  ],
+  "illustration": {
+    "subject": "one work request branching toward three different background processing lanes",
+    "alt": "One work request branching toward three different background processing lanes",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Async Choices. Subject: one work request branching toward three different background processing lanes."
+  }
+}

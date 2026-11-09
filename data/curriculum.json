@@ -4,284 +4,284 @@
     {
       "id": "j",
       "title": "Junior Salesforce Developer",
-      "entry": "Предыдущий опыт работы с CRM и Salesforce не нужен. Начинаем с назначения системы, ролей людей и данных. Перед программированием предусмотрены основы Apex и JavaScript; рабочая среда настраивается отдельным пошаговым гайдом.",
-      "exit": "Небольшая функция целиком: данные, доступы, Flow/Apex/LWC, тесты и передача.",
-      "project": "Northstar Motors — учебный автодилер. Продавец хранит сведения о покупателе, выбирает автомобиль и назначает тест-драйв.",
+      "entry": "No previous CRM or Salesforce experience is required. Begin with people, business information, and a personal learning org. Apex syntax and browser-language basics are taught before their application code. Complete the separate workspace guide before code deployment.",
+      "exit": "Deliver and explain a small Salesforce feature with a deliberate data model, restricted-user access evidence, automation, bulk-aware Apex, a usable interface, tests, and a reproducible handover.",
+      "project": "Northstar Motors is a fictional dealership. Anna and Max are salespeople, Oleg manages the team, and Irina is a customer requesting a test drive. The project records an appointment and supports a controlled handover.",
       "modules": [
         {
-          "title": "Введение в CRM и Salesforce",
+          "title": "CRM and Salesforce Foundations",
           "lessons": [
             {
               "id": "J01",
-              "title": "Что такое CRM и зачем она нужна компании",
-              "outcome": "Объясняет назначение CRM на примере работы с покупателем автомобиля.",
-              "task": "Описать путь покупателя от первого обращения до тест-драйва: какие сведения понадобятся и кому.",
-              "acceptance": "В описании есть покупатель, продавец, сведения о клиенте, следующий шаг и ответственный.",
-              "interview": "Чем CRM помогает компании, если у неё уже есть таблица с контактами?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "What a CRM Does for a Business",
+              "outcome": "Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action.",
+              "task": "Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina.",
+              "acceptance": "The note distinguishes a request from a confirmed test drive. Another person can state what happens next without guessing.",
+              "interview": "Why is a telephone number insufficient?",
+              "visual": "two drawn colleagues sharing a customer record, conversation and calendar"
             },
             {
               "id": "J02",
-              "title": "Что такое Salesforce и кто с ним работает",
-              "outcome": "Различает CRM-продукт, платформу Salesforce и отдельную среду компании. Понимает роли пользователя, администратора и разработчика.",
-              "task": "Распределить пять задач автодилера между продавцом, администратором и разработчиком.",
-              "acceptance": "Ученик объясняет, кто использует приложение и кто меняет его настройки или код.",
-              "interview": "Какие задачи компания решает с помощью Salesforce?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "Salesforce Products, the Platform, and Your Org",
+              "outcome": "Distinguish a product, an application, and an org while learning who uses and changes Salesforce.",
+              "task": "Northstar needs a new field, a customer note, an access change, a useful management report, and a stock-system connection.",
+              "acceptance": "An application is not confused with an org. The proposed developer work includes understanding requirements and testing, not just writing code.",
+              "interview": "What is an org?",
+              "visual": "a drawn salesperson, administrator and developer around a single application workspace"
             },
             {
               "id": "J03",
-              "title": "Интерфейс Salesforce: приложения, списки и карточки",
-              "outcome": "Узнаёт App Launcher, приложение, вкладку, список записей, карточку и Setup.",
-              "task": "На схеме интерфейса показать, где продавец находит клиентов и где администратор меняет настройки.",
-              "acceptance": "Не путает приложение с отдельной org и карточку клиента с настройкой объекта.",
-              "interview": "Чем отличается работа пользователя в приложении от работы в Setup?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "Create and Reopen a Learning Org",
+              "outcome": "Use a browser to create a personal Salesforce learning environment and verify that you can return to the same one.",
+              "task": "Prepare a short environment note that helps you resume learning tomorrow.",
+              "acceptance": "The note identifies one learning environment consistently. No passwords, authentication files, or real customer details appear in the evidence.",
+              "interview": "Is VS Code required for this lesson?",
+              "visual": "a small separate training workspace in a protective outline beside a larger company workspace"
             },
             {
               "id": "J04",
-              "title": "Объекты, поля и записи",
-              "outcome": "Понимает, что объект описывает вид данных, поле — отдельное свойство, а запись — один конкретный элемент.",
-              "task": "Разложить пример с двумя автомобилями на объект, поля и записи.",
-              "acceptance": "Отличает создание нового поля от добавления нового автомобиля.",
-              "interview": "Как объяснить разницу между объектом и записью?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "Finding Your Way Around Salesforce",
+              "outcome": "Recognize an application, navigation item, list, record page, and Setup without assuming previous Salesforce use.",
+              "task": "Create a simple map showing how Anna finds a customer and where an administrator changes configuration.",
+              "acceptance": "Each interface area has a plain-language purpose. The map distinguishes navigation, stored data, and configuration.",
+              "interview": "Does Recently Viewed contain every record?",
+              "visual": "one clean application window opening into a list and a single record card"
             },
             {
               "id": "J05",
-              "title": "Учебная среда Salesforce и первый вход",
-              "outcome": "Создаёт Trailhead Playground или подходящую Developer Edition и понимает, что это личная учебная среда.",
-              "task": "Создать учебную среду, открыть приложение Sales и найти Setup; сохранить способ повторного входа.",
-              "acceptance": "Может повторно открыть свою учебную среду и объяснить, почему это не среда работодателя.",
-              "interview": "Зачем для обучения и изменений нужна отдельная среда?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "Objects, Fields, and Records",
+              "outcome": "Use a small vehicle catalogue to distinguish the shape of information from individual stored items.",
+              "task": "Create a diagram containing two vehicles and three test-drive events.",
+              "acceptance": "Objects, fields, values, and records are labelled correctly. Vehicle status is distinct from test-drive status.",
+              "interview": "Is City EV a field?",
+              "visual": "three neatly stacked record cards with aligned property rows and one highlighted field"
             },
             {
               "id": "J06",
-              "title": "Как читать задачу разработчика",
-              "outcome": "Выделяет цель, пользователя, исходные данные и проверяемый результат задачи.",
-              "task": "Разобрать задачу: продавцу нужно фиксировать автомобиль и время тест-драйва; записать вопросы до реализации.",
-              "acceptance": "Есть хотя бы три уточняющих вопроса и понятный пример успешной работы функции.",
-              "interview": "Что нужно уточнить, прежде чем начинать разработку?",
-              "visual": "Учебный пример Northstar Motors с подписями и объяснением каждого нового понятия."
+              "title": "Turn a Request into a Testable Task",
+              "outcome": "Clarify who needs a feature, what information it uses, and how you will know it works before choosing a tool.",
+              "task": "Write a one-page brief for Oleg before creating fields or automation.",
+              "acceptance": "Assumptions are visibly different from confirmed requirements. Acceptance criteria describe behaviour rather than an unexamined technical solution.",
+              "interview": "Can an invented restriction be treated as a requirement?",
+              "visual": "a simple request card becoming three concrete checklist steps beside a drawn learner"
             }
           ]
         },
         {
-          "title": "Данные и первое приложение",
+          "title": "Data and the First Application",
           "lessons": [
             {
               "id": "J07",
-              "title": "Стандартные объекты: Lead, Account, Contact, Opportunity и Case",
-              "outcome": "различает Lead, Account, Contact, Opportunity и Case.",
-              "task": "разложить пять историй клиентов по объектам Northstar.",
-              "acceptance": "нет одинаковых данных, размноженных по custom objects без причины.",
-              "interview": "«Когда создать новый объект, а когда использовать стандартный?»",
-              "visual": "Путь клиента по карточкам Lead, Account, Contact, Opportunity и Case."
+              "title": "Choose Standard Objects Before Creating New Ones",
+              "outcome": "Classify customer information using Lead, Account, Contact, Opportunity, and Case, then explain why the course adds two custom objects.",
+              "task": "Explain how Northstar should store five different pieces of customer work.",
+              "acceptance": "An Opportunity is not described as requiring a Lead in every process. The course Contact lookup and its limits are stated explicitly. The learning org contains the core Vehicle and Test Drive schema needed by J08, without duplicate objects.",
+              "interview": "Is a customer complaint a new sale?",
+              "visual": "a restrained row of customer, company, opportunity and support record symbols connected by one path"
             },
             {
               "id": "J08",
-              "title": "Поля, типы данных, формулы и правила проверки",
-              "outcome": "хранит вводимые данные отдельно от вычисляемых и проверяет требования к записи.",
-              "task": "ограничить дату тест-драйва и рассчитать длительность/статус.",
-              "acceptance": "хорошие данные сохраняются, плохие получают понятную ошибку; пограничная дата проверена.",
-              "interview": "«Validation Rule, Formula или Flow — как выбрать?»",
-              "visual": "Воронка проверки данных: корректная дата проходит, неверная получает понятную подсказку."
+              "title": "Field Types, Formulas, and Validation Rules",
+              "outcome": "Separate entered values, calculated values, and rejected input using concrete appointment examples.",
+              "task": "Give Oleg evidence that the fields accept valid data and explain invalid input.",
+              "acceptance": "A historical appointment can receive an unrelated edit without this time rule blocking it. Blank handling and time-zone assumptions are documented.",
+              "interview": "When does a validation rule reject a save?",
+              "visual": "a record form with a calendar field, a number field and a clear validation check"
             },
             {
               "id": "J09",
-              "title": "Связи между объектами: Lookup и Master-Detail",
-              "outcome": "выбирает связь, понимая владение, удаление и зависимости доступа.",
-              "task": "На отдельном черновом примере сравнить Lookup и Master-Detail. В итоговом core-проекте закрепить Vehicle__c ← Lookup ← Test_Drive__c для следующих уроков по владельцам и sharing.",
-              "acceptance": "Предсказано поведение обеих связей при удалении родителя. Итоговый Test_Drive__c использует Lookup и имеет собственное владение/доступы; черновой Master-Detail не переносится в задания J09–J10.",
-              "interview": "«Почему неправильная связь может стать проблемой через год?»",
-              "visual": "Две модели одной связи: свободный lookup и зависимый master-detail с показанными последствиями удаления."
+              "title": "Choose Lookup or Master-Detail Deliberately",
+              "outcome": "Compare relationship behaviour while preserving independent ownership of the course Test Drive records.",
+              "task": "Explain why the course keeps Test Drive independently owned.",
+              "acceptance": "The experiment does not replace the core relationship. The explanation includes ownership and access, not only deletion.",
+              "interview": "Where is a Master-Detail field created?",
+              "visual": "two record cards connected by a clean relationship line with a small linked record underneath"
             },
             {
               "id": "J10",
-              "title": "Приложение автодилера: страницы, списки и отчёт",
-              "outcome": "создаёт удобную Lightning-страницу и отчёт по назначенным тест-драйвам.",
-              "task": "убрать лишние поля, добавить список и отчёт руководителя.",
-              "acceptance": "сотрудник проходит сценарий без устной подсказки; скрытие поля на layout не названо защитой.",
-              "interview": "«Почему page layout не заменяет field-level security?»",
-              "visual": "Простой экран продавца рядом с небольшим отчётом о тест-драйвах."
+              "title": "Build a Usable Sales Application",
+              "outcome": "Assemble tabs, a record page, a useful list, and a small management report around one clear salesperson journey.",
+              "task": "Create a short demonstration from application navigation to an appointment and a management count.",
+              "acceptance": "The report matches the known sample records. The explanation does not claim that a page layout enforces field-level security.",
+              "interview": "Why can a report and a list show different counts?",
+              "visual": "a compact car-dealership application window with a car, appointment card and small bar chart"
             }
           ]
         },
         {
-          "title": "Доступ к данным",
+          "title": "Designing and Verifying Access",
           "lessons": [
             {
               "id": "J11",
-              "title": "Уровни доступа: организация, объект, поле и запись",
-              "outcome": "различает вход в org, доступ к объекту, полю и записи.",
-              "task": "на схеме предсказать, что увидит продавец при четырёх комбинациях разрешений; затем проверить в org.",
-              "acceptance": "объяснение включает и CRUD/FLS, и record access.",
-              "interview": "«Запись расшарили, но пользователь её не видит. Где искать причину?»",
-              "visual": "Четыре последовательных шлюза: вход, объект, поле и запись, с причинами отказа."
+              "title": "Understand the Layers of Data Access",
+              "outcome": "Separate sign-in, object operations, field permissions, and access to an individual record.",
+              "task": "Explain why similar symptoms require different investigation paths.",
+              "acceptance": "Object, field, and record access are distinguished. Administrator results are not represented as salesperson tests.",
+              "interview": "Will record sharing grant object Read?",
+              "visual": "four translucent geometric access layers protecting one customer record"
             },
             {
               "id": "J12",
-              "title": "Permission Sets: назначение разрешений пользователю",
-              "outcome": "даёт минимально необходимые права по рабочим задачам.",
-              "task": "создать небольшой permission set для записи на тест-драйв и сравнить с широким профилем.",
-              "acceptance": "обычная операция работает; лишние Edit/Delete и закрытые поля недоступны.",
-              "interview": "«Почему permission set обычно добавляет права, а не отнимает?»",
-              "visual": "Небольшие блоки разрешений собираются в комплект ровно для одной рабочей задачи."
+              "title": "Grant a Small Set of Working Permissions",
+              "outcome": "Create an additive permission set that enables appointment work without broad administration.",
+              "task": "Submit a small table connecting Anna to the operations and fields she needs.",
+              "acceptance": "The evidence uses a restricted user. The explanation recognizes additive permissions and independent record sharing.",
+              "interview": "Does an unchecked Delete box remove another Delete grant?",
+              "visual": "two small permission cards combining to open one lock on a record"
             },
             {
               "id": "J13",
-              "title": "Доступ к записям: OWD, роли и Sharing Rules",
-              "outcome": "понимает исходную видимость и способы расширить доступ.",
-              "task": "закрыть тест-драйвы по умолчанию и открыть нужную группу записей сервисной команде.",
-              "acceptance": "нет доступа к лишнему филиалу; роль не перепутана с профилем.",
-              "interview": "«OWD Private: какими путями пользователь всё-таки получит запись?»",
-              "visual": "Закрытые записи филиалов и три отмеченных пути расширения доступа."
+              "title": "Set a Record-Access Baseline and Add Exceptions",
+              "outcome": "Use Private defaults, roles, and a focused sharing rule to explain appointment visibility.",
+              "task": "Explain the intended owner, peer, manager, and service-reviewer access.",
+              "acceptance": "A role is not confused with a profile. No unsupported branch isolation is claimed. Other granting sources are investigated when results differ.",
+              "interview": "Does Private prevent all non-owner access?",
+              "visual": "a simple team hierarchy above three record cards with carefully drawn access paths"
             },
             {
               "id": "J14",
-              "title": "Ручное предоставление доступа к записи",
-              "outcome": "различает владение, manual sharing и постоянное правило.",
-              "task": "предоставить коллеге доступ к конкретному тест-драйву и проверить смену владельца на подходящем объекте.",
-              "acceptance": "объяснено, когда ручной доступ исчезает и почему это не bug.",
-              "interview": "«Когда manual sharing подходит, а когда становится долгом?»",
-              "visual": "Владелец передаёт одну карточку коллеге; смена владельца показывает изменение ручного доступа."
+              "title": "Share One Record and Test an Ownership Change",
+              "outcome": "Use manual sharing for a specific handover and verify transfer behaviour in the actual org configuration.",
+              "task": "Explain the behaviour of one manual share before and after ownership changes.",
+              "acceptance": "The explanation does not say manual shares always disappear. New ownership is not mistaken for retained manual sharing.",
+              "interview": "Does sharing transfer ownership?",
+              "visual": "one drawn colleague handing a single record card to another through a permission key"
             },
             {
               "id": "J15",
-              "title": "Проверка источников доступа к записи",
-              "outcome": "ищет источник доступа, не добавляя наугад ещё один permission set.",
-              "task": "починить три подготовленных случая: нет объекта, нет поля, нет записи.",
-              "acceptance": "для каждого случая есть причина, минимальное исправление и повторная проверка.",
-              "interview": "«С чего начнёте расследование “я вижу чужую запись”?»",
-              "visual": "Детективная карта трёх отказов: объект, поле и запись; каждый ведёт к своему исправлению."
+              "title": "Trace the Source of an Access Problem",
+              "outcome": "Investigate missing or excessive access with evidence, one hypothesis, and a minimal correction.",
+              "task": "Diagnose one object, one field, and one record access case.",
+              "acceptance": "A layout issue is not mislabeled as FLS. A filter issue is not mislabeled as sharing. Any unavailable execution check is stated honestly.",
+              "interview": "Why inspect Access Granted By?",
+              "visual": "a magnifying glass tracing two different paths toward the same accessible record"
             },
             {
               "id": "J16",
-              "title": "Практика: доступ продавца и руководителя",
-              "outcome": "законченная матрица прав для продавца, сервиса и руководителя.",
-              "task": "реализовать три персоны по очереди в ограниченной учебной org и записать короткую демонстрацию.",
-              "acceptance": "положительные и отрицательные проверки всех трёх персон; admin не используется как доказательство доступа.",
-              "interview": "«Как доказать заказчику, что доступы настроены правильно?»",
-              "visual": "Три рабочие персоны и общая матрица разрешённых и запрещённых действий."
+              "title": "Verify Access for Sales, Service, and Management",
+              "outcome": "Turn a written access matrix into repeatable positive and negative checks for three working personas.",
+              "task": "Deliver a short access demonstration and an evidence matrix for Oleg.",
+              "acceptance": "No broad grant was added solely to make a test pass. Every executed result names the tested persona. Untested cells remain distinguishable from successful ones.",
+              "interview": "Is a persona the same as a role?",
+              "visual": "two drawn workplace roles facing the same records with different visible subsets"
             }
           ]
         },
         {
-          "title": "Автоматизация и Apex",
+          "title": "Flow, Apex, and Transaction Behaviour",
           "lessons": [
             {
               "id": "J17",
-              "title": "Основы Flow: автоматическое действие при изменении записи",
-              "outcome": "автоматизирует создание напоминания после записи на тест-драйв.",
-              "task": "собрать Flow, условие запуска и обработку ошибки.",
-              "acceptance": "повторное сохранение не создаёт лишнее напоминание; ошибка видна ответственному.",
-              "interview": "«Какие вопросы задать до создания record-triggered Flow?»",
-              "visual": "Запись на тест-драйв запускает короткую цепочку Flow с отдельной веткой ошибки."
+              "title": "Create a Record-Triggered Flow with a Clear Failure Path",
+              "outcome": "Create one follow-up Task for a new appointment request, avoid update duplicates, and make a failed reminder visible.",
+              "task": "Deliver the Flow, activity-setting change, and a three-case result table.",
+              "acceptance": "The activity prerequisite is included. The submission distinguishes a Task from an email notification. The active version and observed transaction outcome are stated.",
+              "interview": "Why choose after-save here?",
+              "visual": "three simple flow nodes transforming a saved appointment into a reminder card"
             },
             {
               "id": "J18",
-              "title": "Основы Apex: типы данных, переменные, коллекции и методы",
-              "outcome": "читает и пишет небольшой класс с ясной ответственностью.",
-              "task": "рассчитать доступные интервалы тест-драйва с помощью List/Set/Map.",
-              "acceptance": "пустой список и повторяющиеся значения обрабатываются осознанно.",
-              "interview": "«Когда Map упрощает решение по сравнению со вложенным циклом?»",
-              "visual": "Коллекции List, Set и Map как три разных способа разложить карточки временных слотов."
+              "title": "Apex Syntax, Variables, Collections, and Methods",
+              "outcome": "Read and write a small pure Apex function before introducing database operations.",
+              "task": "Add a method that returns labels for available minutes using a Map.",
+              "acceptance": "The code performs no database operation. Returned ordering and null behaviour are explicit. The explanation distinguishes List, Set, and Map.",
+              "interview": "How does assignment differ from comparison?",
+              "visual": "a calm developer workspace with a small code card, a collection of blocks and a method-shaped container"
             },
             {
               "id": "J19",
-              "title": "SOQL и DML: чтение и изменение записей",
-              "outcome": "получает и изменяет набор данных без запросов внутри цикла.",
-              "task": "обновить статусы тест-драйвов для набора автомобилей.",
-              "acceptance": "сценарии 1 и 200 записей проходят; пользователь получает только разрешённые данные в выбранном режиме.",
-              "interview": "«Почему код, работающий на одной записи, падает при загрузке файла?»",
-              "visual": "Один пакет из 200 карточек проходит через один блок запроса и группового обновления."
+              "title": "Read and Change Records with SOQL and DML",
+              "outcome": "Write a bounded bulk operation with explicit user-mode access and separate reads from writes.",
+              "task": "Provide evidence for empty, single-record, and 200-record scenarios.",
+              "acceptance": "No query or DML is executed once per appointment. Only Requested appointments for supplied vehicles change. The stated dataset boundary is honest.",
+              "interview": "Does assigning a field in memory save it?",
+              "visual": "one data shelf with a clean read arrow and a separate update arrow returning one record"
             },
             {
               "id": "J20",
-              "title": "Apex Triggers: обработка создания и изменения записей",
-              "outcome": "переносит логику из trigger в handler и обрабатывает весь Trigger.new.",
-              "task": "добавить проверку допустимого перехода статуса и избежать повторного действия.",
-              "acceptance": "insert/update и массовый сценарий проверены; выбор before/after объяснён.",
-              "interview": "«Что должно оставаться в trigger, а что лучше вынести?»",
-              "visual": "Тонкий trigger передаёт набор записей компактному handler."
+              "title": "Use a Thin Trigger and a Focused Handler",
+              "outcome": "Validate the whole incoming collection while keeping business rules outside the trigger entry point.",
+              "task": "Implement and explain the two agreed validation rules.",
+              "acceptance": "All pending records are checked. The handler contains no unnecessary self-update. The submission states what the rules do not guarantee.",
+              "interview": "Why use old values?",
+              "visual": "an incoming group of record cards activating one event-driven processing node"
             },
             {
               "id": "J21",
-              "title": "Порядок выполнения автоматизаций и транзакции",
-              "outcome": "видит, как в одной операции взаимодействуют Flow, validation и Apex.",
-              "task": "расставить события на временной линии и воспроизвести откат при ошибке.",
-              "acceptance": "ученик объясняет, что сохранилось и что откатилось, по наблюдаемому результату.",
-              "interview": "«Почему две автоматизации могут зациклить друг друга?»",
-              "visual": "Временная линия сохранения с рамкой транзакции и стрелкой отката."
+              "title": "Trace Automation Through a Transaction",
+              "outcome": "Explain how several automations participate in one save and verify what a rollback actually removes.",
+              "task": "Produce a small timeline and before-and-after record evidence.",
+              "acceptance": "The timeline is labelled as a relevant subset of the official order. A retained variable ID is not mistaken for a committed record. Separate asynchronous work is not described as the same transaction.",
+              "interview": "Does a generated ID prove commit?",
+              "visual": "an orderly sequence of four process tiles inside one transaction boundary"
             },
             {
               "id": "J22",
-              "title": "Тестирование Apex: данные, проверки и ошибки",
-              "outcome": "проверяет поведение, а не только выполнение строк.",
-              "task": "написать позитивный, негативный и bulk-тест для своей функции.",
-              "acceptance": "намеренная поломка бизнес-правила действительно ломает тест; assertions проверяют нужный результат.",
-              "interview": "«Можно ли доверять решению со 100% coverage?»",
-              "visual": "Три испытания одной функции: нормальный путь, ошибочный ввод и массовый запуск."
+              "title": "Write Apex Tests That Prove Behaviour",
+              "outcome": "Create independent test data and assert valid, invalid, and bulk outcomes rather than aiming only for executed lines.",
+              "task": "Test the pure function and appointment validation with independent data.",
+              "acceptance": "Assertions check the intended business outcome. Tests do not depend on ordinary org data. The submitted results come from an actual run or are clearly marked unperformed.",
+              "interview": "Can 100% coverage accompany incorrect behaviour?",
+              "visual": "a small test bench comparing an expected result card with an actual result card and one check"
             }
           ]
         },
         {
-          "title": "Интерфейс и передача решения",
+          "title": "Components, Diagnosis, and Handover",
           "lessons": [
             {
               "id": "J23",
-              "title": "Основы Lightning Web Components: HTML, JavaScript и состояние",
-              "outcome": "создаёт простой компонент списка тест-драйвов.",
-              "task": "показать состояния загрузки, пустого списка, результата и ошибки.",
-              "acceptance": "все состояния воспроизводимы; пользователь понимает, что происходит.",
-              "interview": "«Чем состояние компонента отличается от записи в Salesforce?»",
-              "visual": "Один LWC в четырёх состояниях: загрузка, пусто, результат и ошибка."
+              "title": "HTML, JavaScript, and Your First Lightning Web Component",
+              "outcome": "Learn the browser-language basics and build an explicitly simulated appointment preview with four visible states.",
+              "task": "Extend the simulated preview with a second sample appointment while preserving honest labels.",
+              "acceptance": "The interface is explicitly labelled as a demonstration. Sample rows are not claimed to be persisted. Every rendered row has a stable key.",
+              "interview": "Does assigning rows create Salesforce records?",
+              "visual": "three clean interface building blocks assembling into one component card"
             },
             {
               "id": "J24",
-              "title": "Получение и сохранение данных в LWC",
-              "outcome": "выбирает стандартные возможности и Lightning Data Service для обычной работы с записью.",
-              "task": "сделать карточку и редактирование доступного поля.",
-              "acceptance": "FLS проверена под ограниченным пользователем; выбор Apex либо отказ от него обоснован.",
-              "interview": "«Когда стандартный record form лучше собственного Apex-контроллера?»",
-              "visual": "Карточка записи соединена с Lightning Data Service через видимые границы доступа."
+              "title": "Read and Edit a Record with Lightning Data Service",
+              "outcome": "Use a standard record form for an ordinary edit and verify the result under a restricted user.",
+              "task": "Deliver the working editor and a short comparison with a custom Apex alternative.",
+              "acceptance": "No synthetic preview ID is used as a Salesforce record ID. The outcome is verified after save. The choice of standard components is justified.",
+              "interview": "Does @api recordId always populate in every container?",
+              "visual": "a small component window connected to a shared data cache and a record card"
             },
             {
               "id": "J25",
-              "title": "Связь компонентов через свойства и события",
-              "outcome": "передаёт данные вниз, уведомление об изменении вверх.",
-              "task": "разделить список и карточку тест-драйва на два компонента.",
-              "acceptance": "источник состояния понятен; дочерний компонент не меняет чужие входные данные скрыто.",
-              "interview": "«Как связать два LWC без общей глобальной переменной?»",
-              "visual": "Родительский список передаёт данные вниз; дочерняя карточка отправляет событие вверх."
+              "title": "Pass Data Down and Send Events Up",
+              "outcome": "Split a small interface into a parent and child with clear ownership of state.",
+              "task": "Extend the example with a third simulated item and document the public contract.",
+              "acceptance": "The child does not mutate the supplied object. Events use a clear matching name and minimal detail. The simulation is not described as a database operation.",
+              "interview": "Who owns selectedId?",
+              "visual": "a parent component container and two child cards communicating with one upward event arrow"
             },
             {
               "id": "J26",
-              "title": "Поиск ошибок в учебном приложении",
-              "outcome": "пользуется логами Apex и инструментами браузера по гипотезе.",
-              "task": "исправить сломанный сценарий бронирования и записать причину.",
-              "acceptance": "описаны шаги воспроизведения, корневая причина, исправление и проверка от повторения.",
-              "interview": "«Как вы расследуете ошибку, которую не видите у себя?»",
-              "visual": "Симптом, гипотеза, лог и исправление выстроены в цепочку расследования."
+              "title": "Investigate a Failure from Symptom to Cause",
+              "outcome": "Use a reproducible case, a focused hypothesis, and the right evidence from the browser or Salesforce.",
+              "task": "Choose the event mismatch or another controlled learning failure and explain it from symptom to proof.",
+              "acceptance": "The note separates observed facts from hypotheses. The correction addresses the demonstrated cause. Private data and credentials are excluded.",
+              "interview": "Why is a hypothesis different from an observation?",
+              "visual": "a magnifying glass isolating one highlighted break in an otherwise clean code path"
             },
             {
               "id": "J27",
-              "title": "Git и передача изменений на проверку",
-              "outcome": "хранит metadata в Git и выпускает небольшое изменение воспроизводимо.",
-              "task": "сделать ветку, diff, README и проверяемый deploy в учебную среду.",
-              "acceptance": "набор изменений минимален; инструкция работает без ручного угадывания настроек.",
-              "interview": "«Почему “у меня в org работает” недостаточно?»",
-              "visual": "Небольшой diff проходит из ветки через review в учебную org."
+              "title": "Use Git to Hand Over a Reproducible Change",
+              "outcome": "Capture the relevant metadata, review a small diff, and submit a version another person can inspect.",
+              "task": "Hand over the appointment feature as a versioned, explainable change.",
+              "acceptance": "The package excludes credentials and real customer data. Setup-only changes required by the feature are captured or explicitly documented. The review target is an identifiable version in the learner repository.",
+              "interview": "Does changing a local file change the org immediately?",
+              "visual": "a tidy branching path of commits joining a reviewed change card"
             },
             {
               "id": "J28",
-              "title": "Итоговый проект: приложение для записи на тест-драйв",
-              "outcome": "демонстрирует законченный путь клиента и объясняет границы решения.",
-              "task": "10-минутное демо, 5 вопросов и небольшое изменение требований на месте.",
-              "acceptance": "корректность, доступы, bulk-сценарий, читаемость, объяснение; критичные проблемы исправлены.",
-              "interview": "«Что вы изменили бы первым, если сеть вырастет в десять раз?»",
-              "visual": "Завершённый путь клиента от заявки до тест-драйва с пятью контрольными отметками качества."
+              "title": "Deliver the Northstar Test-Drive Application",
+              "outcome": "Demonstrate a complete small feature, explain its boundaries, and respond to a modest requirement change.",
+              "task": "Deliver a short demonstration, source package, and review note for the Northstar appointment feature.",
+              "acceptance": "The feature works within its stated educational scope. Critical correctness or access defects are corrected before requesting acceptance. The author can explain data, permissions, automation, code, and interface choices. No simulation or unexecuted test is misrepresented as a live result.",
+              "interview": "What makes this more than a collection of exercises?",
+              "visual": "a finished car test-drive application with a calendar and a small review check"
             }
           ]
         }
@@ -290,351 +290,348 @@
     {
       "id": "m",
       "title": "Middle Salesforce Developer",
-      "entry": "Входная задача по модели данных, Flow, bulk-safe Apex, тесту и простому LWC.",
-      "exit": "Интегрированная функция с обработкой сбоев, повторами, безопасностью и воспроизводимым выпуском.",
-      "project": "Сервис без потерянных заявок — Northstar Motors, новый предлагаемый кейс",
+      "entry": "Complete the Junior foundations or demonstrate a small feature with a sound data model, least-privilege access, bulk-safe Apex, meaningful tests, and a basic LWC. CRM and the Northstar actors are restated where needed; unfamiliar product licenses are not assumed.",
+      "exit": "Build and explain an integrated feature with explicit security, durable operation identity, controlled asynchronous work, failure recovery, usable UI states, and reproducible release evidence.",
+      "project": "Northstar Motors: Anna and Max manage customer test drives and warranty requests; Oleg supervises work; Irina is a fictional customer. The core project uses custom Vehicle and Test Drive records, then explicitly declared request and diagnostic metadata.",
       "modules": [
         {
-          "title": "Безопасность, которую можно объяснить",
+          "title": "Access design and Apex security",
           "lessons": [
             {
               "id": "M01",
-              "title": "Проектирование и проверка модели доступа",
-              "outcome": "переводит бизнес-требования в проверяемую модель доступа.",
-              "task": "спроектировать права двух филиалов Northstar и сервисного центра.",
-              "acceptance": "для каждого объекта, поля и категории записей определены допустимые действия и тесты.",
-              "interview": "«Как превратить фразу “сервис видит клиентов” в точные требования?»",
-              "visual": "Карта двух дилеров и сервисного центра поверх матрицы object-field-record-action."
+              "title": "Designing and verifying an access model",
+              "outcome": "Turn a business request into separate object, field, record, and operation decisions. Build an access matrix for two sales branches before changing permissions.",
+              "task": "Prepare and verify a minimum-permission model for Anna, Max, and Oleg.",
+              "acceptance": "Every allowed row identifies its grant. At least three denied operations are tested. No administrator-only evidence is presented as salesperson verification.",
+              "interview": "Does object Read grant every record?",
+              "visual": "Four nested access gates surrounding one appointment card"
             },
             {
               "id": "M02",
-              "title": "Permission Set Groups и muting",
-              "outcome": "понимает сумму разрешений и область действия muting.",
-              "task": "заглушить Edit в одной группе, затем выдать его отдельным permission set и предсказать результат.",
-              "acceptance": "объяснено, почему muting не становится глобальным запретом; проверены зависимые разрешения.",
-              "interview": "«Почему пользователь всё ещё может редактировать поле после muting?»",
-              "visual": "Пять источников одного права: muting перекрывает один путь, остальные остаются видимыми."
+              "title": "Permission Set Groups and muting",
+              "outcome": "Predict effective permissions when a permission set group mutes a grant that is also supplied elsewhere.",
+              "task": "Submit the four-path experiment with a small diagram and observed results.",
+              "acceptance": "The explanation distinguishes group-local muting from effective user permissions. All four assignment combinations are considered. Group recalculation and unchanged record access are recorded.",
+              "interview": "Does muting alter the reused permission set?",
+              "visual": "Several permission paths converging on one field with a single path blocked"
             },
             {
               "id": "M03",
-              "title": "Manual и implicit sharing: откуда появился доступ",
-              "outcome": "Различает ручную выдачу доступа и доступ, возникающий из поддерживаемых стандартных связей.",
-              "task": "Исследовать доступ через Account/Contact/Case, добавить ручной share и сравнить источники видимости на карте доступа; программная поддержка shares начинается в M04.",
-              "acceptance": "Для каждого примера указан источник доступа; implicit sharing не объявлен универсальным для всех объектов или любого Lookup. После удаления ручного grant проверены оставшиеся пути.",
-              "interview": "«Почему пользователь видит запись даже без manual share и отдельного sharing rule?»",
-              "visual": "Два происхождения доступа к записи: явная ручная стрелка и подсвеченная поддерживаемая стандартная связь."
+              "title": "Manual and implicit sharing",
+              "outcome": "Identify why a record is visible and distinguish an explicit manual grant from access arising from supported standard relationships.",
+              "task": "Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship.",
+              "acceptance": "Each visibility result names an access mechanism. Remaining access after removal is investigated. No claim says all lookups automatically share records.",
+              "interview": "Does a manual Read share grant field Read?",
+              "visual": "One appointment reached by a manual bridge and a separate relationship bridge"
             },
             {
               "id": "M04",
-              "title": "Apex Sharing: создание, изменение и удаление доступа",
-              "outcome": "поддерживает доступ назначенного менеджера при изменении данных, не задевая чужие основания доступа.",
-              "task": "отдельная интервью-ката Project__c → Manager__c: insert, смена менеджера, очистка поля, delete/undelete; bulk и повторный запуск.",
-              "acceptance": "обработчик создаёт/удаляет только shares со своим RowCause; чужие manual/team/другие причины сохранены; ожидаемый lifecycle явно проверен.",
-              "interview": "«Как убрать доступ бывшего менеджера, не удалив доступ по другой причине?»",
-              "visual": "Проект меняет менеджера; новые shares добавляются, только старая собственная причина удаляется."
+              "title": "Apex managed sharing across a record lifecycle",
+              "outcome": "Maintain a manager's record access while preserving unrelated grants and handling bulk changes.",
+              "task": "Implement the transition table on Project__c and submit evidence of safe reconciliation.",
+              "acceptance": "No unrelated share is deleted. Cleared and changed managers remove the obsolete owned grant. Bulk and undelete behavior are explicitly tested.",
+              "interview": "Why use a custom reason?",
+              "visual": "A project card transfers one access key while an unrelated key remains untouched"
             },
             {
               "id": "M05",
-              "title": "Restriction Rules: сузить уже доступные записи",
-              "outcome": "отличает открытие доступа от фильтрации уже доступных записей и знает границы поддержки.",
-              "task": "ограничить Test_Drive__c по учебному региону и проверить разные пути чтения.",
-              "acceptance": "зафиксированы object/edition/context; правило не названо универсальным deny; проверены положительный и отрицательный сценарии.",
-              "interview": "«Чем restriction rule отличается от sharing rule?»",
-              "visual": "Фильтр restriction rule сужает уже открытый набор записей до допустимого региона."
+              "title": "Restriction rules and supported access paths",
+              "outcome": "Filter an already accessible record set for selected users while recognizing object, edition, and execution-context boundaries.",
+              "task": "Create the North/South experiment and explain the result for two users.",
+              "acceptance": "No new access is attributed to the restriction. Supported object, edition, and context are recorded. Positive, negative, and unaffected-user cases are included.",
+              "interview": "Can the rule open a private appointment?",
+              "visual": "An already open collection of appointment cards passing through a regional filter"
             },
             {
               "id": "M06",
-              "title": "Безопасность Apex и версия API",
-              "outcome": "различает record sharing, CRUD/FLS, user/system mode и versioned defaults.",
-              "task": "сравнить явные режимы и классы API ≤66/≥67 при чтении закрытого поля и записи.",
-              "acceptance": "with sharing не выдан за FLS; в ≤66 отсутствие декларации сохраняет текущий sharing context, в ≥67 default with sharing; DB defaults рассмотрены отдельно.",
-              "interview": "«Почему простой подъём API version старого класса требует проверки доступа?»",
-              "visual": "Два API-version стенда с одинаковым запросом и отдельными переключателями sharing и database mode."
+              "title": "Apex security and API-version defaults",
+              "outcome": "Separate class sharing context from database access mode and verify security when changing an Apex API version.",
+              "task": "Explain and verify one read path under explicit modes and API-version defaults.",
+              "acceptance": "The report separates sharing from CRUD/FLS. API versions are identified. No broad permission is added solely to make the test green.",
+              "interview": "Is omitted sharing always without sharing?",
+              "visual": "Two versioned execution lanes with separate record and field access gates"
             }
           ]
         },
         {
-          "title": "Логика, которую можно расширять",
+          "title": "Maintainable business logic and tests",
           "lessons": [
             {
               "id": "M07",
-              "title": "Flow или Apex: решение по условиям",
-              "outcome": "выбирает инструмент по сложности, объёму и сопровождению.",
-              "task": "разобрать три варианта одной заявки на сервис, реализовать выбранный.",
-              "acceptance": "аргументы учитывают транзакции и существующие автоматизации, а не личный вкус.",
-              "interview": "«Когда Flow станет неудобнее небольшого Apex-сервиса?»",
-              "visual": "Один бизнес-процесс расходится к Flow и Apex по прозрачным условиям выбора."
+              "title": "Choosing Flow or Apex for a business operation",
+              "outcome": "Choose an implementation from the shape of the work, its transaction boundaries, and the team's ability to maintain it.",
+              "task": "Choose and implement the confirmation rule, then explain how two larger variants would change your decision.",
+              "acceptance": "The choice mentions maintenance and volume. No duplicate automation performs the same responsibility. The failure policy is demonstrated rather than implied.",
+              "interview": "Is Flow always preferable for a simple UI?",
+              "visual": "One business operation branching toward three simple implementation tools"
             },
             {
               "id": "M08",
-              "title": "Order of Execution, recursion и идемпотентность",
-              "outcome": "контролирует повторный запуск и понимает границы транзакции.",
-              "task": "устранить повторную отправку заявки при взаимодействии Flow и trigger.",
-              "acceptance": "повторная обработка того же бизнес-события не создаёт второй результат; bulk не ломается.",
-              "interview": "«Почему один static Boolean не решает все случаи recursion?»",
-              "visual": "Две автоматизации замыкают круг; ключ бизнес-операции разрывает повторное действие."
+              "title": "Order of execution, recursion, and idempotency",
+              "outcome": "Explain repeated automation within a transaction and design a durable business result that is not duplicated by re-entry or retries.",
+              "task": "Build the declared receipt behavior and demonstrate repeated execution without duplicate results.",
+              "acceptance": "Exactly one receipt exists per defined key. Unrelated failures are not called successful retries. The confirmation-cycle limitation is explicit.",
+              "interview": "Why does static state not solve a later retry?",
+              "visual": "A circular automation path feeding a single durable receipt slot"
             },
             {
               "id": "M09",
-              "title": "Структура Apex-кода и Custom Metadata",
-              "outcome": "разделяет orchestration, бизнес-правило и доступ к внешнему сервису; использует Custom Metadata там, где это оправдано.",
-              "task": "вынести правила гарантийного сервиса из одного большого класса.",
-              "acceptance": "замена тарифа или API-клиента не требует переписывать весь процесс.",
-              "interview": "«Когда новый слой кода помогает, а когда только усложняет?»",
-              "visual": "Большой класс разделён на бизнес-правило, orchestration, адаптер и конфигурацию."
+              "title": "Structuring Apex and using Custom Metadata",
+              "outcome": "Separate warranty business rules, orchestration, and external access without adding layers that have no clear responsibility.",
+              "task": "Separate one policy and one business decision from a mixed orchestration sketch.",
+              "acceptance": "Dependencies are visible at the entry point. Local tests require no provider or real credentials. Each introduced layer has a stated responsibility.",
+              "interview": "Why is request progress ordinary data?",
+              "visual": "One large code block separated into policy orchestration and adapter blocks"
             },
             {
               "id": "M10",
-              "title": "Тестовая стратегия для функции",
-              "outcome": "Проверяет локальную бизнес-логику на границах, создаёт независимые тестовые данные и покрывает массовую обработку.",
-              "task": "Создать test factory, bulk- и negative-тесты локальных правил сервисной заявки; callout mock изучается позже, вместе с интеграцией в M17.",
-              "acceptance": "Тесты независимы от данных org, проверяют правильный и ошибочный ввод; намеренная поломка правила меняет результат теста. Внешний API в этом уроке не нужен.",
-              "interview": "«Как понять, что unit test проверяет нужное правило, а не просто выполняет код?»",
-              "visual": "Тестовая фабрика создаёт независимые наборы для обычного, ошибочного и массового локального сценария."
+              "title": "Testing a complete local business rule",
+              "outcome": "Build independent fixtures and meaningful assertions for normal, boundary, invalid, and bulk inputs before introducing network behavior.",
+              "task": "Submit a local test suite with boundaries, negative cases, and mixed bulk input.",
+              "acceptance": "No business records are read through SeeAllData. Strict cutoff and protected statuses are checked. The mutation fails a relevant assertion.",
+              "interview": "Why pass a cutoff instead of reading now everywhere?",
+              "visual": "A boundary marker separating one cancelled appointment from three protected appointments"
             }
           ]
         },
         {
-          "title": "Асинхронная работа",
+          "title": "Asynchronous processing",
           "lessons": [
             {
               "id": "M11",
-              "title": "Способы асинхронной обработки в Apex",
-              "outcome": "различает sync, async Flow, Queueable, Batch, Scheduled и события.",
-              "task": "разложить пять процессов Northstar на decision map с требованиями по времени.",
-              "acceptance": "async не назван гарантией мгновенного выполнения или бесконечного масштаба.",
-              "interview": "«Почему нельзя обещать клиенту запуск Queueable ровно через секунду?»",
-              "visual": "Карта выбора фоновой обработки по объёму, задержке и требуемому результату."
+              "title": "Selecting an asynchronous processing mechanism",
+              "outcome": "Match delayed work to its volume, timing, transaction, and recovery requirements without promising immediate execution.",
+              "task": "Choose mechanisms for five operations and state the visible result and recovery behavior of each.",
+              "acceptance": "Every delayed operation has a pending state or equivalent acknowledgement. Timing is described as a requirement, not an unsupported guarantee. Retry load is included.",
+              "interview": "Does enqueue success prove business success?",
+              "visual": "Five business tasks sorted into immediate queue batch schedule and event lanes"
             },
             {
               "id": "M12",
-              "title": "Queueable Apex: цепочки задач и обработка ошибок",
-              "outcome": "выносит долгий шаг из пользовательской операции и отслеживает его состояние.",
-              "task": "Создать локальную заявку на проверку гарантии, запустить учебный фоновый шаг и сохранить итог/ошибку; настоящий callout подключается после интеграционного модуля.",
-              "acceptance": "видны job/request IDs, повтор не дублирует бизнес-действие; предусмотрен ограниченный retry.",
-              "interview": "«Как пользователь узнает, что фоновая задача завершилась неудачно?»",
-              "visual": "Queueable цепочка с видимыми job IDs, статусами и ограниченным повтором."
+              "title": "Queueable Apex and observable request state",
+              "outcome": "Create a local background warranty check with a durable request identity, a job reference, and explicit outcomes before adding HTTP.",
+              "task": "Implement the local Queueable lifecycle and a bounded manual retry.",
+              "acceptance": "One key creates one business request. Job and request IDs are distinguishable. Failed work is visible and retries are bounded.",
+              "interview": "Why pass a request ID?",
+              "visual": "One warranty request card linked to two distinct background job attempts"
             },
             {
               "id": "M13",
-              "title": "Batch Apex: обработка больших наборов записей",
-              "outcome": "понимает start/execute/finish и независимость транзакций порций.",
-              "task": "пересчитать учебный набор просроченных сервисных визитов; одну порцию намеренно сломать.",
-              "acceptance": "ошибка одной порции учтена; scope объяснён; счётчик с Database.Stateful сохраняет instance state, отличие от static и цена сохранения состояния понятны.",
-              "interview": "«Почему Batch — не одна большая атомарная транзакция?»",
-              "visual": "Три batch-порции сохраняют независимый результат; небольшой instance-счётчик проходит между ними."
+              "title": "Batch Apex and independent execution scopes",
+              "outcome": "Process a larger appointment dataset in bounded transactions and report partial failure without implying whole-job atomicity.",
+              "task": "Build the cancellation Batch with visible success, skipped, and failed outcomes.",
+              "acceptance": "Protected statuses remain unchanged. An error is visible and tied to its record or scope. A repeat run does not corrupt already processed records.",
+              "interview": "What persists with Stateful?",
+              "visual": "Three processing trays with independent success and failure markers"
             },
             {
               "id": "M14",
-              "title": "Расписание, лимиты и наблюдение",
-              "outcome": "проектирует повторяющуюся задачу с контролем нагрузки и наложения запусков.",
-              "task": "добавить nightly job и экран/отчёт состояния; сравнить Scheduled Apex и Scheduled Flow.",
-              "acceptance": "есть политика пропущенного и повторного запуска, оценка объёма и доступных allocations.",
-              "interview": "«Как защититься от двух одновременно работающих экземпляров job?»",
-              "visual": "Суточное расписание с окном обработки, пределом нагрузки и обнаруженным наложением job."
+              "title": "Scheduling, workload limits, and monitoring",
+              "outcome": "Run periodic work with a deliberate overlap policy, time-zone definition, and observable completion.",
+              "task": "Add a schedule and a documented monitoring and recovery procedure to M13.",
+              "acceptance": "Time-zone assumptions are explicit. Overlap and abandoned-run behavior are defined. The report distinguishes scheduling, execution, and business completion.",
+              "interview": "Why can a nightly job overlap?",
+              "visual": "A night schedule with one active processing window and a blocked overlapping run"
             }
           ]
         },
         {
-          "title": "Интеграции, которые переживают сбой",
+          "title": "Integration contracts and recovery",
           "lessons": [
             {
               "id": "M15",
-              "title": "Контракт API и авторизация",
-              "outcome": "фиксирует входы, выходы, ошибки и права интеграции.",
-              "task": "Описать контракт основного внешнего гарантийного сервиса Northstar и настроить подходящие Named/External Credentials. Дополнительный каталог товаров, если используется, остаётся отдельной необязательной катой.",
-              "acceptance": "секреты не в коде; понятны identity, scopes и обработка отказа авторизации.",
-              "interview": "«Почему работающий callout ещё не означает готовую интеграцию?»",
-              "visual": "Endpoint, Named Credential, External Credential, principal и scopes разложены на отдельные узлы."
+              "title": "API contracts and credential boundaries",
+              "outcome": "Describe the warranty provider's request, response, errors, and identity before connecting a client.",
+              "task": "Create a contract and credential responsibility map that another developer can implement without guessing.",
+              "acceptance": "Business negative and transport failures differ. Identity and principal permission mapping are explicit. No secret appears in code or documentation.",
+              "interview": "What does the Named Credential contribute?",
+              "visual": "A request passing through a separate identity key and endpoint gate"
             },
             {
               "id": "M16",
-              "title": "REST или SOAP: подключить существующий сервис",
-              "outcome": "читает REST/OpenAPI и SOAP/WSDL контракт, не сводя различие к формату JSON/XML.",
-              "task": "сравнить два интерфейса гарантии, пройти endpoint → credentials/principal → request → response/fault; для SOAP исследовать сгенерированный WSDL2Apex клиент.",
-              "acceptance": "объяснены контракт, authentication и формат ошибки; секреты не в коде; выбран подходящий mock.",
-              "interview": "«Как подключитесь к SOAP-сервису с уже опубликованным WSDL и обязательной авторизацией?»",
-              "visual": "Два входа одного гарантийного сервиса: REST/OpenAPI и SOAP/WSDL, с общей границей авторизации."
+              "title": "Working with REST and SOAP service contracts",
+              "outcome": "Read an existing provider interface, select the appropriate client and mock, and preserve its error and authentication semantics.",
+              "task": "Write a contract map and demonstrate the appropriate mock for one concrete client.",
+              "acceptance": "The selected mock matches the call mechanism. Example XML is not described as a complete WSDL. Live authentication remains an explicitly separate check.",
+              "interview": "Must a modern integration use REST?",
+              "visual": "Two request envelopes one structured JSON and one nested XML meeting a common result"
             },
             {
               "id": "M17",
-              "title": "HTTP Callouts: таймауты, ошибки и повторные попытки",
-              "outcome": "разбирает JSON и различает успешный результат, business error, timeout и 429/5xx.",
-              "task": "Интегрироваться с учебным warranty mock API с пятью режимами ответа; написать HttpCalloutMock и проверки success, business error, timeout, 429/5xx.",
-              "acceptance": "Пользователь видит понятное состояние; лог не раскрывает секреты; каждый режим покрыт тестом с callout mock. Код не зависит от доступности внешнего сервиса при unit test.",
-              "interview": "«Какие ошибки можно повторить, а какие повторять бессмысленно?»",
-              "visual": "Mock API переключает ответы success, business error, timeout, 429 и 500."
+              "title": "HTTP callouts, failures, and bounded retries",
+              "outcome": "Implement a small warranty client and test success, invalid responses, business absence, throttling, server failure, and transport errors locally.",
+              "task": "Implement the mock and bounded orchestration mapping around the supplied client.",
+              "acceptance": "All tests run without a provider. A valid negative answer differs from failure. Retry exhaustion is visible and does not loop indefinitely.",
+              "interview": "Is covered=false an error?",
+              "visual": "One HTTP response split into distinct success missing throttled and invalid outcomes"
             },
             {
               "id": "M18",
-              "title": "Приём данных и защита от дублей",
-              "outcome": "принимает входящее обновление и связывает его с правильной записью.",
-              "task": "создать входящий API/стандартный API сценарий с external ID и idempotency key.",
-              "acceptance": "один и тот же запрос, полученный трижды, не создаёт три заявки.",
-              "interview": "«Как отличить повтор доставки от нового бизнес-события?»",
-              "visual": "Три одинаковых запроса с одним ключом сходятся в одну бизнес-заявку."
+              "title": "Inbound APIs, external IDs, and duplicate protection",
+              "outcome": "Accept repeated incoming data without creating duplicate business requests, while distinguishing record identity from operation identity.",
+              "task": "Build and verify a stable inbound request contract with conflict handling.",
+              "acceptance": "One request exists for three identical deliveries. A successful request is not silently restarted. Conflicting key reuse returns an explicit error.",
+              "interview": "What does upsert guarantee conceptually?",
+              "visual": "Three repeated request envelopes entering one unique business-record slot"
             },
             {
               "id": "M19",
-              "title": "Диагностика интеграций",
-              "outcome": "делает сбой диагностируемым и управляемым.",
-              "task": "добавить correlation ID, журнал статусов и ручной повтор для ошибочной заявки.",
-              "acceptance": "оператор по одному ID находит путь запроса; повтор ограничен и не теряет первичную причину.",
-              "interview": "«Какие данные нужны в логе, чтобы чинить интеграцию ночью?»",
-              "visual": "Один correlation ID связывает UI, очередь, callout и журнал восстановления."
+              "title": "Integration diagnostics and controlled recovery",
+              "outcome": "Trace a warranty request across attempts and give an operator enough evidence to retry safely without exposing secrets.",
+              "task": "Demonstrate how one request can be found, diagnosed, and safely retried.",
+              "acceptance": "History survives later success. One correlation key connects request and attempts. Retry authorization and eligibility are explicit.",
+              "interview": "Why retain failed attempts after success?",
+              "visual": "One request timeline with preserved failed and successful attempt markers"
+            },
+            {
+              "id": "M20",
+              "title": "Choosing SOQL or SOSL for a search requirement",
+              "outcome": "Use structured queries for known filters and indexed search for words across object types, while handling delayed search visibility.",
+              "task": "Create the appointment list and customer search with distinct contracts.",
+              "acceptance": "Date boundaries and null lookups are handled. Multiple object types are distinguishable. The indexing limitation is explained without fabricated timing.",
+              "interview": "Why use SOQL for tomorrow's appointments?",
+              "visual": "A precise calendar filter beside a magnifying glass spanning three record types"
             }
           ]
         },
         {
-          "title": "LWC, который ведёт себя предсказуемо",
+          "title": "Lightning Web Components",
           "lessons": [
             {
-              "id": "M20",
-              "title": "Поиск данных с SOQL и SOSL",
-              "outcome": "Выбирает точную выборку по данным или текстовый поиск по поисковому индексу, понимая границы каждого подхода.",
-              "task": "Сделать два сценария: список визитов по дате и статусу через SOQL; поиск клиента по слову среди Lead, Contact и Account через SOSL. Проверить новый контакт сразу после сохранения.",
-              "acceptance": "Объяснены связанные объекты в SOQL, поиск нескольких объектов в SOSL, асинхронная индексация и отсутствие гарантии мгновенной видимости в поиске; запрос не используется как замена проверки доступа.",
-              "interview": "«Почему только что созданная запись находится по Id, но ещё не находится текстовым поиском?»",
-              "visual": "Один запрос пользователя расходится к точной выборке из базы и текстовому поисковому индексу; новая запись сначала появляется в базе, затем в поиске."
-            },
-            {
               "id": "M21",
-              "title": "Жизненный цикл Lightning Web Components",
-              "outcome": "понимает создание, подключение, повторный render и удаление компонента.",
-              "task": "instrumented LWC: пройти constructor → connectedCallback → render/renderedCallback → disconnectedCallback и errorCallback; наблюдать повторный render и порядок parent/child.",
-              "acceptance": "нет бесконечного render loop и дублированных listeners/subscriptions.",
-              "interview": "«Почему connectedCallback нельзя считать одноразовой инициализацией навсегда?»",
-              "visual": "Кольцевая временная линия lifecycle с повторным render и снятием подписки при удалении."
+              "title": "Lightning Web Component lifecycle",
+              "outcome": "Observe creation, attachment, rendering, removal, and child-error handling without assuming a component renders only once.",
+              "task": "Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect.",
+              "acceptance": "Hook order is observed rather than invented. Repeated rendering is expected. No duplicated external listener remains after reopening.",
+              "interview": "Does renderedCallback run only once?",
+              "visual": "A component instance moving through creation attachment repeated rendering and removal"
             },
             {
               "id": "M22",
-              "title": "wire, imperative Apex и обновление данных",
-              "outcome": "выбирает способ получения данных и обновления UI после изменения.",
-              "task": "Две короткие части. 1) Чтение: @api вход, обоснованное применение @track, @wire, cache и loading/error states. 2) Действие: imperative Apex изменяет заявку, после чего UI обновляется механизмом, соответствующим источнику данных.",
-              "acceptance": "После каждой части есть самостоятельная проверка: изменение входных данных обновляет чтение; успешное действие не оставляет старое состояние. Ученик объясняет, что именно refresh обновляет, и почему @track нужен не везде.",
-              "interview": "«Почему запись уже изменилась, а компонент показывает старые данные?»",
-              "visual": "LWC получает @api, @wire и imperative результаты; устаревший cache обновляется отдельным шагом."
+              "title": "Wire, imperative Apex, and refreshing data",
+              "outcome": "Separate reactive reads from explicit writes and refresh the cache that actually supplies the displayed data.",
+              "task": "Implement a reactive read and explicit confirmation with separate save and refresh outcomes.",
+              "acceptance": "The correct refresh API matches each data source. A successful save is not reported as a failed save. Rapid input changes do not display the wrong record.",
+              "interview": "What must be passed to refreshApex?",
+              "visual": "A saved appointment beside three distinct cache paths with one selected refresh arrow"
             },
             {
               "id": "M23",
-              "title": "Events или Lightning Message Service",
-              "outcome": "различает связь родитель—ребёнок и общение независимых компонентов страницы.",
-              "task": "связать список сервисных заявок и независимую панель деталей через LMS.",
-              "acceptance": "scope и lifecycle подписки объяснены; LMS не назван серверной шиной событий.",
-              "interview": "«Чем LMS отличается от Platform Events?»",
-              "visual": "Родительское событие движется вверх, а LMS связывает две независимые области страницы."
+              "title": "DOM events and Lightning Message Service",
+              "outcome": "Choose a communication contract for related components and for independent regions of the same Lightning application.",
+              "task": "Demonstrate DOM events for one component tree and LMS for a separate panel.",
+              "acceptance": "Payloads contain only needed identifiers. DOM and LMS responsibilities are distinct. Scope and cleanup behavior are explained.",
+              "interview": "When is a DOM event simpler?",
+              "visual": "A small upward component event beside a bridge between two independent page panels"
             },
             {
               "id": "M24",
-              "title": "Доступный интерфейс и Jest",
-              "outcome": "проверяет пользовательское поведение, состояния и клавиатурное управление.",
-              "task": "написать Jest-тесты выбора заявки, ошибки API и пустого результата.",
-              "acceptance": "проверены события и отрисовка, есть разумные loading/error states и понятные подписи.",
-              "interview": "«Что тест LWC проверяет, а что остаётся задачей integration test?»",
-              "visual": "Клавиатурный фокус и пользовательские события отмечены поверх трёх проверяемых состояний UI."
+              "title": "Accessible LWC states and Jest tests",
+              "outcome": "Test what a user can understand and operate, including keyboard interaction, empty results, failed loading, and selection events.",
+              "task": "Build the four UI states and verify selection and recovery behavior.",
+              "acceptance": "Tests pass independently with cleanup. Event payload and error recovery are asserted. Keyboard access and readable labels are demonstrated.",
+              "interview": "Why flush asynchronous updates?",
+              "visual": "An appointment selector with a visible keyboard focus path through four UI states"
             },
             {
               "id": "M25",
-              "title": "Shadow DOM: границы компонента",
-              "outcome": "Понимает границы DOM/CSS/events и корректное взаимодействие компонентов; знакомится с вариантом постепенной миграции legacy.",
-              "task": "Обязательная часть: проверить DOM query, CSS scope и event retargeting между двумя LWC. Необязательное расширение: перенести маленький Aura-компонент в LWC с сохранением контракта страницы.",
-              "acceptance": "Компонент не читает чужой внутренний DOM; взаимодействие объяснено. Для расширения отдельно проверены ограничения coexistence; Aura migration не является условием завершения основного урока.",
-              "interview": "«Почему прямой перенос DOM-селектора из Aura может сломаться в LWC?»",
-              "visual": "Shadow boundary разделяет два LWC и показывает переход события; небольшая боковая ветка обозначает необязательную миграцию Aura."
+              "title": "Shadow DOM and component boundaries",
+              "outcome": "Keep DOM, styling, and event contracts inside their intended boundaries and understand the implications for optional legacy migration.",
+              "task": "Show owned queries, scoped styles, and a stable public event contract.",
+              "acceptance": "No private child DOM is accessed by the parent. The event detail carries the required business identity. Optional Aura work is labeled separately.",
+              "interview": "Why can a global selector fail?",
+              "visual": "Two component boxes with protected interiors connected by one public event port"
             }
           ]
         },
         {
-          "title": "События и поставка изменений",
+          "title": "Events, source control, and delivery",
           "lessons": [
             {
               "id": "M26",
-              "title": "Platform Events и момент публикации",
-              "outcome": "отличает событие о бизнес-факте от команды и выбирает связь с commit.",
-              "task": "опубликовать событие о подтверждённой записи в сервис и вызвать rollback в альтернативной ветке.",
-              "acceptance": "поведение publish-after-commit/выбранной настройки проверено; результат публикации не выдан за выполнение подписчика.",
-              "interview": "«Что произойдёт с событием, если исходная транзакция откатится?»",
-              "visual": "Исходная транзакция, commit и публикация события разделены на временной линии."
+              "title": "Platform Events and publication timing",
+              "outcome": "Publish a business fact with a deliberate relationship to commit, and verify the subscriber independently from the publisher.",
+              "task": "Create a minimal event path with explicit commit behavior and a duplicate-safe receipt.",
+              "acceptance": "Payload contains no unnecessary customer data. Publication timing is stated and checked. The receipt remains unique across repeated delivery.",
+              "interview": "Why prefer After Commit for this fact?",
+              "visual": "A committed appointment followed by separate publication delivery and receipt milestones"
             },
             {
               "id": "M27",
-              "title": "CDC, replay и повторная доставка",
-              "outcome": "выбирает change event или custom business event и допускает повторную обработку.",
-              "task": "разобрать разрыв соединения и replay на небольшой демонстрации/предоставленных логах.",
-              "acceptance": "consumer умеет дедупликацию; replay ID не использован как постоянный бизнес-ID.",
-              "interview": "«Почему event-driven не означает exactly-once?»",
-              "visual": "Поток событий прерывается и возобновляется с replay; дубль отмечен и обработан без второго эффекта."
+              "title": "Change Data Capture, replay, and duplicate delivery",
+              "outcome": "Choose a record-change stream or business event and recover from disconnection without treating replay IDs as permanent business identities.",
+              "task": "Analyze the supplied trace and design both short-disconnection and retention-gap recovery.",
+              "acceptance": "The duplicate produces one effect. Replay tokens are treated as opaque. Beyond-retention recovery is defined.",
+              "interview": "What does CDC communicate?",
+              "visual": "An interrupted event stream reconnecting with one repeated message safely ignored"
             },
             {
               "id": "M28",
-              "title": "Git: получить изменения и перенести исправление",
-              "outcome": "различает working tree, staging, local branch, remote-tracking branch и историю.",
-              "task": "показать fetch vs pull на графе, перенести отдельный hotfix через cherry-pick и разрешить учебный конфликт.",
-              "acceptance": "ученик объясняет каждый новый commit и состояние файлов; не использует разрушительный reset без понимания последствий.",
-              "interview": "«Что изменит fetch, что изменит pull и когда нужен cherry-pick?»",
-              "visual": "Граф local и remote commits показывает fetch, pull и перенос одного hotfix через cherry-pick."
+              "title": "Git fetch, integration, and cherry-picking a fix",
+              "outcome": "Explain the state changed by common Git operations and transfer one focused correction without losing unrelated work.",
+              "task": "Create the controlled branch experiment and explain each state transition.",
+              "acceptance": "Working tree, index, branch, and remote-tracking state are distinguished. The selected commit is identified from real history. The final content is coherent and unrelated changes are preserved.",
+              "interview": "Does fetch update your current files?",
+              "visual": "A focused commit moving between two small branch histories"
             },
             {
               "id": "M29",
-              "title": "Pull Request, CI/CD и безопасный deploy",
-              "outcome": "проводит изменение через review, тесты, проверку зависимостей и smoke test.",
-              "task": "подготовить PR, цепочку CI checks → validate → review → deploy → smoke test и план выпуска в учебную среду; доступы pipeline хранить вне кода.",
-              "acceptance": "описаны permissions, metadata dependencies, post-deploy шаги и способ возврата.",
-              "interview": "«Какие изменения нельзя просто откатить обратным deploy?»",
-              "visual": "PR проходит CI, validation, review, deployment и smoke test с контрольными воротами."
+              "title": "Pull requests, CI checks, and controlled deployment",
+              "outcome": "Prepare a reviewable change with truthful validation, metadata dependencies, explicit target environment, and recovery steps.",
+              "task": "Create a focused PR and release checklist for one completed Middle feature.",
+              "acceptance": "No check is marked passed without evidence. Target org and permissions are explicit. Recovery includes data and external effects where relevant.",
+              "interview": "What does a local Jest pass prove?",
+              "visual": "A focused change passing through review validation deployment and user verification gates"
             },
             {
               "id": "M30",
-              "title": "Проверка работы приложения при сбоях",
-              "outcome": "собирает UI, Apex, очередь, API и журнал в один законченный путь.",
-              "task": "прогнать набор “успех / timeout / дубль / нет доступа / массовая обработка”.",
-              "acceptance": "есть таблица результатов и evidence; скрытые ошибки не принимаются как успех.",
-              "interview": "«Как вы решаете, что функция готова к выпуску?»",
-              "visual": "Пять испытательных маршрутов сервиса сходятся в таблицу приёмки."
+              "title": "Verifying an application under failure",
+              "outcome": "Test the complete path from user action through background work and mocked provider response to the final visible result.",
+              "task": "Verify the integrated feature with controlled failures and one repaired defect.",
+              "acceptance": "Duplicate and denied-access cases are included. UI messages match persisted outcomes. No unexecuted check is reported as successful.",
+              "interview": "Why can isolated tests all pass while the feature fails?",
+              "visual": "A complete request path tested by several controlled failure switches"
             }
           ]
         },
         {
-          "title": "Три продуктовые клиники и защита",
+          "title": "Product clinics and project review",
           "lessons": [
             {
               "id": "M31",
-              "title": "Enhanced Omni-Channel: маршрутизация обращений",
-              "outcome": "понимает очередь, presence, capacity и routing; не путает Omni-Channel с OmniStudio.",
-              "task": "настроить простую маршрутизацию Case в доступной учебной org либо пройти симуляцию с журналом решений. Обязательная альтернатива без продукта: предоставленная демонстрация/симуляция с объяснением решений; live lab необязательна.",
-              "acceptance": "объяснено, почему один сотрудник получает работу, а другой нет; доступность edition отмечена. Участник явно отмечает, что проверил сам в org, а что разобрал по демонстрации; отсутствие product entitlement не блокирует core-защиту.",
-              "interview": "«Чем assignment rule отличается от распределения работы через Omni-Channel?»",
-              "visual": "Заявка проходит через queue, skills, presence и capacity к подходящему сотруднику.",
-              "participation": "Обязательный обзор и разбор/симуляция; самостоятельный запуск продуктовой лаборатории — по желанию при доступной лицензии и среде."
+              "title": "Enhanced Omni-Channel routing",
+              "outcome": "Explain how queued service work becomes eligible for a person based on presence, capacity, and routing configuration, with a complete no-license simulation path.",
+              "task": "Submit the provided simulation with three condition changes and an optional separately labeled live observation.",
+              "acceptance": "Every chosen or excluded person has a reason. No unsupported tie-breaking rule is invented. Simulation and live evidence are clearly separated.",
+              "interview": "Why is a queue not enough?",
+              "visual": "One queued case passing presence capacity and skill gates toward a single eligible worker"
             },
             {
               "id": "M32",
-              "title": "Основы Agentforce и действия агента",
-              "outcome": "связывает задачу, данные, разрешённое действие и передачу человеку.",
-              "task": "агент отвечает по учебной информации о сервисе и вызывает безопасное read-only действие; набор из десяти ручных проверок. Обязательная альтернатива без продукта: предоставленная демонстрация/симуляция с объяснением решений; live lab необязательна.",
-              "acceptance": "нет выдуманных данных в успешных кейсах; неизвестное и отсутствие прав ведут к ожидаемому отказу/передаче. Участник явно отмечает, что проверил сам в org, а что разобрал по демонстрации; отсутствие product entitlement не блокирует core-защиту.",
-              "interview": "«Чем успешная беседа в демо отличается от готовности агента?»",
-              "visual": "Агент получает ограниченный контекст, выполняет read-only действие и передаёт неизвестное человеку.",
-              "participation": "Обязательный обзор и разбор/симуляция; самостоятельный запуск продуктовой лаборатории — по желанию при доступной лицензии и среде."
+              "title": "Agentforce tasks, actions, and evidence",
+              "outcome": "Build a clear mental model of an employee agent and verify one bounded read-only action before considering actions that change CRM data.",
+              "task": "Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action.",
+              "acceptance": "No artificial slot is described as real calendar availability. Unknown and denied inputs are handled explicitly. Simulation and live results are distinguished.",
+              "interview": "What does an action add beyond instructions?",
+              "visual": "A conversational request connected to one read-only action and a verified result card"
             },
             {
               "id": "M33",
-              "title": "Модель данных Automotive Cloud",
-              "outcome": "различает VehicleDefinition, Vehicle и Asset; понимает, что core-проект не равен отраслевому продукту.",
-              "task": "в отдельном 30-day trial найти цепочку “модель — конкретная машина — владелец/участник — сервис” и сопоставить с учебной моделью. Обязательная альтернатива без продукта: предоставленная демонстрация/симуляция с объяснением решений; live lab необязательна.",
-              "acceptance": "есть карта соответствий и минимум два случая, где стандартная отрасль полезнее кастома. Участник явно отмечает, что проверил сам в org, а что разобрал по демонстрации; отсутствие product entitlement не блокирует core-защиту.",
-              "interview": "«Какие вопросы вы зададите до решения строить дилерское приложение на custom objects?»",
-              "visual": "VehicleDefinition, Vehicle, Asset и участники владения образуют отраслевую карту рядом с core-прототипом.",
-              "participation": "Обязательный обзор и разбор/симуляция; самостоятельный запуск продуктовой лаборатории — по желанию при доступной лицензии и среде."
+              "title": "Automotive Cloud data modeling",
+              "outcome": "Compare the small custom vehicle model with Automotive Cloud's industry entities and decide what additional business requirements would justify the product.",
+              "task": "Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed.",
+              "acceptance": "Vehicle__c is not confused with the industry Vehicle API. Relationships are not invented from labels. No unavailable trial blocks the core course.",
+              "interview": "Why separate a Vehicle Definition?",
+              "visual": "One vehicle model definition linked to individual cars and their changing participant relationships"
             },
             {
               "id": "M34",
-              "title": "Итоговый проект: обработка сервисных заявок",
-              "outcome": "объясняет архитектуру и восстанавливает один новый сломанный сценарий.",
-              "task": "демо, code review, 15 минут интервью; по желанию выбрать одну продуктовую клинику для углубления.",
-              "acceptance": "доступы, повторы, ошибки, bulk и выпуск подтверждены; ограничения названы прямо. Для допуска достаточно core-проекта и обзоров/симуляций M31–M33; запуск всех трёх продуктов не требуется.",
-              "interview": "«Какие три риска этого решения вы передадите следующему разработчику?»",
-              "visual": "Рабочая сервисная консоль и схема интеграции окружены доказательствами качества и отмеченными границами."
+              "title": "Middle project review and technical defense",
+              "outcome": "Demonstrate a coherent Northstar feature, defend its design with evidence, and repair one unfamiliar failure without relying on optional product licenses.",
+              "task": "Deliver the integrated project and complete a short review plus one repair exercise.",
+              "acceptance": "Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence. The release plan declares dependencies and actual checks. Required clinic analyses are complete without mandatory live product licenses.",
+              "interview": "Which risks should be handed to the next developer?",
+              "visual": "A completed service feature surrounded by clear evidence cards and one repaired fault"
             }
           ]
         }
@@ -643,265 +640,262 @@
     {
       "id": "s",
       "title": "Senior Salesforce Developer",
-      "entry": "Самостоятельная разработка уровня Middle и готовность разбирать неопределённые требования.",
-      "exit": "Измеренное улучшение системы, обоснованные решения и безопасный выпуск; не гарантия должностного грейда.",
-      "project": "Сеть выросла — система выдержала — Northstar Motors, новый предлагаемый кейс",
+      "entry": "You can deliver a Middle-level feature with Apex, LWC, tests, and integrations, and are ready to investigate uncertain requirements and existing-system behavior.",
+      "exit": "Explain and verify a bounded improvement with evidence, access and reliability reasoning, a reviewable change, and a realistic recovery plan. Completion does not guarantee a professional job title.",
+      "project": "Northstar Motors grows into a dealer network. Improve its custom Vehicle__c and Test_Drive__c learning application while preserving correct access, booking outcomes, and recoverable integrations.",
       "modules": [
         {
-          "title": "Найти причину, прежде чем переписывать",
+          "title": "Understand execution and measure the problem",
           "lessons": [
             {
               "id": "S01",
-              "title": "Архитектура выполнения приложений Salesforce",
-              "outcome": "Объясняет связь multitenancy, metadata, runtime, данных и транзакций; отличает инфраструктуру Hyperforce от логики своего приложения.",
-              "task": "Проследить сохранение сервисной заявки на схеме: metadata → runtime → проверки и автоматизация → commit/rollback → отдельный async шаг. Отметить границы org, ресурсы общего сервиса и слой Hyperforce.",
-              "acceptance": "Различены metadata и business data, org isolation и права пользователей, одна транзакция и отдельный async запуск. Hyperforce не назван отменой governor limits или автоматическим исправлением плохого кода; неизвестные внутренние детали не выдаются за факт.",
-              "interview": "«Почему в многопользовательской платформе есть лимиты и что изменится для вашего дизайна при переходе на Hyperforce?»",
-              "visual": "Разрез платформы: инфраструктура Hyperforce, изолированные org, metadata/runtime и транзакция заявки с отдельной фоновой веткой."
+              "title": "How a Salesforce Transaction Runs",
+              "outcome": "Distinguish application metadata, business records, and execution state.",
+              "task": "Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required.",
+              "acceptance": "The diagram has explicit commit boundaries and does not claim Hyperforce removes limits. A worker failure leaves the committed appointment intact. Every claim is labelled as a documented platform rule, a synthetic case result, or an observation from your own experiment.",
+              "interview": "Which transaction boundary determines whether a failed follow-up can undo a saved booking?",
+              "visual": "A booking transaction ends at a commit gate; a later notification has its own boundary."
             },
             {
               "id": "S02",
-              "title": "Сбор требований к производительности",
-              "outcome": "превращает жалобу в измеримый сценарий и приоритет.",
-              "task": "разобрать tickets Northstar: медленная страница, сохранение, ночная обработка и импорт.",
-              "acceptance": "отделены симптомы, гипотезы и доказательства; указан baseline и ожидаемый результат.",
-              "interview": "«Что вы спросите первым, когда клиент говорит “всё медленно”?»",
-              "visual": "Четыре жалобы “медленно” распадаются на конкретные пользовательские операции и измерения."
+              "title": "Turn a Performance Complaint into a Measurable Requirement",
+              "outcome": "Define latency, throughput, and backlog in plain terms.",
+              "task": "Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg.",
+              "acceptance": "Latency, throughput, and backlog are not treated as interchangeable. Synthetic estimates and actual observations are visibly separated. The brief states sample limitations and a next evidence-gathering step.",
+              "interview": "How would you investigate two users who disagree about whether Salesforce is slow?",
+              "visual": "Different complaints become separate latency, throughput, and backlog measurements."
             },
             {
               "id": "S03",
-              "title": "Диагностика времени выполнения в браузере, Apex и базе данных",
-              "outcome": "читает временную цепочку запроса и ищет узкое место.",
-              "task": "сопоставить browser timings и Apex logs на подготовленной медленной функции.",
-              "acceptance": "исправляется измеренная причина; ускорение подтверждено повторяемым сравнением.",
-              "interview": "«Почему оптимизация SOQL может почти не изменить скорость страницы?»",
-              "visual": "Одна временная шкала выделяет ожидание браузера, Apex CPU и работы с данными."
+              "title": "Locate Delay Across the Browser, Apex, and Database",
+              "outcome": "Distinguish elapsed request time from Apex CPU time.",
+              "task": "Explain the synthetic timeline, then design a small experiment that could confirm or reject one bottleneck hypothesis.",
+              "acceptance": "The answer does not equate CPU, network elapsed time, and database duration. The proposed experiment changes one relevant factor and preserves the business result. Any measured result includes conditions and sample count; supplied timings remain marked synthetic.",
+              "interview": "Why can a request take several seconds while Apex CPU remains low?",
+              "visual": "A browser request contains server work; elapsed time and Apex CPU are different measurements."
             },
             {
               "id": "S04",
-              "title": "Лимиты платформы и расчёт нагрузки",
-              "outcome": "оценивает CPU, heap, SOQL/DML, async/API/event allocations в контексте нагрузки.",
-              "task": "составить capacity sheet для 10, 100 и 1000 заявок в минуту на бумажной модели; проверить малый сценарий.",
-              "acceptance": "отделены per-transaction limits от org/day allocations; assumptions и bottleneck указаны.",
-              "interview": "«Как оценить лимит до того, как система в него упрётся?»",
-              "visual": "Бюджет ресурсов на транзакцию и суточные allocations показаны двумя разными шкалами."
+              "title": "Estimate Resource Demand Before Increasing Traffic",
+              "outcome": "Separate per-transaction constraints from shared allocations.",
+              "task": "Model all three traffic scenarios using the supplied assumptions and a small optional collection experiment.",
+              "acceptance": "Every calculated value includes its unit and assumptions. The 80-versus-100 example produces 600 additional waiting items after 30 minutes. No small-org result is described as a validated 1000-bookings-per-minute capacity.",
+              "interview": "How would you identify the first capacity constraint before increasing traffic?",
+              "visual": "Transaction budgets and shared workload demand are shown as distinct constraints."
             },
             {
               "id": "S05",
-              "title": "План оптимизации и измерение результата",
-              "outcome": "приоритизирует исправления по эффекту, риску и стоимости.",
-              "task": "выбрать две из пяти возможных оптимизаций и предложить измерения после выпуска.",
-              "acceptance": "нет обещания точного ускорения без замера; предусмотрена проверка регрессий.",
-              "interview": "«Когда разумно оставить неидеальный код без изменений?»",
-              "visual": "Матрица эффекта, риска и стоимости выделяет две приоритетные оптимизации."
+              "title": "Choose an Optimization and Prove Its Value",
+              "outcome": "Rank candidate changes without promising unsupported speedups.",
+              "task": "Choose two candidates from the evidence cards and prepare an approval-ready optimization note.",
+              "acceptance": "The recommendation follows evidence and business use rather than the amount of code changed. No exact speedup is promised without observed comparable measurements. The verification plan includes permissions and data correctness, not only response time.",
+              "interview": "When is leaving imperfect code unchanged the better engineering choice?",
+              "visual": "Two evidence-backed improvements are selected from five competing proposals."
             }
           ]
         },
         {
-          "title": "Данные, запросы и конкуренция",
+          "title": "Data, queries, and concurrent work",
           "lessons": [
             {
               "id": "S06",
-              "title": "Query Plan и селективность",
-              "outcome": "объясняет, почему индекс не гарантирует быстрый запрос.",
-              "task": "сравнить запросы и Query Plan на учебной org плюс предоставленных LDV-снимках.",
-              "acceptance": "выбор фильтра учитывает распределение данных и план; маленький DE-тест не выдаётся за enterprise benchmark.",
-              "interview": "«Почему запрос был быстрым год назад, хотя код не менялся?»",
-              "visual": "Распределение данных, фильтр и Query Plan показывают, почему один индекс используется, а другой нет."
+              "title": "Read Query Plans and Data Selectivity",
+              "outcome": "Define selectivity and explain why an index is not a performance guarantee.",
+              "task": "Compare the two synthetic snapshots and design a correct upcoming-appointments query for Anna.",
+              "acceptance": "The answer explains why unchanged code can behave differently after data growth. The narrower query retains all records required by the stated user journey. Small-org observations and large-volume assumptions are reported separately.",
+              "interview": "Why can a query slow down when its text has not changed?",
+              "visual": "A broad status filter and a narrow business filter select different portions of the same data."
             },
             {
               "id": "S07",
-              "title": "Data skew, ownership skew и блокировки",
-              "outcome": "связывает структуру данных с contention.",
-              "task": "разобрать массовые updates дочерних записей одного Account, предложить разбиение нагрузки.",
-              "acceptance": "названа конкретная конкурирующая запись/группа; исправление проверено на воспроизводимом малом опыте или trace.",
-              "interview": "«Почему несвязанные на экране операции конкурируют за один lock?»",
-              "visual": "Параллельные обновления дочерних записей упираются в один общий parent lock."
+              "title": "Find Shared Records Behind Lock Contention",
+              "outcome": "Explain record locking, contention, and different forms of data skew.",
+              "task": "Create a lock map and a processing plan for the synthetic three-worker case.",
+              "acceptance": "The explanation identifies the common resource rather than only repeating UNABLE_TO_LOCK_ROW. The proposed partition corresponds to the actual record being contested. The recovery plan preserves failed work and does not rely on unlimited immediate retries.",
+              "interview": "Why might updates to different appointment records compete for the same lock?",
+              "visual": "Concurrent child updates compete for one hot vehicle record."
             },
             {
               "id": "S08",
-              "title": "Загрузка и проверка больших объёмов данных",
-              "outcome": "планирует загрузку с external IDs, зависимостями и контролем частичного успеха.",
-              "task": "подготовить миграцию автомобилей/визитов с ошибками и повторным запуском.",
-              "acceptance": "итоговые количества и связи сверены; ошибочные строки можно повторить без дублей.",
-              "interview": "«Когда serial processing быстрее для бизнеса, чем parallel?»",
-              "visual": "Пакеты миграции проходят зависимости, сверку результатов и повтор только ошибочных строк."
+              "title": "Load Data with Reconciliation and Safe Replays",
+              "outcome": "Define a stable import identity separate from file row position.",
+              "task": "Prepare a preflight and result ledger for the six supplied appointment rows, plus a separate vehicle fixture V-001 through V-005.",
+              "acceptance": "The ledger never relies on CSV position as the permanent identity. A-101 version 1 is recorded as superseded before upload; the five-row submitted set has one snapshot per source identity. Successful, failed, and unprocessed outcomes are distinguishable; replay does not create extra appointments.",
+              "interview": "How would you recover an import with successful, failed, and unprocessed rows?",
+              "visual": "A dependent data load separates successful, failed, and unprocessed records."
             },
             {
               "id": "S09",
-              "title": "Архивирование данных, история и отчётность",
-              "outcome": "отличает активные рабочие данные от истории и проектирует retention.",
-              "task": "предложить политику для закрытых визитов и схему доступа к архиву.",
-              "acceptance": "сохранены требуемые отчёты и восстановление; стоимость и ограничения вариантов названы.",
-              "interview": "«Почему “удалим старые записи” — ещё не план архивации?»",
-              "visual": "Рабочие записи переходят в историю с сохранённым путём поиска и восстановления."
+              "title": "Archive History Without Losing the Business Record",
+              "outcome": "Distinguish archiving, deletion, backup, and audit history.",
+              "task": "Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test.",
+              "acceptance": "Archiving, backup, history, and deletion are not conflated. The exercise does not present an invented retention period as a legal rule. The design includes destination permissions and recovery, not only reduced live record count.",
+              "interview": "What must be proven before old records can leave the operational system?",
+              "visual": "Archived appointments remain discoverable through an explicit manifest and controlled retrieval path."
             }
           ]
         },
         {
-          "title": "Sharing на большом масштабе",
+          "title": "Record access and controlled maintenance",
           "lessons": [
             {
               "id": "S10",
-              "title": "Модель доступа для сети дилеров",
-              "outcome": "проектирует роли, группы, ownership и исключения под реальные движения людей.",
-              "task": "сравнить два варианта модели для филиалов и общего сервисного центра.",
-              "acceptance": "оценены не только права сегодня, но перевод сотрудника, открытие филиала и массовая передача записей.",
-              "interview": "«Как оргструктура компании может ухудшить модель sharing?»",
-              "visual": "Сеть филиалов, роли и группы показаны с событиями перевода сотрудника и открытия дилера."
+              "title": "Design Record Access for a Dealer Network",
+              "outcome": "Separate job capabilities from record visibility.",
+              "task": "Compare individual appointment ownership with a centralized ownership alternative using the same business matrix.",
+              "acceptance": "Peer access is not assumed from job title or role name. Removing one grant is not automatically treated as removal of every access path. The decision includes staff movement and exception cleanup as well as today's visibility.",
+              "interview": "How does a salesperson moving between dealers challenge your sharing model?",
+              "visual": "Dealer isolation and selected shared service access form a deliberate record-access model."
             },
             {
               "id": "S11",
-              "title": "Аудит и сокращение избыточных разрешений",
-              "outcome": "проводит ревизию permissions и всех путей доступа.",
-              "task": "сократить права в подготовленной “разросшейся” конфигурации с планом проверки бизнес-функций.",
-              "acceptance": "muting не используется как глобальный deny; после удаления одного grant проверены альтернативные пути.",
-              "interview": "«Почему удаление sharing rule не обязательно закрывает запись?»",
-              "visual": "Карта альтернативных grants объясняет, почему удаление одной стрелки не закрывает доступ."
+              "title": "Remove Excess Access Without Breaking Legitimate Work",
+              "outcome": "Trace additive permissions and independent record-access paths.",
+              "task": "Use the inventory to remove the expired East collaboration while preserving legitimate West work.",
+              "acceptance": "Muting is never described as a user-wide deny. The plan checks independent grants after each removal. Legitimate West work remains a specific acceptance criterion.",
+              "interview": "Why can access remain after you remove a permission or sharing rule?",
+              "visual": "Muting one permission group leaves an independent direct grant active."
             },
             {
               "id": "S12",
-              "title": "Deferred sharing: окно обслуживания",
-              "outcome": "понимает временную отсрочку вычислений как операционную процедуру, а не способ выдачи прав.",
-              "task": "разработать runbook массовой смены ролей/групп: before checks, suspend, change, resume, recalculate, verify.",
-              "acceptance": "учтено, что не все изменения откладываются; есть контроль устаревших доступов и критерии завершения.",
-              "interview": "«Что останется неправильным, если после Resume не сделать Recalculate?»",
-              "visual": "Окно обслуживания: проверить → suspend → изменить → resume → recalculate → сверить."
+              "title": "Plan a Deferred-Sharing Maintenance Window",
+              "outcome": "Explain what sharing-rule deferral does and does not pause.",
+              "task": "Prepare a runbook and three failure-card responses for a synthetic Northstar access change.",
+              "acceptance": "Resume and full Recalculate are explicit separate requirements. The plan acknowledges mechanisms that are not paused by sharing-rule deferral. Completion requires verified access and resolved exceptions, not only saved configuration.",
+              "interview": "What remains unfinished if the operator stops after Resume?",
+              "visual": "The procedure separates resuming calculations from recalculating accumulated changes and verifying access."
             },
             {
               "id": "S13",
-              "title": "Повышенные права, external users и границы доверия",
-              "outcome": "документирует, где выполняется привилегированная логика и как проверяется вызов.",
-              "task": "threat review API, LWC/Apex и одной external-user схемы на предоставленном примере.",
-              "acceptance": "identity, CRUD/FLS, sharing и payload validation рассматриваются отдельно; scopes и лицензии оговорены.",
-              "interview": "«Когда without sharing оправдан, и чем вы ограничите его риск?»",
-              "visual": "Привилегированная функция внутри границы доверия принимает только проверенные identity и payload."
+              "title": "Control Privileged Code and External-User Access",
+              "outcome": "Explain why authentication is not authorization.",
+              "task": "Design the authorization contract for a portal caller who may read only their own appointments.",
+              "acceptance": "The contract does not trust a client-supplied customer Id as proof of ownership. Identity, CRUD/FLS, record sharing, and payload validation are treated separately. Any elevated operation has a narrow purpose and explicit negative tests.",
+              "interview": "When is privileged Apex justified, and how would you limit its authority?",
+              "visual": "An external caller reaches a specific allowed action through separate identity, access, and input checks."
             }
           ]
         },
         {
-          "title": "Интеграции и события под нагрузкой",
+          "title": "Integration reliability and incident evidence",
           "lessons": [
             {
               "id": "S14",
-              "title": "Границы систем и владение данными",
-              "outcome": "распределяет ответственность между Salesforce и внешними системами.",
-              "task": "выбрать sync API, async event, batch sync или virtual access для пяти данных Northstar.",
-              "acceptance": "названы owner данных, допустимая задержка, ошибки и reconciliation.",
-              "interview": "«Какие данные не стоит копировать в Salesforce?»",
-              "visual": "Salesforce, DMS и склад показывают владение данными и выбранный sync/async/batch путь."
+              "title": "Choose System Boundaries and Data Ownership",
+              "outcome": "Distinguish a system of record from a copied view.",
+              "task": "Complete the ownership worksheet and choose an interaction pattern for each fact.",
+              "acceptance": "A copy is never mistaken for the authoritative decision. The user-facing status matches the actual confirmation guarantee. Each asynchronous or replicated flow has a way to find and resolve missing work.",
+              "interview": "Which facts should Salesforce own, copy, or read from another system?",
+              "visual": "Salesforce, stock, and scheduling systems own different business facts."
             },
             {
               "id": "S15",
-              "title": "Повторы, порядок и дедупликация",
-              "outcome": "проектирует обработку at-least-once событий с осознанными гарантиями.",
-              "task": "обработать duplicated/out-of-order события статуса сервисной заявки.",
-              "acceptance": "окончательное состояние объяснимо; повтор не дублирует действие; конфликт версий не потерян молча.",
-              "interview": "«Как обеспечить бизнес-эффект “один раз”, если доставка “минимум один раз”?»",
-              "visual": "Дубли и события не по порядку приводятся к обоснованному конечному состоянию."
+              "title": "Handle Duplicate and Out-of-Order Events",
+              "outcome": "Separate event identity, operation identity, and stream position.",
+              "task": "Apply the synthetic events to an appointment state and record a decision for every arrival.",
+              "acceptance": "The older version cannot revert the newer state. The duplicate cancellation does not repeat the business effect. The answer explains why the same policy would not automatically work for delta events. External status labels stay separate from the starter picklist until a documented mapping or metadata extension exists.",
+              "interview": "How can a repeatable business effect be safe when delivery can repeat?",
+              "visual": "Duplicates and stale events are recorded without reversing the accepted appointment state."
             },
             {
               "id": "S16",
-              "title": "Обработка длительной недоступности внешнего сервиса",
-              "outcome": "ограничивает нагрузку при сбоях и восстанавливает backlog.",
-              "task": "спроектировать bounded retries, backoff, error queue и управляемое восстановление.",
-              "acceptance": "нет бесконечного retry и повторного штормa; система показывает, что ещё не обработано.",
-              "interview": "«Почему немедленный повтор может усугубить outage?»",
-              "visual": "Сломанный сервис, ограниченные retries, очередь ошибок и постепенное восстановление backlog."
+              "title": "Recover from an External-Service Outage Without a Retry Storm",
+              "outcome": "Classify failures before retrying them.",
+              "task": "Design the statuses and transitions for scheduling requests during a synthetic thirty-minute outage.",
+              "acceptance": "No path retries forever without a bound or operator state. Unknown outcomes preserve the same business operation identity. The recovery calculation separates new arrivals from backlog drain and is labelled hypothetical.",
+              "interview": "How would you restore a backlog without overwhelming a recovered dependency?",
+              "visual": "Retries are delayed and limited, while recovery releases queued work gradually."
             },
             {
               "id": "S17",
-              "title": "Наблюдаемость и разбор инцидента",
-              "outcome": "связывает технические сигналы с ущербом для процесса.",
-              "task": "восстановить хронологию потерянного сервисного уведомления по логам и сделать postmortem.",
-              "acceptance": "причины подтверждены evidence; corrective actions проверяемы и имеют владельца.",
-              "interview": "«Как отличить причину инцидента от сопутствующей ошибки в логах?»",
-              "visual": "Хронология инцидента связывает сигнал, влияние на клиента, причину и проверяемое исправление."
+              "title": "Reconstruct an Incident from Business and Technical Evidence",
+              "outcome": "Distinguish symptom, contributing condition, and demonstrated cause.",
+              "task": "Explain the synthetic N-77 notification incident and propose a safe recovery and prevention plan.",
+              "acceptance": "The report distinguishes queuing success from downstream completion. The timeout remains an uncertain remote outcome until reconciled. Corrective actions can be verified and avoid blame-only explanations.",
+              "interview": "How would you distinguish a missing notification from a misleading success log?",
+              "visual": "The timeline distinguishes known events from an unresolved provider outcome."
             }
           ]
         },
         {
-          "title": "Выпуск и сопровождение сложной системы",
+          "title": "Change and release an existing system",
           "lessons": [
             {
               "id": "S18",
-              "title": "Изменение существующего кода без полного переписывания",
-              "outcome": "выбирает небольшие безопасные шаги изменения.",
-              "task": "добавить characterization tests к старому trigger, выделить одну ответственность и сохранить поведение.",
-              "acceptance": "поведение до/после сравнимо; новая архитектура не требует единовременной полной миграции.",
-              "interview": "«Как менять код, который никто не понимает и все боятся трогать?»",
-              "visual": "Из legacy-класса безопасно выделяется одна ответственность под защитой characterization tests."
+              "title": "Refactor Legacy Automation in Small Verified Steps",
+              "outcome": "Explain characterization tests and their limits.",
+              "task": "Design a small refactor that separates status-transition decisions from reminder persistence.",
+              "acceptance": "Existing behavior and intended corrected behavior are labelled separately. The first change has one responsibility and a clear comparison path. Tests check side-effect counts and bulk behavior, not only line coverage.",
+              "interview": "How would you safely change a trigger whose behavior is poorly understood?",
+              "visual": "A single responsibility is separated from legacy automation while surrounding behavior remains under test."
             },
             {
               "id": "S19",
-              "title": "Контрактные тесты и границы проверки",
-              "outcome": "строит набор unit, integration, UI smoke и acceptance checks по рискам.",
-              "task": "спланировать проверки новой версии гарантийного API и несовместимого payload.",
-              "acceptance": "набор ловит важную поломку, время выполнения разумно; coverage не единственная метрика.",
-              "interview": "«Какой тест даст наибольшую уверенность за минимальную стоимость?»",
-              "visual": "Пирамида проверки привязана к реальным рискам: правило, контракт, интерфейс и приёмка."
+              "title": "Test Integration Contracts at the Right Boundaries",
+              "outcome": "Explain consumer and provider contracts in plain language.",
+              "task": "Prepare fixtures and tests for a provider moving from the old flat response to the proposed nested contract.",
+              "acceptance": "An unfamiliar status cannot become Confirmed by default. The report identifies mocked dependencies and contract versions. At least one test would fail if the required reservation reference disappeared.",
+              "interview": "Which test catches the highest-risk contract change at the lowest useful boundary?",
+              "visual": "Different tests check local mapping, provider compatibility, and the user-facing result."
             },
             {
               "id": "S20",
-              "title": "Релиз с изменением данных",
-              "outcome": "разделяет deploy metadata, backfill данных и переключение пользователей.",
-              "task": "написать expand/migrate/contract план для нового поля/контракта с контрольными точками.",
-              "acceptance": "rollback для кода и recovery для данных описаны раздельно; сохранена совместимость переходного периода.",
-              "interview": "«Почему успешный deployment не означает успешный release?»",
-              "visual": "Три этапа expand, migrate, contract показывают совместимость старой и новой версии."
+              "title": "Release Metadata and Data Changes in Separate Stages",
+              "outcome": "Separate deploying capability from moving data and switching users.",
+              "task": "Write a staged release plan for adding the provider reference to existing and new appointments.",
+              "acceptance": "Old supported clients remain compatible during the agreed transition. The backfill does not overwrite a newer authoritative value blindly. Code rollback and data recovery have separate inputs, owners, and checks.",
+              "interview": "Why is a code rollback not a complete data recovery plan?",
+              "visual": "Metadata expansion, data migration, and retirement of the old contract are separate stages."
             },
             {
               "id": "S21",
-              "title": "Архитектурное решение и code review",
-              "outcome": "кратко объясняет контекст, варианты, выбор и последствия.",
-              "task": "написать один ADR и провести review спорного PR из проекта.",
-              "acceptance": "замечания опираются на риск/поведение; предпочтения отделены от обязательных исправлений.",
-              "interview": "«Как защитить решение перед разработчиком, который предлагает другой вариант?»",
-              "visual": "Одна карточка ADR сопоставляет контекст, три варианта, решение и последствия."
+              "title": "Write an Architecture Decision and Review the Risk",
+              "outcome": "Write a concise architecture decision record with real alternatives.",
+              "task": "Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation.",
+              "acceptance": "Alternatives are compared under the same business requirements. The review distinguishes harmful behavior from stylistic preference. The explanation connects access mode, caller authority, and a negative test.",
+              "interview": "How would you defend a decision while fairly representing its strongest alternative?",
+              "visual": "An architecture choice and a code review are connected to concrete business and security consequences."
             }
           ]
         },
         {
-          "title": "Современные продукты и финальная защита",
+          "title": "Evaluate products and defend the final design",
           "lessons": [
             {
               "id": "S22",
-              "title": "Agentforce: качество, доступы и цена ошибки",
-              "outcome": "определяет допустимые действия, критерии качества, контроль человеком и поведение при неопределённости.",
-              "task": "По предоставленному описанию сервисного агента и транскриптам подготовить eval pack: разрешённый вопрос, неизвестный факт, чужая запись, провокация, ошибочный tool output, дорогой повтор. При доступной org дополнительно запустить часть проверок.",
-              "acceptance": "Pass/fail критерии определены заранее, риски и ожидаемые реакции обоснованы; для запуска есть план проверки. Анализ транскриптов и проектирование тестов не выдаются за выполненное end-to-end тестирование агента.",
-              "interview": "«Какие действия вы не доверите агенту без подтверждения?»",
-              "visual": "Eval-набор проверяет агента на неизвестных фактах, чужих данных, ошибке инструмента и эскалации.",
-              "prerequisites": [
-                "Обзор/симуляция M32 либо эквивалентное понимание Agentforce; живой агент и платные функции не обязательны."
-              ]
+              "title": "Evaluate Agentforce Actions, Access, and Failure Behavior",
+              "outcome": "Separate conversational quality from action correctness.",
+              "task": "Turn the eight synthetic cases into a reviewable test suite with action, access, and outcome criteria.",
+              "acceptance": "The suite checks actual action outcomes and access boundaries, not only response quality. A repeated request cannot silently create a second booking. Transcript analysis is not represented as a completed live-agent test.",
+              "interview": "What evidence would make an Agentforce write action ready for release?",
+              "visual": "Agent evaluation covers allowed actions, unknown facts, denied records, retries, and confirmation."
             },
             {
               "id": "S23",
-              "title": "Core, Industry Cloud или внешняя система",
-              "outcome": "оценивает build/buy/extend, используя Automotive как конкретный кейс.",
-              "task": "сравнить custom core модель, Automotive Cloud и интеграцию с DMS по fit-gap, стоимости, migration и поддержке.",
-              "acceptance": "помечены предположения о лицензиях и объёмах; есть список вопросов до окончательного решения.",
-              "interview": "«Когда писать меньше кода — более сильное техническое решение?»",
-              "visual": "Три пути решения: core customization, Automotive Cloud и внешняя DMS, с fit-gap и стоимостью."
+              "title": "Compare Core Salesforce, Automotive Cloud, and a DMS",
+              "outcome": "Create a fit-gap comparison with explicit assumptions.",
+              "task": "Compare the three options for the five synthetic requirements and identify the next decision-changing proof.",
+              "acceptance": "Vehicle__c is not described as the installed Automotive Cloud Vehicle model. All options receive a fair comparison with operating consequences. Unverified capabilities and commercial assumptions are clearly labelled.",
+              "interview": "When is extending an industry product better than maintaining a custom core model?",
+              "visual": "Build, extend, and integrate options are compared against the same dealership requirements."
             },
             {
               "id": "S24",
-              "title": "Архитектурное интервью: приложение для сети автодилеров",
-              "outcome": "ведёт структурированное обсуждение неизвестных требований.",
-              "task": "за 45 минут задать вопросы, нарисовать модель, выбрать интеграции, доступы и план роста.",
-              "acceptance": "решения связаны с требованиями; компромиссы объяснены; неизвестные не маскируются уверенностью.",
-              "interview": "«Какая часть вашего дизайна сломается первой и как вы это заметите?»",
-              "visual": "На доске система ста дилеров; ключевые допущения и первая точка роста нагрузки отмечены явно."
+              "title": "Lead a 45-Minute Dealer-Network Architecture Interview",
+              "outcome": "Ask questions that change the design before drawing components.",
+              "task": "Record or write a forty-five-minute architecture discussion using the synthetic requirement card.",
+              "acceptance": "The design explains one complete user journey and at least one failure. Tradeoffs change when the business requirement changes. No unmeasured rate, product entitlement, or hidden platform implementation is presented as fact.",
+              "interview": "Which part of your dealer-network design would fail first, and how would you detect it?",
+              "visual": "The candidate revises a coherent booking design when an important requirement changes."
             },
             {
               "id": "S25",
-              "title": "Итоговый проект: устранение сбоев и оптимизация Northstar",
-              "outcome": "демонстрирует диагностику, улучшение и безопасную поставку как единое решение.",
-              "task": "защищает before/after измерения, diff, ADR, runbook, тесты и postmortem; получает неожиданное ограничение.",
-              "acceptance": "улучшение доказано, риски и пределы названы, решение воспроизводимо; критичные замечания исправлены.",
-              "interview": "«Что вы будете наблюдать первую неделю после выпуска и почему?»",
-              "visual": "До/после измерения соединены с diff, ADR, runbook и доказательствами восстановления."
+              "title": "Capstone: Improve Northstar with Reproducible Evidence",
+              "outcome": "Produce evidence that matches the scope of an improvement claim.",
+              "task": "Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path.",
+              "acceptance": "At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance. Before-and-after claims are supported by comparable observations and unchanged business assertions. The package includes tests, limitations, recovery reasoning, and no real customer data or credentials.",
+              "interview": "What can another reviewer reproduce from your capstone evidence, and what remains unproven?",
+              "visual": "The capstone connects a concrete improvement to reproducible evidence and an explicit recovery plan."
             }
           ]
         }
@@ -910,121 +904,121 @@
     {
       "id": "jobs",
       "title": "Salesforce Job Research",
-      "entry": "Есть базовое понимание Salesforce и хотя бы один учебный или рабочий проект. Проходить параллельно любому основному треку.",
-      "exit": "Есть проверяемая система поиска, честное резюме, портфолио и план исправления пробелов после интервью.",
-      "project": "Career Evidence Pack: целевая роль, радар вакансий, резюме, портфолио, два пробных интервью и план на 14 дней.",
+      "entry": "A target role or an interest in finding your next Salesforce position.",
+      "exit": "A repeatable search workflow, an honest CV, a reviewable portfolio and an interview practice plan.",
+      "project": "Your own job-search workspace and evidence-based application materials.",
       "modules": [
         {
-          "title": "Найти подходящие роли",
+          "title": "Find suitable roles",
           "lessons": [
             {
               "id": "JR01",
-              "title": "Выбор целевой роли и анализ требований",
-              "outcome": "Отличать желаемую должность от требований, которые можешь подтвердить.",
-              "task": "Разобрать 10 вакансий: must-have, nice-to-have, отраслевые требования, формат и география.",
-              "acceptance": "Одна основная и одна смежная роль; навыки разделены на могу показать / пробовал / не знаю.",
-              "interview": "Почему вы подходите именно на эту роль?",
-              "visual": "Три дорожки карьеры и одна выбранная; рядом компактная карта навыков."
+              "title": "Choose a Target Role and Read Job Requirements",
+              "outcome": "Turn a vague goal into a shortlist of roles and a skills map you can support with examples.",
+              "task": "Choose a realistic target using five current job descriptions.",
+              "acceptance": "No requirement is marked essential unless the description supports that interpretation. Tutorial work is identified as practice rather than employment. The chosen target is explained with evidence, not only a desired title.",
+              "interview": "Does a senior title prove that two roles require the same skills?",
+              "visual": "a simple map with three career paths and one clearly selected route"
             },
             {
               "id": "JR02",
-              "title": "AI как исследователь вакансий",
-              "outcome": "Ускорять поиск, сохраняя проверяемость.",
-              "task": "С AI найти 15 позиций; вручную проверить страницу работодателя, дату, локацию, remote-ограничения и дубли.",
-              "acceptance": "У каждой позиции есть прямая ссылка, дата проверки и конкретное объяснение совпадения.",
-              "interview": "Как обнаружить вакансию, которую AI придумал или неправильно понял?",
-              "visual": "Поисковый луч собирает карточки вакансий; дубликаты и пустые карточки отсеяны."
+              "title": "Use AI to Research and Verify Job Opportunities",
+              "outcome": "Use an AI assistant to organise job research while checking every opportunity against a real employer source.",
+              "task": "Research a small batch of roles and verify the strongest candidates.",
+              "acceptance": "No role is accepted solely on an AI-generated link or summary. Unknown conditions remain explicitly unknown. The list includes a date checked and a direct source for each active opportunity.",
+              "interview": "What if the assistant cannot browse?",
+              "visual": "a magnifying glass checking one job card while duplicate cards sit aside"
             },
             {
               "id": "JR03",
-              "title": "Настройка регулярного поиска вакансий",
-              "outcome": "Превращать разовый поиск в повторяемый процесс.",
-              "task": "Настроить доступные alerts и доску: найдено, проверено, готовлюсь, подано, интервью, результат; добавить следующий шаг.",
-              "acceptance": "Тестовая новая вакансия проходит путь до запланированного действия; виден недельный ритм.",
-              "interview": "По какому сигналу вы измените стратегию поиска?",
-              "visual": "Радар и простая доска из нескольких колонок, одна карточка движется вперёд."
+              "title": "Build a Repeatable Job Search Workflow",
+              "outcome": "Create a small system that makes the next useful action visible without turning job hunting into administration.",
+              "task": "Build and run a small job-search board for one week.",
+              "acceptance": "Applied means actually submitted. Unverified opportunities cannot silently enter the application queue. Every active record has a next step; closed records retain their useful history.",
+              "interview": "Why not create dozens of stages?",
+              "visual": "a calm task board with one job card moving toward a calendar tile"
             }
           ]
         },
         {
-          "title": "Показать свой опыт",
+          "title": "Present your experience",
           "lessons": [
             {
               "id": "JR04",
-              "title": "Описание опыта и результатов работы",
-              "outcome": "Отделять собственный вклад от общей работы команды.",
-              "task": "Составить inventory проектов: задача, личная роль, решение, результат, доказательство и ограничения.",
-              "acceptance": "Для каждого сильного утверждения есть источник; учебные проекты явно отмечены.",
-              "interview": "Что именно в этом результате сделали лично вы?",
-              "visual": "Несколько небольших доказательств — схема, тест, демо — складываются в папку проекта."
+              "title": "Describe Your Experience with Evidence",
+              "outcome": "Explain what you built, why it mattered and what you can actually prove.",
+              "task": "Write two evidence-based accounts: one completed feature and one problem you investigated.",
+              "acceptance": "The reader can distinguish your work from the team’s or starter project’s work. Every number has a measurement source and scope. Training work is labelled and still explains a meaningful technical result.",
+              "interview": "Must every CV achievement include a percentage?",
+              "visual": "a developer connecting a project card to a test result and a small evidence folder"
             },
             {
               "id": "JR05",
-              "title": "Написать резюме без выдуманных достижений",
-              "outcome": "Описывать вклад конкретно и кратко.",
-              "task": "Собрать базовое резюме из inventory; использовать числа только с основанием.",
-              "acceptance": "Нет вымышленных ролей, метрик и технологий; каждый bullet можно объяснить на интервью.",
-              "interview": "Как вы подтвердите этот результат, если вас попросят о деталях?",
-              "visual": "Чистый лист резюме и связанные с ним маленькие карточки доказательств."
+              "title": "Write a Clear and Honest Salesforce CV",
+              "outcome": "Create a readable CV that connects your skills to relevant work without inventing experience.",
+              "task": "Produce a master CV based only on experience and projects you can substantiate.",
+              "acceptance": "The target role and two relevant examples are easy to find. No training project is presented as commercial employment. The exported file has readable text, working links and current contact details.",
+              "interview": "Should you claim expertise in a tool you used once?",
+              "visual": "a clean document beside a pencil and a small verified project card"
             },
             {
               "id": "JR06",
-              "title": "Адаптировать резюме под вакансию",
-              "outcome": "Показывать релевантный опыт, сохраняя факты.",
-              "task": "Сравнить вакансию с базовым резюме; изменить порядок и акценты, отметить настоящие пробелы.",
-              "acceptance": "Есть адаптированная версия и таблица соответствия; нет вставленных неподтверждённых keywords.",
-              "interview": "Какие требования этой вакансии вы пока не закрываете?",
-              "visual": "Две колонки — вакансия и резюме — соединены только подтверждёнными связями."
+              "title": "Tailor Your CV to a Specific Role",
+              "outcome": "Change emphasis for a vacancy while keeping your experience accurate and consistent.",
+              "task": "Tailor your master CV to one verified vacancy and keep a change log.",
+              "acceptance": "Every claim remains consistent with the master CV. The most relevant evidence is prominent. Unsupported requirements are recorded as gaps rather than disguised as experience.",
+              "interview": "What should change when tailoring a CV?",
+              "visual": "two simple documents linked by three carefully selected matching cards"
             },
             {
               "id": "JR07",
-              "title": "Подготовка портфолио",
-              "outcome": "Показывать проект так, чтобы его можно было оценить без автора.",
-              "task": "Подготовить README, схему, 2-минутное демо, тесты, ограничения и один важный компромисс.",
-              "acceptance": "Человек понимает проблему, роль автора и решение; используются собственные или разрешённые материалы и тестовые данные.",
-              "interview": "Какое решение в проекте вы сейчас сделали бы иначе?",
-              "visual": "Открытая витрина проекта: схема, экран приложения и аккуратный тестовый отчёт."
+              "title": "Prepare a Salesforce Portfolio for Review",
+              "outcome": "Make one project easy for another developer to understand, run and assess.",
+              "task": "Prepare one portfolio repository and rehearse a short review walkthrough.",
+              "acceptance": "Training context, ownership and limitations are explicit. Setup and test instructions match the project. The demonstration includes a success and a failure case.",
+              "interview": "Does a screenshot prove reproducibility?",
+              "visual": "an open project folder with a small application preview and a clear checklist"
             }
           ]
         },
         {
-          "title": "Пройти тренировку интервью",
+          "title": "Practise and improve your interviews",
           "lessons": [
             {
               "id": "JR08",
-              "title": "Техническое интервью с AI",
-              "outcome": "Объяснять ход мысли и отвечать на follow-up вопросы.",
-              "task": "Пройти 30-минутное интервью без подсказок, затем проверить спорные оценки по официальной документации.",
-              "acceptance": "Запись, оценка по рубрике и 3 подтверждённых пробела; AI-оценка явно предварительная.",
-              "interview": "Как ответить, если вы не уверены в точном лимите или поведении функции?",
-              "visual": "Два собеседника у схемы; вопрос превращается в цепочку рассуждений."
+              "title": "Practise a Technical Interview with AI",
+              "outcome": "Run a structured mock interview that reveals gaps instead of rewarding memorised wording.",
+              "task": "Run a five-question mock interview and turn it into a small practice plan.",
+              "acceptance": "The session contains follow-up questions, not only definitions. Corrections are supported or explicitly marked uncertain. The final plan names a concrete exercise rather than “study more.”",
+              "interview": "Is an AI interview score a reliable hiring prediction?",
+              "visual": "two drawn people discussing a technical card with a small evidence checklist"
             },
             {
               "id": "JR09",
-              "title": "Live coding и review чужого кода",
-              "outcome": "Проверять решение под временем и замечать дефекты качества.",
-              "task": "Решить bulk-safe Apex задачу или LWC баг; разобрать ошибочный pull request; сделать вторую попытку.",
-              "acceptance": "Есть тесты, объяснение предположений и приоритеты дефектов; сравнение двух попыток.",
-              "interview": "Почему правильный результат на одной записи ещё не доказывает корректность?",
-              "visual": "Кодовая карточка с одной опасной строкой, рядом один объект и группа из 200 объектов."
+              "title": "Practise Live Coding and Code Review",
+              "outcome": "Show your reasoning while solving a small problem and reviewing a flawed implementation.",
+              "task": "Implement the input-only count method, then review a deliberately flawed alternative.",
+              "acceptance": "Counts use only the supplied list. Empty input and repeated vehicles are covered. The review identifies behaviour and scaling issues before style preferences. The report names the tested class, API version, actual test result and zero-query/zero-DML method check; unexecuted org checks are labelled outstanding.",
+              "interview": "Why clarify whether database queries are allowed?",
+              "visual": "a developer at a simple code window with a peer pointing to one review note"
             },
             {
               "id": "JR10",
-              "title": "Обсуждение опыта и вопросы работодателю",
-              "outcome": "Обсуждать ошибки, компромиссы и будущую работу без заученного монолога.",
-              "task": "Подготовить 5 честных историй и вопросы о review, релизах, данных, ответственности и поддержке команды.",
-              "acceptance": "Ответы конкретны; личный вклад и урок ясны; вопросы адаптированы к компании.",
-              "interview": "Расскажите о решении, которое не сработало, и что вы изменили.",
-              "visual": "Пять карточек реальных историй и открытый диалог за круглым столом."
+              "title": "Discuss Your Experience and Evaluate the Employer",
+              "outcome": "Prepare clear experience stories and questions that help you understand the work and team.",
+              "task": "Prepare three experience stories and a focused set of employer questions.",
+              "acceptance": "Stories contain a specific action and evidence, not only personal qualities. Team contributions and limitations remain accurate. Employer questions clarify responsibilities you care about.",
+              "interview": "Should a mistake story hide the mistake?",
+              "visual": "a balanced conversation between two drawn people with three simple question cards"
             },
             {
               "id": "JR11",
-              "title": "План подготовки по результатам интервью",
-              "outcome": "Исправлять подтверждённые пробелы и проверять прогресс.",
-              "task": "После интервью восстановить вопросы и свои ответы; привязать пробелы к урокам; через неделю пройти второй mock.",
-              "acceptance": "Career Evidence Pack и план на 14 дней; улучшения подтверждены задачами и второй записью.",
-              "interview": "Какое доказательство покажет, что после этого интервью вы стали сильнее?",
-              "visual": "Две записи интервью до и после соединены дорожкой из трёх выполненных упражнений."
+              "title": "Build a Preparation Plan from Interview Feedback",
+              "outcome": "Turn an interview or mock session into a focused cycle of practice and reassessment.",
+              "task": "Turn one interview or mock session into a one-week preparation plan.",
+              "acceptance": "Each priority has a concrete practice task and a verification method. The plan fits the time you actually have. Reassessment uses a variation, not only the original question.",
+              "interview": "Can you know why an employer rejected you without feedback?",
+              "visual": "a small calendar beside a learning loop and two focused task cards"
             }
           ]
         }
@@ -1033,167 +1027,167 @@
   ],
   "sources": [
     {
-      "title": "Platform Multitenant Architecture — базовая модель metadata, общий runtime и limits.",
+      "title": "Platform Multitenant Architecture",
       "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-multitenant-architecture"
     },
     {
-      "title": "Platform Sharing Architecture — OWD, roles/groups, manual/Apex/implicit sharing, масштабирование. Из документа использовать точные правила выбранного объекта, не общий «алгоритм для всего Salesforce».",
+      "title": "Platform Sharing Architecture",
       "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture"
     },
     {
-      "title": "Muting Permission Sets — область действия muting и альтернативные источники права.",
+      "title": "Muting Permission Sets",
       "url": "https://help.salesforce.com/s/articleView?id=perm_set_groups_muting.htm&language=en_US&type=5"
     },
     {
-      "title": "Restriction Rules — поддержка и ограничения.",
+      "title": "Restriction Rules",
       "url": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5"
     },
     {
-      "title": "Apex Security and Sharing Model — критичные versioned defaults API 67.0.",
+      "title": "Apex Security and Sharing Model",
       "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-security-sharing-chapter.html"
     },
     {
-      "title": "The Salesforce Developer’s Guide to the Summer ’26 Release — подтверждение изменений Apex, API 67.0.",
+      "title": "The Salesforce Developer’s Guide to the Summer ’26 Release",
       "url": "https://developer.salesforce.com/blogs/2026/06/the-salesforce-developers-guide-to-the-summer-26-release"
     },
     {
-      "title": "Defer Sharing Rule Calculations — включение, scope suspension, Resume/Recalculate.",
+      "title": "Defer Sharing Rule Calculations",
       "url": "https://help.salesforce.com/s/articleView?id=platform.security_sharing_rule_recalculation.htm&language=en_US&type=5"
     },
     {
-      "title": "Asynchronous Processing decision guide — выбор Flow/Apex/events и ограничения времени/ресурсов.",
+      "title": "Asynchronous Processing decision guide",
       "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
     },
     {
-      "title": "Integration Patterns — требования к паттернам, error/recovery и trade-offs.",
+      "title": "Integration Patterns",
       "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
     },
     {
-      "title": "LWC Lifecycle Hooks — hooks и lifecycle diagrams.",
+      "title": "LWC Lifecycle Hooks",
       "url": "https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks.html"
     },
     {
-      "title": "Lightning Message Service — область UI communication.",
+      "title": "Lightning Message Service",
       "url": "https://developer.salesforce.com/docs/platform/lwc/guide/use-message-channel"
     },
     {
-      "title": "Lightning Platform Query Optimizer — статистика, selective filters и выбор плана.",
+      "title": "Lightning Platform Query Optimizer",
       "url": "https://developer.salesforce.com/docs/platform/salesforce-large-data-volumes-bp/guide/ldv-deployments-infrastructure-salesforce-query-optimizer.html"
     },
     {
-      "title": "Record Locking Cheat Sheet — первичный официальный материал; старый по дате, использовать как модель и перепроверять детали на текущем объекте.",
+      "title": "Record Locking Cheat Sheet",
       "url": "https://developer.salesforce.com/blogs/2014/07/record-locking-cheat-sheet"
     },
     {
-      "title": "Salesforce Developer Edition Allocations — проверить доступный объём и пользователей.",
+      "title": "Salesforce Developer Edition Allocations",
       "url": "https://help.salesforce.com/s/articleView?id=xcloud.overview_limits_developer.htm&language=en_US&type=5"
     },
     {
-      "title": "Developer Edition with Agentforce and Data Cloud — setup и allocations, отдельно от legacy DE.",
+      "title": "Developer Edition with Agentforce and Data Cloud",
       "url": "https://help.salesforce.com/s/articleView?id=xcloud.overview_developer_edition_agentforce_datacloud.htm&language=en_US&type=5"
     },
     {
-      "title": "Comparison of Standard and Enhanced Omni-Channel — retirement Standard Summer ’26.",
+      "title": "Comparison of Standard and Enhanced Omni-Channel",
       "url": "https://help.salesforce.com/s/articleView?id=sf.omnichannel_std_vs_enhanced.htm&language=en_US&type=5"
     },
     {
-      "title": "Enhanced Omni-Channel overview Trailhead — routing и license context.",
+      "title": "Enhanced Omni-Channel overview Trailhead",
       "url": "https://trailhead.salesforce.com/it/content/learn/modules/enhanced-omni-channel/explore-enhanced-omni-channel"
     },
     {
-      "title": "Automotive Cloud Free Trials — learning/base/pre-release 30-day options.",
+      "title": "Automotive Cloud Free Trials",
       "url": "https://developer.salesforce.com/free-trials/comparison/automotive-cloud"
     },
     {
-      "title": "Automotive Overview Data Model — Vehicle, VehicleDefinition, Asset и отношения.",
+      "title": "Automotive Overview Data Model",
       "url": "https://developer.salesforce.com/docs/platform/data-models/guide/automotive-cloud-overview.html"
     },
     {
-      "title": "Automotive Cloud Developer Guide — standard objects/extension points и edition context.",
+      "title": "Automotive Cloud Developer Guide",
       "url": "https://developer.salesforce.com/docs/industries/automotive-cloud/guide/dev-guide.html"
     },
     {
-      "title": "Agentforce Testing Center — текущие UI возможности, requirements и ограничения.",
+      "title": "Agentforce Testing Center",
       "url": "https://help.salesforce.com/s/articleView?id=005228642&language=en_US&type=1"
     },
     {
-      "title": "Get Started with Testing Agents — Testing Center/DX/API, sandbox requirements и consumption caveat.",
+      "title": "Get Started with Testing Agents",
       "url": "https://developer.salesforce.com/docs/ai/agentforce/guide/testing-api-get-started.html"
     },
     {
-      "title": "Versioned Behavior Changes — точная формулировка ≤66: current sharing rule remains in effect; ≥67 with sharing default.",
+      "title": "Versioned Behavior Changes",
       "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/versioned-behavior-changes.html"
     },
     {
-      "title": "SharingReason Metadata — API 68.0 добавляет custom sharing reasons для поддерживаемых standard objects; ограничения зависят от share object/OWD.",
+      "title": "SharingReason Metadata",
       "url": "https://developer.salesforce.com/docs/platform/api-metadata/references/meta-types/metadata-sharingreason.html"
     },
     {
-      "title": "Protect Apex Shares: Custom Row Causes on Standard Objects — официальный October 2026 release use case.",
+      "title": "Protect Apex Shares: Custom Row Causes on Standard Objects",
       "url": "https://developer.salesforce.com/blogs/2026/10/protect-apex-shares-custom-row-causes-on-standard-objects"
     },
     {
-      "title": "Batch Apex — Database.Stateful сохраняет instance state, не static, между транзакциями.",
+      "title": "Batch Apex",
       "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-batch-interface.html"
     },
     {
-      "title": "LWC Decorators — @api, @track и @wire.",
+      "title": "LWC Decorators",
       "url": "https://developer.salesforce.com/docs/platform/lwc/guide/reference-decorators.html"
     },
     {
-      "title": "Named/External Credentials — endpoint и authentication отдельно.",
+      "title": "Named/External Credentials",
       "url": "https://help.salesforce.com/s/articleView?id=sf.external_services_define_named_credential.htm&language=en_US&type=5"
     },
     {
-      "title": "Salesforce transition from Aura to LWC — текущий контекст coexistence и миграции.",
+      "title": "Salesforce transition from Aura to LWC",
       "url": "https://help.salesforce.com/s/articleView?id=000395536&language=en_US&type=1"
     },
     {
-      "title": "Architecture Basics — транзакции, metadata/data, platform APIs и limits",
+      "title": "Architecture Basics",
       "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/architecture-basics"
     },
     {
-      "title": "Platform Transformation — текущая архитектура платформы и слой Hyperforce",
+      "title": "Platform Transformation",
       "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-transformation"
     },
     {
-      "title": "Introduction to SOQL and SOSL — выбор между запросом к данным и поисковым индексом",
+      "title": "Introduction to SOQL and SOSL",
       "url": "https://developer.salesforce.com/docs/platform/salesforce-soql-sosl/guide/sforce-api-calls-soql-sosl-intro.html"
     },
     {
-      "title": "Salesforce Ben — developer training guide",
+      "title": "Salesforce Ben",
       "url": "https://www.salesforceben.com/your-complete-guide-to-salesforce-developer-training-resources/"
     },
     {
-      "title": "Salesforce Ben — career guide",
+      "title": "Salesforce Ben",
       "url": "https://www.salesforceben.com/ultimate-guide-to-getting-a-job-in-salesforce/"
     },
     {
-      "title": "Apex Hours — developer training",
+      "title": "Apex Hours",
       "url": "https://www.apexhours.com/salesforce-developer-training-free/"
     },
     {
-      "title": "Apex Hours — training catalog",
+      "title": "Apex Hours",
       "url": "https://www.apexhours.com/free-salesforce-training/"
     },
     {
-      "title": "Trailhead — hands-on learning",
+      "title": "Trailhead",
       "url": "https://www.salesforce.com/blog/trailhead-hands-on-learning/"
     },
     {
-      "title": "Trailhead — Apex for Agentforce superbadge",
+      "title": "Trailhead",
       "url": "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-apex-for-agentforce/get-ready-for-superbadge-apex-for-agentforce"
     },
     {
-      "title": "Salesforce Developers — workshops",
+      "title": "Salesforce Developers",
       "url": "https://developer.salesforce.com/workshops"
     },
     {
-      "title": "Salesforce Architects — Well-Architected",
+      "title": "Salesforce Architects",
       "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/framework.html"
     },
     {
-      "title": "Focus on Force — новый каталог K2U",
+      "title": "K2U / K2U / K2U / K2U / K2U / Focus on Force",
       "url": "https://k2u.ai/salesforce/certifications/"
     },
     {
@@ -1201,7 +1195,7 @@
       "url": "https://www.cloudcodeacademy.com/"
     },
     {
-      "title": "Pluralsight — Apex Academy",
+      "title": "Pluralsight",
       "url": "https://www.pluralsight.com/courses/apex-fundamental-coding"
     },
     {
@@ -1209,21 +1203,21 @@
       "url": "https://www.salesforce.com/products/innovation/releases/"
     },
     {
-      "title": "Trailhead — sandbox preview",
+      "title": "Trailhead",
       "url": "https://trailhead.salesforce.com/content/learn/modules/sf_releases/sf-releases-sandbox-preview"
     },
     {
-      "title": "Salesforce — API 67.0 = Summer ’26",
+      "title": "Salesforce",
       "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev-previous-versions/v67.0/apex-dev-previous-versions-pdfs.html"
     },
     {
-      "title": "Salesforce — Standard Omni-Channel retirement",
+      "title": "Salesforce",
       "url": "https://help.salesforce.com/s/articleView?id=release-notes.rn_omnichannel_stnd_eol.htm&language=en_US&release=262&type=5"
     },
     {
-      "title": "Salesforce — External Client Apps governance",
+      "title": "Salesforce",
       "url": "https://www.salesforce.com/blog/architecting-inbound-governance-external-client-apps/"
     }
   ],
-  "revisionNote": "Junior начинается с CRM, ролей пользователей и структуры данных. Release Lab удалён; Agentforce вынесен в отдельный практический урок."
+  "revisionNote": "Complete English lessons with worked examples, independent practice, answered knowledge checks and individual generated illustrations. Junior starts with CRM, users and data. Agentforce is a separate practical project."
 }

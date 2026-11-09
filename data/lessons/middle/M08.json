@@ -1,0 +1,132 @@
+{
+  "id": "M08",
+  "track": "middle",
+  "title": "Order of execution, recursion, and idempotency",
+  "minutes": 50,
+  "summary": "Explain repeated automation within a transaction and design a durable business result that is not duplicated by re-entry or retries.",
+  "prerequisites": [
+    "M07: one owner per operation.",
+    "Triggers, before/after values, transactions, and sets."
+  ],
+  "learningObjectives": [
+    "Recognize why automation can run again.",
+    "Separate recursion prevention from durable duplicate protection.",
+    "Test re-entry, bulk input, and later retries."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A Salesforce save can run several layers of validation and automation. Some automation changes the same or related records, causing additional processing. Order of execution is the documented sequence of these stages; it is not simply 'Flow always before Apex' or 'one click means one trigger execution.' Use the current sequence and your actual configured automation when investigating a repeated effect.",
+        "Recursion is re-entry into a process caused by its own or related changes. Idempotency is a different property: repeating the same business operation does not create an additional business result. A recursion guard can reduce repeated work inside one transaction while doing nothing against a later API retry, a second Queueable transaction, or another user's concurrent request.",
+        "A static Boolean is especially coarse. It can mark an entire transaction as already handled after the first record or first trigger pass, causing later valid records to be skipped. Static memory also does not survive transaction boundaries. A set of processed IDs can improve transaction-local control, but it still does not represent a durable operation identity across independent requests.",
+        "Prefer a meaningful transition check plus a durable identity where the operation can repeat. A transition from Requested to Confirmed is different from editing a note on an already Confirmed record. However, Confirmed→Requested→Confirmed may represent either the same confirmation or a new business event. Decide that rule explicitly before choosing the key; otherwise the code cannot know whether a repeat is legitimate."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Preventing re-entry and preventing duplicate business effects solve related but different problems."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Anna confirms TD-A. A Flow updates another field, and a trigger sees the appointment again. Max then resubmits the same external request after his client times out. A static guard might suppress the second trigger pass in Anna's transaction, but it cannot recognize Max's later request.",
+        "For this exercise, create Confirmation_Receipt__c with an Auto Number Name, Test_Drive__c lookup, and Operation_Key__c Text(100), Unique, External ID. Define one receipt per appointment's first confirmation, with key 'confirm:' plus the Test Drive Id. This intentionally does not support multiple independent confirmation cycles; describe that limitation. The unique constraint provides a final duplicate barrier, while the handler should return the existing result for a legitimate retry."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "What identifies the same operation after the original transaction has ended?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Create the receipt object and fields before using them. Keep the lookup independent and give the test persona only the required object and field permissions."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Draw the actual execution path",
+          "instruction": "List active Flow and trigger operations for confirmation. Mark every update that can cause another pass and the point where a receipt is created.",
+          "expected": "A specific path explains the repeated execution."
+        },
+        {
+          "title": "Implement durable receipt creation",
+          "instruction": "Detect the intended transition, collect operation keys, query existing receipts in bulk, and create missing ones. Define how a uniqueness conflict is reported or reconciled.",
+          "expected": "A repeated operation returns one business receipt."
+        },
+        {
+          "title": "Exercise different repeat causes",
+          "instruction": "Test a harmless update, re-entry, a 200-record confirmation, and a later repeated request. Include the status cycle and compare it with the declared first-confirmation rule.",
+          "expected": "Each result follows the business identity rather than static memory."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A query-before-insert check alone can race with another transaction. Two workers can both observe no receipt; the unique field prevents both from committing duplicate keys.",
+        "If a retry catches every DML error and claims success, it may hide a validation or permission failure. Distinguish a confirmed existing receipt from an unrelated failed write."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not use a transaction-wide static Boolean as the complete solution to repeated business requests."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create one confirmation receipt",
+    "brief": "Build the declared receipt behavior and demonstrate repeated execution without duplicate results.",
+    "steps": [
+      "Define operation identity.",
+      "Implement bulk collection and a durable uniqueness boundary.",
+      "Record results for re-entry, later retry, and 200 inputs."
+    ],
+    "acceptance": [
+      "Exactly one receipt exists per defined key.",
+      "Unrelated failures are not called successful retries.",
+      "The confirmation-cycle limitation is explicit."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why does static state not solve a later retry?",
+      "answer": "It belongs to one Apex transaction and is not a durable record of business completion."
+    },
+    {
+      "question": "Why use a unique key after querying?",
+      "answer": "Concurrent transactions can both miss an existing record before either commits."
+    },
+    {
+      "question": "Can every repeated confirmation share one key?",
+      "answer": "Only if the business defines them as the same operation; otherwise the identity must include a distinct event or version."
+    }
+  ],
+  "recap": [
+    "Trace actual automation order.",
+    "Define the business operation identity.",
+    "Combine sensible guards with durable duplicate protection."
+  ],
+  "sources": [
+    {
+      "title": "Record-triggered architecture",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered.html"
+    },
+    {
+      "title": "Integration patterns and idempotency",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    }
+  ],
+  "illustration": {
+    "subject": "a repeated event arriving at a gate that permits one successful change",
+    "alt": "A repeated event arriving at a gate that permits one successful change",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Recursion and Idempotency. Subject: a repeated event arriving at a gate that permits one successful change."
+  }
+}

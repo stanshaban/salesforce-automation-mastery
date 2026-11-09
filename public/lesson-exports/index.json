@@ -1,0 +1,590 @@
+[
+  {
+    "id": "J01",
+    "title": "What a CRM Does for a Business",
+    "track": "junior",
+    "file": "J01.md"
+  },
+  {
+    "id": "J02",
+    "title": "Salesforce Products, the Platform, and Your Org",
+    "track": "junior",
+    "file": "J02.md"
+  },
+  {
+    "id": "J03",
+    "title": "Create and Reopen a Learning Org",
+    "track": "junior",
+    "file": "J03.md"
+  },
+  {
+    "id": "J04",
+    "title": "Finding Your Way Around Salesforce",
+    "track": "junior",
+    "file": "J04.md"
+  },
+  {
+    "id": "J05",
+    "title": "Objects, Fields, and Records",
+    "track": "junior",
+    "file": "J05.md"
+  },
+  {
+    "id": "J06",
+    "title": "Turn a Request into a Testable Task",
+    "track": "junior",
+    "file": "J06.md"
+  },
+  {
+    "id": "J07",
+    "title": "Choose Standard Objects Before Creating New Ones",
+    "track": "junior",
+    "file": "J07.md"
+  },
+  {
+    "id": "J08",
+    "title": "Field Types, Formulas, and Validation Rules",
+    "track": "junior",
+    "file": "J08.md"
+  },
+  {
+    "id": "J09",
+    "title": "Choose Lookup or Master-Detail Deliberately",
+    "track": "junior",
+    "file": "J09.md"
+  },
+  {
+    "id": "J10",
+    "title": "Build a Usable Sales Application",
+    "track": "junior",
+    "file": "J10.md"
+  },
+  {
+    "id": "J11",
+    "title": "Understand the Layers of Data Access",
+    "track": "junior",
+    "file": "J11.md"
+  },
+  {
+    "id": "J12",
+    "title": "Grant a Small Set of Working Permissions",
+    "track": "junior",
+    "file": "J12.md"
+  },
+  {
+    "id": "J13",
+    "title": "Set a Record-Access Baseline and Add Exceptions",
+    "track": "junior",
+    "file": "J13.md"
+  },
+  {
+    "id": "J14",
+    "title": "Share One Record and Test an Ownership Change",
+    "track": "junior",
+    "file": "J14.md"
+  },
+  {
+    "id": "J15",
+    "title": "Trace the Source of an Access Problem",
+    "track": "junior",
+    "file": "J15.md"
+  },
+  {
+    "id": "J16",
+    "title": "Verify Access for Sales, Service, and Management",
+    "track": "junior",
+    "file": "J16.md"
+  },
+  {
+    "id": "J17",
+    "title": "Create a Record-Triggered Flow with a Clear Failure Path",
+    "track": "junior",
+    "file": "J17.md"
+  },
+  {
+    "id": "J18",
+    "title": "Apex Syntax, Variables, Collections, and Methods",
+    "track": "junior",
+    "file": "J18.md"
+  },
+  {
+    "id": "J19",
+    "title": "Read and Change Records with SOQL and DML",
+    "track": "junior",
+    "file": "J19.md"
+  },
+  {
+    "id": "J20",
+    "title": "Use a Thin Trigger and a Focused Handler",
+    "track": "junior",
+    "file": "J20.md"
+  },
+  {
+    "id": "J21",
+    "title": "Trace Automation Through a Transaction",
+    "track": "junior",
+    "file": "J21.md"
+  },
+  {
+    "id": "J22",
+    "title": "Write Apex Tests That Prove Behaviour",
+    "track": "junior",
+    "file": "J22.md"
+  },
+  {
+    "id": "J23",
+    "title": "HTML, JavaScript, and Your First Lightning Web Component",
+    "track": "junior",
+    "file": "J23.md"
+  },
+  {
+    "id": "J24",
+    "title": "Read and Edit a Record with Lightning Data Service",
+    "track": "junior",
+    "file": "J24.md"
+  },
+  {
+    "id": "J25",
+    "title": "Pass Data Down and Send Events Up",
+    "track": "junior",
+    "file": "J25.md"
+  },
+  {
+    "id": "J26",
+    "title": "Investigate a Failure from Symptom to Cause",
+    "track": "junior",
+    "file": "J26.md"
+  },
+  {
+    "id": "J27",
+    "title": "Use Git to Hand Over a Reproducible Change",
+    "track": "junior",
+    "file": "J27.md"
+  },
+  {
+    "id": "J28",
+    "title": "Deliver the Northstar Test-Drive Application",
+    "track": "junior",
+    "file": "J28.md"
+  },
+  {
+    "id": "M01",
+    "title": "Designing and verifying an access model",
+    "track": "middle",
+    "file": "M01.md"
+  },
+  {
+    "id": "M02",
+    "title": "Permission Set Groups and muting",
+    "track": "middle",
+    "file": "M02.md"
+  },
+  {
+    "id": "M03",
+    "title": "Manual and implicit sharing",
+    "track": "middle",
+    "file": "M03.md"
+  },
+  {
+    "id": "M04",
+    "title": "Apex managed sharing across a record lifecycle",
+    "track": "middle",
+    "file": "M04.md"
+  },
+  {
+    "id": "M05",
+    "title": "Restriction rules and supported access paths",
+    "track": "middle",
+    "file": "M05.md"
+  },
+  {
+    "id": "M06",
+    "title": "Apex security and API-version defaults",
+    "track": "middle",
+    "file": "M06.md"
+  },
+  {
+    "id": "M07",
+    "title": "Choosing Flow or Apex for a business operation",
+    "track": "middle",
+    "file": "M07.md"
+  },
+  {
+    "id": "M08",
+    "title": "Order of execution, recursion, and idempotency",
+    "track": "middle",
+    "file": "M08.md"
+  },
+  {
+    "id": "M09",
+    "title": "Structuring Apex and using Custom Metadata",
+    "track": "middle",
+    "file": "M09.md"
+  },
+  {
+    "id": "M10",
+    "title": "Testing a complete local business rule",
+    "track": "middle",
+    "file": "M10.md"
+  },
+  {
+    "id": "M11",
+    "title": "Selecting an asynchronous processing mechanism",
+    "track": "middle",
+    "file": "M11.md"
+  },
+  {
+    "id": "M12",
+    "title": "Queueable Apex and observable request state",
+    "track": "middle",
+    "file": "M12.md"
+  },
+  {
+    "id": "M13",
+    "title": "Batch Apex and independent execution scopes",
+    "track": "middle",
+    "file": "M13.md"
+  },
+  {
+    "id": "M14",
+    "title": "Scheduling, workload limits, and monitoring",
+    "track": "middle",
+    "file": "M14.md"
+  },
+  {
+    "id": "M15",
+    "title": "API contracts and credential boundaries",
+    "track": "middle",
+    "file": "M15.md"
+  },
+  {
+    "id": "M16",
+    "title": "Working with REST and SOAP service contracts",
+    "track": "middle",
+    "file": "M16.md"
+  },
+  {
+    "id": "M17",
+    "title": "HTTP callouts, failures, and bounded retries",
+    "track": "middle",
+    "file": "M17.md"
+  },
+  {
+    "id": "M18",
+    "title": "Inbound APIs, external IDs, and duplicate protection",
+    "track": "middle",
+    "file": "M18.md"
+  },
+  {
+    "id": "M19",
+    "title": "Integration diagnostics and controlled recovery",
+    "track": "middle",
+    "file": "M19.md"
+  },
+  {
+    "id": "M20",
+    "title": "Choosing SOQL or SOSL for a search requirement",
+    "track": "middle",
+    "file": "M20.md"
+  },
+  {
+    "id": "M21",
+    "title": "Lightning Web Component lifecycle",
+    "track": "middle",
+    "file": "M21.md"
+  },
+  {
+    "id": "M22",
+    "title": "Wire, imperative Apex, and refreshing data",
+    "track": "middle",
+    "file": "M22.md"
+  },
+  {
+    "id": "M23",
+    "title": "DOM events and Lightning Message Service",
+    "track": "middle",
+    "file": "M23.md"
+  },
+  {
+    "id": "M24",
+    "title": "Accessible LWC states and Jest tests",
+    "track": "middle",
+    "file": "M24.md"
+  },
+  {
+    "id": "M25",
+    "title": "Shadow DOM and component boundaries",
+    "track": "middle",
+    "file": "M25.md"
+  },
+  {
+    "id": "M26",
+    "title": "Platform Events and publication timing",
+    "track": "middle",
+    "file": "M26.md"
+  },
+  {
+    "id": "M27",
+    "title": "Change Data Capture, replay, and duplicate delivery",
+    "track": "middle",
+    "file": "M27.md"
+  },
+  {
+    "id": "M28",
+    "title": "Git fetch, integration, and cherry-picking a fix",
+    "track": "middle",
+    "file": "M28.md"
+  },
+  {
+    "id": "M29",
+    "title": "Pull requests, CI checks, and controlled deployment",
+    "track": "middle",
+    "file": "M29.md"
+  },
+  {
+    "id": "M30",
+    "title": "Verifying an application under failure",
+    "track": "middle",
+    "file": "M30.md"
+  },
+  {
+    "id": "M31",
+    "title": "Enhanced Omni-Channel routing",
+    "track": "middle",
+    "file": "M31.md"
+  },
+  {
+    "id": "M32",
+    "title": "Agentforce tasks, actions, and evidence",
+    "track": "middle",
+    "file": "M32.md"
+  },
+  {
+    "id": "M33",
+    "title": "Automotive Cloud data modeling",
+    "track": "middle",
+    "file": "M33.md"
+  },
+  {
+    "id": "M34",
+    "title": "Middle project review and technical defense",
+    "track": "middle",
+    "file": "M34.md"
+  },
+  {
+    "id": "S01",
+    "title": "How a Salesforce Transaction Runs",
+    "track": "senior",
+    "file": "S01.md"
+  },
+  {
+    "id": "S02",
+    "title": "Turn a Performance Complaint into a Measurable Requirement",
+    "track": "senior",
+    "file": "S02.md"
+  },
+  {
+    "id": "S03",
+    "title": "Locate Delay Across the Browser, Apex, and Database",
+    "track": "senior",
+    "file": "S03.md"
+  },
+  {
+    "id": "S04",
+    "title": "Estimate Resource Demand Before Increasing Traffic",
+    "track": "senior",
+    "file": "S04.md"
+  },
+  {
+    "id": "S05",
+    "title": "Choose an Optimization and Prove Its Value",
+    "track": "senior",
+    "file": "S05.md"
+  },
+  {
+    "id": "S06",
+    "title": "Read Query Plans and Data Selectivity",
+    "track": "senior",
+    "file": "S06.md"
+  },
+  {
+    "id": "S07",
+    "title": "Find Shared Records Behind Lock Contention",
+    "track": "senior",
+    "file": "S07.md"
+  },
+  {
+    "id": "S08",
+    "title": "Load Data with Reconciliation and Safe Replays",
+    "track": "senior",
+    "file": "S08.md"
+  },
+  {
+    "id": "S09",
+    "title": "Archive History Without Losing the Business Record",
+    "track": "senior",
+    "file": "S09.md"
+  },
+  {
+    "id": "S10",
+    "title": "Design Record Access for a Dealer Network",
+    "track": "senior",
+    "file": "S10.md"
+  },
+  {
+    "id": "S11",
+    "title": "Remove Excess Access Without Breaking Legitimate Work",
+    "track": "senior",
+    "file": "S11.md"
+  },
+  {
+    "id": "S12",
+    "title": "Plan a Deferred-Sharing Maintenance Window",
+    "track": "senior",
+    "file": "S12.md"
+  },
+  {
+    "id": "S13",
+    "title": "Control Privileged Code and External-User Access",
+    "track": "senior",
+    "file": "S13.md"
+  },
+  {
+    "id": "S14",
+    "title": "Choose System Boundaries and Data Ownership",
+    "track": "senior",
+    "file": "S14.md"
+  },
+  {
+    "id": "S15",
+    "title": "Handle Duplicate and Out-of-Order Events",
+    "track": "senior",
+    "file": "S15.md"
+  },
+  {
+    "id": "S16",
+    "title": "Recover from an External-Service Outage Without a Retry Storm",
+    "track": "senior",
+    "file": "S16.md"
+  },
+  {
+    "id": "S17",
+    "title": "Reconstruct an Incident from Business and Technical Evidence",
+    "track": "senior",
+    "file": "S17.md"
+  },
+  {
+    "id": "S18",
+    "title": "Refactor Legacy Automation in Small Verified Steps",
+    "track": "senior",
+    "file": "S18.md"
+  },
+  {
+    "id": "S19",
+    "title": "Test Integration Contracts at the Right Boundaries",
+    "track": "senior",
+    "file": "S19.md"
+  },
+  {
+    "id": "S20",
+    "title": "Release Metadata and Data Changes in Separate Stages",
+    "track": "senior",
+    "file": "S20.md"
+  },
+  {
+    "id": "S21",
+    "title": "Write an Architecture Decision and Review the Risk",
+    "track": "senior",
+    "file": "S21.md"
+  },
+  {
+    "id": "S22",
+    "title": "Evaluate Agentforce Actions, Access, and Failure Behavior",
+    "track": "senior",
+    "file": "S22.md"
+  },
+  {
+    "id": "S23",
+    "title": "Compare Core Salesforce, Automotive Cloud, and a DMS",
+    "track": "senior",
+    "file": "S23.md"
+  },
+  {
+    "id": "S24",
+    "title": "Lead a 45-Minute Dealer-Network Architecture Interview",
+    "track": "senior",
+    "file": "S24.md"
+  },
+  {
+    "id": "S25",
+    "title": "Capstone: Improve Northstar with Reproducible Evidence",
+    "track": "senior",
+    "file": "S25.md"
+  },
+  {
+    "id": "JR01",
+    "title": "Choose a Target Role and Read Job Requirements",
+    "track": "jobs",
+    "file": "JR01.md"
+  },
+  {
+    "id": "JR02",
+    "title": "Use AI to Research and Verify Job Opportunities",
+    "track": "jobs",
+    "file": "JR02.md"
+  },
+  {
+    "id": "JR03",
+    "title": "Build a Repeatable Job Search Workflow",
+    "track": "jobs",
+    "file": "JR03.md"
+  },
+  {
+    "id": "JR04",
+    "title": "Describe Your Experience with Evidence",
+    "track": "jobs",
+    "file": "JR04.md"
+  },
+  {
+    "id": "JR05",
+    "title": "Write a Clear and Honest Salesforce CV",
+    "track": "jobs",
+    "file": "JR05.md"
+  },
+  {
+    "id": "JR06",
+    "title": "Tailor Your CV to a Specific Role",
+    "track": "jobs",
+    "file": "JR06.md"
+  },
+  {
+    "id": "JR07",
+    "title": "Prepare a Salesforce Portfolio for Review",
+    "track": "jobs",
+    "file": "JR07.md"
+  },
+  {
+    "id": "JR08",
+    "title": "Practise a Technical Interview with AI",
+    "track": "jobs",
+    "file": "JR08.md"
+  },
+  {
+    "id": "JR09",
+    "title": "Practise Live Coding and Code Review",
+    "track": "jobs",
+    "file": "JR09.md"
+  },
+  {
+    "id": "JR10",
+    "title": "Discuss Your Experience and Evaluate the Employer",
+    "track": "jobs",
+    "file": "JR10.md"
+  },
+  {
+    "id": "JR11",
+    "title": "Build a Preparation Plan from Interview Feedback",
+    "track": "jobs",
+    "file": "JR11.md"
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "id": "J22",
+  "track": "junior",
+  "title": "Write Apex Tests That Prove Behaviour",
+  "minutes": 50,
+  "summary": "Create independent test data and assert valid, invalid, and bulk outcomes rather than aiming only for executed lines.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Write assertions for meaningful outcomes.",
+    "Create independent synthetic test data.",
+    "Test invalid and bulk behaviour as well as success."
+  ],
+  "sections": [
+    {
+      "heading": "A test is a claim with executable evidence",
+      "body": [
+        "A useful test states what should happen for known inputs and checks the result. Code coverage measures which executable lines ran; it does not prove the business rule was correct. A test that calls a method without assertions can execute many lines while allowing a wrong result to pass unnoticed.",
+        "Start with a pure function from J18. A deterministic input and expected output make the purpose clear. Then test the record behaviour from J20 with synthetic data created by the test. Avoid depending on ordinary records already present in the org. An isolated test should explain its own setup and survive changes to unrelated sample data."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "For every test, name the behaviour that would make it fail if the implementation were wrong."
+        }
+      ]
+    },
+    {
+      "heading": "Separate setup, execution, and assertions",
+      "body": [
+        "An Apex test method is marked @IsTest. The test creates its inputs, performs the operation, and checks the result with assertions. Test.startTest and Test.stopTest delimit the operation under test and provide the documented testing behaviour for limits and asynchronous work. They do not turn a weak assertion into a strong one.",
+        "For the trigger tests, create a Vehicle with a Name, Model, and appropriate Status, and a fictional Contact with LastName. Create Test Drive records using those IDs and a future Scheduled_At__c. Use Confirmed when testing a valid confirmation, so the create-only Requested reminder Flow is not accidentally the central subject of that particular test. Test the Flow interaction separately.",
+        "For an invalid confirmation, omit one required reference and inspect the failed SaveResult from Database.insert(record, false). Assert that it failed and that the relevant error explains the missing information. The false argument permits per-record result reporting; inspect the result instead of expecting that simply reaching the next line proves success.",
+        "A bulk test should include 200 appropriate records in one operation and verify the intended result for all of them. Put an invalid record beyond the first position in a separate partial-success test to catch handlers that only inspect the first element. Keep the expected all-or-none or partial-success policy explicit."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A runAs block is not a universal replacement for CRUD and FLS enforcement. Test the actual access mode and operation your application uses."
+        }
+      ]
+    },
+    {
+      "heading": "Begin with a small complete test",
+      "body": [
+        "The example checks deduplication, occupied values, sorting, and empty-input behaviour in the pure SlotPlanner function. Its assertions compare the expected collection directly. Deploy the class and its API 68.0 metadata to the learning org, then run the test through the setup guide's test command or supported interface.",
+        "After it passes, make a deliberate temporary defect in a local learning branch: remove the occupied-value check. Run the same test and confirm it fails for the intended reason, then restore the implementation. This mutation exercise demonstrates that the assertion observes an important rule rather than merely documenting a number.",
+        "No Salesforce test execution was performed when this course text was authored. Your submission must include the actual environment, executed test names, outcomes, and relevant failure details from your run. Do not copy a sample 'passed' label into evidence. If deployment fails, that is a result to diagnose, not a reason to claim the tests were executed."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "A meaningful assertion should fail when the relevant business behaviour is deliberately broken."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "SlotPlannerTest.cls",
+          "code": "@IsTest\nprivate class SlotPlannerTest {\n    @IsTest\n    static void removesOccupiedInvalidAndDuplicateMinutes() {\n        Test.startTest();\n        List<Integer> actual = SlotPlanner.available(\n            new List<Integer>{960, 840, 600, 600, 1500, null},\n            new Set<Integer>{840}\n        );\n        Test.stopTest();\n        Assert.areEqual(new List<Integer>{600, 960}, actual,\n            'Valid unoccupied minutes must be unique and sorted.');\n    }\n\n    @IsTest\n    static void returnsEmptyForMissingInput() {\n        Assert.areEqual(0, SlotPlanner.available(null, null).size());\n    }\n}"
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Build a behaviour-focused test suite",
+    "brief": "Test the pure function and appointment validation with independent data.",
+    "steps": [
+      "Add valid confirmation and rejected incomplete confirmation tests.",
+      "Add completed-status and unchanged-status cases.",
+      "Add a 200-record case and a deliberately broken implementation check."
+    ],
+    "acceptance": [
+      "Assertions check the intended business outcome.",
+      "Tests do not depend on ordinary org data.",
+      "The submitted results come from an actual run or are clearly marked unperformed."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Can 100% coverage accompany incorrect behaviour?",
+      "answer": "Yes. Executed lines do not guarantee useful assertions or correct expected outcomes."
+    },
+    {
+      "question": "Why create test records?",
+      "answer": "They make the test independent and make its input assumptions visible."
+    },
+    {
+      "question": "What does the deliberate defect demonstrate?",
+      "answer": "That the test detects the behaviour it claims to protect."
+    }
+  ],
+  "recap": [
+    "Write assertions for meaningful outcomes.",
+    "Create independent synthetic test data.",
+    "Test invalid and bulk behaviour as well as success."
+  ],
+  "sources": [
+    {
+      "title": "Apex testing",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro"
+    },
+    {
+      "title": "System.Assert",
+      "url": "https://developer.salesforce.com/docs/platform/apex-ref/references/apex-ref/apex-class-system-assert.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a small test bench comparing an expected result card with an actual result card and one check",
+    "alt": "A small test bench comparing an expected result card with an actual result card and one check",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Tests. Subject: a small test bench comparing an expected result card with an actual result card and one check."
+  }
+}

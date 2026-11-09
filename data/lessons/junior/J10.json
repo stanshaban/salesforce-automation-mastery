@@ -1,0 +1,127 @@
+{
+  "id": "J10",
+  "track": "junior",
+  "title": "Build a Usable Sales Application",
+  "minutes": 50,
+  "summary": "Assemble tabs, a record page, a useful list, and a small management report around one clear salesperson journey.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Build a small application around a user task.",
+    "Distinguish page configuration from security.",
+    "Validate a report against known records."
+  ],
+  "sections": [
+    {
+      "heading": "Design for a task rather than a catalogue of fields",
+      "body": [
+        "Anna needs to find a vehicle, identify a customer, and record an appointment. A useful application makes that sequence understandable. Putting every available field on the screen does not automatically make the application complete. Start with the agreed task from J06 and the data model from J07–J09.",
+        "The starter defines objects and fields, but it does not provide a finished Northstar application. Create custom object tabs for Vehicle and Test Drive if they are not already available, then use App Manager to create a Lightning application named Northstar Learning. Add the navigation items required by the task, such as Vehicles, Test Drives, and Contacts. Availability still depends on permissions; an application is not an access-control shortcut."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Write the three actions Anna needs to perform before changing the page layout."
+        }
+      ]
+    },
+    {
+      "heading": "Distinguish the page from the stored information",
+      "body": [
+        "A page layout arranges fields and actions for a record. A Lightning record page arranges components around that record. These configuration layers affect presentation. Field-level security controls access to a field. Removing a field from a layout is not a substitute for denying access, because another supported entry route may still expose an accessible field.",
+        "The course Test Drive has an automatically generated Name, displayed as a number such as TD-0001. Anna should not be expected to type that number. Place Vehicle, Customer, Scheduled At, and Status where she can understand them. If you added the duration extension in J08, explain it alongside the calculated end rather than presenting the formula as another editable input.",
+        "Ask Max to use the page without a spoken walkthrough. If he cannot tell whether he is editing the vehicle or the appointment, improve labels, grouping, or the application route. Do not fix confusion by adding more instructions to a training video while leaving the actual interface ambiguous."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A hidden or read-only-looking field on one page is a presentation choice, not complete proof of enforced field access."
+        }
+      ]
+    },
+    {
+      "heading": "Make a list and a report answer different questions",
+      "body": [
+        "A list view helps a salesperson find working records. Create a view such as Upcoming Confirmed Test Drives, with a Status condition and appropriate scheduled-time conditions supported by the interface. Include the appointment number, vehicle, customer, scheduled time, and owner where accessible. Explain that filters select records from the user's available data; they do not grant records.",
+        "Oleg's report answers a broader question, such as how many confirmed appointments are assigned to each owner this week. The starter enables reports on the custom objects. If the report builder does not offer a suitable report type, create or inspect a custom report type with Test Drive as the primary object. A report type defines which records and fields the report can use. Keep this first report simple enough to reconcile with a small hand-counted dataset.",
+        "Enter three synthetic appointments: two Confirmed and one Requested. Use different owners only if your org has suitable users. Predict the report totals before running it. A visually attractive chart that counts the wrong status is still wrong. Save the report in an appropriate learning folder and test access as the intended user when available."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can Oleg explain exactly which records contributed to the displayed count?"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Create the application route",
+          "instruction": "Add the needed custom object tabs and a small Northstar Learning application.",
+          "expected": "A learner can reach vehicles and appointments predictably."
+        },
+        {
+          "title": "Arrange one record page",
+          "instruction": "Show the core appointment fields clearly and distinguish calculated fields from editable inputs.",
+          "expected": "Max can complete the agreed task without guessing."
+        },
+        {
+          "title": "Build a focused list",
+          "instruction": "Apply explicit status and time conditions and select useful columns.",
+          "expected": "The sample Requested record is excluded when the view is for Confirmed appointments."
+        },
+        {
+          "title": "Reconcile a report",
+          "instruction": "Count the sample data manually, run the report, and compare totals.",
+          "expected": "Any difference is investigated through filters, report type, and access."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Demonstrate one complete user journey",
+    "brief": "Create a short demonstration from application navigation to an appointment and a management count.",
+    "steps": [
+      "Record the route and the field choices.",
+      "Explain the list filters and report grouping.",
+      "Ask another person to repeat the journey and note one improvement."
+    ],
+    "acceptance": [
+      "The report matches the known sample records.",
+      "The explanation does not claim that a page layout enforces field-level security."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can a report and a list show different counts?",
+      "answer": "They can use different filters, report structures, or available data; inspect those assumptions before declaring a defect."
+    },
+    {
+      "question": "Does an application tab grant object access?",
+      "answer": "No. Presentation and permission are separate concerns."
+    },
+    {
+      "question": "Why not make the auto-number editable?",
+      "answer": "It is generated by the configured Name field; the user supplies the business information instead."
+    }
+  ],
+  "recap": [
+    "Build a small application around a user task.",
+    "Distinguish page configuration from security.",
+    "Validate a report against known records."
+  ],
+  "sources": [
+    {
+      "title": "Application navigation",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+    },
+    {
+      "title": "Report builder",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards/lex_implementation_reports_dashboards_using_report_builder"
+    }
+  ],
+  "illustration": {
+    "subject": "a compact car-dealership application window with a car, appointment card and small bar chart",
+    "alt": "A compact car-dealership application window with a car, appointment card and small bar chart",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: The Dealership Application. Subject: a compact car-dealership application window with a car, appointment card and small bar chart."
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "id": "M19",
+  "track": "middle",
+  "title": "Integration diagnostics and controlled recovery",
+  "minutes": 50,
+  "summary": "Trace a warranty request across attempts and give an operator enough evidence to retry safely without exposing secrets.",
+  "prerequisites": [
+    "M12 persistent requests.",
+    "M17 error categories and M18 operation identity."
+  ],
+  "learningObjectives": [
+    "Separate correlation, attempt, and platform job identities.",
+    "Preserve useful failure history.",
+    "Define safe manual retry eligibility."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "When Anna says that a warranty check failed, a developer needs to locate one business request and follow its attempts. A correlation ID connects diagnostic events belonging to the same operation. The request key from M12 can serve this role within the exercise. Each retry additionally has an attempt number and potentially a new Queueable job ID. These values answer different questions and should not replace one another.",
+        "A useful diagnostic event records what stage was reached, when it happened, the outcome category, and a safe error code. It need not contain the full request body, customer details, credentials, or raw provider response. Log enough to distinguish a malformed response from an expired credential or rejected business input, while keeping sensitive data out of routine evidence.",
+        "A single Error_Code__c field cannot preserve every attempt if it is overwritten on each retry. Introduce Integration_Attempt__c when durable history is required: Auto Number Name, Request__c lookup to Warranty_Request__c, Attempt_Number__c Number(3,0), Outcome__c Text(40), Error_Code__c Text(80), Occurred_At__c DateTime, and Duration_Ms__c Number(8,0). Define private access and appropriate permissions. These fields are new dependencies.",
+        "Recovery is a business operation with authorization and state rules. A manual retry should be allowed only for eligible failures, below the limit, and when another attempt is not active. Reuse the same business identity and preserve previous history. An Unknown outcome may require checking the provider's status before performing another state-changing operation; a Retry button cannot resolve that uncertainty by itself."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "An operator should find the request, understand the failure category, and choose an authorized next action."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Request WARRANTY-100 has attempt 1 classified TRANSPORT_ERROR and attempt 2 Succeeded. Oleg should see both attempts rather than only a final green status. The first failure explains a delay and can reveal a wider incident. The final result should reference the successful attempt without rewriting the original timestamp or pretending there was no failure.",
+        "Now consider three requests with different problems: invalid customer input, 401 authentication, and 503 temporary service failure. The first needs corrected data, the second needs credential attention, and the third may be eligible for a bounded retry. A dashboard displaying only 'Failed' invites the wrong action on at least two of them."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can Oleg explain why a request waited twenty minutes without opening a full Debug Log?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use the Warranty_Request__c fields declared in M12 and the attempt object declared here. A report or list view is sufficient; a custom LWC is not required for this lesson."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Define diagnostic fields",
+          "instruction": "Choose correlation key, attempt number, stage, outcome, duration, and safe error code. State which data is deliberately excluded.",
+          "expected": "The log supports diagnosis without storing secrets."
+        },
+        {
+          "title": "Record two controlled attempts",
+          "instruction": "Use M17 mocks to produce a failure and a success. Persist attempt rows and update the current request state without deleting history.",
+          "expected": "Both the current result and its history are visible."
+        },
+        {
+          "title": "Exercise recovery decisions",
+          "instruction": "Create examples of invalid input, authentication failure, transient failure, and already-running work. Apply the documented retry policy.",
+          "expected": "Only eligible requests launch another bounded attempt."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "A log write may fail along with the business transaction. Platform job status and external monitoring can provide additional evidence; the custom log alone does not guarantee complete observability.",
+        "Retrying a request with changed input under the same key can corrupt its identity. Decide whether the correction is a new operation or an allowed version, and document that choice."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not expose raw stack traces, access tokens, Authorization headers, or unrestricted payloads in an operator-facing error message."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create an integration investigation trail",
+    "brief": "Demonstrate how one request can be found, diagnosed, and safely retried.",
+    "steps": [
+      "Add the declared history schema.",
+      "Record controlled failure and success attempts.",
+      "Write a short operator recovery procedure."
+    ],
+    "acceptance": [
+      "History survives later success.",
+      "One correlation key connects request and attempts.",
+      "Retry authorization and eligibility are explicit."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why retain failed attempts after success?",
+      "answer": "They explain latency and recurring defects and support incident investigation."
+    },
+    {
+      "question": "Is a job ID enough?",
+      "answer": "No. One business operation can span several jobs and attempts."
+    },
+    {
+      "question": "Why not retry every failed request?",
+      "answer": "Some failures require input or credential repair, and unknown remote outcomes may require reconciliation first."
+    }
+  ],
+  "recap": [
+    "Correlate without overlogging.",
+    "Preserve attempt history.",
+    "Make recovery an explicit operation."
+  ],
+  "sources": [
+    {
+      "title": "Integration patterns",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/integration-patterns"
+    },
+    {
+      "title": "Async architecture",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/async-processing"
+    }
+  ],
+  "illustration": {
+    "subject": "a traced request moving through three systems with one clear diagnostic marker",
+    "alt": "A traced request moving through three systems with one clear diagnostic marker",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Integration Diagnosis. Subject: a traced request moving through three systems with one clear diagnostic marker."
+  }
+}

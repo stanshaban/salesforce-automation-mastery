@@ -1,0 +1,134 @@
+{
+  "id": "J08",
+  "track": "junior",
+  "title": "Field Types, Formulas, and Validation Rules",
+  "minutes": 50,
+  "summary": "Separate entered values, calculated values, and rejected input using concrete appointment examples.",
+  "prerequisites": [
+    "J07: the browser-created or deployed Vehicle__c and Test_Drive__c schema is present in your learning org."
+  ],
+  "learningObjectives": [
+    "Distinguish stored, derived, and validated information.",
+    "Target validation to the intended change.",
+    "Test boundaries and missing values."
+  ],
+  "sections": [
+    {
+      "heading": "Give every field a clear responsibility",
+      "body": [
+        "Northstar's starter stores Scheduled_At__c as a date and time, and Status__c as a restricted picklist. A date and time describes an instant; a status describes progress. Making both text fields would accept vague values such as 'sometime later' or inconsistent spellings that are difficult to process. A field type defines what sort of information can be stored, but it does not by itself express every business rule.",
+        "We will add an optional teaching extension: Duration_Minutes__c, a Number field with three digits and zero decimal places. It is not present in the core starter. Add it deliberately and include it in your submitted metadata. For the exercise, Oleg agrees that entered durations must be between 15 and 120 minutes. This is a classroom requirement, not a general rule about Salesforce or dealerships."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A stored value comes from an input or another system. A formula derives a value from information already available."
+        }
+      ]
+    },
+    {
+      "heading": "Calculate one value and reject a different problem",
+      "body": [
+        "Create a Date/Time formula field named Planned_End__c. Its value is Scheduled_At__c plus Duration_Minutes__c divided by 1440, the number of minutes in a day. A formula field is calculated rather than edited directly. Guard against missing inputs so that a partial request does not display a misleading end time. Display behaviour follows the user's time settings; test with an explicit time zone in your evidence.",
+        "A validation rule rejects a save when its error-condition formula evaluates to true. That direction matters: the formula describes the invalid case. We will reject a newly entered or changed scheduled time that is in the past. We will not block an unrelated update to an old appointment merely because its original appointment time has now passed.",
+        "This is different from using Flow to update another record. Use a formula when you need a derived value, a validation rule when you need to reject an invalid save, and automation when you need a business action. Those are starting questions, not a promise that every requirement fits exactly one feature."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A rule that simply says Scheduled_At__c < NOW() would also reject unrelated edits to historical appointments."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Planned_End__c: Date/Time formula",
+          "code": "IF(\n  OR(ISBLANK(Scheduled_At__c), ISBLANK(Duration_Minutes__c)),\n  NULL,\n  Scheduled_At__c + (Duration_Minutes__c / 1440)\n)"
+        },
+        {
+          "language": "text",
+          "caption": "Reject a newly supplied past appointment time",
+          "code": "AND(\n  NOT(ISBLANK(Scheduled_At__c)),\n  OR(ISNEW(), ISCHANGED(Scheduled_At__c)),\n  Scheduled_At__c < NOW()\n)"
+        }
+      ]
+    },
+    {
+      "heading": "Test boundary cases instead of one happy example",
+      "body": [
+        "A sensible first example is tomorrow at 14:00 with a duration of 30 minutes. The calculated end should be tomorrow at 14:30 in the same display time zone. Also test 15 and 120 minutes, then 14 and 121. Enter a past scheduled time on a new record and expect the agreed validation message.",
+        "To test a historical record without relying on time passing during a lesson, create the record before activating the time rule in an isolated learning exercise. Then activate the rule and edit only its status. The unchanged past time should not trigger this particular rule. Other rules may still apply, so document the configuration rather than assuming an error has only one possible cause.",
+        "A common mistake is using page-layout requiredness as if every entry route enforced it. Later lessons compare UI choices and server-side rules. For now, make the intended business constraint explicit, place the error near the relevant field where practical, and use wording that tells Anna how to correct the value."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Your evidence should include accepted values and rejected values, not only a screenshot of the formula editor."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Add the teaching fields",
+          "instruction": "Open Setup → Object Manager → Test Drive → Fields & Relationships → New. Choose Number for Duration Minutes, field name Duration_Minutes, length 3, decimal places 0, not required. Finish the visibility/layout screens. Repeat with Formula, field name Planned_End, return type Date/Time, and paste the supplied formula. Use Check Syntax before saving.",
+          "expected": "The new field definitions are recorded as project additions."
+        },
+        {
+          "title": "Add the time validation",
+          "instruction": "In Test Drive → Validation Rules → New, name the rule Future_New_Schedule, enter the supplied time formula and a clear error message, choose Scheduled At as the error location, and save. Prepare the historical fixture before activating the rule, then activate it for the tests.",
+          "expected": "Past newly entered times are rejected."
+        },
+        {
+          "title": "Add the duration rule",
+          "instruction": "Add a validation rule with AND(NOT(ISBLANK(Duration_Minutes__c)), OR(Duration_Minutes__c < 15, Duration_Minutes__c > 120)). Put the message on Duration Minutes. This version allows blank; document that choice. If the business instead requires a value, state and implement that separate requirement.",
+          "expected": "The boundary behaviour matches the written agreement."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create a field-behaviour test table",
+    "brief": "Give Oleg evidence that the fields accept valid data and explain invalid input.",
+    "steps": [
+      "Record inputs and expected outcomes for six boundary cases.",
+      "Run the cases and capture actual results.",
+      "Include the formula, rules, and added field definitions in your work."
+    ],
+    "acceptance": [
+      "A historical appointment can receive an unrelated edit without this time rule blocking it.",
+      "Blank handling and time-zone assumptions are documented."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "When does a validation rule reject a save?",
+      "answer": "When its error-condition formula is true."
+    },
+    {
+      "question": "Why use ISNEW or ISCHANGED here?",
+      "answer": "The rule targets a newly supplied time rather than all later changes to an old appointment."
+    },
+    {
+      "question": "Can Anna directly edit Planned_End__c?",
+      "answer": "No. Its value is derived from the formula inputs."
+    }
+  ],
+  "recap": [
+    "Distinguish stored, derived, and validated information.",
+    "Target validation to the intended change.",
+    "Test boundaries and missing values."
+  ],
+  "sources": [
+    {
+      "title": "Validation rule best practices",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/validation-rules/implement-best-practices"
+    },
+    {
+      "title": "Formula fields",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic/formula_fields"
+    }
+  ],
+  "illustration": {
+    "subject": "a record form with a calendar field, a number field and a clear validation check",
+    "alt": "A record form with a calendar field, a number field and a clear validation check",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Field Types and Validation. Subject: a record form with a calendar field, a number field and a clear validation check."
+  }
+}

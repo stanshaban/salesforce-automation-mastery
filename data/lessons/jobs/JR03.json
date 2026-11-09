@@ -1,0 +1,109 @@
+{
+  "id": "JR03",
+  "track": "jobs",
+  "title": "Build a Repeatable Job Search Workflow",
+  "minutes": 60,
+  "summary": "Create a small system that makes the next useful action visible without turning job hunting into administration.",
+  "prerequisites": [
+    "JR01 and JR02: a target role and verified opportunities."
+  ],
+  "learningObjectives": [
+    "Make stage transitions observable.",
+    "Automate collection and reminders carefully.",
+    "Review next actions and patterns, not only application counts."
+  ],
+  "sections": [
+    {
+      "heading": "Track decisions, not just links",
+      "body": [
+        "A folder of bookmarks is a collection, not a workflow. A useful job-search record tells you what the opportunity is, what you know about it and what to do next. You can use a spreadsheet, a simple board or another tool you already understand. No custom application is required for this lesson.",
+        "Keep the fields small: employer, role, source URL, date checked, stage, next action, next-action date and notes. Add a link to the CV version only after applying. The purpose is to prevent an opportunity from disappearing between “I found this” and “I decided what to do.” You do not need a complicated score or twenty pipeline stages."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A useful record has a next action. A stage alone does not tell you what to do."
+        }
+      ]
+    },
+    {
+      "heading": "Define stages you can apply consistently",
+      "body": [
+        "Use stages such as Found, Verified, Preparing, Applied, Interview and Closed. Define what moves a record forward. Found means you have a candidate link. Verified means the original description has been checked. Applied means you have actually submitted through the chosen application route, not merely generated a draft.",
+        "For a fictional Northstar developer vacancy, the next action might be “Read the integration responsibilities and choose a portfolio example.” After that, it might be “Tailor the summary and review the final CV.” Avoid moving a record to Applied because you planned to apply. That small distinction makes your later review of the search much more accurate."
+      ]
+    },
+    {
+      "heading": "Use alerts as input, not as decisions",
+      "body": [
+        "If your chosen job service offers saved searches or alerts, create one for your primary role and one for a useful adjacent role. Use the service’s current settings and check the result before relying on the alert. Notifications can contain duplicates, old listings or roles outside your constraints; send them through the same verification process as manual searches.",
+        "Automation can collect a link or remind you to review it. It should not silently decide that a role is suitable or submit an application on your behalf. If you later build a personal automation, keep a visible review step before anything is sent. In this lesson, a recurring calendar reminder and a saved search are sufficient."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Test the workflow with one sample record before adding a large backlog."
+        }
+      ]
+    },
+    {
+      "heading": "Review the process weekly",
+      "body": [
+        "Choose a realistic review rhythm, for example two short research sessions and one weekly review. At the review, look for stalled next actions, descriptions that have closed and preparation work that is consuming time without helping applications. Move closed records out of the active view rather than deleting the history you need for learning.",
+        "Use counts as observations, not promises: verified opportunities, completed applications, interview invitations and repeated reasons for a mismatch. Small samples are noisy. If a few applications receive no response, you cannot conclude that a particular keyword caused it. Look for repeated patterns and change one part of the process deliberately, such as targeting more closely matched roles or making your project description clearer."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "You can explain which records need action this week and why. You do not need to reconstruct the answer from memory."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Build and run a small job-search board for one week.",
+    "steps": [
+      "Create the eight core fields and define six stages.",
+      "Add three verified roles and one deliberately incomplete sample.",
+      "Give each active record a next action and date.",
+      "Create a review reminder and test one saved search if your service supports it.",
+      "At the end of the week, record one process improvement and its reason."
+    ],
+    "acceptance": [
+      "Applied means actually submitted.",
+      "Unverified opportunities cannot silently enter the application queue.",
+      "Every active record has a next step; closed records retain their useful history."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why not create dozens of stages?",
+      "answer": "Extra stages add work unless they change a decision. Start with a few observable transitions."
+    },
+    {
+      "question": "Does an alert prove a job is suitable?",
+      "answer": "No. It is an input to verification, not a recommendation you must accept."
+    },
+    {
+      "question": "What can you infer from two rejected applications?",
+      "answer": "Very little about cause. Record observations and look for broader patterns before making confident conclusions."
+    }
+  ],
+  "recap": [
+    "Make stage transitions observable.",
+    "Automate collection and reminders carefully.",
+    "Review next actions and patterns, not only application counts."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce career paths",
+      "url": "https://trailhead.salesforce.com/career-path"
+    }
+  ],
+  "illustration": {
+    "subject": "a calm task board with one job card moving toward a calendar tile",
+    "alt": "A calm task board with one job card moving toward a calendar tile",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Job Search Workflow. Subject: a calm task board with one job card moving toward a calendar tile."
+  }
+}

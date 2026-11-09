@@ -1,0 +1,117 @@
+{
+  "id": "J01",
+  "track": "junior",
+  "title": "What a CRM Does for a Business",
+  "minutes": 35,
+  "summary": "Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action.",
+  "prerequisites": [
+    "No previous CRM or Salesforce experience is required."
+  ],
+  "learningObjectives": [
+    "Explain why a team needs shared customer context.",
+    "Distinguish history from future work.",
+    "Describe a next action with an owner and a due time."
+  ],
+  "sections": [
+    {
+      "heading": "Start with a conversation",
+      "body": [
+        "Northstar Motors is our fictional car dealership: a business that helps people choose and buy cars. Irina is interested in a vehicle and asks whether she can try driving it before deciding. That short trial is a test drive. Anna is a salesperson. Her job is to answer Irina's questions, find a suitable vehicle, and arrange the next step. A customer is the person receiving help from the business; in this lesson that includes someone who has not bought anything yet.",
+        "Anna learns that Irina wants a blue car and can speak tomorrow afternoon. She writes a telephone number on a piece of paper. The next day Anna is away. Max, another salesperson, takes over. He has the number but does not know what Anna promised. Calling immediately could mean repeating questions, offering the wrong vehicle, or missing an agreed appointment. This is an information problem before it is a software problem."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Begin with what people need to know and do. A software feature is useful when it improves that work."
+        }
+      ]
+    },
+    {
+      "heading": "Separate history, responsibility, and the next action",
+      "body": [
+        "CRM stands for customer relationship management. A CRM system is software that helps a business keep useful information about customers and its work with them. The useful information is more than a directory of names. Northstar needs the request, previous conversations, agreements, and the work still to be done. Salesforce provides CRM products; we will introduce it separately in J02.",
+        "History describes something that already happened: Anna discussed the blue vehicle on Monday. A next action describes work that has not happened: call Irina on Tuesday afternoon. Responsibility names the person who should do it: Max. A due time makes the promise concrete. These ideas are related, but one does not replace another. Writing 'customer called' does not tell Max what to do next.",
+        "Oleg manages the sales team. He needs to notice requests with no responsible person and promises that have become overdue. In our example, the shared information helps him assign work without interrupting every salesperson. We are describing a proposed working process, not claiming that an unconfigured CRM automatically knows these facts."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Can Max continue the conversation using the information you wrote, without asking Anna to explain it again?"
+        }
+      ]
+    },
+    {
+      "heading": "Work through the handover",
+      "body": [
+        "Make a small handover note before opening any software. Use fictional details only. Do not invent a confirmed appointment: Irina has asked about a test drive, but a time has not yet been agreed. Distinguishing an enquiry from a commitment prevents a persuasive-looking screen from hiding an inaccurate business record.",
+        "A spreadsheet can also support a small team. The question is whether the chosen system reliably supports its actual process, including related information, updates, and appropriate access. A CRM cannot repair information nobody entered. A useful developer therefore asks which facts matter, who supplies them, and how the team will check they stay accurate."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not mark an appointment as confirmed just because a customer expressed interest."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Capture the request",
+          "instruction": "Write Irina, blue vehicle, and request for a test drive. Use a fictional contact method.",
+          "expected": "A colleague can identify the customer and the request."
+        },
+        {
+          "title": "Record the promise",
+          "instruction": "Write: Max will call on Tuesday afternoon to agree a time.",
+          "expected": "The note separates the action, owner, and due time."
+        },
+        {
+          "title": "Test the handover",
+          "instruction": "Ask a partner to explain the next step using only your note.",
+          "expected": "Any missing detail becomes a specific question rather than an assumption."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Prepare a customer handover",
+    "brief": "Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina.",
+    "steps": [
+      "Describe the request and one completed conversation.",
+      "Name the next action, responsible person, and due time.",
+      "List one unanswered question and explain who should answer it."
+    ],
+    "acceptance": [
+      "The note distinguishes a request from a confirmed test drive.",
+      "Another person can state what happens next without guessing."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why is a telephone number insufficient?",
+      "answer": "It identifies a contact method, but does not explain the request, earlier commitments, or the next action."
+    },
+    {
+      "question": "Does storing a note automatically assign responsibility?",
+      "answer": "No. The working process must explicitly identify who owns the next action."
+    },
+    {
+      "question": "Must Northstar choose software before describing its process?",
+      "answer": "No. Understanding the people, information, and decisions makes the software choice and configuration more meaningful."
+    }
+  ],
+  "recap": [
+    "Explain why a team needs shared customer context.",
+    "Distinguish history from future work.",
+    "Describe a next action with an owner and a due time."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce CRM basics",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"
+    }
+  ],
+  "illustration": {
+    "subject": "two drawn colleagues sharing a customer record, conversation and calendar",
+    "alt": "Two drawn colleagues sharing a customer record, conversation and calendar",
+    "prompt": "Use case: illustration-story\nAsset type: restrained landscape lesson-cover illustration for SAM Salesforce Developer Studio\nPrimary request: explain visually why a small company keeps customer information in a shared CRM.\nSubject: two simply drawn colleagues at one shared work surface, with one central customer record card connecting a conversation symbol and a small calendar tile. The record has abstract lines only, no readable personal data. One small stylized car silhouette quietly anchors the fictional car-dealership example.\nStyle: sophisticated editorial vector-like illustration rendered as a bitmap; flat geometric forms, fine navy linework, gentle rounded shapes, very subtle paper texture. People are clearly drawn abstract figures with simplified faces, never photographs or realistic portraits.\nComposition: wide 16:9, a single clear central scene, generous empty margins, no collage, no crowded dashboard, no tiny decorative objects.\nPalette: warm ivory background #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86, small sage accents.\nMood: calm, professional, thoughtful, useful for adults learning software development.\nText: none. No letters, numerals, titles, slogans, speech text, logos, watermarks, Salesforce mascots, emoji, gradients, glossy 3D or hyperrealistic people.\n"
+  }
+}

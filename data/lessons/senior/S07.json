@@ -1,0 +1,135 @@
+{
+  "id": "S07",
+  "track": "senior",
+  "title": "Find Shared Records Behind Lock Contention",
+  "minutes": 65,
+  "summary": "Trace competing updates to the records they may lock, then change the work partition rather than blindly adding workers.",
+  "prerequisites": [
+    "Understand lookup relationships, ownership, transactions, and DML.",
+    "Read S06's distinction between data distribution and query text."
+  ],
+  "learningObjectives": [
+    "Explain record locking, contention, and different forms of data skew.",
+    "Identify a shared parent or ownership structure in a concrete failure.",
+    "Compare serialization, partitioning, shorter transactions, and bounded retries."
+  ],
+  "sections": [
+    {
+      "heading": "Different child records can share one contested resource",
+      "body": [
+        "Record locking protects data consistency while an operation changes records. Contention occurs when concurrent operations need the same protected resource. Max and Anna may edit different appointments on screen yet trigger automation that updates the same Vehicle__c summary. Their visible records differ, but their transactions compete for a shared vehicle record.",
+        "Start from the complete operation, including triggers, Flows, roll-ups, sharing maintenance, and relationship behavior. A lookup does not mean that every possible update always locks every ancestor. Locking depends on the object, relationship settings, and operations performed. The correct question is which shared record or membership resource this particular transaction needs, not whether two users clicked different rows."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Draw the resources touched by the transaction, including indirect updates, before blaming the record named in the error."
+        }
+      ]
+    },
+    {
+      "heading": "Recognize concentration in the data model",
+      "body": [
+        "Data skew is an uneven distribution that concentrates work or access maintenance. Account skew can involve many children under one Account. Lookup skew concentrates references to one target. Ownership skew concentrates many records under one owner, potentially making role or sharing changes expensive. These patterns are warning signs, not automatic proof of the same failure mechanism.",
+        "Northstar's synthetic model uses one 'Unassigned vehicle' record for many appointments. A handler also updates its Last_Activity__c on every appointment save. Last_Activity__c is a proposed exercise field. The model creates a hot record: a record many transactions repeatedly need. Replacing Anna's trigger with Queueable does not remove the shared target. It may simply move the contention into another queue.",
+        "The trace below records a designed contention story, not an actual Salesforce log. Its useful feature is the common Vehicle identifier. A real investigation should correlate the attempted updates and automation path, then verify the suspected lock through supported diagnostics or a controlled authorized experiment."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Separate ownership-related sharing recalculation from row-lock contention; they can coexist but are not synonyms."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic contention trace",
+          "code": "10:00:00.000 Worker A updates appointment TD-A -> summary vehicle V-HOT\n10:00:00.010 Worker B updates appointment TD-B -> summary vehicle V-HOT\n10:00:00.020 Worker C updates appointment TD-C -> summary vehicle V-HOT\nBusiness records differ; all three summary writes target V-HOT.\nObserved outcome in this exercise: B retries, C is marked for later retry.\nNo real org was executed to produce this trace."
+        }
+      ]
+    },
+    {
+      "heading": "Choose a remedy that changes the cause",
+      "body": [
+        "Partitioning groups work so concurrent workers operate on independent resources. For this example, route appointments for the same vehicle through one coordinated stream while allowing different vehicles to proceed independently. Merely sorting a file is not enough if the ingestion mechanism later splits it into overlapping parallel work. Verify the actual partition boundary.",
+        "Serialization processes conflicting work one at a time. It can improve useful throughput when parallel attempts spend most of their time failing and retrying, although it reduces theoretical concurrency. Shortening the transaction can reduce how long a lock is held. Removing an unnecessary summary write may be better than optimizing its retry policy.",
+        "Retries help with temporary contention but need a bound, delay, and a visible failure state. A failed business operation must not disappear after the last attempt. Idempotency, the property that repeating the same operation does not duplicate its business effect, remains necessary when the caller is unsure whether a prior attempt completed."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Compare successful completions and total attempts, not just the number of jobs launched."
+        }
+      ]
+    },
+    {
+      "heading": "Use a trace or a small controlled experiment",
+      "body": [
+        "A small training org may not reproduce a contention error reliably. Scheduling and timing are not under your complete control, so a demonstration that happened not to fail does not disprove the mechanism. You can still inspect a proposed automation graph, count shared targets, and compare the intended partitioning.",
+        "If you run a small experiment, use synthetic records, a bounded number of operations, and an explicit stop condition. Record completed operations, failures, retry count, and elapsed wall time. Do not add artificial busy loops or unbounded traffic merely to force a lock. The goal is to evaluate a hypothesis safely, not to stress a shared learning environment.",
+        "Your final recommendation should state the tradeoff: for example, coordinating work by vehicle reduces conflicts but introduces a queue whose age needs monitoring. Avoid claiming that a single change eliminates every possible lock elsewhere in the org."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A quiet test with ten records is evidence about that test, not proof that a large concurrent import cannot contend."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Redesign the V-HOT workload",
+    "brief": "Create a lock map and a processing plan for the synthetic three-worker case.",
+    "steps": [
+      "List the direct appointment updates and indirect vehicle summary writes.",
+      "Draw which operations share V-HOT and which could safely run independently.",
+      "Compare removing the summary write, partitioning by Vehicle Id, serial processing, and bounded retry.",
+      "Choose one primary remedy and one fallback; define completion, failure, and queue-age measurements.",
+      "Use the supplied trace as a tabletop exercise, or document a bounded training-org observation without claiming large-scale reproduction."
+    ],
+    "acceptance": [
+      "The explanation identifies the common resource rather than only repeating UNABLE_TO_LOCK_ROW.",
+      "The proposed partition corresponds to the actual record being contested.",
+      "The recovery plan preserves failed work and does not rely on unlimited immediate retries."
+    ],
+    "stretch": "Explain how a later ownership transfer could add a different sharing-related cost even after row contention improves."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can different appointments contend?",
+      "answer": "Their transactions can update or otherwise require the same related record, such as a vehicle summary."
+    },
+    {
+      "question": "When can serial work finish sooner?",
+      "answer": "When parallel attempts create enough lock failures and retries that successful completion rate falls below a coordinated serial process."
+    },
+    {
+      "question": "Does moving work to Queueable remove a hot record?",
+      "answer": "No. The same shared target can remain contested; the execution location changed, not the underlying dependency."
+    }
+  ],
+  "recap": [
+    "Map indirect work and shared targets.",
+    "Change the cause of contention before increasing concurrency.",
+    "Measure completed business work and preserve recoverable failures."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce record locking and concurrency",
+      "url": "https://developer.salesforce.com/blogs/2014/07/record-locking-cheat-sheet"
+    },
+    {
+      "title": "Large-volume data model and skew",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/large-data-volumes/design-your-data-model"
+    },
+    {
+      "title": "Ownership data skew",
+      "url": "https://developer.salesforce.com/docs/platform/draes/guide/draes-group-membership-data-skew.html"
+    }
+  ],
+  "illustration": {
+    "subject": "many record links converging on one overloaded parent lock beside a more balanced arrangement",
+    "alt": "Many record links converging on one overloaded parent lock beside a more balanced arrangement",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Data Skew and Locking. Subject: many record links converging on one overloaded parent lock beside a more balanced arrangement."
+  }
+}

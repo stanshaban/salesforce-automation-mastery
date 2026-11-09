@@ -1,62 +1,80 @@
-# Northstar Motors: исходная модель
+# Northstar Motors core starter
 
-Это небольшой Salesforce DX-проект для учебной org. Он содержит схему, от которой можно начать задания. Готовых Flow, Apex-решений, LWC и ответов на задания здесь нет.
+This small Salesforce DX project provides the starting schema for a training org. It does not contain completed Flow, Apex, LWC, or assignment solutions.
 
-## Что внутри
+## Included schema
 
-| Объект | Поля |
-| --- | --- |
-| `Vehicle__c` | `Name` (Text), `VIN__c` (Text 17, unique external ID), `Model__c` (Text 80), `Status__c` (Available / Reserved / Unavailable) |
-| `Test_Drive__c` | `Name` (AutoNumber TD-{0000}), `Vehicle__c` (Lookup), `Customer__c` (Lookup Contact), `Scheduled_At__c` (DateTime), `Status__c` (Requested / Confirmed / Completed / Cancelled) |
+| Object | Fields |
+|---|---|
+| Vehicle__c | Name (Text), VIN__c (Text 17, unique external ID), Model__c (Text 80), Status__c (Available / Reserved / Unavailable) |
+| Test_Drive__c | Name (Auto Number TD-{0000}), Vehicle__c (Lookup), Customer__c (Lookup Contact), Scheduled_At__c (DateTime), Status__c (Requested / Confirmed / Completed / Cancelled) |
 
-Оба объекта имеют Private sharing. Связь тест-драйва с автомобилем — **Lookup**: у тест-драйва остаётся собственный владелец. Удаление связанной записи очищает необязательный lookup. Master-Detail можно сравнить в отдельном эксперименте; основную ветку для security-заданий оставь с Lookup.
+Both objects have private sharing. The vehicle relationship is a lookup, so a Test Drive retains its own owner. Deleting a referenced record clears the optional lookup. Compare master-detail in a separate experiment if required; preserve the lookup baseline for the access exercises.
 
-Permission set `SAM_Lab_Basics` выдаёт Read/Create/Edit к двум учебным объектам, доступ к их полям и Read к Contact. Delete, View All и Modify All не выдаются. Он не создаёт record sharing и не гарантирует доступ к всем Contact: это зависит от профиля, FLS, владения и sharing учебной org. Не считай проверку под System Administrator доказательством правильных прав обычного пользователя.
+Activities are disabled in the original starter. A later browser-first lesson may enable them. If your org already contains coursework, retrieve and reconcile its metadata before deploying this baseline; otherwise an object deployment can overwrite settings such as enabled Activities.
 
-## Начало работы
+SAM_Lab_Basics grants Read/Create/Edit on the two teaching objects, access to their fields, and Read on Contact. It does not grant Delete, View All, Modify All, or record sharing. It does not guarantee access to every Contact. Verify the user's profile, FLS, ownership, and sharing separately. Administrator success is not restricted-user evidence.
 
-Пройди визуальный раздел VS Code в портале. Затем открой **эту папку** в VS Code: Salesforce Extensions должны видеть рядом `sfdx-project.json`.
+## Open the correct project
 
-Авторизуй отдельную учебную Developer Edition через браузер:
+Complete the portal's visual VS Code guide. Open this folder in VS Code so the Salesforce extensions can find sfdx-project.json.
 
-```sh
-sf org login web --alias sam-lab
+Authorize a separate training Developer Edition through the browser:
+
+```text
+sf org login web --alias sam-training --instance-url https://login.salesforce.com
+sf org open --target-org sam-training
 ```
 
-Проверь адрес org в открывшемся браузере. Не используй рабочую production-org. Перед deploy всегда указывай alias явно:
+Verify the actual org identity in the browser. Use the appropriate sandbox endpoint instead when the environment is a sandbox. Do not use a client production org for these exercises.
 
-```sh
-sf project deploy start --source-dir force-app --target-org sam-lab --dry-run
-sf project deploy start --source-dir force-app --target-org sam-lab
-sf org open --target-org sam-lab
+## Fresh org or existing coursework
+
+For a fresh org, review the starter before deployment.
+
+For an org built during browser-first lessons, first preserve local work and retrieve the existing objects:
+
+```text
+git status
+sf project retrieve start --metadata CustomObject:Vehicle__c --metadata CustomObject:Test_Drive__c --target-org sam-training
+git diff
 ```
 
-Сначала прочитай результат dry run, только затем выполняй deploy. Эти команды нужно запускать самому в своей учебной среде. Создатели starter выполнили статические проверки файлов; успешное развёртывание в твоей org ещё нужно подтвердить.
+Review and preserve existing fields, sharing choices, and Activities settings. Retrieve relevant Flow and permission metadata separately using their actual names or Org Browser. Reconcile the files before deploying. Do not blindly overwrite completed coursework with the original starter.
 
-Минимальный permission set назначается только выбранной учебной персоне, когда это соответствует заданию. Назначение широкому профилю не нужно. Пример для текущего авторизованного пользователя учебной org:
+After reviewing the selected metadata, use an explicit target:
 
-```sh
-sf org assign permset --name SAM_Lab_Basics --target-org sam-lab
+```text
+sf project deploy start --source-dir force-app --target-org sam-training --dry-run
+sf project deploy start --source-dir force-app --target-org sam-training
 ```
 
-Для просмотра через интерфейс можно создать свои Tabs, Lightning App и страницы в Setup как часть задания. Это позволяет отдельно проверить, чем навигация отличается от доступа к данным.
+Inspect the dry-run result before performing the deployment. These commands run in your own training environment. Static source checks performed during authoring do not establish a successful deployment to your org.
 
-## Версия и проверки
+Assign the minimal permission set only to the intended training persona when appropriate. For the currently authorized user:
 
-Baseline — `sourceApiVersion: 68.0` (Winter ’27). Это зафиксированная версия starter, а не обещание всегда использовать последнюю. Если учебная org не поддерживает её, сначала проверь версии и паспорт лаборатории; не меняй номер механически в задании, где поведение Apex зависит от версии.
+```text
+sf org assign permset --name SAM_Lab_Basics --target-org sam-training
+```
 
-Из корня всей репозитории:
+Create Custom Object Tabs and a training Lightning app or pages in Setup when the lesson requires them. Navigation and data access are separate concerns.
 
-```sh
+## Version and verification
+
+The baseline is sourceApiVersion 68.0, Winter ’27. It is a pinned teaching version, not a promise to always use the latest API. If your org does not support it, inspect the environment and lesson requirements before changing the number; some security exercises deliberately compare versioned behavior.
+
+From the repository root:
+
+```text
 node scripts/check-submission.mjs
 ```
 
-Успешный static check не означает, что Apex-тесты прошли: их пока нет в starter. Когда добавишь Apex, запускай нужные тесты в своей учебной org и прикладывай фактический результат.
+A successful static check does not mean Apex tests passed. This core starter has no Apex test class. After implementing one, run the relevant tests in your training org and attach the actual result.
 
-## Источники
+## Sources
 
-- [DX project configuration](https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-ws-config.html).
-- [API version и sourceApiVersion](https://developer.salesforce.com/docs/platform/sfdx-setup/guide/sfdx-setup-apiversion.html).
-- [Winter ’27, API 68.0](https://developer.salesforce.com/blogs/2026/10/developers-guide-to-the-winter-27-release).
+- [DX project configuration](https://developer.salesforce.com/docs/platform/sfdx-dev/guide/sfdx-dev-ws-config.html)
+- [API version and sourceApiVersion](https://developer.salesforce.com/docs/platform/sfdx-setup/guide/sfdx-setup-apiversion.html)
+- [Winter ’27 and API 68.0](https://developer.salesforce.com/blogs/2026/10/developers-guide-to-the-winter-27-release)
 
-Проверено 9 ноября 2026.
+Documentation checked on 9 November 2026.

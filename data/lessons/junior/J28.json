@@ -1,0 +1,135 @@
+{
+  "id": "J28",
+  "track": "junior",
+  "title": "Deliver the Northstar Test-Drive Application",
+  "minutes": 50,
+  "summary": "Demonstrate a complete small feature, explain its boundaries, and respond to a modest requirement change.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Demonstrate a complete small Salesforce feature.",
+    "Connect implementation choices to business needs.",
+    "Provide honest evidence and a reproducible handover."
+  ],
+  "sections": [
+    {
+      "heading": "Define the finished slice",
+      "body": [
+        "Your Junior project is a small application for recording and managing test-drive requests. It is not a complete dealership platform, a production scheduling engine, or an Agentforce deployment. The goal is to connect business understanding, data, access, automation, code, interface behaviour, tests, and handover in one explainable slice.",
+        "Tell the story from the beginning. Irina asks Anna about a vehicle. Anna records the relevant customer, vehicle, and time in a Test Drive. Max needs the agreed access when helping with the appointment, and Oleg needs an accurate view of the team's work. Every technical component should support a part of that story rather than appear only because it was mentioned in a lesson."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A finished small feature has an observable result and stated limits. It does not need every possible technology."
+        }
+      ]
+    },
+    {
+      "heading": "Prepare evidence before recording the demonstration",
+      "body": [
+        "Use only synthetic records in a named learning org. Confirm the core Lookup relationships, object ownership, relevant added fields, and current active automation. Review permission assignments and the access matrix from J16. Make sure the demonstrated user is the intended persona rather than an administrator whose privileges hide problems.",
+        "Run the behaviour tests from J22, including meaningful invalid and bulk cases. Record the actual results and the version they correspond to. If you changed the source after running the tests, determine whether the change requires another run rather than presenting old evidence as verification of the new version. Deployment or access checks that could not be executed must remain visibly unperformed.",
+        "Check the UI states as well as the happy path. A sample-only preview must still be labelled as a simulation; the real record editor must show a real accessible record. The Flow reminder should be described as a Task, not as an email service you have not configured. The application should explain invalid input clearly and preserve the intended access boundaries.",
+        "Finally, compare the saved metadata with the org. A good demonstration can still be difficult to review if a crucial field or activities setting exists only in Setup. Use the J27 handover checklist to capture those dependencies and any remaining manual assignments."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Do not claim production readiness, complete scheduling conflict prevention, or a passed Salesforce test that you did not run."
+        }
+      ]
+    },
+    {
+      "heading": "Demonstrate the business result and a failure case",
+      "body": [
+        "Begin with a brief explanation of the people and the problem. Show Anna finding the vehicle and customer, creating an eligible request, and locating the resulting appointment. Show the one follow-up Task required by your Flow design. Edit the source record and demonstrate that the create-only Flow does not add another reminder.",
+        "Next show a deliberately invalid input, such as a newly supplied past time or incomplete confirmation, and explain the responsible rule. Show one allowed and one denied operation from the access matrix. Explain the difference between a rule rejecting data and permissions rejecting an action. Reopen the saved record to prove persistence rather than ending the demonstration at an edited input box.",
+        "For a modest change request, ask Oleg to choose one bounded variation: for example, changing the maximum permitted duration from 120 to 90 minutes. Identify the affected requirement, rule, test boundaries, and documentation before editing. Do not change a random number and assume all dependent expectations remain correct.",
+        "Conclude with a short design discussion. Explain why Test Drive is independently owned, why a standard record form fits the ordinary edit, where explicit user-mode Apex is used, and which limit would concern you first if usage grew. You do not need a Senior architecture answer. You need an accurate account of what you built and what you would investigate next."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Every important claim in the demonstration should point to a visible result, a test, or a clearly labelled design limitation."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Freeze a review version",
+          "instruction": "Choose the commit or upload version and gather matching verification results.",
+          "expected": "The evidence refers to one identifiable solution."
+        },
+        {
+          "title": "Run the user journey",
+          "instruction": "Demonstrate request creation, reminder behaviour, record persistence, and the relevant personas.",
+          "expected": "The feature is understandable as a business workflow."
+        },
+        {
+          "title": "Show controlled rejection",
+          "instruction": "Run a known invalid case and explain the responsible mechanism.",
+          "expected": "The failure is expected and user-readable."
+        },
+        {
+          "title": "Handle a small change",
+          "instruction": "List affected rules and tests before making the agreed modification.",
+          "expected": "The change is reasoned and verified rather than improvised."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit the Junior capstone",
+    "brief": "Deliver a short demonstration, source package, and review note for the Northstar appointment feature.",
+    "steps": [
+      "Include the user journey, one controlled failure, access evidence, and bulk-test result.",
+      "Provide setup instructions and the exact reviewed version.",
+      "List limitations, unperformed checks, and one next improvement with a reason."
+    ],
+    "acceptance": [
+      "The feature works within its stated educational scope.",
+      "Critical correctness or access defects are corrected before requesting acceptance.",
+      "The author can explain data, permissions, automation, code, and interface choices.",
+      "No simulation or unexecuted test is misrepresented as a live result."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What makes this more than a collection of exercises?",
+      "answer": "The components support one coherent business journey and can be deployed, tested, and explained together."
+    },
+    {
+      "question": "Why demonstrate an invalid case?",
+      "answer": "It proves the application protects an agreed boundary and communicates the failure clearly."
+    },
+    {
+      "question": "What should happen before implementing a changed duration limit?",
+      "answer": "Update the requirement and identify affected validation, boundary tests, and documentation."
+    }
+  ],
+  "recap": [
+    "Demonstrate a complete small Salesforce feature.",
+    "Connect implementation choices to business needs.",
+    "Provide honest evidence and a reproducible handover."
+  ],
+  "sources": [
+    {
+      "title": "Acceptance criteria",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/user-story-creation/construct-a-user-story"
+    },
+    {
+      "title": "Apex testing",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing/apex_testing_intro"
+    },
+    {
+      "title": "Deployment reference",
+      "url": "https://developer.salesforce.com/docs/platform/salesforce-cli-reference/guide/cli_reference_project_deploy_start.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a finished car test-drive application with a calendar and a small review check",
+    "alt": "A finished car test-drive application with a calendar and a small review check",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Junior Project. Subject: a finished car test-drive application with a calendar and a small review check."
+  }
+}

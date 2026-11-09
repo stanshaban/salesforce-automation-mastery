@@ -1,0 +1,264 @@
+{
+  "id": "s",
+  "title": "Senior Salesforce Developer",
+  "entry": "You can deliver a Middle-level feature with Apex, LWC, tests, and integrations, and are ready to investigate uncertain requirements and existing-system behavior.",
+  "exit": "Explain and verify a bounded improvement with evidence, access and reliability reasoning, a reviewable change, and a realistic recovery plan. Completion does not guarantee a professional job title.",
+  "project": "Northstar Motors grows into a dealer network. Improve its custom Vehicle__c and Test_Drive__c learning application while preserving correct access, booking outcomes, and recoverable integrations.",
+  "modules": [
+    {
+      "title": "Understand execution and measure the problem",
+      "lessons": [
+        {
+          "id": "S01",
+          "title": "How a Salesforce Transaction Runs",
+          "outcome": "Distinguish application metadata, business records, and execution state.",
+          "task": "Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required.",
+          "acceptance": "The diagram has explicit commit boundaries and does not claim Hyperforce removes limits. A worker failure leaves the committed appointment intact. Every claim is labelled as a documented platform rule, a synthetic case result, or an observation from your own experiment.",
+          "interview": "Which transaction boundary determines whether a failed follow-up can undo a saved booking?",
+          "visual": "A booking transaction ends at a commit gate; a later notification has its own boundary."
+        },
+        {
+          "id": "S02",
+          "title": "Turn a Performance Complaint into a Measurable Requirement",
+          "outcome": "Define latency, throughput, and backlog in plain terms.",
+          "task": "Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg.",
+          "acceptance": "Latency, throughput, and backlog are not treated as interchangeable. Synthetic estimates and actual observations are visibly separated. The brief states sample limitations and a next evidence-gathering step.",
+          "interview": "How would you investigate two users who disagree about whether Salesforce is slow?",
+          "visual": "Different complaints become separate latency, throughput, and backlog measurements."
+        },
+        {
+          "id": "S03",
+          "title": "Locate Delay Across the Browser, Apex, and Database",
+          "outcome": "Distinguish elapsed request time from Apex CPU time.",
+          "task": "Explain the synthetic timeline, then design a small experiment that could confirm or reject one bottleneck hypothesis.",
+          "acceptance": "The answer does not equate CPU, network elapsed time, and database duration. The proposed experiment changes one relevant factor and preserves the business result. Any measured result includes conditions and sample count; supplied timings remain marked synthetic.",
+          "interview": "Why can a request take several seconds while Apex CPU remains low?",
+          "visual": "A browser request contains server work; elapsed time and Apex CPU are different measurements."
+        },
+        {
+          "id": "S04",
+          "title": "Estimate Resource Demand Before Increasing Traffic",
+          "outcome": "Separate per-transaction constraints from shared allocations.",
+          "task": "Model all three traffic scenarios using the supplied assumptions and a small optional collection experiment.",
+          "acceptance": "Every calculated value includes its unit and assumptions. The 80-versus-100 example produces 600 additional waiting items after 30 minutes. No small-org result is described as a validated 1000-bookings-per-minute capacity.",
+          "interview": "How would you identify the first capacity constraint before increasing traffic?",
+          "visual": "Transaction budgets and shared workload demand are shown as distinct constraints."
+        },
+        {
+          "id": "S05",
+          "title": "Choose an Optimization and Prove Its Value",
+          "outcome": "Rank candidate changes without promising unsupported speedups.",
+          "task": "Choose two candidates from the evidence cards and prepare an approval-ready optimization note.",
+          "acceptance": "The recommendation follows evidence and business use rather than the amount of code changed. No exact speedup is promised without observed comparable measurements. The verification plan includes permissions and data correctness, not only response time.",
+          "interview": "When is leaving imperfect code unchanged the better engineering choice?",
+          "visual": "Two evidence-backed improvements are selected from five competing proposals."
+        }
+      ]
+    },
+    {
+      "title": "Data, queries, and concurrent work",
+      "lessons": [
+        {
+          "id": "S06",
+          "title": "Read Query Plans and Data Selectivity",
+          "outcome": "Define selectivity and explain why an index is not a performance guarantee.",
+          "task": "Compare the two synthetic snapshots and design a correct upcoming-appointments query for Anna.",
+          "acceptance": "The answer explains why unchanged code can behave differently after data growth. The narrower query retains all records required by the stated user journey. Small-org observations and large-volume assumptions are reported separately.",
+          "interview": "Why can a query slow down when its text has not changed?",
+          "visual": "A broad status filter and a narrow business filter select different portions of the same data."
+        },
+        {
+          "id": "S07",
+          "title": "Find Shared Records Behind Lock Contention",
+          "outcome": "Explain record locking, contention, and different forms of data skew.",
+          "task": "Create a lock map and a processing plan for the synthetic three-worker case.",
+          "acceptance": "The explanation identifies the common resource rather than only repeating UNABLE_TO_LOCK_ROW. The proposed partition corresponds to the actual record being contested. The recovery plan preserves failed work and does not rely on unlimited immediate retries.",
+          "interview": "Why might updates to different appointment records compete for the same lock?",
+          "visual": "Concurrent child updates compete for one hot vehicle record."
+        },
+        {
+          "id": "S08",
+          "title": "Load Data with Reconciliation and Safe Replays",
+          "outcome": "Define a stable import identity separate from file row position.",
+          "task": "Prepare a preflight and result ledger for the six supplied appointment rows, plus a separate vehicle fixture V-001 through V-005.",
+          "acceptance": "The ledger never relies on CSV position as the permanent identity. A-101 version 1 is recorded as superseded before upload; the five-row submitted set has one snapshot per source identity. Successful, failed, and unprocessed outcomes are distinguishable; replay does not create extra appointments.",
+          "interview": "How would you recover an import with successful, failed, and unprocessed rows?",
+          "visual": "A dependent data load separates successful, failed, and unprocessed records."
+        },
+        {
+          "id": "S09",
+          "title": "Archive History Without Losing the Business Record",
+          "outcome": "Distinguish archiving, deletion, backup, and audit history.",
+          "task": "Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test.",
+          "acceptance": "Archiving, backup, history, and deletion are not conflated. The exercise does not present an invented retention period as a legal rule. The design includes destination permissions and recovery, not only reduced live record count.",
+          "interview": "What must be proven before old records can leave the operational system?",
+          "visual": "Archived appointments remain discoverable through an explicit manifest and controlled retrieval path."
+        }
+      ]
+    },
+    {
+      "title": "Record access and controlled maintenance",
+      "lessons": [
+        {
+          "id": "S10",
+          "title": "Design Record Access for a Dealer Network",
+          "outcome": "Separate job capabilities from record visibility.",
+          "task": "Compare individual appointment ownership with a centralized ownership alternative using the same business matrix.",
+          "acceptance": "Peer access is not assumed from job title or role name. Removing one grant is not automatically treated as removal of every access path. The decision includes staff movement and exception cleanup as well as today's visibility.",
+          "interview": "How does a salesperson moving between dealers challenge your sharing model?",
+          "visual": "Dealer isolation and selected shared service access form a deliberate record-access model."
+        },
+        {
+          "id": "S11",
+          "title": "Remove Excess Access Without Breaking Legitimate Work",
+          "outcome": "Trace additive permissions and independent record-access paths.",
+          "task": "Use the inventory to remove the expired East collaboration while preserving legitimate West work.",
+          "acceptance": "Muting is never described as a user-wide deny. The plan checks independent grants after each removal. Legitimate West work remains a specific acceptance criterion.",
+          "interview": "Why can access remain after you remove a permission or sharing rule?",
+          "visual": "Muting one permission group leaves an independent direct grant active."
+        },
+        {
+          "id": "S12",
+          "title": "Plan a Deferred-Sharing Maintenance Window",
+          "outcome": "Explain what sharing-rule deferral does and does not pause.",
+          "task": "Prepare a runbook and three failure-card responses for a synthetic Northstar access change.",
+          "acceptance": "Resume and full Recalculate are explicit separate requirements. The plan acknowledges mechanisms that are not paused by sharing-rule deferral. Completion requires verified access and resolved exceptions, not only saved configuration.",
+          "interview": "What remains unfinished if the operator stops after Resume?",
+          "visual": "The procedure separates resuming calculations from recalculating accumulated changes and verifying access."
+        },
+        {
+          "id": "S13",
+          "title": "Control Privileged Code and External-User Access",
+          "outcome": "Explain why authentication is not authorization.",
+          "task": "Design the authorization contract for a portal caller who may read only their own appointments.",
+          "acceptance": "The contract does not trust a client-supplied customer Id as proof of ownership. Identity, CRUD/FLS, record sharing, and payload validation are treated separately. Any elevated operation has a narrow purpose and explicit negative tests.",
+          "interview": "When is privileged Apex justified, and how would you limit its authority?",
+          "visual": "An external caller reaches a specific allowed action through separate identity, access, and input checks."
+        }
+      ]
+    },
+    {
+      "title": "Integration reliability and incident evidence",
+      "lessons": [
+        {
+          "id": "S14",
+          "title": "Choose System Boundaries and Data Ownership",
+          "outcome": "Distinguish a system of record from a copied view.",
+          "task": "Complete the ownership worksheet and choose an interaction pattern for each fact.",
+          "acceptance": "A copy is never mistaken for the authoritative decision. The user-facing status matches the actual confirmation guarantee. Each asynchronous or replicated flow has a way to find and resolve missing work.",
+          "interview": "Which facts should Salesforce own, copy, or read from another system?",
+          "visual": "Salesforce, stock, and scheduling systems own different business facts."
+        },
+        {
+          "id": "S15",
+          "title": "Handle Duplicate and Out-of-Order Events",
+          "outcome": "Separate event identity, operation identity, and stream position.",
+          "task": "Apply the synthetic events to an appointment state and record a decision for every arrival.",
+          "acceptance": "The older version cannot revert the newer state. The duplicate cancellation does not repeat the business effect. The answer explains why the same policy would not automatically work for delta events. External status labels stay separate from the starter picklist until a documented mapping or metadata extension exists.",
+          "interview": "How can a repeatable business effect be safe when delivery can repeat?",
+          "visual": "Duplicates and stale events are recorded without reversing the accepted appointment state."
+        },
+        {
+          "id": "S16",
+          "title": "Recover from an External-Service Outage Without a Retry Storm",
+          "outcome": "Classify failures before retrying them.",
+          "task": "Design the statuses and transitions for scheduling requests during a synthetic thirty-minute outage.",
+          "acceptance": "No path retries forever without a bound or operator state. Unknown outcomes preserve the same business operation identity. The recovery calculation separates new arrivals from backlog drain and is labelled hypothetical.",
+          "interview": "How would you restore a backlog without overwhelming a recovered dependency?",
+          "visual": "Retries are delayed and limited, while recovery releases queued work gradually."
+        },
+        {
+          "id": "S17",
+          "title": "Reconstruct an Incident from Business and Technical Evidence",
+          "outcome": "Distinguish symptom, contributing condition, and demonstrated cause.",
+          "task": "Explain the synthetic N-77 notification incident and propose a safe recovery and prevention plan.",
+          "acceptance": "The report distinguishes queuing success from downstream completion. The timeout remains an uncertain remote outcome until reconciled. Corrective actions can be verified and avoid blame-only explanations.",
+          "interview": "How would you distinguish a missing notification from a misleading success log?",
+          "visual": "The timeline distinguishes known events from an unresolved provider outcome."
+        }
+      ]
+    },
+    {
+      "title": "Change and release an existing system",
+      "lessons": [
+        {
+          "id": "S18",
+          "title": "Refactor Legacy Automation in Small Verified Steps",
+          "outcome": "Explain characterization tests and their limits.",
+          "task": "Design a small refactor that separates status-transition decisions from reminder persistence.",
+          "acceptance": "Existing behavior and intended corrected behavior are labelled separately. The first change has one responsibility and a clear comparison path. Tests check side-effect counts and bulk behavior, not only line coverage.",
+          "interview": "How would you safely change a trigger whose behavior is poorly understood?",
+          "visual": "A single responsibility is separated from legacy automation while surrounding behavior remains under test."
+        },
+        {
+          "id": "S19",
+          "title": "Test Integration Contracts at the Right Boundaries",
+          "outcome": "Explain consumer and provider contracts in plain language.",
+          "task": "Prepare fixtures and tests for a provider moving from the old flat response to the proposed nested contract.",
+          "acceptance": "An unfamiliar status cannot become Confirmed by default. The report identifies mocked dependencies and contract versions. At least one test would fail if the required reservation reference disappeared.",
+          "interview": "Which test catches the highest-risk contract change at the lowest useful boundary?",
+          "visual": "Different tests check local mapping, provider compatibility, and the user-facing result."
+        },
+        {
+          "id": "S20",
+          "title": "Release Metadata and Data Changes in Separate Stages",
+          "outcome": "Separate deploying capability from moving data and switching users.",
+          "task": "Write a staged release plan for adding the provider reference to existing and new appointments.",
+          "acceptance": "Old supported clients remain compatible during the agreed transition. The backfill does not overwrite a newer authoritative value blindly. Code rollback and data recovery have separate inputs, owners, and checks.",
+          "interview": "Why is a code rollback not a complete data recovery plan?",
+          "visual": "Metadata expansion, data migration, and retirement of the old contract are separate stages."
+        },
+        {
+          "id": "S21",
+          "title": "Write an Architecture Decision and Review the Risk",
+          "outcome": "Write a concise architecture decision record with real alternatives.",
+          "task": "Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation.",
+          "acceptance": "Alternatives are compared under the same business requirements. The review distinguishes harmful behavior from stylistic preference. The explanation connects access mode, caller authority, and a negative test.",
+          "interview": "How would you defend a decision while fairly representing its strongest alternative?",
+          "visual": "An architecture choice and a code review are connected to concrete business and security consequences."
+        }
+      ]
+    },
+    {
+      "title": "Evaluate products and defend the final design",
+      "lessons": [
+        {
+          "id": "S22",
+          "title": "Evaluate Agentforce Actions, Access, and Failure Behavior",
+          "outcome": "Separate conversational quality from action correctness.",
+          "task": "Turn the eight synthetic cases into a reviewable test suite with action, access, and outcome criteria.",
+          "acceptance": "The suite checks actual action outcomes and access boundaries, not only response quality. A repeated request cannot silently create a second booking. Transcript analysis is not represented as a completed live-agent test.",
+          "interview": "What evidence would make an Agentforce write action ready for release?",
+          "visual": "Agent evaluation covers allowed actions, unknown facts, denied records, retries, and confirmation."
+        },
+        {
+          "id": "S23",
+          "title": "Compare Core Salesforce, Automotive Cloud, and a DMS",
+          "outcome": "Create a fit-gap comparison with explicit assumptions.",
+          "task": "Compare the three options for the five synthetic requirements and identify the next decision-changing proof.",
+          "acceptance": "Vehicle__c is not described as the installed Automotive Cloud Vehicle model. All options receive a fair comparison with operating consequences. Unverified capabilities and commercial assumptions are clearly labelled.",
+          "interview": "When is extending an industry product better than maintaining a custom core model?",
+          "visual": "Build, extend, and integrate options are compared against the same dealership requirements."
+        },
+        {
+          "id": "S24",
+          "title": "Lead a 45-Minute Dealer-Network Architecture Interview",
+          "outcome": "Ask questions that change the design before drawing components.",
+          "task": "Record or write a forty-five-minute architecture discussion using the synthetic requirement card.",
+          "acceptance": "The design explains one complete user journey and at least one failure. Tradeoffs change when the business requirement changes. No unmeasured rate, product entitlement, or hidden platform implementation is presented as fact.",
+          "interview": "Which part of your dealer-network design would fail first, and how would you detect it?",
+          "visual": "The candidate revises a coherent booking design when an important requirement changes."
+        },
+        {
+          "id": "S25",
+          "title": "Capstone: Improve Northstar with Reproducible Evidence",
+          "outcome": "Produce evidence that matches the scope of an improvement claim.",
+          "task": "Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path.",
+          "acceptance": "At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance. Before-and-after claims are supported by comparable observations and unchanged business assertions. The package includes tests, limitations, recovery reasoning, and no real customer data or credentials.",
+          "interview": "What can another reviewer reproduce from your capstone evidence, and what remains unproven?",
+          "visual": "The capstone connects a concrete improvement to reproducible evidence and an explicit recovery plan."
+        }
+      ]
+    }
+  ]
+}

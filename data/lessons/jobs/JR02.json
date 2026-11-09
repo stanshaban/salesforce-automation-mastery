@@ -1,0 +1,115 @@
+{
+  "id": "JR02",
+  "track": "jobs",
+  "title": "Use AI to Research and Verify Job Opportunities",
+  "minutes": 60,
+  "summary": "Use an AI assistant to organise job research while checking every opportunity against a real employer source.",
+  "prerequisites": [
+    "JR01: a target role and an evidence matrix."
+  ],
+  "learningObjectives": [
+    "Bound the research request.",
+    "Verify the employer source.",
+    "Keep facts, uncertainty and decisions separate."
+  ],
+  "sections": [
+    {
+      "heading": "Give the assistant a bounded research task",
+      "body": [
+        "An AI assistant can help turn a broad search into structured work. It can suggest search terms, compare descriptions and extract responsibilities. Whether it can find current vacancies depends on the tools available in that session. A model that cannot access current pages must not be treated as a live job feed.",
+        "Start with the target statement from JR01. Add the locations or working arrangements you are willing to consider, the type of role and any explicit exclusions. Keep sensitive personal details out of the research prompt. The assistant does not need your full address, passport or private employment documents to help compare public descriptions. Ask it to distinguish observed facts from questions that remain unanswered."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A confident-looking vacancy can still be invented, stale or incorrectly interpreted."
+        }
+      ]
+    },
+    {
+      "heading": "Search with evidence fields",
+      "body": [
+        "Ask for a small batch rather than hundreds of results. For each candidate, request the employer, exact role title, direct source URL, visible location, stated remote conditions, date checked and the specific responsibility that matches your target. If the page does not state a condition, the table should say “Not stated.”",
+        "Suppose a result says “Remote Salesforce Developer — Europe.” Before treating that as a match, open the employer page. The actual description may restrict hiring to a short list of countries or require regular office visits. The assistant’s summary is useful only when it preserves those limits. A search result snippet or an aggregator’s copied title is not enough to settle eligibility."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "Open the employer’s vacancy page yourself before adding a role to your active application queue."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Reusable working prompt or template",
+          "code": "Research Salesforce Developer opportunities matching this target: [target].\nUse current sources only if browsing is available. If it is not, say so.\nFor each result return: employer, exact title, direct employer URL,\nlocation, stated remote conditions, date checked and matching responsibilities.\nSeparate observed facts from unresolved questions. Do not invent missing fields.\nReturn a maximum of five candidates. Do not apply or contact anyone."
+        }
+      ]
+    },
+    {
+      "heading": "Check the original page and remove duplicates",
+      "body": [
+        "Use a verification pass with four questions. Does the page exist? Does it still present an open application route? Does the description match the summary? Does the employer identity match the domain and application destination? A page can remain visible after a role closes, so a URL alone is not proof that applications are still accepted.",
+        "Duplicates often appear under several agencies, job boards or slightly different titles. Compare employer, location, responsibilities and any job reference number. Keep one primary record and add secondary links only if they help. Do not merge two different roles simply because their titles match. Record the reason for a duplicate decision so you can reverse it when new information appears."
+      ]
+    },
+    {
+      "heading": "Turn research into a decision",
+      "body": [
+        "Give each verified result one next step: apply, investigate a missing condition, save for later or skip. Write a short reason. “Apply: the role mainly uses Apex and LWC, and I have two relevant examples” is better than an unsupported percentage fit score. “Investigate: remote hiring countries are not stated” preserves uncertainty instead of hiding it.",
+        "AI can draft a comparison, but you decide whether the factual evidence supports it. Review one result that you rejected as well as one you accepted. This catches overly narrow filters and makes the process useful even when the first search produces few matches. Keep the date of verification; current vacancies can change after the lesson."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Every role you plan to act on has an original source, a review date and a reasoned next step."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Apply this to your own search",
+    "brief": "Research a small batch of roles and verify the strongest candidates.",
+    "steps": [
+      "Use the prompt with your target role and actual constraints.",
+      "Verify five proposed opportunities against original employer pages.",
+      "Correct unsupported fields and merge genuine duplicates.",
+      "Choose an action and reason for each verified result."
+    ],
+    "acceptance": [
+      "No role is accepted solely on an AI-generated link or summary.",
+      "Unknown conditions remain explicitly unknown.",
+      "The list includes a date checked and a direct source for each active opportunity."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "What if the assistant cannot browse?",
+      "answer": "Use it to generate search terms or compare descriptions you provide. Do not ask it to pretend it has live vacancies."
+    },
+    {
+      "question": "Why is a relevance percentage weak evidence?",
+      "answer": "It can conceal assumptions. A requirement-to-evidence explanation shows what actually matches."
+    },
+    {
+      "question": "What should happen when remote conditions are unclear?",
+      "answer": "Mark them as unstated and verify them through the employer’s published process before assuming eligibility."
+    }
+  ],
+  "recap": [
+    "Bound the research request.",
+    "Verify the employer source.",
+    "Keep facts, uncertainty and decisions separate."
+  ],
+  "sources": [
+    {
+      "title": "Salesforce career paths",
+      "url": "https://trailhead.salesforce.com/career-path"
+    }
+  ],
+  "illustration": {
+    "subject": "a magnifying glass checking one job card while duplicate cards sit aside",
+    "alt": "A magnifying glass checking one job card while duplicate cards sit aside",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: AI Job Research. Subject: a magnifying glass checking one job card while duplicate cards sit aside."
+  }
+}

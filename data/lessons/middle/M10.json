@@ -1,0 +1,139 @@
+{
+  "id": "M10",
+  "track": "middle",
+  "title": "Testing a complete local business rule",
+  "minutes": 50,
+  "summary": "Build independent fixtures and meaningful assertions for normal, boundary, invalid, and bulk inputs before introducing network behavior.",
+  "prerequisites": [
+    "Junior Apex tests and assertions.",
+    "M07 confirmation rule and M09 explicit dependencies."
+  ],
+  "learningObjectives": [
+    "Create focused synthetic test fixtures.",
+    "Test outcomes rather than coverage alone.",
+    "Demonstrate that a relevant code mutation fails a test."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "A useful unit test states a rule in executable form. It prepares known inputs, performs one operation, and checks a meaningful observable result. Code coverage tells you which lines ran; it does not tell you whether a completed appointment was accidentally cancelled or whether the returned value was correct. The strongest test fails when the behavior it protects is broken.",
+        "Northstar's local rule cancels Requested or Confirmed appointments strictly earlier than a supplied cutoff. Completed, Cancelled, and future appointments remain unchanged. Supplying the cutoff makes the rule deterministic; a test does not depend on the wall clock reaching midnight or on a record that happens to exist in the org. The boundary at exactly the cutoff deserves its own assertion.",
+        "A test factory is a helper that creates valid synthetic records with predictable defaults. It reduces repetitive setup, but should not hide the values central to the test. If the test examines a date boundary, show the date in the test instead of burying it in the factory. Avoid SeeAllData=true for these local rules: fixtures should be owned by the test.",
+        "Bulk tests should verify every relevant category, not merely insert 200 identical records and assert that no exception occurred. Use mixed statuses and dates. Test empty input, one record, repeated IDs where accepted, and an invalid operation. Match assertions to the defined contract: if errors are returned per record, inspect them; if the operation is atomic, verify rollback."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A test is valuable when an incorrect business outcome makes it fail."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Use a cutoff of 2030-04-10 12:00 UTC. Create four appointments: Requested at 11:59, Confirmed at 12:00, Completed at 11:00, and Requested at 12:01. The first should become Cancelled, while the others retain their status. These exact examples distinguish a strict-before rule from an accidental less-than-or-equal comparison.",
+        "After your tests pass, temporarily change the comparison to include equality. Run the same suite. The boundary test should fail. Restore the implementation and rerun. This controlled mutation demonstrates that the assertion protects the intended rule rather than simply following the implementation's current output."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which assertion would fail if the service changed Completed records?"
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "apex",
+          "caption": "Assertion fragment after invoking your implemented cancellation service",
+          "code": "Map<Id, Test_Drive__c> actual = new Map<Id, Test_Drive__c>([\n    SELECT Id, Status__c FROM Test_Drive__c WHERE Id IN :fixtureIds\n]);\nSystem.assertEquals('Cancelled', actual.get(beforeId).Status__c);\nSystem.assertEquals('Confirmed', actual.get(atCutoffId).Status__c);\n// fixtureIds, beforeId and atCutoffId come from this test's own setup."
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Use existing Test Drive fields. Implement the local cancellation service before adapting the assertion fragment; it is not a complete test class. Create required fictional Vehicle/Contact records if your own validations require them."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Write the behavior table",
+          "instruction": "List input status, scheduled time relative to cutoff, and expected output. Include null scheduled time and decide its behavior explicitly.",
+          "expected": "Every fixture has a reason to exist."
+        },
+        {
+          "title": "Implement independent tests",
+          "instruction": "Use a small factory for defaults, explicit values for boundaries, Test.startTest/stopTest around the operation where appropriate, and assertions on persisted state.",
+          "expected": "Tests pass independently of org business data."
+        },
+        {
+          "title": "Add bulk and mutation checks",
+          "instruction": "Build 200 mixed appointments, assert each category, then deliberately break one rule and observe a focused failure before restoring it.",
+          "expected": "A broken rule changes the test result for the expected reason."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Asserting the value just assigned by test setup without calling the service tests the fixture, not the behavior. Likewise, catching an exception without asserting its meaning can allow an unexpected error to pass.",
+        "Do not introduce an HTTP mock here: this lesson deliberately tests local behavior. M17 adds network-contract tests once the client exists."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "A green coverage report is not evidence that wrong records were left untouched."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Protect the cancellation rule",
+    "brief": "Submit a local test suite with boundaries, negative cases, and mixed bulk input.",
+    "steps": [
+      "Build the rule table and fixtures.",
+      "Write state assertions.",
+      "Record the intentional mutation failure and restored passing result."
+    ],
+    "acceptance": [
+      "No business records are read through SeeAllData.",
+      "Strict cutoff and protected statuses are checked.",
+      "The mutation fails a relevant assertion."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why pass a cutoff instead of reading now everywhere?",
+      "answer": "It makes the rule deterministic and separates business input from the clock."
+    },
+    {
+      "question": "What should a bulk test assert?",
+      "answer": "Correct results for the different input categories, not only that 200 records fit in one call."
+    },
+    {
+      "question": "Why temporarily break the rule?",
+      "answer": "It proves that the test detects the specific regression it claims to protect."
+    }
+  ],
+  "recap": [
+    "Make inputs explicit.",
+    "Assert business state and protected records.",
+    "Use coverage as supporting information."
+  ],
+  "sources": [
+    {
+      "title": "Apex testing and mock boundaries",
+      "url": "https://developer.salesforce.com/docs/platform/apex-dev/references/apex-dev/apex-classes-restful-http-testing.html"
+    },
+    {
+      "title": "Record-triggered processing",
+      "url": "https://architect.salesforce.com/docs/architect/decision-guides/guide/record-triggered.html"
+    }
+  ],
+  "illustration": {
+    "subject": "a test pyramid made of a few restrained blocks beside one concrete feature card",
+    "alt": "A test pyramid made of a few restrained blocks beside one concrete feature card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Test Strategy. Subject: a test pyramid made of a few restrained blocks beside one concrete feature card."
+  }
+}

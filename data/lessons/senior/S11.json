@@ -1,0 +1,135 @@
+{
+  "id": "S11",
+  "track": "senior",
+  "title": "Remove Excess Access Without Breaking Legitimate Work",
+  "minutes": 65,
+  "summary": "Audit the sources of an effective permission or record grant and prove that a proposed removal changes exactly the intended access.",
+  "prerequisites": [
+    "Complete S10's access matrix.",
+    "Understand permission sets, permission set groups, muting, and sharing."
+  ],
+  "learningObjectives": [
+    "Trace additive permissions and independent record-access paths.",
+    "Use muting within its actual group boundary.",
+    "Plan access reduction with business tests and a controlled recovery route."
+  ],
+  "sections": [
+    {
+      "heading": "An effective right can have several sources",
+      "body": [
+        "Max can edit an East appointment even though the team deleted a sharing rule. The deletion removed one source of record access, not necessarily all sources. Max might own the record, have hierarchy access, belong to another shared group, receive an explicit share, or hold a broad permission that bypasses ordinary record sharing. Investigate the operation, object, field, and record separately.",
+        "Effective access means the result of all applicable grants and restrictions in the actual execution path. A screenshot of one permission set is not a complete explanation. Likewise, a successful Apex endpoint can reflect its execution mode rather than Max's normal interface access. Record the entry point and Apex API version when code is involved."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Draw every path that can authorize the action before deciding which path to remove."
+        }
+      ]
+    },
+    {
+      "heading": "Muting is local to a permission set group",
+      "body": [
+        "A permission set group bundles permission sets for a work responsibility. Its muting permission set removes selected permissions from that group's contribution. It is not a global deny that overrides the profile, a separately assigned permission set, or another group. This additive model explains why a muted permission can remain effective.",
+        "The synthetic inventory below gives Max Edit from two independent places. Muting the group removes one contribution; the direct assignment still provides Edit. Removing the direct assignment may still be insufficient to prevent editing a particular record if another object-level source remains. Also inspect dependencies: muting a foundational permission can affect related permissions within the group's effective result.",
+        "Keep field-level security distinct from record sharing. A user with access to the appointment may still be unable to read a restricted field. A broad record permission is not a reason to skip checking fields in the real access path. Write each proposed change at the narrowest relevant layer."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "A negative access test must use the affected user's effective permissions after recalculation has completed."
+        }
+      ],
+      "codeBlocks": [
+        {
+          "language": "text",
+          "caption": "Synthetic grant inventory for Max",
+          "code": "Profile: Test_Drive__c Read\nGroup Sales_Work: Read + Edit, with Edit muted in that group\nDirect permission set Temporary_Edit: Edit\nRecord access: West ownership plus an explicit East collaboration share\nFinding: group muting alone does not remove the direct Edit grant\nOpen question: when should Temporary_Edit and the collaboration share expire?"
+        }
+      ]
+    },
+    {
+      "heading": "Build a removal plan with observable outcomes",
+      "body": [
+        "Start with the business reason: Max should stop editing East appointments after temporary collaboration ends, while continuing to edit his approved West work. Determine whether the intended change concerns object Edit, East record access, or both. Removing object Edit globally might solve the East symptom by unnecessarily breaking West work.",
+        "Create a before-and-after matrix of allowed and denied actions. Include normal interface use, relevant API or Apex entry points, sensitive fields, and any supported restrictions. Restriction rules can narrow existing record visibility for supported objects and contexts; they do not grant missing access. Do not assume that multiple matching restriction rules combine into a reliable AND policy.",
+        "Choose a small pilot and document the prior configuration so an authorized operator can restore it if a legitimate workflow fails. Restoration should restore the intended prior grant, not indiscriminately grant administrator access. Assign an owner to confirm that temporary privileges were actually removed after the exercise."
+      ],
+      "callouts": [
+        {
+          "kind": "action",
+          "text": "For every removal, write two expected outcomes: the prohibited action fails and the legitimate neighboring action still succeeds."
+        }
+      ]
+    },
+    {
+      "heading": "Treat the audit as maintained evidence",
+      "body": [
+        "An access inventory becomes stale when jobs, groups, owners, or integrations change. Store the reason, responsible owner, review date, and expiration condition for exceptions. Where possible, use supported access-summary and diagnostic tools to gather evidence, but interpret the results against the complete business operation.",
+        "Use a small synthetic matrix for the lesson. If licenses prevent simultaneous personas, document the limitation and inspect one configuration at a time. Do not present a paper grant graph as an executed access test. A clear audit can still show exactly which checks remain to be run.",
+        "The final deliverable should explain why access existed, what changed, and how the business verified the result. A list of deleted permission sets without this causal explanation does not establish that access is now correct."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Removing a sharing rule is not proof of denied access; verify the effective result through the intended entry point."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Close Max's temporary access",
+    "brief": "Use the inventory to remove the expired East collaboration while preserving legitimate West work.",
+    "steps": [
+      "Draw object, field, and record-access sources as separate layers.",
+      "Explain the effect of group muting before changing any other grant.",
+      "Propose the smallest change that satisfies the business requirement.",
+      "Write allowed and denied checks for West and East appointments and one restricted field.",
+      "Prepare a before/after evidence table and a narrowly scoped recovery step."
+    ],
+    "acceptance": [
+      "Muting is never described as a user-wide deny.",
+      "The plan checks independent grants after each removal.",
+      "Legitimate West work remains a specific acceptance criterion."
+    ],
+    "stretch": "Add an Apex endpoint on API 68.0 and explain why its explicit access mode belongs in the audit."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why can Edit remain after group muting?",
+      "answer": "The same permission can come from a profile, a direct permission set, or another group; muting affects only the selected group's contribution."
+    },
+    {
+      "question": "Why might deleting a share not close a record?",
+      "answer": "Ownership, hierarchy, other shares, rules, or broad permissions may still provide access."
+    },
+    {
+      "question": "What makes an access-removal test complete?",
+      "answer": "It verifies the prohibited operation fails while required neighboring operations continue to work under the intended persona and entry point."
+    }
+  ],
+  "recap": [
+    "Explain effective access through all relevant paths.",
+    "Use muting at its group boundary.",
+    "Prove both removal and preservation of legitimate work."
+  ],
+  "sources": [
+    {
+      "title": "Mute permissions in permission set groups",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/permission-set-groups/mute-permissions-in-permission-set-groups"
+    },
+    {
+      "title": "Sharing architecture",
+      "url": "https://architect.salesforce.com/docs/architect/fundamentals/guide/platform-sharing-architecture"
+    },
+    {
+      "title": "Restriction rules",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_restriction_rule.htm&language=en_US&type=5"
+    }
+  ],
+  "illustration": {
+    "subject": "a reviewer removing one unnecessary key from a ring of permissions",
+    "alt": "A reviewer removing one unnecessary key from a ring of permissions",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Permission Audits. Subject: a reviewer removing one unnecessary key from a ring of permissions."
+  }
+}

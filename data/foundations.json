@@ -1,227 +1,448 @@
 {
-  "title": "Первые шаги: Salesforce с нуля",
-  "checkedAt": "2026-11-09",
+  "title": "Salesforce Foundations",
   "lessons": [
     {
       "id": "J01",
-      "title": "Что такое CRM и зачем она нужна компании",
-      "goal": "Понять, какие повседневные проблемы компании решает CRM, без опыта работы в продажах.",
+      "title": "What a CRM Does for a Business",
+      "goal": "Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action.",
       "sections": [
         {
-          "title": "Начнём с людей",
+          "title": "Start with a conversation",
           "paragraphs": [
-            "Northstar Motors — вымышленная компания, которая продаёт автомобили. Ирина хочет выбрать машину и пишет продавцу Анне. Продавец помогает покупателю: отвечает на вопросы, предлагает подходящие автомобили и договаривается о встрече. Клиентом здесь будем называть человека, который обратился в компанию, даже если он пока ничего не купил. Тест-драйв — пробная поездка перед покупкой.",
-            "Ирина спрашивает о синем автомобиле и просит позвонить завтра после обеда. Анна записывает телефон на бумаге. На следующий день Анна отсутствует, её заменяет Максим. Он видит номер, но не знает, что уже обсуждали и что обещали Ирине. Чтобы продолжить разговор, ему нужны сведения о предыдущем обращении."
+            "Northstar Motors is our fictional car dealership: a business that helps people choose and buy cars. Irina is interested in a vehicle and asks whether she can try driving it before deciding. That short trial is a test drive. Anna is a salesperson. Her job is to answer Irina's questions, find a suitable vehicle, and arrange the next step. A customer is the person receiving help from the business; in this lesson that includes someone who has not bought anything yet.",
+            "Anna learns that Irina wants a blue car and can speak tomorrow afternoon. She writes a telephone number on a piece of paper. The next day Anna is away. Max, another salesperson, takes over. He has the number but does not know what Anna promised. Calling immediately could mean repeating questions, offering the wrong vehicle, or missing an agreed appointment. This is an information problem before it is a software problem."
           ]
         },
         {
-          "title": "Что сохраняет CRM",
+          "title": "Separate history, responsibility, and the next action",
           "paragraphs": [
-            "CRM расшифровывается как Customer Relationship Management — управление отношениями с клиентами. В этом курсе CRM-системой мы называем программу, в которой сотрудники сохраняют сведения о клиентах и работе с ними. Это помогает продолжать разговор с нужного места, распределять работу и помнить о договорённостях. Salesforce — один из поставщиков таких систем.",
-            "Для обращения Ирины полезны имя, способ связи, интересующий автомобиль, история разговора и следующий шаг. История отвечает на вопрос «Что уже произошло?»: Анна обсудила цену. Следующий шаг отвечает на вопрос «Что нужно сделать?»: позвонить завтра после обеда. Ответственный — конкретный сотрудник, который должен выполнить этот шаг. В нашем примере это Максим."
+            "CRM stands for customer relationship management. A CRM system is software that helps a business keep useful information about customers and its work with them. The useful information is more than a directory of names. Northstar needs the request, previous conversations, agreements, and the work still to be done. Salesforce provides CRM products; we will introduce it separately in J02.",
+            "History describes something that already happened: Anna discussed the blue vehicle on Monday. A next action describes work that has not happened: call Irina on Tuesday afternoon. Responsibility names the person who should do it: Max. A due time makes the promise concrete. These ideas are related, but one does not replace another. Writing 'customer called' does not tell Max what to do next.",
+            "Oleg manages the sales team. He needs to notice requests with no responsible person and promises that have become overdue. In our example, the shared information helps him assign work without interrupting every salesperson. We are describing a proposed working process, not claiming that an unconfigured CRM automatically knows these facts."
           ]
         },
         {
-          "title": "Как это помогает команде",
+          "title": "Work through the handover",
           "paragraphs": [
-            "Олег — руководитель продавцов. Он следит, чтобы обращения не терялись, и помогает распределять работу. В нашем примере ему полезно увидеть, какие звонки ещё не сделаны и у каких обращений нет ответственного. Ему не нужно заново опрашивать каждого сотрудника, если нужные сведения уже сохранены и доступны ему.",
-            "Таблица с контактами тоже может помогать маленькой команде. При росте работы становится важнее связывать контакты с обращениями, сохранять изменения и управлять доступом. Но сама установка CRM не создаёт порядок: если Анна не записала договорённость, Максим её не узнает. Компания сначала договаривается, какие сведения сотрудники должны сохранять, а затем настраивает программу под эту работу."
+            "Make a small handover note before opening any software. Use fictional details only. Do not invent a confirmed appointment: Irina has asked about a test drive, but a time has not yet been agreed. Distinguishing an enquiry from a commitment prevents a persuasive-looking screen from hiding an inaccurate business record.",
+            "A spreadsheet can also support a small team. The question is whether the chosen system reliably supports its actual process, including related information, updates, and appropriate access. A CRM cannot repair information nobody entered. A useful developer therefore asks which facts matter, who supplies them, and how the team will check they stay accurate."
+          ],
+          "steps": [
+            {
+              "title": "Capture the request",
+              "instruction": "Write Irina, blue vehicle, and request for a test drive. Use a fictional contact method.",
+              "expected": "A colleague can identify the customer and the request."
+            },
+            {
+              "title": "Record the promise",
+              "instruction": "Write: Max will call on Tuesday afternoon to agree a time.",
+              "expected": "The note separates the action, owner, and due time."
+            },
+            {
+              "title": "Test the handover",
+              "instruction": "Ask a partner to explain the next step using only your note.",
+              "expected": "Any missing detail becomes a specific question rather than an assumption."
+            }
           ]
         }
       ],
       "exercise": [
-        "Без Salesforce составь заметку о запросе Ирины: клиент, автомобиль, история, следующий шаг, срок и ответственный.",
-        "Добавь одно уточнение, которое Максим должен получить у Анны перед звонком."
+        "Describe the request and one completed conversation.",
+        "Name the next action, responsible person, and due time.",
+        "List one unanswered question and explain who should answer it."
       ],
       "questions": [
-        {"question": "Почему одного телефона Ирины недостаточно?", "answer": "Телефон позволяет связаться, но не объясняет интерес клиента, прежние обещания и следующий шаг."},
-        {"question": "Кто отвечает за следующий звонок в нашем примере?", "answer": "Максим. Ответственный должен быть назван явно; наличие записи само по себе не назначает исполнителя."}
+        {
+          "question": "Why is a telephone number insufficient?",
+          "answer": "It identifies a contact method, but does not explain the request, earlier commitments, or the next action."
+        },
+        {
+          "question": "Does storing a note automatically assign responsibility?",
+          "answer": "No. The working process must explicitly identify who owns the next action."
+        },
+        {
+          "question": "Must Northstar choose software before describing its process?",
+          "answer": "No. Understanding the people, information, and decisions makes the software choice and configuration more meaningful."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"]
+      "sourceUrls": [
+        {
+          "title": "Salesforce CRM basics",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"
+        }
+      ]
     },
     {
       "id": "J02",
-      "title": "Что такое Salesforce и кто с ним работает",
-      "goal": "Различать готовый продукт, платформу и среду компании; понимать задачи участников команды.",
+      "title": "Salesforce Products, the Platform, and Your Org",
+      "goal": "Distinguish a product, an application, and an org while learning who uses and changes Salesforce.",
       "sections": [
         {
-          "title": "Продукт и платформа",
+          "title": "A product solves a category of work",
           "paragraphs": [
-            "Salesforce — компания и название семейства её программных продуктов. Они помогают организациям работать с клиентами: например, вести продажи или обрабатывать обращения в поддержку. Готовый продукт предлагает функции для определённой работы. Компания выбирает продукты под свои задачи; слово Salesforce не означает, что у каждого клиента доступен одинаковый набор возможностей.",
-            "Платформа Salesforce — основа, на которой можно менять существующие приложения и создавать свои. Приложением будем называть набор связанных экранов и функций для работы пользователя. Northstar может использовать готовые средства для контактов, а затем добавить собственный учёт тест-драйвов. Часть изменений делается через настройки в браузере, для других потребуется программный код — инструкции, которые пишет разработчик."
+            "Salesforce is both a company name and the name people use for its family of business software. A company can use Salesforce products to support work such as sales or customer service. A product provides a collection of capabilities for a particular purpose. This does not mean every Salesforce customer owns every product or sees the same features.",
+            "Northstar's salespeople need customer details and follow-up work. Its support staff need to track customer problems. A ready-made product can provide a starting point. Northstar may still need changes to match how it arranges test drives. A developer should first understand the available capabilities instead of assuming that every requirement needs a new program."
           ]
         },
         {
-          "title": "Что такое org",
+          "title": "The platform and an individual environment",
           "paragraphs": [
-            "Org — сокращение от organization. Это отдельная среда Salesforce с данными, пользователями и настройками. Пользователь — человек, которому выдали учётную запись для входа. Northstar работает в своей среде. Другая компания работает в своей. Создавая личную учебную среду, ты не получаешь доступ к данным Northstar или работодателя.",
-            "Внутри одной org может быть несколько приложений. Анна открывает приложение для продаж, а сотрудник поддержки — приложение для обращений клиентов. Переключение приложения меняет рабочие экраны, но само по себе не переносит человека в другую org. Какие данные и действия ему доступны, зависит от выданных разрешений. Подробно эти разрешения изучим позже."
+            "The Salesforce platform provides tools for storing data, controlling access, creating applications, and adding business behaviour. An application brings together screens and functions used for a task. Some changes can be made using configuration: settings chosen through the interface. Others require code: written instructions that a programming language can execute. Both approaches still need clear requirements and testing.",
+            "An org, short for organization, is a separate Salesforce environment containing its own data, users, and configuration. A user is an account through which a person signs in. Northstar's working org is distinct from your personal learning org. Creating a learning org does not grant access to an employer's customer information.",
+            "One org can contain several applications. Anna might use a sales application while a support employee opens a service application. Changing application changes the working interface; it does not necessarily change org. Similarly, being able to open an application does not automatically grant access to every record shown in it. Later lessons distinguish the layers of permission."
           ]
         },
         {
-          "title": "Кто использует и кто меняет систему",
+          "title": "People and responsibilities",
           "paragraphs": [
-            "Анна и Максим — обычные пользователи: записывают обращения и выполняют работу с клиентами. Олег — руководитель: уточняет, какой результат нужен компании. Администратор Salesforce настраивает систему, например добавляет поле для нужного сведения и выдаёт сотруднику подходящий доступ. Разработчик Salesforce создаёт программные решения, когда задача требует кода, и проверяет их работу.",
-            "Эти обязанности могут пересекаться: разработчик тоже пользуется настройками, а в небольшой компании один человек совмещает несколько задач. Поэтому сначала выясняют потребность. Если Анне негде указать удобное время звонка, команда обсуждает дополнительное поле. Если нужно получать наличие автомобилей из другой программы, обсуждает обмен данными. Выбор решения идёт после понимания задачи, а не только по названию должности."
+            "Anna and Max use the system to carry out sales work. Oleg defines the team's needs and checks whether the result helps the business. A Salesforce administrator changes configuration, manages access, and maintains the application. A Salesforce developer writes and maintains code when the solution needs it. These are responsibilities, not rigid boundaries: a developer also uses configuration, and a small team may combine several jobs.",
+            "Consider two requests. 'We need a place to store the preferred callback time' may be satisfied by adding a field. 'We need current stock from a separate inventory system' requires investigation of a data exchange. Neither request should be assigned solely because it contains a technical-sounding word. The team must understand the expected behaviour, existing features, and ownership of the source information.",
+            "For this course you will temporarily perform several responsibilities in your own learning org. Keep them conceptually separate. Configuring access as an administrator is not proof that an ordinary salesperson can use the resulting feature."
+          ],
+          "steps": [
+            {
+              "title": "Name the environment",
+              "instruction": "Write down the org you intend to use for learning, separately from any work environment.",
+              "expected": "You can explain where experiments belong."
+            },
+            {
+              "title": "Assign responsibilities",
+              "instruction": "For each request, identify the business decision-maker, configuration work, and any coding work.",
+              "expected": "Unclear ownership becomes a question for Oleg rather than an invented requirement."
+            }
           ]
         }
       ],
       "exercise": [
-        "Распредели пять действий: записать звонок, определить нужный отчёт, выдать доступ, добавить поле, написать обмен данными. Объясни выбор исполнителя."
+        "Identify who uses the result of each request.",
+        "Suggest who clarifies, configures, or develops it.",
+        "Explain one responsibility that two roles may share."
       ],
       "questions": [
-        {"question": "Чем приложение отличается от org?", "answer": "Приложение объединяет рабочие функции и экраны; org содержит пользователей, настройки и данные всей среды."},
-        {"question": "Должен ли разработчик любую задачу решать кодом?", "answer": "Нет. Сначала выясняют требования и проверяют подходящие возможности настройки."}
+        {
+          "question": "What is an org?",
+          "answer": "A separate Salesforce environment containing data, users, and configuration."
+        },
+        {
+          "question": "Does a developer always need to write code?",
+          "answer": "No. Configuration or an existing feature may satisfy the agreed requirement."
+        },
+        {
+          "question": "Does changing application necessarily change org?",
+          "answer": "No. Multiple applications can exist inside one org."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/starting_force_com/starting_understanding_arch", "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"]
+      "sourceUrls": [
+        {
+          "title": "Salesforce architecture",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/starting_force_com/starting_understanding_arch"
+        },
+        {
+          "title": "Salesforce CRM basics",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_welcome"
+        }
+      ]
     },
     {
       "id": "J03",
-      "title": "Интерфейс Salesforce: приложения, списки и карточки",
-      "goal": "Понять назначение основных частей интерфейса до первой самостоятельной работы.",
+      "title": "Create and Reopen a Learning Org",
+      "goal": "Use a browser to create a personal Salesforce learning environment and verify that you can return to the same one.",
       "sections": [
         {
-          "title": "Как найти рабочее приложение",
+          "title": "Know which account opens which place",
           "paragraphs": [
-            "Интерфейс — всё, что человек видит на экране и использует для работы: меню, поля, кнопки и страницы. Современный основной интерфейс Salesforce называется Lightning Experience. Названия на твоём экране могут быть английскими, поэтому мы будем давать английское название и объяснять его смысл. Сейчас важно разобраться в назначении частей экрана; создавать данные пока не нужно.",
-            "App Launcher — меню выбора приложений, обычно со значком из девяти точек. Через него можно найти приложение Sales для работы с продажами. После открытия название приложения видно в верхней части страницы. Рядом расположены разделы навигации, например Contacts — контакты людей. Это маршрут к нужным сведениям внутри выбранного приложения."
+            "Trailhead is Salesforce's learning website. It contains explanations and exercises. A Trailhead Playground is a Salesforce org intended for hands-on learning. Signing in to Trailhead opens the learning website; launching a Playground opens Salesforce itself. They are connected experiences, but they are not the same screen or the same set of stored information.",
+            "For this lesson you need a browser and a way to sign in to Trailhead. You do not need Visual Studio Code, a terminal, or programming experience. We introduce those tools when they have a purpose. Use a personal learning environment rather than an employer's working org, and use fictional customers. Northstar is an invented company, not an account you need to obtain from someone else."
           ]
         },
         {
-          "title": "Список и карточка отвечают на разные вопросы",
+          "title": "Create an identifiable Playground",
           "paragraphs": [
-            "Анна хочет найти сведения об Ирине. Сначала она открывает Contacts и видит список записей. Запись — сведения об одном конкретном человеке или другом элементе; подробнее разберём это в следующем уроке. Список показывает сразу несколько записей. List View — выбранный вариант списка с определёнными условиями отбора, например недавно просмотренные контакты.",
-            "Анна открывает имя Ирины и попадает в карточку одной записи. Здесь удобно читать подробности: имя, телефон и другие сохранённые сведения. Вкладка Details обычно показывает отдельные свойства записи. Related показывает связанные сведения, если они предусмотрены настройкой страницы. Список помогает выбрать нужного человека, карточка — разобраться в информации о нём. Это разные представления данных, а не две разные Ирины."
+            "Open the official Playground creation lesson linked below and sign in to Trailhead. A hands-on challenge is an exercise that checks work in a selected Salesforce org. Near its Launch control, you can choose an existing org or create a Playground. Interface labels can change slightly; identify the create, select, and launch actions by their purpose.",
+            "Give the environment a recognizable name such as SAM Beginner. Wait for creation to finish, then select that environment before launching it. Salesforce opens in another browser tab. If nothing opens, inspect the browser's blocked-pop-up notice before trying repeated creation. Accidentally making several similar environments makes it harder to know where your work lives.",
+            "A newly created org may contain sample records and applications. Those records are not Northstar's finished project. The Northstar objects are introduced through configuration or the starter project later. Not seeing Vehicle on your first visit is therefore expected. Do not install an unrelated package just to make the interface resemble a later lesson."
+          ],
+          "steps": [
+            {
+              "title": "Sign in to the learning website",
+              "instruction": "Open Trailhead and use your chosen sign-in method.",
+              "expected": "You can access your learning profile."
+            },
+            {
+              "title": "Create or select the org",
+              "instruction": "Find the hands-on org selector, create SAM Beginner if necessary, and wait for readiness.",
+              "expected": "The selector identifies the environment you intend to use."
+            },
+            {
+              "title": "Launch Salesforce",
+              "instruction": "Select that org and choose Launch; allow the new tab if the browser blocks it.",
+              "expected": "A Salesforce page opens without needing development tools."
+            },
+            {
+              "title": "Inspect without changing",
+              "instruction": "Locate App Launcher, an available application, and Setup if your learning account permits it.",
+              "expected": "You recognize the areas introduced in J04."
+            }
           ]
         },
         {
-          "title": "Где находятся настройки",
+          "title": "Prove that the environment is yours to revisit",
           "paragraphs": [
-            "Setup — область настройки Salesforce. При наличии разрешений её можно открыть через значок шестерёнки и пункт Setup. Здесь администратор меняет устройство системы: например, управляет пользователями или добавляет поле. Анна записывает номер конкретного клиента в рабочем приложении; администратор определяет, какие сведения система вообще позволяет хранить. Это разные действия.",
-            "В учебной среде расположение разделов может отличаться от иллюстрации: влияют приложение, язык и настройки. Отсутствие контакта в выбранном списке ещё не означает, что контакт удалён: возможно, он не подходит под условия списка. Отсутствие кнопки Setup тоже не означает поломку: у пользователя может не быть нужного доступа. Сначала проверь, где находишься и что именно пытаешься найти."
+            "Close the Salesforce tab and launch the same Playground again from Trailhead. Check the selected environment name before launching. Two environments may look almost identical, so visual similarity alone is not sufficient evidence. Record the environment's friendly name and the route you used to reopen it in a private learning note.",
+            "A Salesforce username and a contact email can be different. Do not guess credentials or publish them in an assignment screenshot. Trailhead provides a separate lesson for obtaining Playground credentials when a later tool requires them. For today's browser route, successfully reopening the selected org is the important result.",
+            "Developer Edition is another kind of environment commonly used for learning and development. If you already have one, discuss whether it fits the upcoming exercises rather than assuming every environment is interchangeable. A new beginner can follow the Playground route consistently. If an application is unavailable, note its absence and ask a precise question; changing random settings is not part of this exercise."
           ]
         }
       ],
       "exercise": [
-        "Нарисуй маршрут Анны: App Launcher → Sales → Contacts → список → карточка Ирины. Отдельно отметь путь к Setup."
+        "Launch the same org twice.",
+        "Record its friendly name and your navigation route.",
+        "Record the first Salesforce page you see; omit credentials. You will explore its navigation in J04."
       ],
       "questions": [
-        {"question": "Где искать телефон конкретного человека?", "answer": "В его карточке, если сведения сохранены и доступны тебе."},
-        {"question": "Нужно ли открывать Setup, чтобы прочитать контакт?", "answer": "Нет. Данные читают в рабочем приложении; Setup служит для настройки системы."}
+        {
+          "question": "Is VS Code required for this lesson?",
+          "answer": "No. A browser and a learning org are enough."
+        },
+        {
+          "question": "Why can two orgs look alike?",
+          "answer": "They may use the same interface and sample configuration while containing separate data."
+        },
+        {
+          "question": "Does a Playground include every Salesforce product?",
+          "answer": "No. Product availability and special lesson requirements must be checked separately."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup", "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started", "https://trailhead.salesforce.com/content/learn/modules/setup-quick-look/learn-to-use-setup-and-the-object-manager"]
+      "sourceUrls": [
+        {
+          "title": "Create a Trailhead Playground",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management/create-a-trailhead-playground"
+        },
+        {
+          "title": "Playground credentials",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management/get-your-trailhead-playground-username-and-password"
+        }
+      ]
     },
     {
       "id": "J04",
-      "title": "Объекты, поля и записи",
-      "goal": "Отличать устройство данных от конкретных сведений, которые вводят пользователи.",
+      "title": "Finding Your Way Around Salesforce",
+      "goal": "Recognize an application, navigation item, list, record page, and Setup without assuming previous Salesforce use.",
       "sections": [
         {
-          "title": "Три слова на одном примере",
+          "title": "Understand the screen before changing it",
           "paragraphs": [
-            "Представим, что Northstar хочет вести каталог автомобилей. Объект описывает вид данных, которые система хранит. Для нашего примера это «Автомобиль». Поле описывает отдельное свойство такого автомобиля: модель, цвет или год выпуска. Запись содержит сведения об одном конкретном автомобиле. Когда в каталоге две машины, нужны две записи одного объекта.",
-            "Первый автомобиль: Northstar City, синий, 2024 года. Второй: Northstar Touring, белый, 2025 года. «Цвет» — название поля, а «синий» — значение этого поля в первой записи. Во второй записи то же поле содержит «белый». Удобная аналогия — таблица: название таблицы соответствует объекту, заголовки столбцов напоминают поля, строки — записи. Это объяснение структуры, а не требование работать в электронной таблице."
+            "An interface is the collection of pages, menus, fields, and controls through which a person uses software. Lightning Experience is Salesforce's main modern desktop interface. Your learning org may show different applications or labels from an illustration because its language, configuration, and permissions can differ. We will explain the purpose of each area rather than rely on a pixel-perfect screenshot.",
+            "The App Launcher, commonly shown as a grid of dots, helps you find available applications and items. Search for Sales to open a sales workspace if it is available. The application name helps you recognize where you are. Its navigation items lead to areas such as Contacts. A contact is information about a person; we will examine the underlying data model in J05 and J07."
           ]
         },
         {
-          "title": "Добавить поле и добавить запись — разные изменения",
+          "title": "Move from several records to one record",
           "paragraphs": [
-            "Если привезли третий автомобиль, Анна добавляет ещё одну запись. Для этого не нужно создавать новый объект или новое поле. Если компания решила хранить пробег каждой машины, администратор добавляет поле «Пробег» в описание объекта. Теперь такое свойство можно заполнять у разных автомобилей. Значение пробега каждой машины нужно получить отдельно: новое поле не узнаёт его автоматически.",
-            "У поля есть тип данных — правило о том, какие значения оно хранит. Для модели подходит текст, для пробега — число, для дня регистрации — дата. Это помогает системе правильно обрабатывать сведения. Например, числа можно сравнивать по величине. Если смешать число и пояснение в одном текстовом поле «15000 километров примерно», надёжно сравнивать пробег станет сложнее."
+            "A record is information about one specific item, such as one person or one test drive. A list shows several records so that you can find and compare them. A list view is a selected way of displaying that list, often with conditions that determine which records appear. 'Recently Viewed' is therefore not a promise to display every contact in the org.",
+            "Suppose Anna wants Irina's telephone number. She opens Contacts, finds the appropriate person, and opens the record. The record page presents information about that one contact. A Details area commonly displays field values, while Related presents associated information where the page supports it. The list and the record page are different views of the same stored information, not separate copies of the person.",
+            "If Irina is absent from one list, first inspect the selected view and its conditions. A missing row can mean that the view excludes it, that your access excludes it, or that no matching record exists. Immediately creating another Irina may produce a duplicate. Searching and explaining the current view is a better first move."
           ]
         },
         {
-          "title": "Как сведения связываются",
+          "title": "Keep configuration separate from daily work",
           "paragraphs": [
-            "В Salesforce уже есть стандартные объекты, например Contact для контактов. Собственный объект создают под нужды компании, которых не покрывает выбранная готовая структура. В наших лабораторных «Автомобиль» будет отдельным учебным объектом. Это условие проекта, а не утверждение, что любая автомобильная компания обязана строить свою систему именно так.",
-            "Запись тест-драйва понадобится связать с конкретным автомобилем. Связь хранит указание на нужную запись: можно понять, какую машину выбрала Ирина. Это полезнее случайно набранного названия, которое легко написать с ошибкой. Пока достаточно различать две вещи: свойства самой машины и отдельные события с её участием. Один автомобиль может участвовать в нескольких тест-драйвах в разные дни. Виды связей изучим после этой основы."
+            "Setup is the configuration area of Salesforce. When permitted, you can reach it through the gear menu. It is where an administrator manages features such as users and object definitions. Entering a telephone number for one customer is everyday data work. Adding a new kind of field to store telephone numbers is a configuration change that can affect many records.",
+            "A missing Setup option can reflect permissions. A missing application may reflect availability or configuration. Do not assume a broken installation or ask for broad access before understanding the symptom. At this stage, your goal is to recognize the route and describe what you see. You are not expected to troubleshoot every permission or customize every page.",
+            "Write a short navigation diary. Describe where you started, the item you selected, and the information you expected. This habit becomes useful when reporting a bug: 'I cannot find the record in Recently Viewed' is much more precise than 'Salesforce is broken.'"
+          ],
+          "steps": [
+            {
+              "title": "Find an application",
+              "instruction": "Use App Launcher to locate Sales, or record the available application names if it is absent.",
+              "expected": "You can identify an application and its navigation."
+            },
+            {
+              "title": "Compare two pages",
+              "instruction": "Open a list of sample contacts and then one sample record.",
+              "expected": "You can distinguish the collection from a single item."
+            },
+            {
+              "title": "Locate Setup",
+              "instruction": "Find the gear menu and Setup in your own learning org, if permitted.",
+              "expected": "You can identify configuration without changing it."
+            }
           ]
         }
       ],
       "exercise": [
-        "Нарисуй объект «Автомобиль» с тремя полями и двумя записями. Затем отдельно покажи добавление третьей машины и поля «Пробег»."
+        "Include App Launcher, application, navigation item, list, and record page.",
+        "Mark Setup as a separate configuration route.",
+        "Describe why a missing row in a filtered list does not prove deletion."
       ],
       "questions": [
-        {"question": "«Синий» — это поле или значение?", "answer": "Значение поля «Цвет» у конкретной записи."},
-        {"question": "Нужен ли новый объект для каждой машины?", "answer": "Нет. Конкретные машины представлены отдельными записями объекта «Автомобиль»."}
+        {
+          "question": "Does Recently Viewed contain every record?",
+          "answer": "No. It is a particular list view, not a complete inventory of all accessible records."
+        },
+        {
+          "question": "Where should Anna read one customer's telephone number?",
+          "answer": "On that customer's record page, provided the field and record are accessible."
+        },
+        {
+          "question": "Why might Setup be unavailable?",
+          "answer": "The signed-in user may lack permission; the absence is not by itself evidence of a software failure."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro"]
+      "sourceUrls": [
+        {
+          "title": "Navigate Salesforce and Setup",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_basics/lex_implementation_basics_setup"
+        },
+        {
+          "title": "Work with lists and records",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/lex_salesforce_basics/lex_salesforce_basics_getting_started"
+        }
+      ]
     },
     {
       "id": "J05",
-      "title": "Учебная среда Salesforce и первый вход",
-      "goal": "Открыть свою учебную Salesforce org через браузер и научиться возвращаться в неё.",
+      "title": "Objects, Fields, and Records",
+      "goal": "Use a small vehicle catalogue to distinguish the shape of information from individual stored items.",
       "sections": [
         {
-          "title": "Где будем практиковаться",
+          "title": "One catalogue, several vehicles",
           "paragraphs": [
-            "Trailhead — учебная платформа Salesforce с объяснениями и практическими заданиями. Trailhead Playground — отдельная учебная org, которую можно создать для таких заданий. Учётная запись Trailhead открывает учебный сайт, а Playground открывает сам Salesforce. Это разные части работы, хотя перейти из одной в другую можно кнопкой Launch — «Запустить».",
-            "Для этого урока достаточно браузера. Устанавливать редактор кода или инструменты командной строки сейчас не требуется. Мы сначала научимся находить свою среду и ориентироваться внутри. Создай личный Playground с понятным названием SAM Beginner. В упражнениях используй вымышленных людей и автомобили; рабочие данные компании для этих шагов не нужны."
+            "Northstar needs to keep information about vehicles it can offer customers. An object describes a kind of information stored in Salesforce. Our example is Vehicle. A field describes one property of that kind of item, such as Model or Status. A record stores the values for one particular vehicle. Two physical vehicles require two records, even if their models are identical.",
+            "Imagine a table with Model, VIN, and Status as column headings. Each row describes a vehicle. The table is a useful analogy for an object, the column headings resemble fields, and the rows resemble records. The analogy helps you read the structure; it does not mean Salesforce is simply a spreadsheet or that every application must be designed as one large table."
           ]
         },
         {
-          "title": "Последовательность первого входа",
-          "paragraphs": ["Названия и расположение элементов могут немного меняться. Ориентируйся на смысл: выбрать учебную org, создать её при необходимости и открыть. Если экран отличается, сравни его с официальным уроком Create a Trailhead Playground по ссылке ниже."],
+          "title": "Separate a field definition from its value",
+          "paragraphs": [
+            "The course starter uses Vehicle__c, with Model__c, VIN__c, and Status__c. The __c suffix identifies a custom object or field in these API names. An API name is the identifier used by configuration files and code; the visible label is the name a user reads. For now, recognize the distinction without memorizing every naming rule.",
+            "Model__c is a text field. 'City EV' is one possible value. Status__c is a picklist: a field offering a defined set of choices. In the starter those choices are Available, Reserved, and Unavailable. VIN__c is text with a uniqueness constraint in this educational schema. A constraint is a rule the system applies to stored data. We use fictional identifiers, not real vehicle or customer information.",
+            "When a third vehicle arrives, Anna creates another record. When Oleg decides every vehicle needs a mileage value, the team considers adding a field. Adding the field does not automatically discover each vehicle's mileage. Someone must supply the values or define a reliable source. Confusing these two changes leads to duplicate objects and missing business information."
+          ]
+        },
+        {
+          "title": "Introduce relationships carefully",
+          "paragraphs": [
+            "A test drive is a separate event involving a vehicle and a customer. Northstar may run several test drives for the same vehicle on different days. Copying the entire vehicle description into every event would make updates difficult. A relationship instead points from one record to another, allowing the event to identify its vehicle.",
+            "The starter Test_Drive__c object includes Vehicle__c, a relationship to a vehicle; Customer__c, a relationship to Contact; Scheduled_At__c, a date and time; and Status__c, the event's status. The vehicle's availability and the test drive's progress answer different questions. A vehicle can be Available while one earlier test drive is Completed. Do not merge those status fields into one shared meaning.",
+            "You do not need to configure the relationship yet. J09 explains its behaviour. Today's task is to describe which information belongs to a vehicle and which belongs to a particular appointment, and to notice why one item can participate in many events."
+          ],
           "steps": [
-            {"title": "Войди в Trailhead", "text": "Открой trailhead.salesforce.com и создай учётную запись или войди в существующую. Сохрани способ входа, которым воспользовался."},
-            {"title": "Открой практическое задание", "text": "В учебном модуле найди раздел Hands-on Challenge — задание, которое выполняют в настоящей учебной среде Salesforce."},
-            {"title": "Выбери или создай среду", "text": "Рядом с Launch открой выбор org. Если подходящей среды нет, выбери Create Playground, задай название и дождись готовности."},
-            {"title": "Запусти нужную org", "text": "Убедись, что выбран SAM Beginner, и нажми Launch. Salesforce откроется в новой вкладке; при необходимости разреши браузеру её открыть."},
-            {"title": "Найди рабочие области", "text": "Через App Launcher попробуй открыть Sales. Затем найди шестерёнку и Setup. Сейчас только осмотри страницы, не меняя настройки."}
-          ]
-        },
-        {
-          "title": "Проверь повторный вход",
-          "paragraphs": [
-            "Закрой вкладку Salesforce и снова открой тот же Playground через Trailhead. Проверь его название в списке перед запуском: несколько учебных org могут выглядеть почти одинаково. Если Sales не находится, запиши, какие приложения доступны, и уточни это с преподавателем. Тебе пока не нужно исправлять неизвестную настройку самостоятельно.",
-            "Сохрани у себя название среды и страницу Trailhead, откуда её запускаешь. Пароль и данные для входа не нужны в отчёте о задании. Developer Edition — другой вариант отдельной среды для обучения и разработки; если она уже есть, согласуй её использование с преподавателем. Для этого первого маршрута проще следовать шагам с Playground."
+            {
+              "title": "Create two paper records",
+              "instruction": "Draw two vehicle cards with different fictional VIN values and the same field names.",
+              "expected": "The cards share a structure but identify different vehicles."
+            },
+            {
+              "title": "Add one event",
+              "instruction": "Draw a test-drive card and an arrow to one vehicle card.",
+              "expected": "The event refers to the selected vehicle rather than duplicating the whole catalogue."
+            },
+            {
+              "title": "Classify a change",
+              "instruction": "Describe adding another vehicle, then adding a mileage field.",
+              "expected": "You distinguish a data change from a structure change."
+            }
           ]
         }
       ],
       "exercise": [
-        "Дважды открой одну учебную org. Запиши её название, найденное приложение и место, откуда открыл Setup."
+        "Write the field names once for each object.",
+        "Give each vehicle a distinct fictional identifier.",
+        "Connect two events to the same vehicle on different days."
       ],
       "questions": [
-        {"question": "Нужен ли VS Code для первого входа?", "answer": "Нет. В этом уроке достаточно браузера и учебной среды."},
-        {"question": "Открывает ли Playground данные работодателя?", "answer": "Нет. Это отдельная учебная org со своими данными и настройками."}
+        {
+          "question": "Is City EV a field?",
+          "answer": "No. It is a possible value of the Model field."
+        },
+        {
+          "question": "Does every physical car need a different custom object?",
+          "answer": "No. It needs a separate record in the Vehicle object."
+        },
+        {
+          "question": "Why separate a test drive from a vehicle?",
+          "answer": "A vehicle can take part in several events with different customers, dates, and outcomes."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management", "https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management/create-a-trailhead-playground"]
+      "sourceUrls": [
+        {
+          "title": "Understand objects",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/objects_intro"
+        }
+      ]
     },
     {
       "id": "J06",
-      "title": "Как читать задачу разработчика",
-      "goal": "Превратить короткую просьбу в понятную задачу с вопросами и проверяемым результатом.",
+      "title": "Turn a Request into a Testable Task",
+      "goal": "Clarify who needs a feature, what information it uses, and how you will know it works before choosing a tool.",
       "sections": [
         {
-          "title": "Просьба ещё не описывает всё решение",
+          "title": "A short request contains unanswered decisions",
           "paragraphs": [
-            "Олег, руководитель продавцов Northstar, просит: «Сделайте запись на тест-драйв в Salesforce». Из этой фразы понятно направление, но пока непонятно, что именно нужно построить. Разработчик сначала выясняет, кому нужна функция, какую проблему она решает и как сотрудники будут ею пользоваться. Умение задать вопрос здесь полезнее поспешного выбора инструмента.",
-            "Уточнённая цель может звучать так: «Анне нужно сохранять выбранный Ириной автомобиль и согласованное время поездки, чтобы Максим мог провести встречу в её отсутствие». Здесь назван пользователь функции — Анна, сведения — автомобиль и время, польза — передача встречи другому сотруднику. Ирина при этом остаётся клиентом; из задачи ещё не следует, что ей нужен собственный вход в Salesforce."
+            "Oleg asks, 'Please add test-drive booking to Salesforce.' This expresses a useful direction, but it is not yet a complete task. Who makes the booking? What information is required? What does booking mean: recording a request, reserving a vehicle, or confirming a customer appointment? These choices affect the data, permissions, and behaviour that the team will eventually build.",
+            "Start with the people. Anna needs to record the vehicle and time agreed with Irina so that Max can host the appointment when Anna is away. Anna is the user of this proposed function; Irina is the customer receiving the service. The request does not imply that Irina needs a Salesforce login. Separating the person using the screen from the person affected by the business outcome prevents an unnecessary external portal."
           ]
         },
         {
-          "title": "Что выяснить до реализации",
+          "title": "Ask questions in a workable order",
           "paragraphs": [
-            "Сначала разберись с исходными данными: где уже хранится автомобиль, как найти Ирину, кто определяет свободное время. Затем уточни действия: Анна только создаёт заявку или также подтверждает и отменяет её? Наконец, обсуди исключения: что делать, если автомобиль недоступен, время уже занято или Ирина передумала. Пока ответа нет, запиши вопрос, а не выдумывай правило от имени компании.",
-            "Не каждую неопределённость нужно решать сложной программой. Олег может объяснить, что на первом этапе время проверяет сотрудник, а система лишь сохраняет договорённость. Это уже конкретная граница задачи. Отдельно отметь, какие возможности нужны сейчас, какие обсудят позже и кто подтвердил решение. Так преподаватель сможет понять твои предположения при проверке учебной работы."
+            "First identify the information. Does the vehicle already exist in the catalogue? How is the customer identified? Which time zone does the team use? Then identify the actions: can Anna create, change, confirm, and cancel the appointment? Finally investigate exceptional situations: a vehicle becomes unavailable, a time is already occupied, or Irina changes her mind.",
+            "Do not quietly invent answers. Write unknowns as questions and proposals as proposals. Oleg might decide that the first version simply records an appointment after a salesperson checks availability manually. Automatic calendar coordination would then be a later feature. That is a legitimate small scope when it is agreed and described honestly.",
+            "Scope is the boundary of the current task. For our first booking feature, an agreed scope might include a vehicle, customer, scheduled time, and appointment status. It might exclude payment, vehicle ownership transfer, and automated reminders. Stating the exclusions helps a reviewer understand what the exercise is intended to demonstrate, without pretending those business needs never exist."
           ]
         },
         {
-          "title": "Как понять, что задача выполнена",
+          "title": "Define evidence of success and failure",
           "paragraphs": [
-            "Критерии приёмки — понятные условия, по которым заказчик и разработчик проверяют результат. Например: «Анна выбирает существующий автомобиль и время, сохраняет заявку, затем открывает её и видит те же значения». Это можно выполнить и проверить. Фраза «сделать удобно и правильно» сама по себе не задаёт такой проверки: разные люди понимают её по-разному.",
-            "Добавь проверку неправильного ввода: «Без автомобиля заявку сохранить нельзя; пользователь видит объяснение». Это пока предложенное правило — его нужно согласовать. Проверь и передачу работы: Максим должен находить назначенные ему встречи, если это входит в задачу. Только после согласования данных, действий и ожидаемых результатов выбирай способ настройки или код. В этом уроке результат твоей работы — ясное описание, а не готовая программа."
+            "Acceptance criteria are conditions used to decide whether the agreed behaviour has been delivered. 'Make booking easy' is too ambiguous to test on its own. 'Anna selects an existing vehicle and future time, saves the appointment, reopens it, and sees the same values' describes observable actions and results. A reviewer can repeat that scenario.",
+            "Also describe an invalid case. For example, propose that an appointment without a vehicle cannot be confirmed, and that the interface explains what is missing. This is a proposed rule until Oleg agrees. Distinguish that requirement from an implementation suggestion such as 'use a validation rule.' The behaviour should be understood before the team chooses the mechanism.",
+            "Finally, think about handover. If Max must conduct the appointment, specify how he identifies the relevant record and whether he may edit it. 'The record exists' is not enough if the intended colleague cannot find it. In later lessons you will implement the data and access choices. Today's deliverable is a clear, small task that another person can understand and test."
+          ],
+          "steps": [
+            {
+              "title": "Rewrite the request",
+              "instruction": "Name Anna, the information she records, and the business benefit.",
+              "expected": "The task describes a person and an outcome."
+            },
+            {
+              "title": "Identify uncertainty",
+              "instruction": "Write questions about required data, time, cancellation, and Max's access.",
+              "expected": "Open decisions remain visible."
+            },
+            {
+              "title": "Write two acceptance examples",
+              "instruction": "Describe one valid booking and one rejected input using explicit expected results.",
+              "expected": "A reviewer can reproduce both cases without interpreting vague adjectives."
+            }
           ]
         }
       ],
       "exercise": [
-        "Для просьбы Олега запиши цель, пользователя, исходные данные, три уточняющих вопроса и два проверяемых критерия приёмки. Отметь предположения отдельно."
+        "State the goal and the user.",
+        "List required information, three unanswered questions, and the current scope.",
+        "Write one successful and one unsuccessful example."
       ],
       "questions": [
-        {"question": "Можно ли считать придуманное ограничение согласованным требованием?", "answer": "Нет. Отметь его как предложение или вопрос и получи подтверждение."},
-        {"question": "Что делает критерий приёмки полезным?", "answer": "Конкретное действие и наблюдаемый результат, позволяющие понять, выполнено условие или нет."}
+        {
+          "question": "Can an invented restriction be treated as a requirement?",
+          "answer": "No. Record it as a proposal and ask the decision-maker to confirm it."
+        },
+        {
+          "question": "Why identify Max in the task?",
+          "answer": "Because the handover may require access and a way to find the appointment, not merely record creation."
+        },
+        {
+          "question": "What makes an acceptance criterion testable?",
+          "answer": "Concrete inputs and actions with an observable expected outcome."
+        }
       ],
-      "sourceUrls": ["https://trailhead.salesforce.com/content/learn/modules/user-story-creation/construct-a-user-story"]
+      "sourceUrls": [
+        {
+          "title": "Construct a user story and acceptance criteria",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/user-story-creation/construct-a-user-story"
+        }
+      ]
     }
   ]
 }

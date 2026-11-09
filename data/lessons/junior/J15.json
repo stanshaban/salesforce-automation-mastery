@@ -1,0 +1,129 @@
+{
+  "id": "J15",
+  "track": "junior",
+  "title": "Trace the Source of an Access Problem",
+  "minutes": 50,
+  "summary": "Investigate missing or excessive access with evidence, one hypothesis, and a minimal correction.",
+  "prerequisites": [
+    "Complete the earlier Junior lessons and use only your personal learning org."
+  ],
+  "learningObjectives": [
+    "Write a reproducible access symptom.",
+    "Trace an effective grant to its source.",
+    "Verify a minimal correction and its boundary."
+  ],
+  "sections": [
+    {
+      "heading": "Write a reproducible access report",
+      "body": [
+        "Anna reports that Max cannot see an appointment. Begin by asking which user, which record, which fields, and which action. Record the route through the application and the exact visible result. 'Missing from Recently Viewed' and 'access denied when opening a known record' are different observations. The first may concern a list; the second is stronger evidence about record access.",
+        "Use fictional records and private identifiers in the investigation note. Include the time of the check and the configuration changes that occurred shortly before it. A problem that started after a permission-set assignment is a useful clue, but timing alone does not prove the cause. Treat it as a hypothesis to investigate."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "A diagnosis explains the observed behaviour. A workaround merely makes the immediate symptom disappear."
+        }
+      ]
+    },
+    {
+      "heading": "Inspect grants before adding them",
+      "body": [
+        "Open the relevant user in Setup and inspect View Summary where available. The User Access Summary consolidates useful permission and assignment information. Access Granted By can show which profile, permission set, or permission set group supplies a particular permission. Refresh the summary after assignment changes and remember that not every possible access feature is represented in one screen.",
+        "For missing object Read, inspect all object grants. For a field issue, inspect field permissions and the page configuration separately. For a record issue, inspect ownership, OWD, hierarchy settings, group memberships, sharing rules, manual shares, and broad record-access permissions. The checklist narrows the cause; it does not justify changing every item.",
+        "Unexpected access deserves the same discipline. Suppose Max can edit vehicles even though SAM Appointment Editor grants only Read. The starter SAM_Lab_Basics assignment may still grant Edit. Adding another 'read-only' permission set will not subtract it. Identify the actual granting source and decide whether removing or modifying that source is consistent with the business requirement."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "Removing a permission from a shared permission set can affect every assigned user, not just the person in your bug report."
+        }
+      ]
+    },
+    {
+      "heading": "Use three deliberately different cases",
+      "body": [
+        "Prepare a missing-object case, a missing-field case, and a missing-record case in a controlled learning setup. Change one relevant assignment or sharing condition per case. If your org has too few users, execute the cases sequentially with a restricted test identity and restore the documented baseline between them. Record which simultaneous ownership scenarios remain untested.",
+        "For each case, write an expected symptom before changing configuration. Then inspect the actual outcome. A field removed from a layout should not be labelled an FLS failure. A record filtered out by a list should not be labelled a sharing failure. These distinctions matter because a broad 'fix' can create access that nobody requested.",
+        "Propose the smallest justified correction. If Max needs one particular appointment, consider a bounded record grant rather than View All Records. If his role requires an object operation, consider the relevant task-based permission set rather than an administrator profile. Have the business owner confirm ambiguous needs.",
+        "Retest the original action and one boundary. If the intended appointment is now visible, verify an unrelated private appointment remains unavailable. Finally restore temporary test changes and preserve the explanation. The useful deliverable is a short causal account: symptom, evidence, source, correction, and regression check."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Could a reviewer reproduce your conclusion using the same user, record, and configuration evidence?"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Capture the symptom",
+          "instruction": "Record the identity, action, record, field, route, and exact result.",
+          "expected": "The report is specific."
+        },
+        {
+          "title": "Inspect a likely source",
+          "instruction": "Use the user access summary plus the appropriate object, field, or sharing configuration.",
+          "expected": "The hypothesis has evidence."
+        },
+        {
+          "title": "Apply one correction",
+          "instruction": "Change only the justified granting source in the learning setup.",
+          "expected": "The original action has a predictable outcome."
+        },
+        {
+          "title": "Retest a boundary",
+          "instruction": "Try an unrelated record or excluded operation.",
+          "expected": "The correction has not silently broadened access beyond the task."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Submit three small investigations",
+    "brief": "Diagnose one object, one field, and one record access case.",
+    "steps": [
+      "Write the symptom and hypothesis for each.",
+      "Identify the actual relevant configuration source.",
+      "Record the correction and a successful regression check."
+    ],
+    "acceptance": [
+      "A layout issue is not mislabeled as FLS.",
+      "A filter issue is not mislabeled as sharing.",
+      "Any unavailable execution check is stated honestly."
+    ]
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why inspect Access Granted By?",
+      "answer": "It helps identify the actual source of a permission rather than guessing which assignment matters."
+    },
+    {
+      "question": "Will a read-only set cancel Edit from another source?",
+      "answer": "No. Permissions are additive; inspect the Edit grant."
+    },
+    {
+      "question": "Why retest an unrelated private record?",
+      "answer": "It checks that the correction did not grant a broader scope than intended."
+    }
+  ],
+  "recap": [
+    "Write a reproducible access symptom.",
+    "Trace an effective grant to its source.",
+    "Verify a minimal correction and its boundary."
+  ],
+  "sources": [
+    {
+      "title": "User Access Summary",
+      "url": "https://help.salesforce.com/s/articleView?id=platform.users_access_summary.htm&language=en_US&type=5"
+    },
+    {
+      "title": "Permissions and access settings",
+      "url": "https://help.salesforce.com/s/articleView?id=permissions_about_users_access.htm&language=en_US"
+    }
+  ],
+  "illustration": {
+    "subject": "a magnifying glass tracing two different paths toward the same accessible record",
+    "alt": "A magnifying glass tracing two different paths toward the same accessible record",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Finding Access Sources. Subject: a magnifying glass tracing two different paths toward the same accessible record."
+  }
+}

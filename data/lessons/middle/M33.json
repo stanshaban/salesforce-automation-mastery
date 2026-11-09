@@ -1,0 +1,136 @@
+{
+  "id": "M33",
+  "track": "middle",
+  "title": "Automotive Cloud data modeling",
+  "minutes": 50,
+  "summary": "Compare the small custom vehicle model with Automotive Cloud's industry entities and decide what additional business requirements would justify the product.",
+  "prerequisites": [
+    "Junior objects, relationships, Contact, Account, and Asset concepts.",
+    "The core Vehicle__c/Test_Drive__c training model."
+  ],
+  "learningObjectives": [
+    "Distinguish a vehicle definition from an individual vehicle.",
+    "Explain Asset and participant relationships at a conceptual level.",
+    "Evaluate product fit without requiring a paid environment."
+  ],
+  "sections": [
+    {
+      "heading": "Understand the mechanism",
+      "body": [
+        "The core SAM project uses Vehicle__c to teach Salesforce development with a small owned schema. That custom object is not the Automotive Cloud Vehicle standard object, and deploying the starter does not install the industry product. Similar labels can conceal different APIs, relationships, licenses, and business capabilities. Keep the two models visibly separate.",
+        "Automotive Cloud's Vehicle Definition extends product information with model-level vehicle characteristics, such as dimensions or powertrain specifications. An individual Vehicle represents a particular vehicle instance. A model definition can therefore describe many actual vehicles. Storing all model specifications repeatedly on every custom vehicle may work for a prototype but creates consistency and maintenance concerns as the business grows.",
+        "Asset represents an owned or installed product in the broader Salesforce model. Automotive's model includes relationships and participants that connect assets, vehicles, customers, accounts, warranties, and lifecycle information. Do not reduce these relationships to an assumed one-to-one field without reading the actual object documentation. The right mapping depends on what the company tracks: possession, ownership, service responsibility, sales, or finance.",
+        "A product decision needs more than counting objects. Ask whether Northstar needs manufacturer/dealer relationships, vehicle history, warranty terms, ownership changes, service processes, and supported integrations. Compare licensing, implementation effort, data migration, team skills, and fit to existing processes. An industry model can reduce custom reinvention when its semantics match the business; a small custom solution may still be appropriate for a narrower requirement."
+      ],
+      "callouts": [
+        {
+          "kind": "idea",
+          "text": "Map business meaning before mapping field names or choosing an industry product."
+        }
+      ]
+    },
+    {
+      "heading": "Northstar Motors worked example",
+      "body": [
+        "Irina considers a City EV model, then buys a particular vehicle with its own VIN. The model's battery specification belongs to a shared definition; the individual vehicle's identity and lifecycle belong to the instance. Later, a different person may own or use that same vehicle, while service and warranty history must remain understandable. These are richer relationships than a single Customer__c lookup on a test-drive request.",
+        "Create a mapping sheet with three columns: core teaching concept, Automotive concept, and unresolved question. Map Vehicle__c.Model__c toward model/definition information, Vehicle__c.VIN__c toward individual vehicle identity, and Contact toward a participant in a business relationship. Do not declare the mapping deployable until actual standard-object fields and relationship cardinalities are verified."
+      ],
+      "callouts": [
+        {
+          "kind": "check",
+          "text": "Which information changes for one physical vehicle, and which should remain shared by every vehicle of the same definition?"
+        }
+      ]
+    },
+    {
+      "heading": "Build and inspect",
+      "body": [
+        "Mandatory: use the official data-model gallery and supplied scenario to build the mapping. Optional: use an available Automotive Cloud trial in a separate org. The official trial page currently lists a 30-day option, but verify its terms, features, and expiration before registering."
+      ],
+      "callouts": [],
+      "steps": [
+        {
+          "title": "Read the industry diagram",
+          "instruction": "Locate Vehicle Definition, Vehicle, Asset, Account/Contact participants, and warranty-related entities in the official model. Explain each in ordinary business language.",
+          "expected": "The learner can distinguish definitions, instances, and relationships."
+        },
+        {
+          "title": "Map the Northstar scenario",
+          "instruction": "Trace Irina considering a model, selecting a specific vehicle, becoming a participant, and later requesting service. Record gaps in the custom starter.",
+          "expected": "The map exposes business requirements rather than merely renamed objects."
+        },
+        {
+          "title": "Compare two implementation choices",
+          "instruction": "Choose two requirements where the industry model may add value and one narrow requirement the custom project already handles. If using a trial, verify object availability and label live observations separately.",
+          "expected": "The recommendation includes fit, cost, migration, and evidence limits."
+        }
+      ]
+    },
+    {
+      "heading": "Failure cases and boundaries",
+      "body": [
+        "Copying custom-object Apex and changing Vehicle__c to Vehicle is not a migration strategy. Field names, relationships, permissions, validation, and product processes need explicit mapping.",
+        "A trial contains a limited environment and possibly sample configuration. Do not assume every observed feature is included in every customer's edition or license package."
+      ],
+      "callouts": [
+        {
+          "kind": "warning",
+          "text": "The core project and the required clinic do not require an Automotive Cloud purchase or trial."
+        }
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Create an Automotive model comparison",
+    "brief": "Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed.",
+    "steps": [
+      "Identify definition, instance, and participants.",
+      "List verified mappings and open questions.",
+      "Compare two product-fit benefits and implementation costs."
+    ],
+    "acceptance": [
+      "Vehicle__c is not confused with the industry Vehicle API.",
+      "Relationships are not invented from labels.",
+      "No unavailable trial blocks the core course."
+    ],
+    "stretch": "Explain one limitation and propose a small follow-up experiment before extending the implementation."
+  },
+  "knowledgeCheck": [
+    {
+      "question": "Why separate a Vehicle Definition?",
+      "answer": "It holds shared model characteristics rather than repeating them on every physical vehicle."
+    },
+    {
+      "question": "Is the custom starter Automotive Cloud?",
+      "answer": "No. It is an independent teaching schema on the core platform."
+    },
+    {
+      "question": "What should be verified before migration?",
+      "answer": "Actual APIs, relationships, cardinalities, permissions, licensing, lifecycle semantics, and data transformation needs."
+    }
+  ],
+  "recap": [
+    "Separate definitions from instances.",
+    "Map lifecycle relationships.",
+    "Choose a product from requirements and evidence."
+  ],
+  "sources": [
+    {
+      "title": "Automotive data-model gallery",
+      "url": "https://developer.salesforce.com/docs/platform/data-models/guide/automotive-cloud-overview.html"
+    },
+    {
+      "title": "Connecting vehicle and customer data",
+      "url": "https://trailhead.salesforce.com/content/learn/modules/automotive-cloud-foundations/connect-customer-and-vehicle-data"
+    },
+    {
+      "title": "Official Automotive trial options",
+      "url": "https://developer.salesforce.com/free-trials/comparison/automotive-cloud"
+    }
+  ],
+  "illustration": {
+    "subject": "a vehicle record connected to a customer, a service appointment and an ownership card",
+    "alt": "A vehicle record connected to a customer, a service appointment and an ownership card",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Automotive Cloud. Subject: a vehicle record connected to a customer, a service appointment and an ownership card."
+  }
+}

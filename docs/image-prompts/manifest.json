@@ -1,0 +1,794 @@
+[
+  {
+    "id": "J01",
+    "title": "What a CRM Does for a Business",
+    "subject": "two drawn colleagues sharing a customer record, conversation and calendar",
+    "status": "generated",
+    "path": "public/lesson-images/J01.jpg",
+    "prompt": "Use case: illustration-story\nAsset type: restrained landscape lesson-cover illustration for SAM Salesforce Developer Studio\nPrimary request: explain visually why a small company keeps customer information in a shared CRM.\nSubject: two simply drawn colleagues at one shared work surface, with one central customer record card connecting a conversation symbol and a small calendar tile. The record has abstract lines only, no readable personal data. One small stylized car silhouette quietly anchors the fictional car-dealership example.\nStyle: sophisticated editorial vector-like illustration rendered as a bitmap; flat geometric forms, fine navy linework, gentle rounded shapes, very subtle paper texture. People are clearly drawn abstract figures with simplified faces, never photographs or realistic portraits.\nComposition: wide 16:9, a single clear central scene, generous empty margins, no collage, no crowded dashboard, no tiny decorative objects.\nPalette: warm ivory background #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86, small sage accents.\nMood: calm, professional, thoughtful, useful for adults learning software development.\nText: none. No letters, numerals, titles, slogans, speech text, logos, watermarks, Salesforce mascots, emoji, gradients, glossy 3D or hyperrealistic people.\n"
+  },
+  {
+    "id": "J02",
+    "title": "Salesforce Products, the Platform, and Your Org",
+    "subject": "a drawn salesperson, administrator and developer around a single application workspace",
+    "status": "generated",
+    "path": "public/lesson-images/J02.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Salesforce and Team Roles. Subject: a drawn salesperson, administrator and developer around a single application workspace."
+  },
+  {
+    "id": "J03",
+    "title": "Create and Reopen a Learning Org",
+    "subject": "a small separate training workspace in a protective outline beside a larger company workspace",
+    "status": "generated",
+    "path": "public/lesson-images/J03.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Your Learning Org. Subject: a small separate training workspace in a protective outline beside a larger company workspace."
+  },
+  {
+    "id": "J04",
+    "title": "Finding Your Way Around Salesforce",
+    "subject": "one clean application window opening into a list and a single record card",
+    "status": "generated",
+    "path": "public/lesson-images/J04.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Salesforce Navigation. Subject: one clean application window opening into a list and a single record card."
+  },
+  {
+    "id": "J05",
+    "title": "Objects, Fields, and Records",
+    "subject": "three neatly stacked record cards with aligned property rows and one highlighted field",
+    "status": "generated",
+    "path": "public/lesson-images/J05.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Objects Fields and Records. Subject: three neatly stacked record cards with aligned property rows and one highlighted field."
+  },
+  {
+    "id": "J06",
+    "title": "Turn a Request into a Testable Task",
+    "subject": "a simple request card becoming three concrete checklist steps beside a drawn learner",
+    "status": "generated",
+    "path": "public/lesson-images/J06.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Reading a Development Task. Subject: a simple request card becoming three concrete checklist steps beside a drawn learner."
+  },
+  {
+    "id": "J07",
+    "title": "Choose Standard Objects Before Creating New Ones",
+    "subject": "a restrained row of customer, company, opportunity and support record symbols connected by one path",
+    "status": "generated",
+    "path": "public/lesson-images/J07.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Standard CRM Objects. Subject: a restrained row of customer, company, opportunity and support record symbols connected by one path."
+  },
+  {
+    "id": "J08",
+    "title": "Field Types, Formulas, and Validation Rules",
+    "subject": "a record form with a calendar field, a number field and a clear validation check",
+    "status": "generated",
+    "path": "public/lesson-images/J08.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Field Types and Validation. Subject: a record form with a calendar field, a number field and a clear validation check."
+  },
+  {
+    "id": "J09",
+    "title": "Choose Lookup or Master-Detail Deliberately",
+    "subject": "two record cards connected by a clean relationship line with a small linked record underneath",
+    "status": "generated",
+    "path": "public/lesson-images/J09.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Object Relationships. Subject: two record cards connected by a clean relationship line with a small linked record underneath."
+  },
+  {
+    "id": "J10",
+    "title": "Build a Usable Sales Application",
+    "subject": "a compact car-dealership application window with a car, appointment card and small bar chart",
+    "status": "generated",
+    "path": "public/lesson-images/J10.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: The Dealership Application. Subject: a compact car-dealership application window with a car, appointment card and small bar chart."
+  },
+  {
+    "id": "J11",
+    "title": "Understand the Layers of Data Access",
+    "subject": "four translucent geometric access layers protecting one customer record",
+    "status": "generated",
+    "path": "public/lesson-images/J11.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Security Layers. Subject: four translucent geometric access layers protecting one customer record."
+  },
+  {
+    "id": "J12",
+    "title": "Grant a Small Set of Working Permissions",
+    "subject": "two small permission cards combining to open one lock on a record",
+    "status": "generated",
+    "path": "public/lesson-images/J12.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Permission Sets. Subject: two small permission cards combining to open one lock on a record."
+  },
+  {
+    "id": "J13",
+    "title": "Set a Record-Access Baseline and Add Exceptions",
+    "subject": "a simple team hierarchy above three record cards with carefully drawn access paths",
+    "status": "generated",
+    "path": "public/lesson-images/J13.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Record Access. Subject: a simple team hierarchy above three record cards with carefully drawn access paths."
+  },
+  {
+    "id": "J14",
+    "title": "Share One Record and Test an Ownership Change",
+    "subject": "one drawn colleague handing a single record card to another through a permission key",
+    "status": "generated",
+    "path": "public/lesson-images/J14.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Manual Sharing. Subject: one drawn colleague handing a single record card to another through a permission key."
+  },
+  {
+    "id": "J15",
+    "title": "Trace the Source of an Access Problem",
+    "subject": "a magnifying glass tracing two different paths toward the same accessible record",
+    "status": "generated",
+    "path": "public/lesson-images/J15.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Finding Access Sources. Subject: a magnifying glass tracing two different paths toward the same accessible record."
+  },
+  {
+    "id": "J16",
+    "title": "Verify Access for Sales, Service, and Management",
+    "subject": "two drawn workplace roles facing the same records with different visible subsets",
+    "status": "generated",
+    "path": "public/lesson-images/J16.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Testing Team Permissions. Subject: two drawn workplace roles facing the same records with different visible subsets."
+  },
+  {
+    "id": "J17",
+    "title": "Create a Record-Triggered Flow with a Clear Failure Path",
+    "subject": "three simple flow nodes transforming a saved appointment into a reminder card",
+    "status": "generated",
+    "path": "public/lesson-images/J17.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Record Triggered Flow. Subject: three simple flow nodes transforming a saved appointment into a reminder card."
+  },
+  {
+    "id": "J18",
+    "title": "Apex Syntax, Variables, Collections, and Methods",
+    "subject": "a calm developer workspace with a small code card, a collection of blocks and a method-shaped container",
+    "status": "generated",
+    "path": "public/lesson-images/J18.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Foundations. Subject: a calm developer workspace with a small code card, a collection of blocks and a method-shaped container."
+  },
+  {
+    "id": "J19",
+    "title": "Read and Change Records with SOQL and DML",
+    "subject": "one data shelf with a clean read arrow and a separate update arrow returning one record",
+    "status": "generated",
+    "path": "public/lesson-images/J19.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: SOQL and DML. Subject: one data shelf with a clean read arrow and a separate update arrow returning one record."
+  },
+  {
+    "id": "J20",
+    "title": "Use a Thin Trigger and a Focused Handler",
+    "subject": "an incoming group of record cards activating one event-driven processing node",
+    "status": "generated",
+    "path": "public/lesson-images/J20.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Triggers. Subject: an incoming group of record cards activating one event-driven processing node."
+  },
+  {
+    "id": "J21",
+    "title": "Trace Automation Through a Transaction",
+    "subject": "an orderly sequence of four process tiles inside one transaction boundary",
+    "status": "generated",
+    "path": "public/lesson-images/J21.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Execution Order and Transactions. Subject: an orderly sequence of four process tiles inside one transaction boundary."
+  },
+  {
+    "id": "J22",
+    "title": "Write Apex Tests That Prove Behaviour",
+    "subject": "a small test bench comparing an expected result card with an actual result card and one check",
+    "status": "generated",
+    "path": "public/lesson-images/J22.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Tests. Subject: a small test bench comparing an expected result card with an actual result card and one check."
+  },
+  {
+    "id": "J23",
+    "title": "HTML, JavaScript, and Your First Lightning Web Component",
+    "subject": "three clean interface building blocks assembling into one component card",
+    "status": "generated",
+    "path": "public/lesson-images/J23.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Lightning Web Components. Subject: three clean interface building blocks assembling into one component card."
+  },
+  {
+    "id": "J24",
+    "title": "Read and Edit a Record with Lightning Data Service",
+    "subject": "a small component window connected to a shared data cache and a record card",
+    "status": "generated",
+    "path": "public/lesson-images/J24.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Data Access. Subject: a small component window connected to a shared data cache and a record card."
+  },
+  {
+    "id": "J25",
+    "title": "Pass Data Down and Send Events Up",
+    "subject": "a parent component container and two child cards communicating with one upward event arrow",
+    "status": "generated",
+    "path": "public/lesson-images/J25.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Component Events. Subject: a parent component container and two child cards communicating with one upward event arrow."
+  },
+  {
+    "id": "J26",
+    "title": "Investigate a Failure from Symptom to Cause",
+    "subject": "a magnifying glass isolating one highlighted break in an otherwise clean code path",
+    "status": "generated",
+    "path": "public/lesson-images/J26.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Debugging. Subject: a magnifying glass isolating one highlighted break in an otherwise clean code path."
+  },
+  {
+    "id": "J27",
+    "title": "Use Git to Hand Over a Reproducible Change",
+    "subject": "a tidy branching path of commits joining a reviewed change card",
+    "status": "generated",
+    "path": "public/lesson-images/J27.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Git and Review. Subject: a tidy branching path of commits joining a reviewed change card."
+  },
+  {
+    "id": "J28",
+    "title": "Deliver the Northstar Test-Drive Application",
+    "subject": "a finished car test-drive application with a calendar and a small review check",
+    "status": "generated",
+    "path": "public/lesson-images/J28.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Junior Project. Subject: a finished car test-drive application with a calendar and a small review check."
+  },
+  {
+    "id": "M01",
+    "title": "Designing and verifying an access model",
+    "subject": "a compact permission matrix with two drawn team roles and distinct accessible record groups",
+    "status": "generated",
+    "path": "public/lesson-images/M01.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Access Design. Subject: a compact permission matrix with two drawn team roles and distinct accessible record groups."
+  },
+  {
+    "id": "M02",
+    "title": "Permission Set Groups and muting",
+    "subject": "a group of permission tiles with one muted tile and a separate direct permission path",
+    "status": "generated",
+    "path": "public/lesson-images/M02.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Permission Set Group Muting. Subject: a group of permission tiles with one muted tile and a separate direct permission path."
+  },
+  {
+    "id": "M03",
+    "title": "Manual and implicit sharing",
+    "subject": "one record connected by a deliberate handoff path and a quieter parent relationship path",
+    "status": "generated",
+    "path": "public/lesson-images/M03.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Manual and Implicit Sharing. Subject: one record connected by a deliberate handoff path and a quieter parent relationship path."
+  },
+  {
+    "id": "M04",
+    "title": "Apex managed sharing across a record lifecycle",
+    "subject": "one access card moving through create, update and revoke stages without readable labels",
+    "status": "generated",
+    "path": "public/lesson-images/M04.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Sharing Lifecycle. Subject: one access card moving through create, update and revoke stages without readable labels."
+  },
+  {
+    "id": "M05",
+    "title": "Restriction rules and supported access paths",
+    "subject": "a fine filter removing two records from an already accessible group",
+    "status": "generated",
+    "path": "public/lesson-images/M05.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Restriction Rules. Subject: a fine filter removing two records from an already accessible group."
+  },
+  {
+    "id": "M06",
+    "title": "Apex security and API-version defaults",
+    "subject": "two versioned code sheets beside a shield and explicit access-control switch",
+    "status": "generated",
+    "path": "public/lesson-images/M06.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Execution Context. Subject: two versioned code sheets beside a shield and explicit access-control switch."
+  },
+  {
+    "id": "M07",
+    "title": "Choosing Flow or Apex for a business operation",
+    "subject": "a balanced choice between a simple visual process and a compact code block",
+    "status": "generated",
+    "path": "public/lesson-images/M07.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Flow or Apex. Subject: a balanced choice between a simple visual process and a compact code block."
+  },
+  {
+    "id": "M08",
+    "title": "Order of execution, recursion, and idempotency",
+    "subject": "a repeated event arriving at a gate that permits one successful change",
+    "status": "generated",
+    "path": "public/lesson-images/M08.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Recursion and Idempotency. Subject: a repeated event arriving at a gate that permits one successful change."
+  },
+  {
+    "id": "M09",
+    "title": "Structuring Apex and using Custom Metadata",
+    "subject": "three tidy code modules with a separate small configuration card",
+    "status": "generated",
+    "path": "public/lesson-images/M09.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Apex Structure and Metadata. Subject: three tidy code modules with a separate small configuration card."
+  },
+  {
+    "id": "M10",
+    "title": "Testing a complete local business rule",
+    "subject": "a test pyramid made of a few restrained blocks beside one concrete feature card",
+    "status": "generated",
+    "path": "public/lesson-images/M10.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Test Strategy. Subject: a test pyramid made of a few restrained blocks beside one concrete feature card."
+  },
+  {
+    "id": "M11",
+    "title": "Selecting an asynchronous processing mechanism",
+    "subject": "one work request branching toward three different background processing lanes",
+    "status": "generated",
+    "path": "public/lesson-images/M11.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Async Choices. Subject: one work request branching toward three different background processing lanes."
+  },
+  {
+    "id": "M12",
+    "title": "Queueable Apex and observable request state",
+    "subject": "three linked background job tiles with a small recovery branch",
+    "status": "generated",
+    "path": "public/lesson-images/M12.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Queueable Apex. Subject: three linked background job tiles with a small recovery branch."
+  },
+  {
+    "id": "M13",
+    "title": "Batch Apex and independent execution scopes",
+    "subject": "a large stack of records divided into three manageable processing groups",
+    "status": "generated",
+    "path": "public/lesson-images/M13.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Batch Apex. Subject: a large stack of records divided into three manageable processing groups."
+  },
+  {
+    "id": "M14",
+    "title": "Scheduling, workload limits, and monitoring",
+    "subject": "a clean clock connected to a background job and a small status monitor",
+    "status": "generated",
+    "path": "public/lesson-images/M14.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Scheduling and Monitoring. Subject: a clean clock connected to a background job and a small status monitor."
+  },
+  {
+    "id": "M15",
+    "title": "API contracts and credential boundaries",
+    "subject": "two system boxes connected by a contract card and a small key",
+    "status": "generated",
+    "path": "public/lesson-images/M15.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: API Contracts and Authentication. Subject: two system boxes connected by a contract card and a small key."
+  },
+  {
+    "id": "M16",
+    "title": "Working with REST and SOAP service contracts",
+    "subject": "two distinct structured message envelopes exchanged between the same systems",
+    "status": "generated",
+    "path": "public/lesson-images/M16.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: REST and SOAP. Subject: two distinct structured message envelopes exchanged between the same systems."
+  },
+  {
+    "id": "M17",
+    "title": "HTTP callouts, failures, and bounded retries",
+    "subject": "an external request meeting a timeout clock and a carefully bounded retry loop",
+    "status": "generated",
+    "path": "public/lesson-images/M17.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Callout Failure Handling. Subject: an external request meeting a timeout clock and a carefully bounded retry loop."
+  },
+  {
+    "id": "M18",
+    "title": "Inbound APIs, external IDs, and duplicate protection",
+    "subject": "two matching incoming records passing a unique-key gate into one stored record",
+    "status": "generated",
+    "path": "public/lesson-images/M18.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Inbound Data and Deduplication. Subject: two matching incoming records passing a unique-key gate into one stored record."
+  },
+  {
+    "id": "M19",
+    "title": "Integration diagnostics and controlled recovery",
+    "subject": "a traced request moving through three systems with one clear diagnostic marker",
+    "status": "generated",
+    "path": "public/lesson-images/M19.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Integration Diagnosis. Subject: a traced request moving through three systems with one clear diagnostic marker."
+  },
+  {
+    "id": "M20",
+    "title": "Choosing SOQL or SOSL for a search requirement",
+    "subject": "a focused search over one record shelf beside a broader search across several shelves",
+    "status": "generated",
+    "path": "public/lesson-images/M20.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: SOQL and SOSL. Subject: a focused search over one record shelf beside a broader search across several shelves."
+  },
+  {
+    "id": "M21",
+    "title": "Lightning Web Component lifecycle",
+    "subject": "a component card moving through create, render and cleanup stages on one path",
+    "status": "generated",
+    "path": "public/lesson-images/M21.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Lifecycle. Subject: a component card moving through create, render and cleanup stages on one path."
+  },
+  {
+    "id": "M22",
+    "title": "Wire, imperative Apex, and refreshing data",
+    "subject": "a component and a data cache synchronising after one record update",
+    "status": "generated",
+    "path": "public/lesson-images/M22.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: LWC Cache Refresh. Subject: a component and a data cache synchronising after one record update."
+  },
+  {
+    "id": "M23",
+    "title": "DOM events and Lightning Message Service",
+    "subject": "two sibling components using a shared message hub and one local parent-child arrow",
+    "status": "generated",
+    "path": "public/lesson-images/M23.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Events and Lightning Message Service. Subject: two sibling components using a shared message hub and one local parent-child arrow."
+  },
+  {
+    "id": "M24",
+    "title": "Accessible LWC states and Jest tests",
+    "subject": "a clean accessible interface with a keyboard focus outline and a small automated test check",
+    "status": "generated",
+    "path": "public/lesson-images/M24.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Accessibility and Jest. Subject: a clean accessible interface with a keyboard focus outline and a small automated test check."
+  },
+  {
+    "id": "M25",
+    "title": "Shadow DOM and component boundaries",
+    "subject": "a component's internal structure enclosed in a clear boundary within a larger page",
+    "status": "generated",
+    "path": "public/lesson-images/M25.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Shadow DOM. Subject: a component's internal structure enclosed in a clear boundary within a larger page."
+  },
+  {
+    "id": "M26",
+    "title": "Platform Events and publication timing",
+    "subject": "a small event envelope published after a transaction boundary to two subscribers",
+    "status": "generated",
+    "path": "public/lesson-images/M26.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Events. Subject: a small event envelope published after a transaction boundary to two subscribers."
+  },
+  {
+    "id": "M27",
+    "title": "Change Data Capture, replay, and duplicate delivery",
+    "subject": "a stream of record changes with a replay bookmark and a duplicate-handling gate",
+    "status": "generated",
+    "path": "public/lesson-images/M27.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Change Data Capture. Subject: a stream of record changes with a replay bookmark and a duplicate-handling gate."
+  },
+  {
+    "id": "M28",
+    "title": "Git fetch, integration, and cherry-picking a fix",
+    "subject": "a clean branching history with one small fix moved carefully to another branch",
+    "status": "generated",
+    "path": "public/lesson-images/M28.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Git Branching. Subject: a clean branching history with one small fix moved carefully to another branch."
+  },
+  {
+    "id": "M29",
+    "title": "Pull requests, CI checks, and controlled deployment",
+    "subject": "a reviewed code card passing through tests and validation toward a deployment box",
+    "status": "generated",
+    "path": "public/lesson-images/M29.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Continuous Delivery. Subject: a reviewed code card passing through tests and validation toward a deployment box."
+  },
+  {
+    "id": "M30",
+    "title": "Verifying an application under failure",
+    "subject": "a feature workflow with one intentionally interrupted connection and a visible recovery route",
+    "status": "generated",
+    "path": "public/lesson-images/M30.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Failure Testing. Subject: a feature workflow with one intentionally interrupted connection and a visible recovery route."
+  },
+  {
+    "id": "M31",
+    "title": "Enhanced Omni-Channel routing",
+    "subject": "two customer work cards routed through an availability hub to two drawn support staff",
+    "status": "generated",
+    "path": "public/lesson-images/M31.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Omni Channel. Subject: two customer work cards routed through an availability hub to two drawn support staff."
+  },
+  {
+    "id": "M32",
+    "title": "Agentforce tasks, actions, and evidence",
+    "subject": "a restrained agent symbol choosing one permitted action from three clear tool cards",
+    "status": "generated",
+    "path": "public/lesson-images/M32.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Agentforce Basics. Subject: a restrained agent symbol choosing one permitted action from three clear tool cards."
+  },
+  {
+    "id": "M33",
+    "title": "Automotive Cloud data modeling",
+    "subject": "a vehicle record connected to a customer, a service appointment and an ownership card",
+    "status": "generated",
+    "path": "public/lesson-images/M33.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Automotive Cloud. Subject: a vehicle record connected to a customer, a service appointment and an ownership card."
+  },
+  {
+    "id": "M34",
+    "title": "Middle project review and technical defense",
+    "subject": "a service application connecting a vehicle, a warranty response and a background job",
+    "status": "generated",
+    "path": "public/lesson-images/M34.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Middle Project. Subject: a service application connecting a vehicle, a warranty response and a background job."
+  },
+  {
+    "id": "S01",
+    "title": "How a Salesforce Transaction Runs",
+    "subject": "a shared platform foundation supporting several clearly separated application workspaces",
+    "status": "generated",
+    "path": "public/lesson-images/S01.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Architecture. Subject: a shared platform foundation supporting several clearly separated application workspaces."
+  },
+  {
+    "id": "S02",
+    "title": "Turn a Performance Complaint into a Measurable Requirement",
+    "subject": "a simple stopwatch beside a user journey and a measurable target marker",
+    "status": "generated",
+    "path": "public/lesson-images/S02.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Performance Requirements. Subject: a simple stopwatch beside a user journey and a measurable target marker."
+  },
+  {
+    "id": "S03",
+    "title": "Locate Delay Across the Browser, Apex, and Database",
+    "subject": "three timing segments for interface, processing and data with one bottleneck highlighted",
+    "status": "generated",
+    "path": "public/lesson-images/S03.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Performance Diagnosis. Subject: three timing segments for interface, processing and data with one bottleneck highlighted."
+  },
+  {
+    "id": "S04",
+    "title": "Estimate Resource Demand Before Increasing Traffic",
+    "subject": "a small resource budget gauge beside a group of efficiently processed records",
+    "status": "generated",
+    "path": "public/lesson-images/S04.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Platform Limits. Subject: a small resource budget gauge beside a group of efficiently processed records."
+  },
+  {
+    "id": "S05",
+    "title": "Choose an Optimization and Prove Its Value",
+    "subject": "two restrained performance traces showing a measured before and after with the same workload",
+    "status": "generated",
+    "path": "public/lesson-images/S05.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Measured Optimisation. Subject: two restrained performance traces showing a measured before and after with the same workload."
+  },
+  {
+    "id": "S06",
+    "title": "Read Query Plans and Data Selectivity",
+    "subject": "a magnifying glass choosing a narrow indexed route through a large orderly data grid",
+    "status": "generated",
+    "path": "public/lesson-images/S06.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Query Plans. Subject: a magnifying glass choosing a narrow indexed route through a large orderly data grid."
+  },
+  {
+    "id": "S07",
+    "title": "Find Shared Records Behind Lock Contention",
+    "subject": "many record links converging on one overloaded parent lock beside a more balanced arrangement",
+    "status": "generated",
+    "path": "public/lesson-images/S07.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Data Skew and Locking. Subject: many record links converging on one overloaded parent lock beside a more balanced arrangement."
+  },
+  {
+    "id": "S08",
+    "title": "Load Data with Reconciliation and Safe Replays",
+    "subject": "a staged stream of records entering a database through a validation checkpoint",
+    "status": "generated",
+    "path": "public/lesson-images/S08.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Large Data Imports. Subject: a staged stream of records entering a database through a validation checkpoint."
+  },
+  {
+    "id": "S09",
+    "title": "Archive History Without Losing the Business Record",
+    "subject": "recent records on an active shelf and older records in an archive with one reporting path",
+    "status": "generated",
+    "path": "public/lesson-images/S09.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Archiving and Reporting. Subject: recent records on an active shelf and older records in an archive with one reporting path."
+  },
+  {
+    "id": "S10",
+    "title": "Design Record Access for a Dealer Network",
+    "subject": "a small network of dealership locations with deliberate grouped access boundaries",
+    "status": "generated",
+    "path": "public/lesson-images/S10.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Sharing at Scale. Subject: a small network of dealership locations with deliberate grouped access boundaries."
+  },
+  {
+    "id": "S11",
+    "title": "Remove Excess Access Without Breaking Legitimate Work",
+    "subject": "a reviewer removing one unnecessary key from a ring of permissions",
+    "status": "generated",
+    "path": "public/lesson-images/S11.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Permission Audits. Subject: a reviewer removing one unnecessary key from a ring of permissions."
+  },
+  {
+    "id": "S12",
+    "title": "Plan a Deferred-Sharing Maintenance Window",
+    "subject": "a maintenance calendar beside a paused sharing calculation and a deliberate recalculation step",
+    "status": "generated",
+    "path": "public/lesson-images/S12.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Deferred Sharing. Subject: a maintenance calendar beside a paused sharing calculation and a deliberate recalculation step."
+  },
+  {
+    "id": "S13",
+    "title": "Control Privileged Code and External-User Access",
+    "subject": "an external user and internal application separated by a clear guarded boundary",
+    "status": "generated",
+    "path": "public/lesson-images/S13.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Trust Boundaries. Subject: an external user and internal application separated by a clear guarded boundary."
+  },
+  {
+    "id": "S14",
+    "title": "Choose System Boundaries and Data Ownership",
+    "subject": "two systems with one record clearly owned by one system and a controlled synchronisation path",
+    "status": "generated",
+    "path": "public/lesson-images/S14.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: System Ownership. Subject: two systems with one record clearly owned by one system and a controlled synchronisation path."
+  },
+  {
+    "id": "S15",
+    "title": "Handle Duplicate and Out-of-Order Events",
+    "subject": "out-of-order message cards being placed into a coherent sequence with a duplicate set aside",
+    "status": "generated",
+    "path": "public/lesson-images/S15.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Event Ordering and Deduplication. Subject: out-of-order message cards being placed into a coherent sequence with a duplicate set aside."
+  },
+  {
+    "id": "S16",
+    "title": "Recover from an External-Service Outage Without a Retry Storm",
+    "subject": "an unavailable external system with buffered work and a careful controlled restart path",
+    "status": "generated",
+    "path": "public/lesson-images/S16.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Integration Recovery. Subject: an unavailable external system with buffered work and a careful controlled restart path."
+  },
+  {
+    "id": "S17",
+    "title": "Reconstruct an Incident from Business and Technical Evidence",
+    "subject": "three simple telemetry panels converging on one incident timeline",
+    "status": "generated",
+    "path": "public/lesson-images/S17.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Observability and Incidents. Subject: three simple telemetry panels converging on one incident timeline."
+  },
+  {
+    "id": "S18",
+    "title": "Refactor Legacy Automation in Small Verified Steps",
+    "subject": "an older code structure receiving one small supported replacement piece",
+    "status": "generated",
+    "path": "public/lesson-images/S18.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Legacy Code Changes. Subject: an older code structure receiving one small supported replacement piece."
+  },
+  {
+    "id": "S19",
+    "title": "Test Integration Contracts at the Right Boundaries",
+    "subject": "two system interfaces meeting at a contract card with matching test checks",
+    "status": "generated",
+    "path": "public/lesson-images/S19.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Contract Testing. Subject: two system interfaces meeting at a contract card with matching test checks."
+  },
+  {
+    "id": "S20",
+    "title": "Release Metadata and Data Changes in Separate Stages",
+    "subject": "a database schema transitioning through expand, migrate and retire stages",
+    "status": "generated",
+    "path": "public/lesson-images/S20.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Data Migrations. Subject: a database schema transitioning through expand, migrate and retire stages."
+  },
+  {
+    "id": "S21",
+    "title": "Write an Architecture Decision and Review the Risk",
+    "subject": "two drawn developers comparing a small design diagram and a tradeoff card",
+    "status": "generated",
+    "path": "public/lesson-images/S21.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Architecture Review. Subject: two drawn developers comparing a small design diagram and a tradeoff card."
+  },
+  {
+    "id": "S22",
+    "title": "Evaluate Agentforce Actions, Access, and Failure Behavior",
+    "subject": "an agent action passing through a quality check, a permission boundary and a cost gauge",
+    "status": "generated",
+    "path": "public/lesson-images/S22.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Agentforce Quality. Subject: an agent action passing through a quality check, a permission boundary and a cost gauge."
+  },
+  {
+    "id": "S23",
+    "title": "Compare Core Salesforce, Automotive Cloud, and a DMS",
+    "subject": "three calm product option blocks compared against one requirement card",
+    "status": "generated",
+    "path": "public/lesson-images/S23.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Build or Buy Decisions. Subject: three calm product option blocks compared against one requirement card."
+  },
+  {
+    "id": "S24",
+    "title": "Lead a 45-Minute Dealer-Network Architecture Interview",
+    "subject": "a drawn developer explaining a dealership network on a clear sparse whiteboard",
+    "status": "generated",
+    "path": "public/lesson-images/S24.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: System Design Interview. Subject: a drawn developer explaining a dealership network on a clear sparse whiteboard."
+  },
+  {
+    "id": "S25",
+    "title": "Capstone: Improve Northstar with Reproducible Evidence",
+    "subject": "a restored dealership system with a measured performance improvement and a concise incident timeline",
+    "status": "generated",
+    "path": "public/lesson-images/S25.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Senior Project. Subject: a restored dealership system with a measured performance improvement and a concise incident timeline."
+  },
+  {
+    "id": "JR01",
+    "title": "Choose a Target Role and Read Job Requirements",
+    "subject": "three career paths with one selected route and a small evidence card",
+    "status": "generated",
+    "path": "public/lesson-images/JR01.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Choose a Target Role. Subject: three career paths with one selected route and a small evidence card."
+  },
+  {
+    "id": "JR02",
+    "title": "Use AI to Research and Verify Job Opportunities",
+    "subject": "a magnifying glass checking one job card while duplicate cards sit aside",
+    "status": "generated",
+    "path": "public/lesson-images/JR02.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: AI Job Research. Subject: a magnifying glass checking one job card while duplicate cards sit aside."
+  },
+  {
+    "id": "JR03",
+    "title": "Build a Repeatable Job Search Workflow",
+    "subject": "a calm task board with one job card moving toward a calendar tile",
+    "status": "generated",
+    "path": "public/lesson-images/JR03.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Job Search Workflow. Subject: a calm task board with one job card moving toward a calendar tile."
+  },
+  {
+    "id": "JR04",
+    "title": "Describe Your Experience with Evidence",
+    "subject": "three concrete project artifacts connected to one personal contribution card",
+    "status": "generated",
+    "path": "public/lesson-images/JR04.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Experience Inventory. Subject: three concrete project artifacts connected to one personal contribution card."
+  },
+  {
+    "id": "JR05",
+    "title": "Write a Clear and Honest Salesforce CV",
+    "subject": "a clean resume page linked to a small tested project and a factual evidence card",
+    "status": "generated",
+    "path": "public/lesson-images/JR05.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Write a Clear CV. Subject: a clean resume page linked to a small tested project and a factual evidence card."
+  },
+  {
+    "id": "JR06",
+    "title": "Tailor Your CV to a Specific Role",
+    "subject": "a job description and a resume joined by a few clear evidence-based connections",
+    "status": "generated",
+    "path": "public/lesson-images/JR06.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Tailor a CV. Subject: a job description and a resume joined by a few clear evidence-based connections."
+  },
+  {
+    "id": "JR07",
+    "title": "Prepare a Salesforce Portfolio for Review",
+    "subject": "a small project display with an application, a simple architecture diagram and test evidence",
+    "status": "generated",
+    "path": "public/lesson-images/JR07.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Build a Portfolio. Subject: a small project display with an application, a simple architecture diagram and test evidence."
+  },
+  {
+    "id": "JR08",
+    "title": "Practise a Technical Interview with AI",
+    "subject": "two simply drawn people discussing one technical diagram with a reflective note card",
+    "status": "generated",
+    "path": "public/lesson-images/JR08.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Practise an Interview. Subject: two simply drawn people discussing one technical diagram with a reflective note card."
+  },
+  {
+    "id": "JR09",
+    "title": "Practise Live Coding and Code Review",
+    "subject": "a code card with one highlighted flaw beside a small timer and test cases",
+    "status": "generated",
+    "path": "public/lesson-images/JR09.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Live Coding and Review. Subject: a code card with one highlighted flaw beside a small timer and test cases."
+  },
+  {
+    "id": "JR10",
+    "title": "Discuss Your Experience and Evaluate the Employer",
+    "subject": "two drawn people in a calm professional conversation with three concrete project story cards",
+    "status": "generated",
+    "path": "public/lesson-images/JR10.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Discuss Your Experience. Subject: two drawn people in a calm professional conversation with three concrete project story cards."
+  },
+  {
+    "id": "JR11",
+    "title": "Build a Preparation Plan from Interview Feedback",
+    "subject": "an interview note becoming three focused practice steps and a follow-up calendar check",
+    "status": "generated",
+    "path": "public/lesson-images/JR11.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Learn from Interviews. Subject: an interview note becoming three focused practice steps and a follow-up calendar check."
+  },
+  {
+    "id": "AF-L01",
+    "title": "Build an Agentforce Assistant",
+    "subject": "a drawn salesperson using an agent tool to connect a vehicle, an appointment and a support case",
+    "status": "generated",
+    "path": "public/lesson-images/AF-L01.jpg",
+    "prompt": "Create one landscape 16:9 lesson-cover illustration for SAM Salesforce Developer Studio. Restrained professional editorial illustration, flat geometric drawn forms with fine navy linework and a subtle paper texture. Warm ivory #F7F4EE, navy #12253C, muted cobalt #3867E8, restrained teal #138A86 and sage. One clear central scene, generous empty margins, at most three main visual groups. Calm adult learning design. Any people are clearly drawn stylized figures, never realistic photos. NO text, letters, numerals, logos, watermarks, Salesforce mascots, decorative clutter or glossy 3D. Exact topic: Build an Agentforce Assistant. Subject: a drawn salesperson using an agent tool to connect a vehicle, an appointment and a support case."
+  }
+]
