@@ -324,6 +324,15 @@ async function showSubmission(id) {
     toast(e.message);
   }
 }
+function inviteHistory(items) { return items.length
+      ? items
+          .slice(0, 8)
+          .map(
+            (i) =>
+              `<div class="history-row"><div><b>${esc(i.label || 'Без подписи')}</b><br><small>до ${date(i.expiresAt)}</small></div>${i.usedAt ? '<span class="tag green">Использовано</span>' : i.revokedAt ? '<span class="tag">Отозвано</span>' : new Date(i.expiresAt) < new Date() ? '<span class="tag">Истекло</span>' : `<button class="text-btn" data-action="revoke-invite" data-id="${esc(i.id)}">Отозвать</button>`}</div>`,
+          )
+          .join('')
+      : '<p class="muted small-copy">Приглашений ещё нет.</p>'; }
 async function renderAdmin() {
   if (state.user?.role !== 'admin') return renderLogin();
   const [users, invites] = await Promise.all([api('/api/admin/users'), api('/api/admin/invites')]);
@@ -335,17 +344,9 @@ async function renderAdmin() {
     )
     .join(
       '',
-    )}</select></div><div class="field"><label for="invite-expiry">Срок действия</label><select id="invite-expiry" name="expiresInDays"><option value="7">7 дней</option><option value="30">30 дней</option><option value="1">1 день</option></select></div><div class="form-error" role="alert"></div><button class="btn">Создать персональную ссылку</button><div id="invite-result"></div></form></section><section class="card"><h2>Выданные приглашения</h2><p class="small-copy muted">Ссылка используется один раз. Для повторного входа выбери существующего участника. Пароль преподавателя участникам не нужен.</p>${
-    invites.invites.length
-      ? invites.invites
-          .slice(0, 8)
-          .map(
-            (i) =>
-              `<div class="history-row"><div><b>${esc(i.label || 'Без подписи')}</b><br><small>до ${date(i.expiresAt)}</small></div>${i.usedAt ? '<span class="tag green">Использовано</span>' : i.revokedAt ? '<span class="tag">Отозвано</span>' : new Date(i.expiresAt) < new Date() ? '<span class="tag">Истекло</span>' : `<button class="text-btn" data-action="revoke-invite" data-id="${esc(i.id)}">Отозвать</button>`}</div>`,
-          )
-          .join('')
-      : '<p class="muted small-copy">Приглашений ещё нет.</p>'
-  }</section></div><div class="section-title"><h2>Очередь проверки</h2><span>${state.submissions.length} работ</span></div><div class="filters"><div class="field"><label for="review-filter">Статус</label><select id="review-filter"><option value="all">Все работы</option>${Object.entries(
+    )}</select></div><div class="field"><label for="invite-expiry">Срок действия</label><select id="invite-expiry" name="expiresInDays"><option value="7">7 дней</option><option value="30">30 дней</option><option value="1">1 день</option></select></div><div class="form-error" role="alert"></div><button class="btn">Создать персональную ссылку</button><div id="invite-result"></div></form></section><section class="card"><h2>Выданные приглашения</h2><p class="small-copy muted">Ссылка используется один раз. Для повторного входа выбери существующего участника. Пароль преподавателя участникам не нужен.</p><div id="invite-history">${
+    inviteHistory(invites.invites)
+  }</div></section></div><div class="section-title"><h2>Очередь проверки</h2><span>${state.submissions.length} работ</span></div><div class="filters"><div class="field"><label for="review-filter">Статус</label><select id="review-filter"><option value="all">Все работы</option>${Object.entries(
     statuses,
   )
     .map(([k, v]) => `<option value="${k}">${v}</option>`)
@@ -578,6 +579,8 @@ async function handleForm(e) {
       const { invite } = await api('/api/admin/invites', { method: 'POST', body: JSON.stringify(payload) });
       $('#invite-result').innerHTML =
         `<div class="note success">Приглашение создано. Скопируй ссылку сейчас и передай участнику.</div><div class="field" style="margin-top:12px"><label for="invite-link">Персональная ссылка</label><input id="invite-link" readonly value="${esc(invite.url)}"><button type="button" class="btn secondary small" data-action="copy-invite">Копировать ссылку</button></div>`;
+      const refreshed = await api('/api/admin/invites');
+      $('#invite-history').innerHTML = inviteHistory(refreshed.invites);
     } else if (form.id === 'submission-form') {
       const files = [...$('#submission-files').files];
       if (files.length > 5) throw Error('Можно приложить до 5 файлов.');
@@ -627,6 +630,7 @@ async function handleForm(e) {
   }
 }
 async function handleAction(e) {
+  if (e.target.closest('.skip')) { e.preventDefault(); $('#main')?.focus(); return; }
   const b = e.target.closest('[data-action]');
   if (!b) return;
   const id = b.dataset.id;
