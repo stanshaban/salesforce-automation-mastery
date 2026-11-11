@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M08 · Order of execution, recursion, and idempotency",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b682898cf52d417dbae39acde032db63. Подготовь только синтетические данные и исходное состояние упражнения. Покажи timeline Flow/trigger и durable operation key. Выполни повтор в той же транзакции и отдельный повторный запрос. Сверь persisted receipt и число бизнес-эффектов вместо проверки только static-флага. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Build the declared receipt behavior and demonstrate repeated execution without duplicate results."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Exactly one receipt exists per defined key. Unrelated failures are not called successful retries."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Salesforce save can run several layers of validation and automation. Some automation changes the same or related records, causing additional processing. Order of execution is the documented sequence of these stages; it is not simply 'Flow always before Apex' or 'one click means one trigger execution.' Use the current sequence and your actual configured automation when investigating a repeated effect. Recursion is re-entry into a process caused by its own or related changes. Idempotency is a different property: repeating the same business operation does not create an additional business result. A recursion guard can reduce repeated work inside one transaction while doing nothing against a later API retry, a second Queueable transaction, or another user's concurrent request."
+        }
+      ]
+    },
+    {
+      "start": 100,
+      "duration": 60,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna confirms TD-A. A Flow updates another field, and a trigger sees the appointment again. Max then resubmits the same external request after his client times out. A static guard might suppress the second trigger pass in Anna's transaction, but it cannot recognize Max's later request. For this exercise, create Confirmation_Receipt__c with an Auto Number Name, Test_Drive__c lookup, and Operation_Key__c Text(100), Unique, External ID. Define one receipt per appointment's first confirmation, with key 'confirm:' plus the Test Drive Id. This intentionally does not support multiple independent confirmation cycles; describe that limitation. The unique constraint provides a final duplicate barrier, while the handler should return the existing result for a legitimate retry."
+        }
+      ]
+    },
+    {
+      "start": 160,
+      "duration": 22,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create the receipt object and fields before using them. Keep the lookup independent and give the test persona only the required object and field permissions."
+        }
+      ]
+    },
+    {
+      "start": 182,
+      "duration": 65,
+      "label": "05 · Draw the actual execution path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, draw the actual execution path. List active Flow and trigger operations for confirmation. Mark every update that can cause another pass and the point where a receipt is created."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Draw the actual execution path» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A specific path explains the repeated execution. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A specific path explains the repeated execution."
+        }
+      ]
+    },
+    {
+      "start": 247,
+      "duration": 65,
+      "label": "06 · Implement durable receipt creation",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, implement durable receipt creation. Detect the intended transition, collect operation keys, query existing receipts in bulk, and create missing ones. Define how a uniqueness conflict is reported or reconciled."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Implement durable receipt creation» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A repeated operation returns one business receipt. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A repeated operation returns one business receipt."
+        }
+      ]
+    },
+    {
+      "start": 312,
+      "duration": 66,
+      "label": "07 · Exercise different repeat causes",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, exercise different repeat causes. Test a harmless update, re-entry, a 200-record confirmation, and a later repeated request. Include the status cycle and compare it with the declared first-confirmation rule."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Exercise different repeat causes» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Each result follows the business identity rather than static memory. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Each result follows the business identity rather than static memory."
+        }
+      ]
+    },
+    {
+      "start": 378,
+      "duration": 22,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A query-before-insert check alone can race with another transaction. Two workers can both observe no receipt; the unique field prevents both from committing duplicate keys."
+        }
+      ]
+    },
+    {
+      "start": 400,
+      "duration": 64,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not use a transaction-wide static Boolean as the complete solution to repeated business requests. Now pause the video and try the exercise yourself. Build the declared receipt behavior and demonstrate repeated execution without duplicate results. Exactly one receipt exists per defined key. Unrelated failures are not called successful retries. The confirmation-cycle limitation is explicit."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why does static state not solve a later retry?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It belongs to one Apex transaction and is not a durable record of business completion. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

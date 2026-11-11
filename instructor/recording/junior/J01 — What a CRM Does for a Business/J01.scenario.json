@@ -1,0 +1,162 @@
+{
+  "version": 2,
+  "title": "J01 · What a CRM Does for a Business",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=1c8cad0d85e04292aaa0d4025e7b1b3f. Подготовь только синтетические данные и исходное состояние упражнения. Покажи карточки Anna, Max и Irina и незаполненный запрос на тест-драйв. Заполни модель City EV, ответственного и следующий шаг. Закрой первоначальную заметку: проверь, сможет ли Max продолжить работу только по новой карточке. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The note distinguishes a request from a confirmed test drive. Another person can state what happens next without guessing."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 78,
+      "label": "02 · Start with a conversation",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Start with a conversation». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar Motors is our fictional car dealership: a business that helps people choose and buy cars. Irina is interested in a vehicle and asks whether she can try driving it before deciding. That short trial is a test drive. Anna is a salesperson. Her job is to answer Irina's questions, find a suitable vehicle, and arrange the next step. A customer is the person receiving help from the business; in this lesson that includes someone who has not bought anything yet. Anna learns that Irina wants a blue car and can speak tomorrow afternoon. She writes a telephone number on a piece of paper. The next day Anna is away. Max, another salesperson, takes over. He has the number but does not know what Anna promised. Calling immediately could mean repeating questions, offering the wrong vehicle, or missing an agreed appointment. This is an information problem before it is a software problem."
+        }
+      ]
+    },
+    {
+      "start": 118,
+      "duration": 66,
+      "label": "03 · Separate history, responsibility, and the next action",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Separate history, responsibility, and the next action». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "CRM stands for customer relationship management. A CRM system is software that helps a business keep useful information about customers and its work with them. The useful information is more than a directory of names. Northstar needs the request, previous conversations, agreements, and the work still to be done. Salesforce provides CRM products; we will introduce it separately in J02. History describes something that already happened: Anna discussed the blue vehicle on Monday. A next action describes work that has not happened: call Irina on Tuesday afternoon. Responsibility names the person who should do it: Max. A due time makes the promise concrete. These ideas are related, but one does not replace another. Writing 'customer called' does not tell Max what to do next."
+        }
+      ]
+    },
+    {
+      "start": 184,
+      "duration": 33,
+      "label": "04 · Work through the handover",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Work through the handover». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Make a small handover note before opening any software. Use fictional details only. Do not invent a confirmed appointment: Irina has asked about a test drive, but a time has not yet been agreed. Distinguishing an enquiry from a commitment prevents a persuasive-looking screen from hiding an inaccurate business record."
+        }
+      ]
+    },
+    {
+      "start": 217,
+      "duration": 61,
+      "label": "05 · Capture the request",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, capture the request. Write Irina, blue vehicle, and request for a test drive. Use a fictional contact method."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Capture the request» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A colleague can identify the customer and the request. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A colleague can identify the customer and the request."
+        }
+      ]
+    },
+    {
+      "start": 278,
+      "duration": 59,
+      "label": "06 · Record the promise",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, record the promise. Write: Max will call on Tuesday afternoon to agree a time."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Record the promise» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The note separates the action, owner, and due time. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The note separates the action, owner, and due time."
+        }
+      ]
+    },
+    {
+      "start": 337,
+      "duration": 61,
+      "label": "07 · Test the handover",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test the handover. Ask a partner to explain the next step using only your note."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test the handover» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Any missing detail becomes a specific question rather than an assumption. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Any missing detail becomes a specific question rather than an assumption."
+        }
+      ]
+    },
+    {
+      "start": 398,
+      "duration": 64,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not mark an appointment as confirmed just because a customer expressed interest. Now pause the video and try the exercise yourself. Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina. The note distinguishes a request from a confirmed test drive. Another person can state what happens next without guessing."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is a telephone number insufficient?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It identifies a contact method, but does not explain the request, earlier commitments, or the next action. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

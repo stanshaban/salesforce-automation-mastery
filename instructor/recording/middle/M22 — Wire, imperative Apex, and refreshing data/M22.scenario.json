@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M22 · Wire, imperative Apex, and refreshing data",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=7d02fae6e14b4817baadfa2371947c72. Подготовь только синтетические данные и исходное состояние упражнения. Покажи wire read, imperative write и владельца refresh. После успешного write смоделируй refresh failure. Раздели сохранённый результат от ошибки обновления интерфейса. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Implement a reactive read and explicit confirmation with separate save and refresh outcomes."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The correct refresh API matches each data source. A successful save is not reported as a failed save."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 72,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An @api property is part of a component's public input contract. A parent can pass the selected appointment ID, and the child should respond to changes without mutating the parent's object. @wire provisions data reactively from an adapter or cacheable Apex method. An imperative Apex call runs when your code explicitly invokes it, making it appropriate for a user-requested write. A JavaScript Promise represents an operation that will settle later as fulfilled or rejected. An async method returns a Promise; await pauses that method’s continuation until the supplied Promise settles, without freezing the whole page. try/catch handles rejection from an awaited operation. This is why the save and refresh below have separate try blocks. A reactive wire parameter uses a dollar-prefixed property reference, such as status: \"$status\", so changing the component property requests data for the new input."
+        }
+      ]
+    },
+    {
+      "start": 111,
+      "duration": 100,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna confirms TD-A from a detail panel. The write succeeds, but the subsequent list refresh fails. Showing 'Save failed, try again' would encourage another write even though the appointment is already confirmed. Show a saved state with a separate 'Could not reload the list' message and offer to retry only the read. The fragment below assumes a declared cacheable getVisits Apex method and a confirmVisit method that enforces the confirmation rule from M07. They are application methods you create, not built-in Salesforce APIs. The result object assigned in wiredVisits is what refreshApex needs. Adapt the names to your implemented controller rather than pasting unresolved imports."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «LWC controller fragment; requires your VisitController methods and template» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is LWC controller fragment; requires your VisitController methods and template. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 211,
+      "duration": 39,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use existing Test Drive fields. Implement a cacheable VisitController.getVisits(String status) using an allowed status filter, bounded results, and explicit user-mode access, plus a non-cacheable confirmVisit(Id recordId) enforcing M07. Grant the restricted user class access and required data permissions. Import api and wire from lwc, refreshApex from @salesforce/apex, and both controller methods. Add selectedId and the template/state declarations; the fragment is not a complete bundle."
+        }
+      ]
+    },
+    {
+      "start": 250,
+      "duration": 64,
+      "label": "05 · Build the read path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the read path. Pass a selected record or filter through @api and connect a cacheable read. Show loading, empty, success, and error states distinctly."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the read path» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Changing the public input produces the intended new read. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Changing the public input produces the intended new read."
+        }
+      ]
+    },
+    {
+      "start": 314,
+      "duration": 63,
+      "label": "06 · Add the explicit write",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, add the explicit write. Call a non-cacheable mutation method on a user action. Disable accidental duplicate submission while waiting and preserve field-level/business validation errors safely."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Add the explicit write» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A click has one controlled write result. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A click has one controlled write result."
+        }
+      ]
+    },
+    {
+      "start": 377,
+      "duration": 62,
+      "label": "07 · Test refresh ownership",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test refresh ownership. Compare wired Apex, LDS, and imperative read scenarios. Simulate a write failure and a post-write refresh failure separately."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test refresh ownership» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The interface offers the correct recovery for each case. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The interface offers the correct recovery for each case."
+        }
+      ]
+    },
+    {
+      "start": 439,
+      "duration": 18,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Passing only an array to refreshApex loses the wire configuration it needs. Refresh the emitted result object."
+        }
+      ]
+    },
+    {
+      "start": 457,
+      "duration": 67,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not mark a mutating method cacheable or treat notifyRecordUpdateAvailable as a general server-event bus. Now pause the video and try the exercise yourself. Implement a reactive read and explicit confirmation with separate save and refresh outcomes. The correct refresh API matches each data source. A successful save is not reported as a failed save. Rapid input changes do not display the wrong record."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What must be passed to refreshApex?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "A result previously emitted by an Apex wire, so its bound configuration can be refreshed. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

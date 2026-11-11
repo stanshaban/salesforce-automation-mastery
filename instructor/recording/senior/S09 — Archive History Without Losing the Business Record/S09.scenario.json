@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S09 · Archive History Without Losing the Business Record",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 42,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=1842980648704f5f97b143458c498154. Подготовь только синтетические данные и исходное состояние упражнения. Открой retention worksheet и отчёт по синтетической истории. Отдели рабочие записи, архив и путь восстановления/поиска. Покажи проверку бизнес-истории до любого удаления. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Archiving, backup, history, and deletion are not conflated. The exercise does not present an invented retention period as a legal rule."
+        }
+      ]
+    },
+    {
+      "start": 42,
+      "duration": 64,
+      "label": "02 · Older does not automatically mean unnecessary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Older does not automatically mean unnecessary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna usually needs upcoming appointments and recent follow-ups. Oleg also needs historical conversion reports, while Irina may ask about a past visit. These journeys have different access patterns. Archiving moves or manages information so it no longer burdens the main operational path while remaining available under an explicit retrieval policy. Deletion removes it from that path and may eventually make recovery impossible. A backup supports recovery after loss or corruption. An archive supports deliberate long-term retention and retrieval. Audit history explains changes or events, and is not necessarily a complete copy of every business record and relationship. One mechanism may help with more than one purpose, but you must verify its actual guarantees rather than treating the labels as synonyms."
+        }
+      ]
+    },
+    {
+      "start": 106,
+      "duration": 99,
+      "label": "03 · Define policy as a set of testable decisions",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Define policy as a set of testable decisions». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The fictional proposal below is an exercise, not a legal or compliance recommendation. Oleg suggests archiving completed appointments after a defined operational period, but the responsible business and data-governance owners must decide the real period, exceptions, and approval process. Do not infer a universal Salesforce or automotive retention requirement. Classify records by lifecycle, not just CreatedDate. A very old appointment may still have an unresolved complaint, a linked obligation, or a correction in progress. Your selection rule needs exceptions and a way to prevent records from moving while they remain active. For the Vehicle__c lookup, decide whether the archive retains the relevant vehicle attributes, a stable reference, or both."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic archive decision sheet» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic archive decision sheet. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 205,
+      "duration": 62,
+      "label": "04 · Compare storage choices against retrieval needs",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Compare storage choices against retrieval needs». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Keeping history in core Salesforce preserves familiar relationships and reporting, but it may maintain storage and access-maintenance costs. A supported archive product can provide managed policies and retrieval features, subject to its licensing and product constraints. An external archive can suit some access patterns but requires integration, authorization, search design, and operations. Big Objects or other storage options are not drop-in replacements for every ordinary object query or report. Create a fit table rather than declaring one option cheapest. Compare required searches, reporting freshness, relationship preservation, restoration granularity, operating effort, product availability, and expected cost categories. If pricing or licensing is unknown, mark it as a question rather than filling in an invented dollar value."
+        }
+      ]
+    },
+    {
+      "start": 267,
+      "duration": 50,
+      "label": "05 · Measure recoverability, not only storage reduction",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Measure recoverability, not only storage reduction». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A small proxy can use ten synthetic appointments and an archive manifest. A manifest is a list describing what was copied, its identifiers, counts, and verification information. Show that an allowed user can retrieve a selected historical visit, that an unauthorized persona cannot, and that the required report still reconciles. Record retrieval time, missing references, mismatched counts, and restoration limitations. If you only designed the exercise, leave the observation cells empty and describe the planned checks. A storage estimate alone cannot show whether a customer's question can still be answered."
+        }
+      ]
+    },
+    {
+      "start": 317,
+      "duration": 60,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, describe the active-user and historical-reporting journeys separately."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 377,
+      "duration": 66,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write a candidate selection rule and at least two exclusions, leaving the actual retention period for the named owner to approve."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 443,
+      "duration": 64,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, compare core storage, a supported archive product, and an external store against the same requirements."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 507,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create a manifest with stable source identities and relationship information."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 568,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, specify count reconciliation, permitted and denied retrieval, reporting continuity, and a single-record restoration test."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 631,
+      "duration": 75,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not delete source records merely because an export file exists; first verify completeness, readability, relationships, and approved recovery. Now pause the video and try the exercise yourself. Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test. Archiving, backup, history, and deletion are not conflated. The exercise does not present an invented retention period as a legal rule. The design includes destination permissions and recovery, not only reduced live record count."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is a CSV export not a complete archive design?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It does not by itself establish retrieval, access control, relationship preservation, reporting, retention, or restoration behavior. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

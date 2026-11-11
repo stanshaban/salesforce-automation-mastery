@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M32 · Agentforce tasks, actions, and evidence",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b5a1df8363e14f789cdf7442fb82881a. Подготовь только синтетические данные и исходное состояние упражнения. Открой action contract Agentforce и отдельно read/write границы. В поддерживаемой org покажи confirmation, trace и полученную запись. При отсутствии entitlement используй подписанный design walkthrough. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No artificial slot is described as real calendar availability. Unknown and denied inputs are handled explicitly."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 65,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar's salesperson already has a business task: find useful test-drive information for Irina. An employee agent offers a conversational way to reach a permitted operation. It should not replace the underlying data model or invent missing availability. Explain the task and its evidence first: the salesperson asks about a model, an action reads or calculates a bounded result, and the answer accurately describes that result. In the current Agentforce Builder, subagents organize task-specific behavior and the Router selects an appropriate area. Actions perform concrete operations through supported mechanisms such as Flow or an invocable Apex method. Instructions help select and describe actions, while code, permissions, and data constraints enforce the actual operation. A well-written prompt is not a substitute for authorized database access."
+        }
+      ]
+    },
+    {
+      "start": 104,
+      "duration": 59,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use three controlled results: City EV returns OK and two demo times; Tourer Hybrid returns UNAVAILABLE; an unknown model returns NOT_FOUND. A missing model requires clarification. If two visible vehicles share the exact model, the provided action returns AMBIGUOUS rather than choosing the first. The agent should explain these outcomes without making up a booking. Test ten cases: clear request, paraphrased request, missing model, unknown model, unavailable model, ambiguous model, denied field access, denied record access, unrelated request, and a request to ignore restrictions. For each, state the expected action or clarification and whether any data should change. The read-only clinic should create no Test Drive or Case records."
+        }
+      ]
+    },
+    {
+      "start": 163,
+      "duration": 25,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Mandatory simulation needs only the listed fixture outcomes. Optional live path: obtain the official special Agentforce Employee Developer Edition, deploy starter/salesforce and starter/agentforce, grant minimal Apex/data access, and verify the action's tests first."
+        }
+      ]
+    },
+    {
+      "start": 188,
+      "duration": 66,
+      "label": "05 · Write the action contract",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, write the action contract. Document model input, result codes, minimal outputs, mock limitation, and the fact that no data is written. Map each of the ten test cases to an expected result."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Write the action contract» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The agent has a bounded, reviewable responsibility. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The agent has a bounded, reviewable responsibility."
+        }
+      ]
+    },
+    {
+      "start": 254,
+      "duration": 69,
+      "label": "06 · Optional current Builder setup",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, optional current Builder setup. Open Agentforce Studio → New Agent → Employee Agent. Create a test-drive information subagent and add the deployed Apex invocable action. Require the model input and keep action outputs clearly labeled as demo data."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Optional current Builder setup» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The configured action matches the tested Apex contract. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The configured action matches the tested Apex contract."
+        }
+      ]
+    },
+    {
+      "start": 323,
+      "duration": 65,
+      "label": "07 · Run and inspect",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, run and inspect. Analyze the simulation or use Preview in the entitled org. Inspect selected action, inputs, outputs, and actual record counts. Mark which mode was used."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Run and inspect» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A fluent answer cannot conceal an unauthorized or missing result. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A fluent answer cannot conceal an unauthorized or missing result."
+        }
+      ]
+    },
+    {
+      "start": 388,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An action failure must not be rewritten as 'no warranty' or 'no availability' unless that is the actual business result. Unknown and denied access are not successful negative answers."
+        }
+      ]
+    },
+    {
+      "start": 411,
+      "duration": 64,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A portal simulation does not validate live Agentforce licensing, permissions, model behavior, or Salesforce writes. Now pause the video and try the exercise yourself. Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action. No artificial slot is described as real calendar availability. Unknown and denied inputs are handled explicitly. Simulation and live results are distinguished."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What does an action add beyond instructions?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "A concrete executable operation with defined inputs, outputs, and implementation constraints. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

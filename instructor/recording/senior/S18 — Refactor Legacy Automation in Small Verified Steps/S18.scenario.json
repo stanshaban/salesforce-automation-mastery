@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S18 · Refactor Legacy Automation in Small Verified Steps",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=ca2bff578f844789abf9447f833bc8d6. Подготовь только синтетические данные и исходное состояние упражнения. Открой legacy automation inventory. Покажи characterization test, одну extracted responsibility и diff. Сравни поведение до/после и отдельный rollback step. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Design a small refactor that separates status-transition decisions from reminder persistence."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Existing behavior and intended corrected behavior are labelled separately. The first change has one responsibility and a clear comparison path."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 57,
+      "label": "02 · First discover what the old code actually does",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «First discover what the old code actually does». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar's appointment trigger validates status changes, updates a vehicle summary, creates a reminder, and calls a helper with unclear side effects. Nobody can confidently explain why some conditions are repeated. Oleg wants a new cancellation rule, but a full rewrite would change too many behaviors at once. A characterization test records the behavior of the existing implementation for a defined input. It is useful when documentation is incomplete. It does not declare every observed behavior correct. If the old handler creates duplicate reminders, a characterization test can reveal that fact, but the business still needs to decide the intended behavior before a corrective change."
+        }
+      ]
+    },
+    {
+      "start": 96,
+      "duration": 99,
+      "label": "03 · Build a behavior map before choosing a new design",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build a behavior map before choosing a new design». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "List entry points, records read, records changed, external effects, and the conditions controlling each effect. Include other automation that can run in the same transaction. A trigger handler is not isolated merely because it is stored in one class. A Flow may update the record again, and an integration may enter through a different route. Use the synthetic cases below to define a minimal behavior envelope. An envelope is the set of behavior you intend to keep stable during the first change. Include empty input, a normal transition, an unchanged status, a mixed bulk collection, and a rejected transition. Count side effects as well as checking the final field value."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic characterization cases» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic characterization cases. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 195,
+      "duration": 60,
+      "label": "04 · Extract one responsibility behind a seam",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Extract one responsibility behind a seam». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A seam is a boundary where one part of the implementation can be replaced or tested independently. Start by extracting a pure status-decision function: given old and new state, what action should occur? Keep the trigger's collection handling and persistence contract stable while this decision logic moves. A pure function returns a result without performing hidden database or network work, which makes it easier to test. Do not immediately create a large framework with many layers. The first extraction should reduce a specific source of uncertainty. For example, separating 'should create a reminder' from 'insert reminder records' lets tests verify transition decisions without making every test depend on a complete org configuration."
+        }
+      ]
+    },
+    {
+      "start": 255,
+      "duration": 53,
+      "label": "05 · Use meaningful regression evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use meaningful regression evidence». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Tests should verify outcomes and absence of unintended work. A line-coverage number only shows which lines executed; it does not prove that a reminder was created once, that a denied transition stayed denied, or that a later batch of trigger records was processed. An early return controlled by one transaction-wide static Boolean is a useful review target. It can suppress legitimate later work as well as recursion. Prefer business transition checks and deliberately scoped coordination over a blanket 'already ran' flag. Any stateful guard should explain what it tracks and when repeated processing is valid."
+        }
+      ]
+    },
+    {
+      "start": 308,
+      "duration": 62,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, map the legacy handler's reads, writes, and possible repeated entry paths."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 370,
+      "duration": 62,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, turn the five cases into explicit expected actions and unresolved business questions."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 432,
+      "duration": 61,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, extract or sketch a pure decision function with no DML."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 493,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write assertions for a mixed collection and an unchanged status."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 554,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, prepare a small diff plan and a separate follow-up for the approved cancellation behavior."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 617,
+      "duration": 70,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A successful narrow refactor does not certify unrelated automation that your behavior map did not cover. Now pause the video and try the exercise yourself. Design a small refactor that separates status-transition decisions from reminder persistence. Existing behavior and intended corrected behavior are labelled separately. The first change has one responsibility and a clear comparison path. Tests check side-effect counts and bulk behavior, not only line coverage."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does a characterization test prove the old behavior is desirable?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It records observed behavior for comparison; the business may decide that behavior is a defect. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S11 · Remove Excess Access Without Breaking Legitimate Work",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=2115b41bd311477b8ba83e2d6765fe1a. Подготовь только синтетические данные и исходное состояние упражнения. На таблице effective grants найди два независимых пути доступа. Убери один на схеме и покажи, почему доступ остаётся. Подготовь phased removal и regression matrix вместо массового отключения прав. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Use the inventory to remove the expired East collaboration while preserving legitimate West work."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Muting is never described as a user-wide deny. The plan checks independent grants after each removal."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 62,
+      "label": "02 · An effective right can have several sources",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «An effective right can have several sources». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Max can edit an East appointment even though the team deleted a sharing rule. The deletion removed one source of record access, not necessarily all sources. Max might own the record, have hierarchy access, belong to another shared group, receive an explicit share, or hold a broad permission that bypasses ordinary record sharing. Investigate the operation, object, field, and record separately. Effective access means the result of all applicable grants and restrictions in the actual execution path. A screenshot of one permission set is not a complete explanation. Likewise, a successful Apex endpoint can reflect its execution mode rather than Max's normal interface access. Record the entry point and Apex API version when code is involved."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 100,
+      "label": "03 · Muting is local to a permission set group",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Muting is local to a permission set group». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A permission set group bundles permission sets for a work responsibility. Its muting permission set removes selected permissions from that group's contribution. It is not a global deny that overrides the profile, a separately assigned permission set, or another group. This additive model explains why a muted permission can remain effective. The synthetic inventory below gives Max Edit from two independent places. Muting the group removes one contribution; the direct assignment still provides Edit. Removing the direct assignment may still be insufficient to prevent editing a particular record if another object-level source remains. Also inspect dependencies: muting a foundational permission can affect related permissions within the group's effective result."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic grant inventory for Max» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic grant inventory for Max. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 201,
+      "duration": 58,
+      "label": "04 · Build a removal plan with observable outcomes",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build a removal plan with observable outcomes». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Start with the business reason: Max should stop editing East appointments after temporary collaboration ends, while continuing to edit his approved West work. Determine whether the intended change concerns object Edit, East record access, or both. Removing object Edit globally might solve the East symptom by unnecessarily breaking West work. Create a before-and-after matrix of allowed and denied actions. Include normal interface use, relevant API or Apex entry points, sensitive fields, and any supported restrictions. Restriction rules can narrow existing record visibility for supported objects and contexts; they do not grant missing access. Do not assume that multiple matching restriction rules combine into a reliable AND policy."
+        }
+      ]
+    },
+    {
+      "start": 259,
+      "duration": 51,
+      "label": "05 · Treat the audit as maintained evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Treat the audit as maintained evidence». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An access inventory becomes stale when jobs, groups, owners, or integrations change. Store the reason, responsible owner, review date, and expiration condition for exceptions. Where possible, use supported access-summary and diagnostic tools to gather evidence, but interpret the results against the complete business operation. Use a small synthetic matrix for the lesson. If licenses prevent simultaneous personas, document the limitation and inspect one configuration at a time. Do not present a paper grant graph as an executed access test. A clear audit can still show exactly which checks remain to be run."
+        }
+      ]
+    },
+    {
+      "start": 310,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, draw object, field, and record-access sources as separate layers."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 371,
+      "duration": 62,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, explain the effect of group muting before changing any other grant."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 433,
+      "duration": 61,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, propose the smallest change that satisfies the business requirement."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 494,
+      "duration": 63,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write allowed and denied checks for West and East appointments and one restricted field."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 557,
+      "duration": 62,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, prepare a before/after evidence table and a narrowly scoped recovery step."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 619,
+      "duration": 71,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Removing a sharing rule is not proof of denied access; verify the effective result through the intended entry point. Now pause the video and try the exercise yourself. Use the inventory to remove the expired East collaboration while preserving legitimate West work. Muting is never described as a user-wide deny. The plan checks independent grants after each removal. Legitimate West work remains a specific acceptance criterion."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can Edit remain after group muting?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The same permission can come from a profile, a direct permission set, or another group; muting affects only the selected group's contribution. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

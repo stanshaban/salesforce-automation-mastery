@@ -1,0 +1,162 @@
+{
+  "version": 2,
+  "title": "J11 · Understand the Layers of Data Access",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=24d8c1fb88cd4bb98d91b41c7d8c61a6. Подготовь только синтетические данные и исходное состояние упражнения. Открой интерактивную модель Security в портале. По очереди убери object Read, доступ к полю и доступ к записи. Затем в Setup покажи соответствующие уровни на примере Test Drive. Не выдавай результат администратора за проверку продавца. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Explain why similar symptoms require different investigation paths."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Object, field, and record access are distinguished. Administrator results are not represented as salesperson tests."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 64,
+      "label": "02 · Describe the requested action",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Describe the requested action». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Oleg says that Max should see tomorrow's test drive. Before configuring anything, make that sentence precise. Max needs to sign in, read Test Drive records, read the relevant fields, and access the particular appointment. If he must change its time, the required action is different. Access without a user, record, field, and operation is too vague to test. Organization access concerns entry into the environment, including an active account and applicable login controls. Object permissions describe operations such as Create, Read, Edit, and Delete on a category of data; people often abbreviate these as CRUD. Field-level security, or FLS, describes which fields are readable or editable. Record access concerns the individual records a user can reach within those object operations."
+        }
+      ]
+    },
+    {
+      "start": 99,
+      "duration": 64,
+      "label": "03 · Distinguish similar symptoms",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Distinguish similar symptoms». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Imagine that Anna owns TD-001 and Max does not. First, Max cannot sign in. Sharing TD-001 does not repair the login problem. Second, Max can sign in but lacks Read on Test Drive. A record share does not substitute for object Read. Third, he can read the appointment but not a protected field. Increasing record sharing does not fix a deliberately restricted field. Fourth, Max has the relevant object and field permissions but no access to the private appointment. This is the situation where record-sharing mechanisms become relevant. This sequence is a useful model for ordinary interactions, not a claim that every execution context is identical. Developer features, elevated permissions, and specialized access controls need explicit consideration in later lessons."
+        }
+      ]
+    },
+    {
+      "start": 163,
+      "duration": 34,
+      "label": "04 · Run a controlled experiment",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Run a controlled experiment». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use a restricted learning user if the org has a suitable spare license. Record its profile, permission sets, and broad data permissions first. A pre-existing grant can hide the effect you are trying to demonstrate. For example, object-level View All Records can explain visibility that you otherwise might attribute to a new share."
+        }
+      ]
+    },
+    {
+      "start": 197,
+      "duration": 58,
+      "label": "05 · Write the baseline",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, write the baseline. Describe Max, the appointment, the operation, and the required fields."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Write the baseline» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The test can be repeated without interpretation. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The test can be repeated without interpretation."
+        }
+      ]
+    },
+    {
+      "start": 255,
+      "duration": 57,
+      "label": "06 · Inspect grants",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, inspect grants. Check the relevant user assignments and appointment ownership."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Inspect grants» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Broad permissions and existing routes are visible. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Broad permissions and existing routes are visible."
+        }
+      ]
+    },
+    {
+      "start": 312,
+      "duration": 59,
+      "label": "07 · Change one variable",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, change one variable. Test one object, field, or record change in the learning org."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Change one variable» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The observation can be connected to a specific change. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The observation can be connected to a specific change."
+        }
+      ]
+    },
+    {
+      "start": 371,
+      "duration": 55,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "An administrator successfully opening a record does not prove the intended salesperson access. Now pause the video and try the exercise yourself. Explain why similar symptoms require different investigation paths. Object, field, and record access are distinguished. Administrator results are not represented as salesperson tests."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Will record sharing grant object Read?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. The required object operation permission remains necessary. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

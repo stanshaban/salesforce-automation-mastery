@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S24 · Lead a 45-Minute Dealer-Network Architecture Interview",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=c251392e7dfe4eca8b6351ea1a7780f2. Подготовь только синтетические данные и исходное состояние упражнения. Начни таймер design interview. Сначала уточни бизнес-процесс и масштаб, затем нарисуй модель и boundaries. Введи новую failure constraint и пересмотри одно решение вслух. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Record or write a forty-five-minute architecture discussion using the synthetic requirement card."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The design explains one complete user journey and at least one failure. Tradeoffs change when the business requirement changes."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 59,
+      "label": "02 · Treat ambiguity as part of the task",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Treat ambiguity as part of the task». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The interviewer says: 'Northstar is growing to one hundred dealers. Design its booking platform.' One hundred dealers does not tell you the number of users, booking rate, data distribution, business hours, external dependencies, or access policy. Do not fill every gap with an elaborate architecture and then defend the assumptions as facts. Start with the user journey. Anna needs to request a test-drive, Irina needs a trustworthy confirmation, and Oleg needs visibility into unresolved work. Ask whether dealers share customers, who owns vehicle availability, whether booking must survive a DMS outage, and what 'confirmed' means. These questions can change the model more than choosing a queue or an API."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 95,
+      "label": "03 · Use time to produce a coherent first version",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use time to produce a coherent first version». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A practical forty-five-minute structure is five minutes clarifying the main journey, ten minutes on data and access, ten on integration and failure behavior, ten on scale and operations, and ten on tradeoffs and follow-up questions. This is a working aid, not a rigid script. If the interviewer introduces a critical constraint, adapt. Draw only the main boundaries first: user interface, Salesforce transaction, authoritative scheduling system, background work where justified, and reconciliation. Mark Vehicle__c and Test_Drive__c as the custom teaching model. If you propose an industry product, identify the decision and verification needed rather than silently replacing the schema."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic interview requirement card» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic interview requirement card. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 193,
+      "duration": 56,
+      "label": "04 · Connect scale to mechanisms",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Connect scale to mechanisms». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Do not use the dealer count as a direct formula for Apex limits. Discuss transaction shape, expected request rate, record concentration, query selectivity, and asynchronous completion capacity. Identify a likely pressure point under your stated assumptions. For example, many appointments updating one shared vehicle summary can create contention; a broad Requested-status filter can become unselective as data changes. Show what would reveal the problem: user-journey latency, relevant transaction counters, lock failures, oldest pending age, or reconciliation mismatches. Then describe a proportional response. Partition work by the actual shared resource, narrow a query without changing the requirement, or reduce unnecessary work before adding concurrency."
+        }
+      ]
+    },
+    {
+      "start": 249,
+      "duration": 47,
+      "label": "05 · Handle a changed requirement without defending sunk work",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Handle a changed requirement without defending sunk work». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Halfway through, the interviewer removes permission to keep a Pending state. Immediate authoritative confirmation is now required. Revisit the synchronous dependency, timeout behavior, and user experience. Do not insist that the original asynchronous design still satisfies a requirement it no longer meets. Explain what remains reusable: stable business identities, access checks, reservation idempotency, reconciliation, and observability. Explain what changes: the critical path, availability tradeoff, and permitted response during an outage. A revised decision demonstrates understanding more clearly than adding an unsupported guarantee."
+        }
+      ]
+    },
+    {
+      "start": 296,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, prepare five questions that could materially change the design."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 357,
+      "duration": 63,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create a first diagram and label data authority, access boundaries, and commit boundaries."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 420,
+      "duration": 63,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, walk through normal booking, timeout with unknown outcome, and a cross-dealer access denial."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 483,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, at minute twenty-five, remove the Pending-state assumption and revise the relevant design."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 545,
+      "duration": 62,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, finish with a decision summary, three unknowns, and the next validation experiment."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 607,
+      "duration": 68,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Confidence should come from a clear contract and reasoning, not from concealing missing information. Now pause the video and try the exercise yourself. Record or write a forty-five-minute architecture discussion using the synthetic requirement card. The design explains one complete user journey and at least one failure. Tradeoffs change when the business requirement changes. No unmeasured rate, product entitlement, or hidden platform implementation is presented as fact."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is dealer count insufficient for capacity planning?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It does not establish workload rate, transaction size, data distribution, concurrency, or shared-resource demand. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

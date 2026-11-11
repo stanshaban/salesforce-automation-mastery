@@ -1,10 +1,18 @@
 # Designing and verifying an access model
 
-M01 · middle · About 50 minutes with practice
-
 ![A compact permission matrix with two drawn team roles and distinct accessible record groups](https://sam-portal-production.up.railway.app/lesson-images/M01.jpg)
 
 Turn a business request into separate object, field, record, and operation decisions. Build an access matrix for two sales branches before changing permissions.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare and verify a minimum-permission model for Anna, Max, and Oleg.
+
+### Check the result
+
+- Every allowed row identifies its grant.
+- At least three denied operations are tested.
+- No administrator-only evidence is presented as salesperson verification.
 
 ## Before you begin
 
@@ -16,6 +24,14 @@ Turn a business request into separate object, field, record, and operation decis
 - Translate a role description into testable operations.
 - Identify the source of every allowed action.
 - Prove both permitted and denied access.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -130,11 +146,19 @@ Answer in your own words before reading the explanations.
 
 # Permission Set Groups and muting
 
-M02 · middle · About 50 minutes with practice
-
 ![A group of permission tiles with one muted tile and a separate direct permission path](https://sam-portal-production.up.railway.app/lesson-images/M02.jpg)
 
 Predict effective permissions when a permission set group mutes a grant that is also supplied elsewhere.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Submit the four-path experiment with a small diagram and observed results.
+
+### Check the result
+
+- The explanation distinguishes group-local muting from effective user permissions.
+- All four assignment combinations are considered.
+- Group recalculation and unchanged record access are recorded.
 
 ## Before you begin
 
@@ -146,6 +170,14 @@ Predict effective permissions when a permission set group mutes a grant that is 
 - Explain the scope of a muting permission set.
 - Trace a permission through multiple assignment paths.
 - Verify dependent permissions and group recalculation.
+
+## See the steps
+
+![Muting affects one permission set group](https://sam-portal-production.up.railway.app/animations/muting.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/muting.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -260,11 +292,19 @@ Answer in your own words before reading the explanations.
 
 # Manual and implicit sharing
 
-M03 · middle · About 50 minutes with practice
-
 ![One record connected by a deliberate handoff path and a quieter parent relationship path](https://sam-portal-production.up.railway.app/lesson-images/M03.jpg)
 
 Identify why a record is visible and distinguish an explicit manual grant from access arising from supported standard relationships.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship.
+
+### Check the result
+
+- Each visibility result names an access mechanism.
+- Remaining access after removal is investigated.
+- No claim says all lookups automatically share records.
 
 ## Before you begin
 
@@ -276,6 +316,14 @@ Identify why a record is visible and distinguish an explicit manual grant from a
 - Identify the source of record access.
 - Test removal of one grant without assuming all access disappears.
 - Recognize that custom lookups do not universally imply sharing.
+
+## See the steps
+
+![Record access has independent granting paths](https://sam-portal-production.up.railway.app/animations/sharing.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/sharing.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -392,11 +440,19 @@ Answer in your own words before reading the explanations.
 
 # Apex managed sharing across a record lifecycle
 
-M04 · middle · About 50 minutes with practice
-
 ![One access card moving through create, update and revoke stages without readable labels](https://sam-portal-production.up.railway.app/lesson-images/M04.jpg)
 
 Maintain a manager's record access while preserving unrelated grants and handling bulk changes.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement the transition table on Project__c and submit evidence of safe reconciliation.
+
+### Check the result
+
+- No unrelated share is deleted.
+- Cleared and changed managers remove the obsolete owned grant.
+- Bulk and undelete behavior are explicitly tested.
 
 ## Before you begin
 
@@ -408,6 +464,14 @@ Maintain a manager's record access while preserving unrelated grants and handlin
 - Use a custom RowCause to identify owned shares.
 - Handle manager changes, clearing, and restoration.
 - Preserve independent access and test 200 records.
+
+## See the steps
+
+![Record access has independent granting paths](https://sam-portal-production.up.railway.app/animations/sharing.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/sharing.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -534,11 +598,19 @@ Answer in your own words before reading the explanations.
 
 # Restriction rules and supported access paths
 
-M05 · middle · About 50 minutes with practice
-
 ![A fine filter removing two records from an already accessible group](https://sam-portal-production.up.railway.app/lesson-images/M05.jpg)
 
 Filter an already accessible record set for selected users while recognizing object, edition, and execution-context boundaries.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create the North/South experiment and explain the result for two users.
+
+### Check the result
+
+- No new access is attributed to the restriction.
+- Supported object, edition, and context are recorded.
+- Positive, negative, and unaffected-user cases are included.
 
 ## Before you begin
 
@@ -550,6 +622,14 @@ Filter an already accessible record set for selected users while recognizing obj
 - Distinguish narrowing from granting access.
 - Create a controlled restriction-rule experiment.
 - Test the relevant read paths without claiming a universal deny.
+
+## See the steps
+
+![A restriction rule filters an accessible set](https://sam-portal-production.up.railway.app/animations/restriction.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/restriction.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -665,11 +745,19 @@ Answer in your own words before reading the explanations.
 
 # Apex security and API-version defaults
 
-M06 · middle · About 50 minutes with practice
-
 ![Two versioned code sheets beside a shield and explicit access-control switch](https://sam-portal-production.up.railway.app/lesson-images/M06.jpg)
 
 Separate class sharing context from database access mode and verify security when changing an Apex API version.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain and verify one read path under explicit modes and API-version defaults.
+
+### Check the result
+
+- The report separates sharing from CRUD/FLS.
+- API versions are identified.
+- No broad permission is added solely to make the test green.
 
 ## Before you begin
 
@@ -681,6 +769,14 @@ Separate class sharing context from database access mode and verify security whe
 - Distinguish record-sharing context from operation access mode.
 - Explain the API 67 default changes.
 - Write explicit-mode comparisons and negative tests.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -807,11 +903,19 @@ Answer in your own words before reading the explanations.
 
 # Choosing Flow or Apex for a business operation
 
-M07 · middle · About 50 minutes with practice
-
 ![A balanced choice between a simple visual process and a compact code block](https://sam-portal-production.up.railway.app/lesson-images/M07.jpg)
 
 Choose an implementation from the shape of the work, its transaction boundaries, and the team's ability to maintain it.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose and implement the confirmation rule, then explain how two larger variants would change your decision.
+
+### Check the result
+
+- The choice mentions maintenance and volume.
+- No duplicate automation performs the same responsibility.
+- The failure policy is demonstrated rather than implied.
 
 ## Before you begin
 
@@ -823,6 +927,14 @@ Choose an implementation from the shape of the work, its transaction boundaries,
 - Compare tools against concrete requirements.
 - Identify transaction and maintenance constraints.
 - Implement a small operation without duplicating responsibility.
+
+## See the steps
+
+![Follow-up Task with an explicit failure route](https://sam-portal-production.up.railway.app/animations/flow.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/flow.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -937,11 +1049,19 @@ Answer in your own words before reading the explanations.
 
 # Order of execution, recursion, and idempotency
 
-M08 · middle · About 50 minutes with practice
-
 ![A repeated event arriving at a gate that permits one successful change](https://sam-portal-production.up.railway.app/lesson-images/M08.jpg)
 
 Explain repeated automation within a transaction and design a durable business result that is not duplicated by re-entry or retries.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Build the declared receipt behavior and demonstrate repeated execution without duplicate results.
+
+### Check the result
+
+- Exactly one receipt exists per defined key.
+- Unrelated failures are not called successful retries.
+- The confirmation-cycle limitation is explicit.
 
 ## Before you begin
 
@@ -953,6 +1073,14 @@ Explain repeated automation within a transaction and design a durable business r
 - Recognize why automation can run again.
 - Separate recursion prevention from durable duplicate protection.
 - Test re-entry, bulk input, and later retries.
+
+## See the steps
+
+![Commit and rollback](https://sam-portal-production.up.railway.app/animations/transaction.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/transaction.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -1068,11 +1196,19 @@ Answer in your own words before reading the explanations.
 
 # Structuring Apex and using Custom Metadata
 
-M09 · middle · About 50 minutes with practice
-
 ![Three tidy code modules with a separate small configuration card](https://sam-portal-production.up.railway.app/lesson-images/M09.jpg)
 
 Separate warranty business rules, orchestration, and external access without adding layers that have no clear responsibility.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Separate one policy and one business decision from a mixed orchestration sketch.
+
+### Check the result
+
+- Dependencies are visible at the entry point.
+- Local tests require no provider or real credentials.
+- Each introduced layer has a stated responsibility.
 
 ## Before you begin
 
@@ -1218,11 +1354,19 @@ Answer in your own words before reading the explanations.
 
 # Testing a complete local business rule
 
-M10 · middle · About 50 minutes with practice
-
 ![A test pyramid made of a few restrained blocks beside one concrete feature card](https://sam-portal-production.up.railway.app/lesson-images/M10.jpg)
 
 Build independent fixtures and meaningful assertions for normal, boundary, invalid, and bulk inputs before introducing network behavior.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Submit a local test suite with boundaries, negative cases, and mixed bulk input.
+
+### Check the result
+
+- No business records are read through SeeAllData.
+- Strict cutoff and protected statuses are checked.
+- The mutation fails a relevant assertion.
 
 ## Before you begin
 
@@ -1360,11 +1504,19 @@ Answer in your own words before reading the explanations.
 
 # Selecting an asynchronous processing mechanism
 
-M11 · middle · About 50 minutes with practice
-
 ![One work request branching toward three different background processing lanes](https://sam-portal-production.up.railway.app/lesson-images/M11.jpg)
 
 Match delayed work to its volume, timing, transaction, and recovery requirements without promising immediate execution.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose mechanisms for five operations and state the visible result and recovery behavior of each.
+
+### Check the result
+
+- Every delayed operation has a pending state or equivalent acknowledgement.
+- Timing is described as a requirement, not an unsupported guarantee.
+- Retry load is included.
 
 ## Before you begin
 
@@ -1376,6 +1528,14 @@ Match delayed work to its volume, timing, transaction, and recovery requirements
 - Compare synchronous work, Queueable, Batch, schedules, and events.
 - Explain a user-visible pending state.
 - Estimate work per transaction and per day.
+
+## See the steps
+
+![Accepted work and its durable state](https://sam-portal-production.up.railway.app/animations/queueable.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/queueable.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -1507,11 +1667,19 @@ Answer in your own words before reading the explanations.
 
 # Queueable Apex and observable request state
 
-M12 · middle · About 50 minutes with practice
-
 ![Three linked background job tiles with a small recovery branch](https://sam-portal-production.up.railway.app/lesson-images/M12.jpg)
 
 Create a local background warranty check with a durable request identity, a job reference, and explicit outcomes before adding HTTP.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement the local Queueable lifecycle and a bounded manual retry.
+
+### Check the result
+
+- One key creates one business request.
+- Job and request IDs are distinguishable.
+- Failed work is visible and retries are bounded.
 
 ## Before you begin
 
@@ -1523,6 +1691,14 @@ Create a local background warranty check with a durable request identity, a job 
 - Persist a request before enqueueing work.
 - Separate job identity from business identity.
 - Handle repeated requests and visible failures.
+
+## See the steps
+
+![Accepted work and its durable state](https://sam-portal-production.up.railway.app/animations/queueable.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/queueable.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -1647,11 +1823,19 @@ Answer in your own words before reading the explanations.
 
 # Batch Apex and independent execution scopes
 
-M13 · middle · About 50 minutes with practice
-
 ![A large stack of records divided into three manageable processing groups](https://sam-portal-production.up.railway.app/lesson-images/M13.jpg)
 
 Process a larger appointment dataset in bounded transactions and report partial failure without implying whole-job atomicity.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Build the cancellation Batch with visible success, skipped, and failed outcomes.
+
+### Check the result
+
+- Protected statuses remain unchanged.
+- An error is visible and tied to its record or scope.
+- A repeat run does not corrupt already processed records.
 
 ## Before you begin
 
@@ -1663,6 +1847,14 @@ Process a larger appointment dataset in bounded transactions and report partial 
 - Explain start, execute, and finish.
 - Choose a scope from the work per record.
 - Distinguish instance state, static state, and persisted results.
+
+## See the steps
+
+![Batch execute scopes are separate transactions](https://sam-portal-production.up.railway.app/animations/batch.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/batch.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -1777,11 +1969,19 @@ Answer in your own words before reading the explanations.
 
 # Scheduling, workload limits, and monitoring
 
-M14 · middle · About 50 minutes with practice
-
 ![A clean clock connected to a background job and a small status monitor](https://sam-portal-production.up.railway.app/lesson-images/M14.jpg)
 
 Run periodic work with a deliberate overlap policy, time-zone definition, and observable completion.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Add a schedule and a documented monitoring and recovery procedure to M13.
+
+### Check the result
+
+- Time-zone assumptions are explicit.
+- Overlap and abandoned-run behavior are defined.
+- The report distinguishes scheduling, execution, and business completion.
 
 ## Before you begin
 
@@ -1793,6 +1993,14 @@ Run periodic work with a deliberate overlap policy, time-zone definition, and ob
 - Explain what the scheduler does and does not guarantee.
 - Prevent or detect overlapping runs.
 - Define operational evidence and recovery.
+
+## See the steps
+
+![Accepted work and its durable state](https://sam-portal-production.up.railway.app/animations/queueable.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/queueable.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -1908,11 +2116,19 @@ Answer in your own words before reading the explanations.
 
 # API contracts and credential boundaries
 
-M15 · middle · About 50 minutes with practice
-
 ![Two system boxes connected by a contract card and a small key](https://sam-portal-production.up.railway.app/lesson-images/M15.jpg)
 
 Describe the warranty provider's request, response, errors, and identity before connecting a client.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a contract and credential responsibility map that another developer can implement without guessing.
+
+### Check the result
+
+- Business negative and transport failures differ.
+- Identity and principal permission mapping are explicit.
+- No secret appears in code or documentation.
 
 ## Before you begin
 
@@ -1924,6 +2140,14 @@ Describe the warranty provider's request, response, errors, and identity before 
 - Write an explicit external-service contract.
 - Separate endpoint configuration from authentication.
 - Define which runtime user can use a principal.
+
+## See the steps
+
+![Classify a provider response before retrying](https://sam-portal-production.up.railway.app/animations/callout.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/callout.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2058,11 +2282,19 @@ Answer in your own words before reading the explanations.
 
 # Working with REST and SOAP service contracts
 
-M16 · middle · About 50 minutes with practice
-
 ![Two distinct structured message envelopes exchanged between the same systems](https://sam-portal-production.up.railway.app/lesson-images/M16.jpg)
 
 Read an existing provider interface, select the appropriate client and mock, and preserve its error and authentication semantics.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Write a contract map and demonstrate the appropriate mock for one concrete client.
+
+### Check the result
+
+- The selected mock matches the call mechanism.
+- Example XML is not described as a complete WSDL.
+- Live authentication remains an explicitly separate check.
 
 ## Before you begin
 
@@ -2074,6 +2306,14 @@ Read an existing provider interface, select the appropriate client and mock, and
 - Compare REST resource calls with SOAP operations.
 - Explain WSDL-generated Apex dependencies.
 - Choose HttpCalloutMock or WebServiceMock correctly.
+
+## See the steps
+
+![Classify a provider response before retrying](https://sam-portal-production.up.railway.app/animations/callout.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/callout.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2200,11 +2440,19 @@ Answer in your own words before reading the explanations.
 
 # HTTP callouts, failures, and bounded retries
 
-M17 · middle · About 50 minutes with practice
-
 ![An external request meeting a timeout clock and a carefully bounded retry loop](https://sam-portal-production.up.railway.app/lesson-images/M17.jpg)
 
 Implement a small warranty client and test success, invalid responses, business absence, throttling, server failure, and transport errors locally.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement the mock and bounded orchestration mapping around the supplied client.
+
+### Check the result
+
+- All tests run without a provider.
+- A valid negative answer differs from failure.
+- Retry exhaustion is visible and does not loop indefinitely.
 
 ## Before you begin
 
@@ -2216,6 +2464,14 @@ Implement a small warranty client and test success, invalid responses, business 
 - Classify outcomes before retrying.
 - Write a mock that checks the request.
 - Keep network tests independent of a real server.
+
+## See the steps
+
+![Classify a provider response before retrying](https://sam-portal-production.up.railway.app/animations/callout.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/callout.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2375,11 +2631,19 @@ Answer in your own words before reading the explanations.
 
 # Inbound APIs, external IDs, and duplicate protection
 
-M18 · middle · About 50 minutes with practice
-
 ![Two matching incoming records passing a unique-key gate into one stored record](https://sam-portal-production.up.railway.app/lesson-images/M18.jpg)
 
 Accept repeated incoming data without creating duplicate business requests, while distinguishing record identity from operation identity.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Build and verify a stable inbound request contract with conflict handling.
+
+### Check the result
+
+- One request exists for three identical deliveries.
+- A successful request is not silently restarted.
+- Conflicting key reuse returns an explicit error.
 
 ## Before you begin
 
@@ -2391,6 +2655,14 @@ Accept repeated incoming data without creating duplicate business requests, whil
 - Use an external ID for stable record matching.
 - Define conflicting reuse of an idempotency key.
 - Compare standard REST upsert with custom orchestration.
+
+## See the steps
+
+![A repeated request is not a second business operation](https://sam-portal-production.up.railway.app/animations/idempotency.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/idempotency.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2515,11 +2787,19 @@ Answer in your own words before reading the explanations.
 
 # Integration diagnostics and controlled recovery
 
-M19 · middle · About 50 minutes with practice
-
 ![A traced request moving through three systems with one clear diagnostic marker](https://sam-portal-production.up.railway.app/lesson-images/M19.jpg)
 
 Trace a warranty request across attempts and give an operator enough evidence to retry safely without exposing secrets.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Demonstrate how one request can be found, diagnosed, and safely retried.
+
+### Check the result
+
+- History survives later success.
+- One correlation key connects request and attempts.
+- Retry authorization and eligibility are explicit.
 
 ## Before you begin
 
@@ -2531,6 +2811,14 @@ Trace a warranty request across attempts and give an operator enough evidence to
 - Separate correlation, attempt, and platform job identities.
 - Preserve useful failure history.
 - Define safe manual retry eligibility.
+
+## See the steps
+
+![Classify a provider response before retrying](https://sam-portal-production.up.railway.app/animations/callout.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/callout.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2646,11 +2934,19 @@ Answer in your own words before reading the explanations.
 
 # Choosing SOQL or SOSL for a search requirement
 
-M20 · middle · About 50 minutes with practice
-
 ![A focused search over one record shelf beside a broader search across several shelves](https://sam-portal-production.up.railway.app/lesson-images/M20.jpg)
 
 Use structured queries for known filters and indexed search for words across object types, while handling delayed search visibility.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create the appointment list and customer search with distinct contracts.
+
+### Check the result
+
+- Date boundaries and null lookups are handled.
+- Multiple object types are distinguishable.
+- The indexing limitation is explained without fabricated timing.
 
 ## Before you begin
 
@@ -2662,6 +2958,14 @@ Use structured queries for known filters and indexed search for words across obj
 - Choose SOQL or SOSL from the question.
 - Navigate declared lookup relationships.
 - Explain why a newly saved record may not immediately appear in search.
+
+## See the steps
+
+![A useful filter preserves the user requirement](https://sam-portal-production.up.railway.app/animations/query.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/query.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2801,11 +3105,19 @@ Answer in your own words before reading the explanations.
 
 # Lightning Web Component lifecycle
 
-M21 · middle · About 50 minutes with practice
-
 ![A component card moving through create, render and cleanup stages on one path](https://sam-portal-production.up.railway.app/lesson-images/M21.jpg)
 
 Observe creation, attachment, rendering, removal, and child-error handling without assuming a component renders only once.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect.
+
+### Check the result
+
+- Hook order is observed rather than invented.
+- Repeated rendering is expected.
+- No duplicated external listener remains after reopening.
 
 ## Before you begin
 
@@ -2817,6 +3129,14 @@ Observe creation, attachment, rendering, removal, and child-error handling witho
 - Explain the purpose of each lifecycle hook.
 - Avoid render-driven update loops.
 - Clean up listeners and subscriptions at the appropriate boundary.
+
+## See the steps
+
+![One LWC instance through its lifetime](https://sam-portal-production.up.railway.app/animations/lifecycle.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/lifecycle.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -2955,11 +3275,19 @@ Answer in your own words before reading the explanations.
 
 # Wire, imperative Apex, and refreshing data
 
-M22 · middle · About 50 minutes with practice
-
 ![A component and a data cache synchronising after one record update](https://sam-portal-production.up.railway.app/lesson-images/M22.jpg)
 
 Separate reactive reads from explicit writes and refresh the cache that actually supplies the displayed data.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement a reactive read and explicit confirmation with separate save and refresh outcomes.
+
+### Check the result
+
+- The correct refresh API matches each data source.
+- A successful save is not reported as a failed save.
+- Rapid input changes do not display the wrong record.
 
 ## Before you begin
 
@@ -2971,6 +3299,14 @@ Separate reactive reads from explicit writes and refresh the cache that actually
 - Use @api, @wire, and imperative calls for their distinct roles.
 - Choose the correct refresh mechanism.
 - Separate write failure from refresh failure.
+
+## See the steps
+
+![A write and a refresh have different outcomes](https://sam-portal-production.up.railway.app/animations/refresh.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/refresh.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3122,11 +3458,19 @@ Answer in your own words before reading the explanations.
 
 # DOM events and Lightning Message Service
 
-M23 · middle · About 50 minutes with practice
-
 ![Two sibling components using a shared message hub and one local parent-child arrow](https://sam-portal-production.up.railway.app/lesson-images/M23.jpg)
 
 Choose a communication contract for related components and for independent regions of the same Lightning application.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Demonstrate DOM events for one component tree and LMS for a separate panel.
+
+### Check the result
+
+- Payloads contain only needed identifiers.
+- DOM and LMS responsibilities are distinct.
+- Scope and cleanup behavior are explained.
 
 ## Before you begin
 
@@ -3138,6 +3482,14 @@ Choose a communication contract for related components and for independent regio
 - Use public properties down and events up a component tree.
 - Use LMS for appropriate cross-DOM communication.
 - Manage subscription scope and lifecycle.
+
+## See the steps
+
+![Data down, events up](https://sam-portal-production.up.railway.app/animations/component-events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/component-events.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3275,11 +3627,19 @@ Answer in your own words before reading the explanations.
 
 # Accessible LWC states and Jest tests
 
-M24 · middle · About 50 minutes with practice
-
 ![A clean accessible interface with a keyboard focus outline and a small automated test check](https://sam-portal-production.up.railway.app/lesson-images/M24.jpg)
 
 Test what a user can understand and operate, including keyboard interaction, empty results, failed loading, and selection events.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Build the four UI states and verify selection and recovery behavior.
+
+### Check the result
+
+- Tests pass independently with cleanup.
+- Event payload and error recovery are asserted.
+- Keyboard access and readable labels are demonstrated.
 
 ## Before you begin
 
@@ -3291,6 +3651,14 @@ Test what a user can understand and operate, including keyboard interaction, emp
 - Define accessible loading, empty, success, and error states.
 - Write isolated Jest tests for observable behavior.
 - Explain what still requires a real org or browser.
+
+## See the steps
+
+![A write and a refresh have different outcomes](https://sam-portal-production.up.railway.app/animations/refresh.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/refresh.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3441,11 +3809,19 @@ Answer in your own words before reading the explanations.
 
 # Shadow DOM and component boundaries
 
-M25 · middle · About 50 minutes with practice
-
 ![A component's internal structure enclosed in a clear boundary within a larger page](https://sam-portal-production.up.railway.app/lesson-images/M25.jpg)
 
 Keep DOM, styling, and event contracts inside their intended boundaries and understand the implications for optional legacy migration.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Show owned queries, scoped styles, and a stable public event contract.
+
+### Check the result
+
+- No private child DOM is accessed by the parent.
+- The event detail carries the required business identity.
+- Optional Aura work is labeled separately.
 
 ## Before you begin
 
@@ -3457,6 +3833,14 @@ Keep DOM, styling, and event contracts inside their intended boundaries and unde
 - Query only DOM owned by the component.
 - Explain CSS scope and event retargeting.
 - Preserve public contracts when replacing a legacy component.
+
+## See the steps
+
+![Data down, events up](https://sam-portal-production.up.railway.app/animations/component-events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/component-events.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3582,11 +3966,19 @@ Answer in your own words before reading the explanations.
 
 # Platform Events and publication timing
 
-M26 · middle · About 50 minutes with practice
-
 ![A small event envelope published after a transaction boundary to two subscribers](https://sam-portal-production.up.railway.app/lesson-images/M26.jpg)
 
 Publish a business fact with a deliberate relationship to commit, and verify the subscriber independently from the publisher.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a minimal event path with explicit commit behavior and a duplicate-safe receipt.
+
+### Check the result
+
+- Payload contains no unnecessary customer data.
+- Publication timing is stated and checked.
+- The receipt remains unique across repeated delivery.
 
 ## Before you begin
 
@@ -3598,6 +3990,14 @@ Publish a business fact with a deliberate relationship to commit, and verify the
 - Distinguish a fact from a command.
 - Compare Publish After Commit and Publish Immediately.
 - Avoid treating publish acceptance as subscriber success.
+
+## See the steps
+
+![Publication and subscriber work are separate](https://sam-portal-production.up.railway.app/animations/events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/events.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3728,11 +4128,19 @@ Answer in your own words before reading the explanations.
 
 # Change Data Capture, replay, and duplicate delivery
 
-M27 · middle · About 50 minutes with practice
-
 ![A stream of record changes with a replay bookmark and a duplicate-handling gate](https://sam-portal-production.up.railway.app/lesson-images/M27.jpg)
 
 Choose a record-change stream or business event and recover from disconnection without treating replay IDs as permanent business identities.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Analyze the supplied trace and design both short-disconnection and retention-gap recovery.
+
+### Check the result
+
+- The duplicate produces one effect.
+- Replay tokens are treated as opaque.
+- Beyond-retention recovery is defined.
 
 ## Before you begin
 
@@ -3744,6 +4152,14 @@ Choose a record-change stream or business event and recover from disconnection w
 - Distinguish CDC from a custom business event.
 - Explain replay and retention boundaries.
 - Apply repeat-safe consumption to a provided event trace.
+
+## See the steps
+
+![Publication and subscriber work are separate](https://sam-portal-production.up.railway.app/animations/events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/events.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -3870,11 +4286,19 @@ Answer in your own words before reading the explanations.
 
 # Git fetch, integration, and cherry-picking a fix
 
-M28 · middle · About 50 minutes with practice
-
 ![A clean branching history with one small fix moved carefully to another branch](https://sam-portal-production.up.railway.app/lesson-images/M28.jpg)
 
 Explain the state changed by common Git operations and transfer one focused correction without losing unrelated work.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create the controlled branch experiment and explain each state transition.
+
+### Check the result
+
+- Working tree, index, branch, and remote-tracking state are distinguished.
+- The selected commit is identified from real history.
+- The final content is coherent and unrelated changes are preserved.
 
 ## Before you begin
 
@@ -4018,11 +4442,19 @@ Answer in your own words before reading the explanations.
 
 # Pull requests, CI checks, and controlled deployment
 
-M29 · middle · About 50 minutes with practice
-
 ![A reviewed code card passing through tests and validation toward a deployment box](https://sam-portal-production.up.railway.app/lesson-images/M29.jpg)
 
 Prepare a reviewable change with truthful validation, metadata dependencies, explicit target environment, and recovery steps.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a focused PR and release checklist for one completed Middle feature.
+
+### Check the result
+
+- No check is marked passed without evidence.
+- Target org and permissions are explicit.
+- Recovery includes data and external effects where relevant.
 
 ## Before you begin
 
@@ -4034,6 +4466,14 @@ Prepare a reviewable change with truthful validation, metadata dependencies, exp
 - Distinguish repository checks, org validation, deployment, and smoke testing.
 - Describe dependencies and permission changes.
 - Plan recovery beyond reverting source files.
+
+## See the steps
+
+![Metadata and data changes have separate recovery work](https://sam-portal-production.up.railway.app/animations/release.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/release.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -4161,11 +4601,19 @@ Answer in your own words before reading the explanations.
 
 # Verifying an application under failure
 
-M30 · middle · About 50 minutes with practice
-
 ![A feature workflow with one intentionally interrupted connection and a visible recovery route](https://sam-portal-production.up.railway.app/lesson-images/M30.jpg)
 
 Test the complete path from user action through background work and mocked provider response to the final visible result.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Verify the integrated feature with controlled failures and one repaired defect.
+
+### Check the result
+
+- Duplicate and denied-access cases are included.
+- UI messages match persisted outcomes.
+- No unexecuted check is reported as successful.
 
 ## Before you begin
 
@@ -4177,6 +4625,14 @@ Test the complete path from user action through background work and mocked provi
 - Define end-to-end outcomes for several failure modes.
 - Trace one request across all components.
 - Decide readiness from evidence rather than a happy-path demo.
+
+## See the steps
+
+![Accepted work and its durable state](https://sam-portal-production.up.railway.app/animations/queueable.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/queueable.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -4295,11 +4751,19 @@ Answer in your own words before reading the explanations.
 
 # Enhanced Omni-Channel routing
 
-M31 · middle · About 50 minutes with practice
-
 ![Two customer work cards routed through an availability hub to two drawn support staff](https://sam-portal-production.up.railway.app/lesson-images/M31.jpg)
 
 Explain how queued service work becomes eligible for a person based on presence, capacity, and routing configuration, with a complete no-license simulation path.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Submit the provided simulation with three condition changes and an optional separately labeled live observation.
+
+### Check the result
+
+- Every chosen or excluded person has a reason.
+- No unsupported tie-breaking rule is invented.
+- Simulation and live evidence are clearly separated.
 
 ## Before you begin
 
@@ -4438,11 +4902,19 @@ Answer in your own words before reading the explanations.
 
 # Agentforce tasks, actions, and evidence
 
-M32 · middle · About 50 minutes with practice
-
 ![A restrained agent symbol choosing one permitted action from three clear tool cards](https://sam-portal-production.up.railway.app/lesson-images/M32.jpg)
 
 Build a clear mental model of an employee agent and verify one bounded read-only action before considering actions that change CRM data.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Complete the ten-case matrix for the read-only contract and optionally demonstrate the live action.
+
+### Check the result
+
+- No artificial slot is described as real calendar availability.
+- Unknown and denied inputs are handled explicitly.
+- Simulation and live results are distinguished.
 
 ## Before you begin
 
@@ -4454,6 +4926,14 @@ Build a clear mental model of an employee agent and verify one bounded read-only
 - Distinguish conversation, subagent routing, and deterministic action behavior.
 - Define a narrow read-only action contract.
 - Test unknown input, denied access, and misleading success.
+
+## See the steps
+
+![Read options, confirm, then verify the write](https://sam-portal-production.up.railway.app/animations/agentforce.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/agentforce.mp4)
+
+
 
 ## 1. Understand the mechanism
 
@@ -4570,11 +5050,19 @@ Answer in your own words before reading the explanations.
 
 # Automotive Cloud data modeling
 
-M33 · middle · About 50 minutes with practice
-
 ![A vehicle record connected to a customer, a service appointment and an ownership card](https://sam-portal-production.up.railway.app/lesson-images/M33.jpg)
 
 Compare the small custom vehicle model with Automotive Cloud's industry entities and decide what additional business requirements would justify the product.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed.
+
+### Check the result
+
+- Vehicle__c is not confused with the industry Vehicle API.
+- Relationships are not invented from labels.
+- No unavailable trial blocks the core course.
 
 ## Before you begin
 
@@ -4702,11 +5190,19 @@ Answer in your own words before reading the explanations.
 
 # Middle project review and technical defense
 
-M34 · middle · About 50 minutes with practice
-
 ![A service application connecting a vehicle, a warranty response and a background job](https://sam-portal-production.up.railway.app/lesson-images/M34.jpg)
 
 Demonstrate a coherent Northstar feature, defend its design with evidence, and repair one unfamiliar failure without relying on optional product licenses.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Deliver the integrated project and complete a short review plus one repair exercise.
+
+### Check the result
+
+- Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence.
+- The release plan declares dependencies and actual checks.
+- Required clinic analyses are complete without mandatory live product licenses.
 
 ## Before you begin
 

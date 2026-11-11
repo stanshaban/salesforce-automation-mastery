@@ -1,0 +1,126 @@
+{
+  "version": 2,
+  "title": "S00 · Senior Salesforce Developer: Start Here",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Выбор маршрута",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Открой contents page курса senior. Покажи prerequisites и результат проекта."
+        },
+        {
+          "type": "speech",
+          "text": "You can deliver a Middle-level feature with Apex, LWC, tests, and integrations, and are ready to investigate uncertain requirements and existing-system behavior. Explain and verify a bounded improvement with evidence, access and reliability reasoning, a reviewable change, and a realistic recovery plan. Completion does not guarantee a professional job title."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 27,
+      "label": "02 · Understand execution and measure the problem",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Understand execution and measure the problem». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers understand execution and measure the problem. Distinguish application metadata, business records, and execution state. Define latency, throughput, and backlog in plain terms. Distinguish elapsed request time from Apex CPU time."
+        }
+      ]
+    },
+    {
+      "start": 62,
+      "duration": 30,
+      "label": "03 · Data, queries, and concurrent work",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Data, queries, and concurrent work». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers data, queries, and concurrent work. Define selectivity and explain why an index is not a performance guarantee. Explain record locking, contention, and different forms of data skew. Define a stable import identity separate from file row position."
+        }
+      ]
+    },
+    {
+      "start": 92,
+      "duration": 26,
+      "label": "04 · Record access and controlled maintenance",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Record access and controlled maintenance». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers record access and controlled maintenance. Separate job capabilities from record visibility. Trace additive permissions and independent record-access paths. Explain what sharing-rule deferral does and does not pause."
+        }
+      ]
+    },
+    {
+      "start": 118,
+      "duration": 26,
+      "label": "05 · Integration reliability and incident evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Integration reliability and incident evidence». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers integration reliability and incident evidence. Distinguish a system of record from a copied view. Separate event identity, operation identity, and stream position. Classify failures before retrying them."
+        }
+      ]
+    },
+    {
+      "start": 144,
+      "duration": 27,
+      "label": "06 · Change and release an existing system",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Change and release an existing system». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers change and release an existing system. Explain characterization tests and their limits. Explain consumer and provider contracts in plain language. Separate deploying capability from moving data and switching users."
+        }
+      ]
+    },
+    {
+      "start": 171,
+      "duration": 27,
+      "label": "07 · Evaluate products and defend the final design",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Evaluate products and defend the final design». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers evaluate products and defend the final design. Separate conversational quality from action correctness. Create a fit-gap comparison with explicit assumptions. Ask questions that change the design before drawing components."
+        }
+      ]
+    },
+    {
+      "start": 198,
+      "duration": 30,
+      "label": "08 · Первое действие",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it."
+        }
+      ]
+    }
+  ]
+}

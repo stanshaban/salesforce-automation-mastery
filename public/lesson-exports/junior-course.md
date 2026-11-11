@@ -1,10 +1,17 @@
 # What a CRM Does for a Business
 
-J01 · junior · About 35 minutes with practice
-
 ![Two drawn colleagues sharing a customer record, conversation and calendar](https://sam-portal-production.up.railway.app/lesson-images/J01.jpg)
 
 Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Anna will be absent tomorrow. Prepare a short note that lets Max continue helping Irina.
+
+### Check the result
+
+- The note distinguishes a request from a confirmed test drive.
+- Another person can state what happens next without guessing.
 
 ## Before you begin
 
@@ -15,6 +22,16 @@ Follow one customer request and discover why a team needs shared information, cl
 - Explain why a team needs shared customer context.
 - Distinguish history from future work.
 - Describe a next action with an owner and a due time.
+
+## See the steps
+
+![A list contains several records](https://sam-portal-production.up.railway.app/tutorials/contacts-list.jpg)
+
+Recently Viewed is a view, not an inventory of every accessible contact.
+
+![Inspect related work](https://sam-portal-production.up.railway.app/tutorials/contact-related.jpg)
+
+Related displays associated records. These lists can be empty.
 
 ## 1. Start with a conversation
 
@@ -116,11 +133,18 @@ Answer in your own words before reading the explanations.
 
 # Salesforce Products, the Platform, and Your Org
 
-J02 · junior · About 35 minutes with practice
-
 ![A drawn salesperson, administrator and developer around a single application workspace](https://sam-portal-production.up.railway.app/lesson-images/J02.jpg)
 
 Distinguish a product, an application, and an org while learning who uses and changes Salesforce.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Northstar needs a new field, a customer note, an access change, a useful management report, and a stock-system connection.
+
+### Check the result
+
+- An application is not confused with an org.
+- The proposed developer work includes understanding requirements and testing, not just writing code.
 
 ## Before you begin
 
@@ -131,6 +155,16 @@ Distinguish a product, an application, and an org while learning who uses and ch
 - Distinguish product, platform, application, and org.
 - Describe user, administrator, developer, and business-owner responsibilities.
 - Separate administrator configuration from ordinary-user testing.
+
+## See the steps
+
+![Open an application](https://sam-portal-production.up.railway.app/tutorials/app-launcher.jpg)
+
+App Launcher shows the applications available to this user.
+
+![Recognize the configuration area](https://sam-portal-production.up.railway.app/tutorials/setup-home.jpg)
+
+Setup changes how the org works. Daily customer work happens in the application.
 
 ## 1. A product solves a category of work
 
@@ -227,11 +261,18 @@ Answer in your own words before reading the explanations.
 
 # Create and Reopen a Learning Org
 
-J03 · junior · About 35 minutes with practice
-
 ![A small separate training workspace in a protective outline beside a larger company workspace](https://sam-portal-production.up.railway.app/lesson-images/J03.jpg)
 
 Use a browser to create a personal Salesforce learning environment and verify that you can return to the same one.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare a short environment note that helps you resume learning tomorrow.
+
+### Check the result
+
+- The note identifies one learning environment consistently.
+- No passwords, authentication files, or real customer details appear in the evidence.
 
 ## Before you begin
 
@@ -243,6 +284,12 @@ Use a browser to create a personal Salesforce learning environment and verify th
 - Distinguish Trailhead from a Salesforce org.
 - Create and reopen a named learning environment.
 - Keep sign-in details out of submitted evidence.
+
+## See the steps
+
+![Recognize the configuration area](https://sam-portal-production.up.railway.app/tutorials/setup-home.jpg)
+
+Setup changes how the org works. Daily customer work happens in the application.
 
 ## 1. Know which account opens which place
 
@@ -355,11 +402,18 @@ Answer in your own words before reading the explanations.
 
 # Finding Your Way Around Salesforce
 
-J04 · junior · About 35 minutes with practice
-
 ![One clean application window opening into a list and a single record card](https://sam-portal-production.up.railway.app/lesson-images/J04.jpg)
 
 Recognize an application, navigation item, list, record page, and Setup without assuming previous Salesforce use.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a simple map showing how Anna finds a customer and where an administrator changes configuration.
+
+### Check the result
+
+- Each interface area has a plain-language purpose.
+- The map distinguishes navigation, stored data, and configuration.
 
 ## Before you begin
 
@@ -370,6 +424,28 @@ Recognize an application, navigation item, list, record page, and Setup without 
 - Navigate from an application to a list and a record.
 - Recognize Setup as configuration.
 - Investigate a view before assuming a record is missing.
+
+## See the steps
+
+![Open an application](https://sam-portal-production.up.railway.app/tutorials/app-launcher.jpg)
+
+App Launcher shows the applications available to this user.
+
+![A list contains several records](https://sam-portal-production.up.railway.app/tutorials/contacts-list.jpg)
+
+Recently Viewed is a view, not an inventory of every accessible contact.
+
+![Inspect the stored contact](https://sam-portal-production.up.railway.app/tutorials/contact-details.jpg)
+
+Details displays field values for Irina SAM Demo.
+
+![Inspect related work](https://sam-portal-production.up.railway.app/tutorials/contact-related.jpg)
+
+Related displays associated records. These lists can be empty.
+
+![Recognize the configuration area](https://sam-portal-production.up.railway.app/tutorials/setup-home.jpg)
+
+Setup changes how the org works. Daily customer work happens in the application.
 
 ## 1. Understand the screen before changing it
 
@@ -474,11 +550,18 @@ Answer in your own words before reading the explanations.
 
 # Objects, Fields, and Records
 
-J05 · junior · About 35 minutes with practice
-
 ![Three neatly stacked record cards with aligned property rows and one highlighted field](https://sam-portal-production.up.railway.app/lesson-images/J05.jpg)
 
 Use a small vehicle catalogue to distinguish the shape of information from individual stored items.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a diagram containing two vehicles and three test-drive events.
+
+### Check the result
+
+- Objects, fields, values, and records are labelled correctly.
+- Vehicle status is distinct from test-drive status.
 
 ## Before you begin
 
@@ -489,6 +572,16 @@ Use a small vehicle catalogue to distinguish the shape of information from indiv
 - Distinguish objects, fields, records, and values.
 - Read the starter's principal API names.
 - Explain why an event needs its own record.
+
+## See the steps
+
+![Inspect the stored contact](https://sam-portal-production.up.railway.app/tutorials/contact-details.jpg)
+
+Details displays field values for Irina SAM Demo.
+
+![Inspect the object definition](https://sam-portal-production.up.railway.app/tutorials/contact-fields.jpg)
+
+Fields & Relationships defines the structure used by Contact records.
 
 ## 1. One catalogue, several vehicles
 
@@ -592,11 +685,18 @@ Answer in your own words before reading the explanations.
 
 # Turn a Request into a Testable Task
 
-J06 · junior · About 35 minutes with practice
-
 ![A simple request card becoming three concrete checklist steps beside a drawn learner](https://sam-portal-production.up.railway.app/lesson-images/J06.jpg)
 
 Clarify who needs a feature, what information it uses, and how you will know it works before choosing a tool.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Write a one-page brief for Oleg before creating fields or automation.
+
+### Check the result
+
+- Assumptions are visibly different from confirmed requirements.
+- Acceptance criteria describe behaviour rather than an unexamined technical solution.
 
 ## Before you begin
 
@@ -710,11 +810,19 @@ Answer in your own words before reading the explanations.
 
 # Choose Standard Objects Before Creating New Ones
 
-J07 · junior · About 50 minutes with practice
-
 ![A restrained row of customer, company, opportunity and support record symbols connected by one path](https://sam-portal-production.up.railway.app/lesson-images/J07.jpg)
 
 Classify customer information using Lead, Account, Contact, Opportunity, and Case, then explain why the course adds two custom objects.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain how Northstar should store five different pieces of customer work.
+
+### Check the result
+
+- An Opportunity is not described as requiring a Lead in every process.
+- The course Contact lookup and its limits are stated explicitly.
+- The learning org contains the core Vehicle and Test Drive schema needed by J08, without duplicate objects.
 
 ## Before you begin
 
@@ -725,6 +833,12 @@ Classify customer information using Lead, Account, Contact, Opportunity, and Cas
 - Match standard objects to their purposes.
 - Explain the project-specific custom objects.
 - Distinguish the classroom model from a complete automotive implementation.
+
+## See the steps
+
+![Inspect the object definition](https://sam-portal-production.up.railway.app/tutorials/contact-fields.jpg)
+
+Fields & Relationships defines the structure used by Contact records.
 
 ## 1. Match an object to the question it answers
 
@@ -891,11 +1005,18 @@ Answer in your own words before reading the explanations.
 
 # Field Types, Formulas, and Validation Rules
 
-J08 · junior · About 50 minutes with practice
-
 ![A record form with a calendar field, a number field and a clear validation check](https://sam-portal-production.up.railway.app/lesson-images/J08.jpg)
 
 Separate entered values, calculated values, and rejected input using concrete appointment examples.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Give Oleg evidence that the fields accept valid data and explain invalid input.
+
+### Check the result
+
+- A historical appointment can receive an unrelated edit without this time rule blocking it.
+- Blank handling and time-zone assumptions are documented.
 
 ## Before you begin
 
@@ -1030,11 +1151,18 @@ Answer in your own words before reading the explanations.
 
 # Choose Lookup or Master-Detail Deliberately
 
-J09 · junior · About 50 minutes with practice
-
 ![Two record cards connected by a clean relationship line with a small linked record underneath](https://sam-portal-production.up.railway.app/lesson-images/J09.jpg)
 
 Compare relationship behaviour while preserving independent ownership of the course Test Drive records.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain why the course keeps Test Drive independently owned.
+
+### Check the result
+
+- The experiment does not replace the core relationship.
+- The explanation includes ownership and access, not only deletion.
 
 ## Before you begin
 
@@ -1156,11 +1284,18 @@ Answer in your own words before reading the explanations.
 
 # Build a Usable Sales Application
 
-J10 · junior · About 50 minutes with practice
-
 ![A compact car-dealership application window with a car, appointment card and small bar chart](https://sam-portal-production.up.railway.app/lesson-images/J10.jpg)
 
 Assemble tabs, a record page, a useful list, and a small management report around one clear salesperson journey.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a short demonstration from application navigation to an appointment and a management count.
+
+### Check the result
+
+- The report matches the known sample records.
+- The explanation does not claim that a page layout enforces field-level security.
 
 ## Before you begin
 
@@ -1171,6 +1306,16 @@ Assemble tabs, a record page, a useful list, and a small management report aroun
 - Build a small application around a user task.
 - Distinguish page configuration from security.
 - Validate a report against known records.
+
+## See the steps
+
+![A list contains several records](https://sam-portal-production.up.railway.app/tutorials/contacts-list.jpg)
+
+Recently Viewed is a view, not an inventory of every accessible contact.
+
+![Inspect the stored contact](https://sam-portal-production.up.railway.app/tutorials/contact-details.jpg)
+
+Details displays field values for Irina SAM Demo.
 
 ## 1. Design for a task rather than a catalogue of fields
 
@@ -1283,11 +1428,18 @@ Answer in your own words before reading the explanations.
 
 # Understand the Layers of Data Access
 
-J11 · junior · About 50 minutes with practice
-
 ![Four translucent geometric access layers protecting one customer record](https://sam-portal-production.up.railway.app/lesson-images/J11.jpg)
 
 Separate sign-in, object operations, field permissions, and access to an individual record.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain why similar symptoms require different investigation paths.
+
+### Check the result
+
+- Object, field, and record access are distinguished.
+- Administrator results are not represented as salesperson tests.
 
 ## Before you begin
 
@@ -1298,6 +1450,16 @@ Separate sign-in, object operations, field permissions, and access to an individ
 - Describe a precise access operation.
 - Separate the main access layers.
 - Use evidence from the intended identity.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+![Inspect the stored contact](https://sam-portal-production.up.railway.app/tutorials/contact-details.jpg)
+
+Details displays field values for Irina SAM Demo.
 
 ## 1. Describe the requested action
 
@@ -1406,11 +1568,18 @@ Answer in your own words before reading the explanations.
 
 # Grant a Small Set of Working Permissions
 
-J12 · junior · About 50 minutes with practice
-
 ![Two small permission cards combining to open one lock on a record](https://sam-portal-production.up.railway.app/lesson-images/J12.jpg)
 
 Create an additive permission set that enables appointment work without broad administration.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Submit a small table connecting Anna to the operations and fields she needs.
+
+### Check the result
+
+- The evidence uses a restricted user.
+- The explanation recognizes additive permissions and independent record sharing.
 
 ## Before you begin
 
@@ -1421,6 +1590,14 @@ Create an additive permission set that enables appointment work without broad ad
 - Design grants from working operations.
 - Explain additive permissions.
 - Verify combined access and negative cases.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+
 
 ## 1. Start from the work
 
@@ -1527,11 +1704,19 @@ Answer in your own words before reading the explanations.
 
 # Set a Record-Access Baseline and Add Exceptions
 
-J13 · junior · About 50 minutes with practice
-
 ![A simple team hierarchy above three record cards with carefully drawn access paths](https://sam-portal-production.up.railway.app/lesson-images/J13.jpg)
 
 Use Private defaults, roles, and a focused sharing rule to explain appointment visibility.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain the intended owner, peer, manager, and service-reviewer access.
+
+### Check the result
+
+- A role is not confused with a profile.
+- No unsupported branch isolation is claimed.
+- Other granting sources are investigated when results differ.
 
 ## Before you begin
 
@@ -1542,6 +1727,14 @@ Use Private defaults, roles, and a focused sharing rule to explain appointment v
 - Explain OWD as a baseline.
 - Distinguish roles from profiles.
 - Validate a targeted sharing exception.
+
+## See the steps
+
+![Record access has independent granting paths](https://sam-portal-production.up.railway.app/animations/sharing.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/sharing.mp4)
+
+
 
 ## 1. Start with the baseline
 
@@ -1648,11 +1841,18 @@ Answer in your own words before reading the explanations.
 
 # Share One Record and Test an Ownership Change
 
-J14 · junior · About 50 minutes with practice
-
 ![One drawn colleague handing a single record card to another through a permission key](https://sam-portal-production.up.railway.app/lesson-images/J14.jpg)
 
 Use manual sharing for a specific handover and verify transfer behaviour in the actual org configuration.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain the behaviour of one manual share before and after ownership changes.
+
+### Check the result
+
+- The explanation does not say manual shares always disappear.
+- New ownership is not mistaken for retained manual sharing.
 
 ## Before you begin
 
@@ -1663,6 +1863,14 @@ Use manual sharing for a specific handover and verify transfer behaviour in the 
 - Use manual sharing for a bounded exception.
 - Separate ownership from additional access.
 - Test transfer behaviour against current settings.
+
+## See the steps
+
+![Record access has independent granting paths](https://sam-portal-production.up.railway.app/animations/sharing.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/sharing.mp4)
+
+
 
 ## 1. Choose a specific exception
 
@@ -1779,11 +1987,19 @@ Answer in your own words before reading the explanations.
 
 # Trace the Source of an Access Problem
 
-J15 · junior · About 50 minutes with practice
-
 ![A magnifying glass tracing two different paths toward the same accessible record](https://sam-portal-production.up.railway.app/lesson-images/J15.jpg)
 
 Investigate missing or excessive access with evidence, one hypothesis, and a minimal correction.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Diagnose one object, one field, and one record access case.
+
+### Check the result
+
+- A layout issue is not mislabeled as FLS.
+- A filter issue is not mislabeled as sharing.
+- Any unavailable execution check is stated honestly.
 
 ## Before you begin
 
@@ -1794,6 +2010,14 @@ Investigate missing or excessive access with evidence, one hypothesis, and a min
 - Write a reproducible access symptom.
 - Trace an effective grant to its source.
 - Verify a minimal correction and its boundary.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+
 
 ## 1. Write a reproducible access report
 
@@ -1909,11 +2133,19 @@ Answer in your own words before reading the explanations.
 
 # Verify Access for Sales, Service, and Management
 
-J16 · junior · About 50 minutes with practice
-
 ![Two drawn workplace roles facing the same records with different visible subsets](https://sam-portal-production.up.railway.app/lesson-images/J16.jpg)
 
 Turn a written access matrix into repeatable positive and negative checks for three working personas.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Deliver a short access demonstration and an evidence matrix for Oleg.
+
+### Check the result
+
+- No broad grant was added solely to make a test pass.
+- Every executed result names the tested persona.
+- Untested cells remain distinguishable from successful ones.
 
 ## Before you begin
 
@@ -1924,6 +2156,14 @@ Turn a written access matrix into repeatable positive and negative checks for th
 - Translate working personas into specific checks.
 - Test allowed and denied actions.
 - Document evidence limits without overstating completeness.
+
+## See the steps
+
+![Object, field, and record access](https://sam-portal-production.up.railway.app/animations/access-layers.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/access-layers.mp4)
+
+
 
 ## 1. Define the personas before configuring them
 
@@ -2039,11 +2279,19 @@ Answer in your own words before reading the explanations.
 
 # Create a Record-Triggered Flow with a Clear Failure Path
 
-J17 · junior · About 50 minutes with practice
-
 ![Three simple flow nodes transforming a saved appointment into a reminder card](https://sam-portal-production.up.railway.app/lesson-images/J17.jpg)
 
 Create one follow-up Task for a new appointment request, avoid update duplicates, and make a failed reminder visible.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Deliver the Flow, activity-setting change, and a three-case result table.
+
+### Check the result
+
+- The activity prerequisite is included.
+- The submission distinguishes a Task from an email notification.
+- The active version and observed transaction outcome are stated.
 
 ## Before you begin
 
@@ -2054,6 +2302,14 @@ Create one follow-up Task for a new appointment request, avoid update duplicates
 - Specify a Flow event and action.
 - Include prerequisites and explicit field mapping.
 - Verify duplicate avoidance and a visible failure outcome.
+
+## See the steps
+
+![Follow-up Task with an explicit failure route](https://sam-portal-production.up.railway.app/animations/flow.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/flow.mp4)
+
+
 
 ## 1. Define the event and the business action
 
@@ -2169,11 +2425,19 @@ Answer in your own words before reading the explanations.
 
 # Apex Syntax, Variables, Collections, and Methods
 
-J18 · junior · About 50 minutes with practice
-
 ![A calm developer workspace with a small code card, a collection of blocks and a method-shaped container](https://sam-portal-production.up.railway.app/lesson-images/J18.jpg)
 
 Read and write a small pure Apex function before introducing database operations.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Add a method that returns labels for available minutes using a Map.
+
+### Check the result
+
+- The code performs no database operation.
+- Returned ordering and null behaviour are explicit.
+- The explanation distinguishes List, Set, and Map.
 
 ## Before you begin
 
@@ -2339,11 +2603,19 @@ Answer in your own words before reading the explanations.
 
 # Read and Change Records with SOQL and DML
 
-J19 · junior · About 50 minutes with practice
-
 ![One data shelf with a clean read arrow and a separate update arrow returning one record](https://sam-portal-production.up.railway.app/lesson-images/J19.jpg)
 
 Write a bounded bulk operation with explicit user-mode access and separate reads from writes.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Provide evidence for empty, single-record, and 200-record scenarios.
+
+### Check the result
+
+- No query or DML is executed once per appointment.
+- Only Requested appointments for supplied vehicles change.
+- The stated dataset boundary is honest.
 
 ## Before you begin
 
@@ -2483,11 +2755,19 @@ Answer in your own words before reading the explanations.
 
 # Use a Thin Trigger and a Focused Handler
 
-J20 · junior · About 50 minutes with practice
-
 ![An incoming group of record cards activating one event-driven processing node](https://sam-portal-production.up.railway.app/lesson-images/J20.jpg)
 
 Validate the whole incoming collection while keeping business rules outside the trigger entry point.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement and explain the two agreed validation rules.
+
+### Check the result
+
+- All pending records are checked.
+- The handler contains no unnecessary self-update.
+- The submission states what the rules do not guarantee.
 
 ## Before you begin
 
@@ -2498,6 +2778,14 @@ Validate the whole incoming collection while keeping business rules outside the 
 - Choose a trigger event from the requirement.
 - Validate a complete incoming collection.
 - Separate context dispatch from business rules.
+
+## See the steps
+
+![Commit and rollback](https://sam-portal-production.up.railway.app/animations/transaction.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/transaction.mp4)
+
+
 
 ## 1. Understand what starts a trigger
 
@@ -2614,11 +2902,19 @@ Answer in your own words before reading the explanations.
 
 # Trace Automation Through a Transaction
 
-J21 · junior · About 50 minutes with practice
-
 ![An orderly sequence of four process tiles inside one transaction boundary](https://sam-portal-production.up.railway.app/lesson-images/J21.jpg)
 
 Explain how several automations participate in one save and verify what a rollback actually removes.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Produce a small timeline and before-and-after record evidence.
+
+### Check the result
+
+- The timeline is labelled as a relevant subset of the official order.
+- A retained variable ID is not mistaken for a committed record.
+- Separate asynchronous work is not described as the same transaction.
 
 ## Before you begin
 
@@ -2629,6 +2925,14 @@ Explain how several automations participate in one save and verify what a rollba
 - Trace relevant automation within a transaction.
 - Distinguish memory from persisted data.
 - Verify rollback with a fresh query.
+
+## See the steps
+
+![Commit and rollback](https://sam-portal-production.up.railway.app/animations/transaction.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/transaction.mp4)
+
+
 
 ## 1. A user action can start more than one operation
 
@@ -2730,11 +3034,19 @@ Answer in your own words before reading the explanations.
 
 # Write Apex Tests That Prove Behaviour
 
-J22 · junior · About 50 minutes with practice
-
 ![A small test bench comparing an expected result card with an actual result card and one check](https://sam-portal-production.up.railway.app/lesson-images/J22.jpg)
 
 Create independent test data and assert valid, invalid, and bulk outcomes rather than aiming only for executed lines.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Test the pure function and appointment validation with independent data.
+
+### Check the result
+
+- Assertions check the intended business outcome.
+- Tests do not depend on ordinary org data.
+- The submitted results come from an actual run or are clearly marked unperformed.
 
 ## Before you begin
 
@@ -2852,11 +3164,19 @@ Answer in your own words before reading the explanations.
 
 # HTML, JavaScript, and Your First Lightning Web Component
 
-J23 · junior · About 75 minutes with practice
-
 ![Three clean interface building blocks assembling into one component card](https://sam-portal-production.up.railway.app/lesson-images/J23.jpg)
 
 Learn the browser-language basics and build an explicitly simulated appointment preview with four visible states.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Extend the simulated preview with a second sample appointment while preserving honest labels.
+
+### Check the result
+
+- The interface is explicitly labelled as a demonstration.
+- Sample rows are not claimed to be persisted.
+- Every rendered row has a stable key.
 
 ## Before you begin
 
@@ -2868,6 +3188,14 @@ Learn the browser-language basics and build an explicitly simulated appointment 
 - Read basic HTML and JavaScript structures.
 - Explain template bindings and state.
 - Build distinguishable UI outcomes.
+
+## See the steps
+
+![Data down, events up](https://sam-portal-production.up.railway.app/animations/component-events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/component-events.mp4)
+
+
 
 ## 1. Understand markup and behaviour separately
 
@@ -3027,11 +3355,19 @@ Answer in your own words before reading the explanations.
 
 # Read and Edit a Record with Lightning Data Service
 
-J24 · junior · About 50 minutes with practice
-
 ![A small component window connected to a shared data cache and a record card](https://sam-portal-production.up.railway.app/lesson-images/J24.jpg)
 
 Use a standard record form for an ordinary edit and verify the result under a restricted user.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Deliver the working editor and a short comparison with a custom Apex alternative.
+
+### Check the result
+
+- No synthetic preview ID is used as a Salesforce record ID.
+- The outcome is verified after save.
+- The choice of standard components is justified.
 
 ## Before you begin
 
@@ -3042,6 +3378,14 @@ Use a standard record form for an ordinary edit and verify the result under a re
 - Use a record-page context deliberately.
 - Choose standard data components for ordinary edits.
 - Verify saved data and permission boundaries.
+
+## See the steps
+
+![A write and a refresh have different outcomes](https://sam-portal-production.up.railway.app/animations/refresh.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/refresh.mp4)
+
+
 
 ## 1. Choose the smallest useful data component
 
@@ -3203,11 +3547,19 @@ Answer in your own words before reading the explanations.
 
 # Pass Data Down and Send Events Up
 
-J25 · junior · About 50 minutes with practice
-
 ![A parent component container and two child cards communicating with one upward event arrow](https://sam-portal-production.up.railway.app/lesson-images/J25.jpg)
 
 Split a small interface into a parent and child with clear ownership of state.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Extend the example with a third simulated item and document the public contract.
+
+### Check the result
+
+- The child does not mutate the supplied object.
+- Events use a clear matching name and minimal detail.
+- The simulation is not described as a database operation.
 
 ## Before you begin
 
@@ -3218,6 +3570,14 @@ Split a small interface into a parent and child with clear ownership of state.
 - Define component responsibilities.
 - Pass read-only data through public properties.
 - Communicate intent through a narrow event.
+
+## See the steps
+
+![Data down, events up](https://sam-portal-production.up.railway.app/animations/component-events.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/component-events.mp4)
+
+
 
 ## 1. Give each component a responsibility
 
@@ -3400,11 +3760,19 @@ Answer in your own words before reading the explanations.
 
 # Investigate a Failure from Symptom to Cause
 
-J26 · junior · About 50 minutes with practice
-
 ![A magnifying glass isolating one highlighted break in an otherwise clean code path](https://sam-portal-production.up.railway.app/lesson-images/J26.jpg)
 
 Use a reproducible case, a focused hypothesis, and the right evidence from the browser or Salesforce.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose the event mismatch or another controlled learning failure and explain it from symptom to proof.
+
+### Check the result
+
+- The note separates observed facts from hypotheses.
+- The correction addresses the demonstrated cause.
+- Private data and credentials are excluded.
 
 ## Before you begin
 
@@ -3530,11 +3898,19 @@ Answer in your own words before reading the explanations.
 
 # Use Git to Hand Over a Reproducible Change
 
-J27 · junior · About 50 minutes with practice
-
 ![A tidy branching path of commits joining a reviewed change card](https://sam-portal-production.up.railway.app/lesson-images/J27.jpg)
 
 Capture the relevant metadata, review a small diff, and submit a version another person can inspect.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Hand over the appointment feature as a versioned, explainable change.
+
+### Check the result
+
+- The package excludes credentials and real customer data.
+- Setup-only changes required by the feature are captured or explicitly documented.
+- The review target is an identifiable version in the learner repository.
 
 ## Before you begin
 
@@ -3645,11 +4021,20 @@ Answer in your own words before reading the explanations.
 
 # Deliver the Northstar Test-Drive Application
 
-J28 · junior · About 50 minutes with practice
-
 ![A finished car test-drive application with a calendar and a small review check](https://sam-portal-production.up.railway.app/lesson-images/J28.jpg)
 
 Demonstrate a complete small feature, explain its boundaries, and respond to a modest requirement change.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Deliver a short demonstration, source package, and review note for the Northstar appointment feature.
+
+### Check the result
+
+- The feature works within its stated educational scope.
+- Critical correctness or access defects are corrected before requesting acceptance.
+- The author can explain data, permissions, automation, code, and interface choices.
+- No simulation or unexecuted test is misrepresented as a live result.
 
 ## Before you begin
 

@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M30 · Verifying an application under failure",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=ac944d22628c4c34a27a0f08835cc76d. Подготовь только синтетические данные и исходное состояние упражнения. Открой scenario matrix. Проследи UI → request ID → worker → provider adapter → persisted result → refresh. Покажи один разрыв границы и минимальное исправление с повторной проверкой. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Verify the integrated feature with controlled failures and one repaired defect."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Duplicate and denied-access cases are included. UI messages match persisted outcomes."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 62,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A feature can have passing unit tests in every layer while its combined path fails. The LWC may submit the wrong key, the service may enqueue work twice, or the worker may save a result that the UI never reloads. End-to-end verification follows the actual user intention across boundaries and checks the final business state, not merely each method's isolated return value. For Northstar, the path is Anna's request, authorized vehicle lookup, durable warranty request, background attempt, provider classification, persisted outcome, and visible UI state. The provider can remain mocked for the required course exercise. Clearly label that boundary: the test verifies your application against controlled responses, not real provider authentication, network behavior, or production throughput."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 58,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Run WARRANTY-200 with a mock 200 covered=true response and verify one request, one appropriate attempt, and a visible completed result. Repeat the same key: the business result must remain singular. Then deny Anna access to the vehicle and try a new key. No privileged workaround should quietly create work on her behalf. Next, make the UI refresh fail after the request is successfully accepted or completed. The interface should preserve the known operation status and offer to reload, not tell Anna to submit another request. This cross-layer case often reveals a defect that neither an Apex unit test nor a purely rendered LWC test catches alone."
+        }
+      ]
+    },
+    {
+      "start": 155,
+      "duration": 26,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use the schema and implementations from prior lessons. Test only synthetic data in a training org. When an org or restricted-user license is unavailable, label simulated or unexecuted checks rather than treating them as equivalent evidence."
+        }
+      ]
+    },
+    {
+      "start": 181,
+      "duration": 67,
+      "label": "05 · Build the scenario matrix",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the scenario matrix. Write at least six scenarios before running them, including a denied operation and a repeated request. State exact expected counts and terminal or pending states."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the scenario matrix» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The expected result can be evaluated without interpretation after the fact. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The expected result can be evaluated without interpretation after the fact."
+        }
+      ]
+    },
+    {
+      "start": 248,
+      "duration": 64,
+      "label": "06 · Trace the whole path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, trace the whole path. Record request key, attempt number, job ID, result category, persisted state, and UI state. Use the correlation approach from M19."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Trace the whole path» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: One user action can be followed across every relevant boundary. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: One user action can be followed across every relevant boundary."
+        }
+      ]
+    },
+    {
+      "start": 312,
+      "duration": 65,
+      "label": "07 · Investigate one unexpected result",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, investigate one unexpected result. Choose a failing scenario, isolate the broken boundary, fix the smallest responsible layer, and rerun the affected scenario plus its regression checks."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Investigate one unexpected result» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The evidence shows cause, correction, and preserved neighboring behavior. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The evidence shows cause, correction, and preserved neighboring behavior."
+        }
+      ]
+    },
+    {
+      "start": 377,
+      "duration": 24,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Deleting logs and recreating data until the demo looks clean removes the information needed to understand the failure. Keep a small sanitized record of the original defect and the correction."
+        }
+      ]
+    },
+    {
+      "start": 401,
+      "duration": 65,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A mocked provider and a small dataset do not establish production integration compatibility or large-volume performance. Now pause the video and try the exercise yourself. Verify the integrated feature with controlled failures and one repaired defect. Duplicate and denied-access cases are included. UI messages match persisted outcomes. No unexecuted check is reported as successful."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can isolated tests all pass while the feature fails?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The connections and assumptions between layers may be wrong even when each unit behaves correctly with its mocks. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

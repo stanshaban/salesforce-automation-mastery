@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "JR06 · Tailor Your CV to a Specific Role",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=55a02a13258e4e46bf879cf9bcfdd91f. Подготовь только синтетические данные и исходное состояние упражнения. Открой одно объявление рядом с CV. Выдели подтверждённые совпадения и реальные пробелы. Переставь релевантные примеры, не добавляя несуществующий опыт. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Tailor your master CV to one verified vacancy and keep a change log."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Every claim remains consistent with the master CV. The most relevant evidence is prominent."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 60,
+      "label": "02 · Tailoring starts with the job, not with synonyms",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Tailoring starts with the job, not with synonyms». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Tailoring means helping a reader see the relevant parts of your existing experience. It does not mean rewriting your history to match every requirement. Begin with one verified job description and your master CV. Extract the three or four responsibilities that appear central to the role. Keep practical conditions, essential technical requirements and preferences distinct. Imagine a role focused on Apex integrations and LWC maintenance. Your master CV contains a test-drive form, a mock callout exercise and unrelated earlier software work. The form and callout deserve more space than an unrelated visual design experiment. You still need to label the callout as a training exercise if that is what it was."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 58,
+      "label": "03 · Map each priority to the strongest available evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Map each priority to the strongest available evidence». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create a small table: employer responsibility, your evidence, CV location and unresolved gap. For “maintain LWC,” point to a component where you can explain data flow, loading and error states. For “support production integrations,” a mock exercise is partial preparation, not proof that you have owned production incidents. Keep that gap visible in your preparation notes. Prefer an exact technical term when it accurately describes your work. If you used Queueable Apex, name it instead of saying only “background work.” Do not insert a technology merely because the description contains it. A keyword without a supporting example can create an interview question that exposes the mismatch."
+        }
+      ]
+    },
+    {
+      "start": 155,
+      "duration": 98,
+      "label": "04 · Use AI as an editor with a boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use AI as an editor with a boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An assistant can compare two supplied documents and propose clearer wording. Tell it to preserve employers, dates, ownership, technologies and measurements. Ask for changes with reasons so that you can review them. If it suggests a new accomplishment, reject the suggestion unless you have independent evidence for it. Review the output line by line against the master CV. Pay particular attention to subtle upgrades: “practised” becoming “led,” “training org” disappearing, or “supported a developer” becoming “architected the solution.” These changes may sound polished but alter the meaning. The final file is your representation of your experience, so you must understand and approve every claim."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Reusable working prompt or template» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Reusable working prompt or template. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 253,
+      "duration": 55,
+      "label": "05 · Save a version you can reconstruct",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Save a version you can reconstruct». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Save the tailored CV with the employer, role and date in your private application records. Record the source job description and the actual submitted file. You may later need to explain a project that was highlighted in that version. Keeping the file prevents confusion between several similar applications. Finish with a consistency check: dates match the master, links work, the summary fits the role and no essential context has vanished. Then decide whether the application is worthwhile given the remaining gaps. A tailored CV can make a real match clearer; it cannot create experience that you do not yet have."
+        }
+      ]
+    },
+    {
+      "start": 308,
+      "duration": 59,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, extract the central responsibilities."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 367,
+      "duration": 60,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, map each to evidence and identify gaps."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 427,
+      "duration": 60,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, reorder or clarify the relevant sections."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 487,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, review every proposed AI edit if you use an assistant."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 548,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, save the final version with the job description and a short change log."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 611,
+      "duration": 65,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A more confident verb can change a factual claim. Check ownership and context, not just spelling. Now pause the video and try the exercise yourself. Tailor your master CV to one verified vacancy and keep a change log. Every claim remains consistent with the master CV. The most relevant evidence is prominent. Unsupported requirements are recorded as gaps rather than disguised as experience."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What should change when tailoring a CV?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Selection, order and wording of relevant evidence, while the facts remain consistent. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

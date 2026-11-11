@@ -1,0 +1,181 @@
+{
+  "version": 2,
+  "title": "J15 · Trace the Source of an Access Problem",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=6958237303fb4fdca42cb17ba768ce71. Подготовь только синтетические данные и исходное состояние упражнения. Покажи три карточки симптомов: объект отсутствует, поле недоступно, одна запись отсутствует. Для каждой запиши гипотезу, источник разрешения и минимальное исправление. Повтори первоначальную проверку после изменения. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Diagnose one object, one field, and one record access case."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. A layout issue is not mislabeled as FLS. A filter issue is not mislabeled as sharing."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 60,
+      "label": "02 · Write a reproducible access report",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Write a reproducible access report». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna reports that Max cannot see an appointment. Begin by asking which user, which record, which fields, and which action. Record the route through the application and the exact visible result. 'Missing from Recently Viewed' and 'access denied when opening a known record' are different observations. The first may concern a list; the second is stronger evidence about record access. Use fictional records and private identifiers in the investigation note. Include the time of the check and the configuration changes that occurred shortly before it. A problem that started after a permission-set assignment is a useful clue, but timing alone does not prove the cause. Treat it as a hypothesis to investigate."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 59,
+      "label": "03 · Inspect grants before adding them",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Inspect grants before adding them». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Open the relevant user in Setup and inspect View Summary where available. The User Access Summary consolidates useful permission and assignment information. Access Granted By can show which profile, permission set, or permission set group supplies a particular permission. Refresh the summary after assignment changes and remember that not every possible access feature is represented in one screen. For missing object Read, inspect all object grants. For a field issue, inspect field permissions and the page configuration separately. For a record issue, inspect ownership, OWD, hierarchy settings, group memberships, sharing rules, manual shares, and broad record-access permissions. The checklist narrows the cause; it does not justify changing every item."
+        }
+      ]
+    },
+    {
+      "start": 156,
+      "duration": 35,
+      "label": "04 · Use three deliberately different cases",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use three deliberately different cases». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Prepare a missing-object case, a missing-field case, and a missing-record case in a controlled learning setup. Change one relevant assignment or sharing condition per case. If your org has too few users, execute the cases sequentially with a restricted test identity and restore the documented baseline between them. Record which simultaneous ownership scenarios remain untested."
+        }
+      ]
+    },
+    {
+      "start": 191,
+      "duration": 57,
+      "label": "05 · Capture the symptom",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, capture the symptom. Record the identity, action, record, field, route, and exact result."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Capture the symptom» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The report is specific. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The report is specific."
+        }
+      ]
+    },
+    {
+      "start": 248,
+      "duration": 58,
+      "label": "06 · Inspect a likely source",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, inspect a likely source. Use the user access summary plus the appropriate object, field, or sharing configuration."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Inspect a likely source» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The hypothesis has evidence. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The hypothesis has evidence."
+        }
+      ]
+    },
+    {
+      "start": 306,
+      "duration": 58,
+      "label": "07 · Apply one correction",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, apply one correction. Change only the justified granting source in the learning setup."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Apply one correction» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The original action has a predictable outcome. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The original action has a predictable outcome."
+        }
+      ]
+    },
+    {
+      "start": 364,
+      "duration": 58,
+      "label": "08 · Retest a boundary",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, retest a boundary. Try an unrelated record or excluded operation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Retest a boundary» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The correction has not silently broadened access beyond the task. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The correction has not silently broadened access beyond the task."
+        }
+      ]
+    },
+    {
+      "start": 422,
+      "duration": 66,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Removing a permission from a shared permission set can affect every assigned user, not just the person in your bug report. Now pause the video and try the exercise yourself. Diagnose one object, one field, and one record access case. A layout issue is not mislabeled as FLS. A filter issue is not mislabeled as sharing. Any unavailable execution check is stated honestly."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why inspect Access Granted By?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It helps identify the actual source of a permission rather than guessing which assignment matters. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

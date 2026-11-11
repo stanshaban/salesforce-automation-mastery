@@ -1,0 +1,170 @@
+{
+  "version": 2,
+  "title": "J19 · Read and Change Records with SOQL and DML",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 36,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=e42854af700b4683863eb05e22a675d4. Подготовь только синтетические данные и исходное состояние упражнения. В VS Code покажи фильтр SOQL, коллекцию и один DML вне цикла. На небольшом синтетическом наборе сначала выполни запрос, затем изменение и повторный запрос. Сравни ожидаемые и изменившиеся ID. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Provide evidence for empty, single-record, and 200-record scenarios."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No query or DML is executed once per appointment. Only Requested appointments for supplied vehicles change."
+        }
+      ]
+    },
+    {
+      "start": 36,
+      "duration": 60,
+      "label": "02 · A query reads; DML changes stored records",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A query reads; DML changes stored records». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "SOQL, the Salesforce Object Query Language, selects records and fields. DML, or Data Manipulation Language, creates, updates, deletes, or otherwise changes records. Reading a Test Drive into an Apex variable does not itself change the stored appointment. Assigning a different value to that variable also does not persist it until an appropriate DML operation succeeds. Oleg asks for a small function that cancels Requested appointments for a supplied set of vehicles. The caller supplies vehicle IDs, which identify records. The method should ignore an empty input, query eligible appointments once, prepare the changes, and update the collection once. It must not cancel Confirmed appointments merely because they concern the same vehicle."
+        }
+      ]
+    },
+    {
+      "start": 96,
+      "duration": 98,
+      "label": "03 · Make access mode explicit",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make access mode explicit». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The example deliberately uses WITH USER_MODE for the query and update as user for DML. This makes the intended access mode visible instead of relying on version-sensitive defaults. The project targets API 68.0. Current documentation differs from older material about defaults, so use explicit modes and inspect the documentation version when maintaining older code. User-mode operations enforce applicable user access, including object and field permissions and record-sharing behaviour. The fields used in query conditions matter too. A class declared with sharing is not, by itself, a complete statement that every object and field operation has been authorized. Keep class sharing and database-operation access mode conceptually separate."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «TestDriveCancellation.cls — API 68.0» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is TestDriveCancellation.cls — API 68.0. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 194,
+      "duration": 38,
+      "label": "04 · Understand the size boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the size boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A single-record example can hide a query or DML statement inside a loop. Repeating it for many input records then repeats those operations and consumes finite transaction limits. The sample method uses one query and one collection update. That is a bulk-aware shape, but it is not a claim of unlimited capacity: one vehicle could still have an enormous number of appointments."
+        }
+      ]
+    },
+    {
+      "start": 232,
+      "duration": 61,
+      "label": "05 · Create the method",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, create the method. Use the setup guide to create the class and API 68.0 metadata in the learning project."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Create the method» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The source declares an explicit access policy. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The source declares an explicit access policy."
+        }
+      ]
+    },
+    {
+      "start": 293,
+      "duration": 57,
+      "label": "06 · Prepare a bounded dataset",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, prepare a bounded dataset. Create eligible and ineligible appointments with known vehicle relationships."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Prepare a bounded dataset» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Expected changes are countable before execution. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Expected changes are countable before execution."
+        }
+      ]
+    },
+    {
+      "start": 350,
+      "duration": 59,
+      "label": "07 · Run and requery",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, run and requery. Invoke the method for the chosen IDs and inspect the saved statuses."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Run and requery» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The result matches eligibility, not merely input size. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The result matches eligibility, not merely input size."
+        }
+      ]
+    },
+    {
+      "start": 409,
+      "duration": 65,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not switch to system mode simply to make a permission failure disappear. First determine whether the caller should have the requested capability. Now pause the video and try the exercise yourself. Provide evidence for empty, single-record, and 200-record scenarios. No query or DML is executed once per appointment. Only Requested appointments for supplied vehicles change. The stated dataset boundary is honest."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does assigning a field in memory save it?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. A successful DML operation is required to persist a change. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

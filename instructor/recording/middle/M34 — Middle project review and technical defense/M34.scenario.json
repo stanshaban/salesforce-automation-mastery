@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M34 · Middle project review and technical defense",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=1a44b586a99647908b713519af7cfc01. Подготовь только синтетические данные и исходное состояние упражнения. Покажи PR/portal package, затем success, repeat, failure и denied operation. Выбери одну новую fault card. Проследи cause и исправление, затем снова выполни соседние проверки. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Deliver the integrated project and complete a short review plus one repair exercise."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence. The release plan declares dependencies and actual checks."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The Middle project combines skills into a feature that another developer can understand and operate. Northstar's salesperson submits a warranty or service-related request for a known vehicle, receives an honest accepted state, and later sees a result or actionable failure. The feature includes access control, durable identity, bounded background work, controlled provider responses, and a user interface that reflects persisted state. A defense is not a recital of every Salesforce term. Begin with the business problem, actors, data, and success criteria. Anna and Max are salespeople, Oleg supervises work, and Irina is a customer Contact. Explain which user performs each operation and which components or transactions are responsible. The listener should understand the process before seeing a class diagram."
+        }
+      ]
+    },
+    {
+      "start": 103,
+      "duration": 65,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use a five-minute demonstration: Anna submits a request, the UI shows accepted work, the explicitly labelled local demo adapter supplies a result, and the final record is visible. Repeat the same key and show one business request. Trigger a controlled failure and show its safe operator recovery. Finally, attempt an unauthorized operation as a restricted user or clearly identify that check as outstanding. For the repair exercise, the reviewer introduces one new condition: a 200 response lacks covered, a refresh fails after a successful write, a repeated key changes vehicle, or a request stays Processing after a job failure. Investigate from the correlation key and boundary evidence. Explain the hypothesis before changing code, then verify the smallest responsible correction and relevant regression tests."
+        }
+      ]
+    },
+    {
+      "start": 168,
+      "duration": 25,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Submit the implemented core feature, not every optional experiment in one deployment. List the custom objects and fields introduced by the lessons you used, their permissions, active Flow versions, and required configuration."
+        }
+      ]
+    },
+    {
+      "start": 193,
+      "duration": 65,
+      "label": "05 · Prepare the review package",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, prepare the review package. Create a focused PR or portal file submission with a README, dependency list, setup/deploy order, scenario matrix, and known limitations. Remove credentials and real customer data."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Prepare the review package» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The reviewer has a reproducible starting point. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The reviewer has a reproducible starting point."
+        }
+      ]
+    },
+    {
+      "start": 258,
+      "duration": 64,
+      "label": "06 · Demonstrate and defend",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, demonstrate and defend. Show success, repeat, failure, and access behavior. Explain one alternative architecture and why your chosen design fits the current workload and team."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Demonstrate and defend» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Tradeoffs are connected to requirements rather than personal preference. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Tradeoffs are connected to requirements rather than personal preference."
+        }
+      ]
+    },
+    {
+      "start": 322,
+      "duration": 64,
+      "label": "07 · Repair the unfamiliar condition",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, repair the unfamiliar condition. Trace the defect to a boundary, implement a focused correction, run the affected checks, and explain any remaining uncertainty."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Repair the unfamiliar condition» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The repair improves the intended behavior without hiding another failure. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The repair improves the intended behavior without hiding another failure."
+        }
+      ]
+    },
+    {
+      "start": 386,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A polished demo can conceal missing metadata, administrator-only access, or a mocked success that never persisted. The reviewer should inspect records and configuration as well as the screen."
+        }
+      ]
+    },
+    {
+      "start": 409,
+      "duration": 72,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not claim production readiness, live provider compatibility, or tested product entitlements that the evidence does not establish. Now pause the video and try the exercise yourself. Deliver the integrated project and complete a short review plus one repair exercise. Access, duplicate handling, failure recovery, and bulk behavior are supported by evidence. The release plan declares dependencies and actual checks. Required clinic analyses are complete without mandatory live product licenses."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Which risks should be handed to the next developer?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The most material unverified boundaries, known recovery limitations, and capacity or security assumptions, each with a proposed next check. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

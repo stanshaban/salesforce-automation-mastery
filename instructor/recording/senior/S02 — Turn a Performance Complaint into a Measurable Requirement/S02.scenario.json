@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S02 · Turn a Performance Complaint into a Measurable Requirement",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=398331a7800c4f72a0e7d42ee072264e. Подготовь только синтетические данные и исходное состояние упражнения. Открой жалобу Anna и measurable target sheet. Задай пользовательский путь, объём, процентиль, корректность и границы измерения. Покажи, какие исходные данные ещё нужны. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Latency, throughput, and backlog are not treated as interchangeable. Synthetic estimates and actual observations are visibly separated."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 67,
+      "label": "02 · One complaint can describe four different problems",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «One complaint can describe four different problems». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Oleg says that Salesforce is slow, but Anna says booking a test-drive is acceptable. Max says opening the vehicle list is frustrating, and the integration team says the overnight import finishes after staff arrive. These statements do not contradict each other. They refer to different operations, users, data sets, and finish lines. Treat the complaint as a request to investigate, not as proof that Apex or the database is responsible. Latency is how long one operation takes from a defined start to a defined finish. Throughput is how many useful operations finish in a period. Backlog is work waiting to finish. Improving one does not guarantee improving the others. Moving work into a queue can reduce Anna's wait while increasing the time before Oleg sees an updated report."
+        }
+      ]
+    },
+    {
+      "start": 107,
+      "duration": 66,
+      "label": "03 · Make the measurement boundary explicit",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make the measurement boundary explicit». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "For a vehicle search, a useful start is Max submitting the search, and a useful finish is the moment the result rows can be used. A network response arriving is an intermediate point if the browser then spends another second rendering. For a booking, distinguish 'saved in Salesforce' from 'confirmed by the external scheduling system.' If the product only promises the first, measuring the second without saying so creates an impossible comparison. Write the population beside the metric: user persona, permissions, browser, device, network, selected filters, approximate record distribution, and relevant automation. A broad-access administrator can produce different results from Anna. A warm cache can hide the cost of a fresh visit. Record these conditions before comparing a change, and keep them reasonably consistent afterward."
+        }
+      ]
+    },
+    {
+      "start": 173,
+      "duration": 101,
+      "label": "04 · Read the case without inventing evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Read the case without inventing evidence». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The table below is a synthetic intake artifact. It contains business complaints and possible targets, not verified timings. 'Usually three seconds' is a person's estimate. It is useful for prioritization, but it is not a measured baseline. A target becomes meaningful only after the business confirms that the finish line represents useful work. Prioritize the list-open journey if Max repeats it many times per hour and the wasted time is material. Investigate the import separately because its deadline and recovery needs differ. Do not merge them into a single average named 'Salesforce performance.' Assign an owner to each measurement and define how a missed target changes the business process, such as delayed customer calls."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic intake sheet» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic intake sheet. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 274,
+      "duration": 54,
+      "label": "05 · Agree on a target and a stop condition",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Agree on a target and a stop condition». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An improvement statement could be: 'For the defined vehicle-list journey, reduce measured user wait while preserving the same visible records, columns required for the task, and access rules.' Add a numerical target only after obtaining a baseline and business agreement. Avoid a precise promised speedup derived from a synthetic example. Specify guardrails alongside the target. For example, no increase in authorization errors, no missing required rows, and no unacceptable shift of work into a growing queue. These are conditions under which an apparent speedup should be rejected. A faster page with incorrect data is not a successful optimization."
+        }
+      ]
+    },
+    {
+      "start": 328,
+      "duration": 63,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, for each journey, define start, finish, user persona, useful output, and failure conditions."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 391,
+      "duration": 63,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write one observation, two competing hypotheses, and the evidence needed to distinguish them."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 454,
+      "duration": 66,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create a blank measurement table with run Id, conditions, elapsed time, outcome, and whether the sample was warm or cold."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 520,
+      "duration": 64,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, collect a few observations in a training environment if available, or keep the table explicitly unmeasured."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 584,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, propose a target-setting conversation and name a guardrail that could invalidate a speedup."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 647,
+      "duration": 75,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not turn a small local experiment into a contractual service level or a forecast for a much larger organization. Now pause the video and try the exercise yourself. Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg. Latency, throughput, and backlog are not treated as interchangeable. Synthetic estimates and actual observations are visibly separated. The brief states sample limitations and a next evidence-gathering step."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is 'API response returned' sometimes the wrong finish line?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The user may still wait for rendering or a separate confirmation. Measure the finish line that matches the promised business outcome. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

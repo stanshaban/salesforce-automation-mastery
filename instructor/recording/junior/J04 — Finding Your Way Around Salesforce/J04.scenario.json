@@ -1,0 +1,162 @@
+{
+  "version": 2,
+  "title": "J04 · Finding Your Way Around Salesforce",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=9196998cdd504fc0b6604fe74c0d0aaf. Подготовь только синтетические данные и исходное состояние упражнения. В учебной org открой App Launcher → Sales → Contacts. Покажи переключатель Recently Viewed / All Contacts, затем один синтетический Contact → Details / Related. Открой шестерёнку → Setup, не меняя настройки. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create a simple map showing how Anna finds a customer and where an administrator changes configuration."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Each interface area has a plain-language purpose. The map distinguishes navigation, stored data, and configuration."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 66,
+      "label": "02 · Understand the screen before changing it",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the screen before changing it». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An interface is the collection of pages, menus, fields, and controls through which a person uses software. Lightning Experience is Salesforce's main modern desktop interface. Your learning org may show different applications or labels from an illustration because its language, configuration, and permissions can differ. We will explain the purpose of each area rather than rely on a pixel-perfect screenshot. The App Launcher, commonly shown as a grid of dots, helps you find available applications and items. Search for Sales to open a sales workspace if it is available. The application name helps you recognize where you are. Its navigation items lead to areas such as Contacts. A contact is information about a person; we will examine the underlying data model in J05 and J07."
+        }
+      ]
+    },
+    {
+      "start": 105,
+      "duration": 66,
+      "label": "03 · Move from several records to one record",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Move from several records to one record». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A record is information about one specific item, such as one person or one test drive. A list shows several records so that you can find and compare them. A list view is a selected way of displaying that list, often with conditions that determine which records appear. 'Recently Viewed' is therefore not a promise to display every contact in the org. Suppose Anna wants Irina's telephone number. She opens Contacts, finds the appropriate person, and opens the record. The record page presents information about that one contact. A Details area commonly displays field values, while Related presents associated information where the page supports it. The list and the record page are different views of the same stored information, not separate copies of the person."
+        }
+      ]
+    },
+    {
+      "start": 171,
+      "duration": 37,
+      "label": "04 · Keep configuration separate from daily work",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Keep configuration separate from daily work». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Setup is the configuration area of Salesforce. When permitted, you can reach it through the gear menu. It is where an administrator manages features such as users and object definitions. Entering a telephone number for one customer is everyday data work. Adding a new kind of field to store telephone numbers is a configuration change that can affect many records."
+        }
+      ]
+    },
+    {
+      "start": 208,
+      "duration": 61,
+      "label": "05 · Find an application",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, find an application. Use App Launcher to locate Sales, or record the available application names if it is absent."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Find an application» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can identify an application and its navigation. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can identify an application and its navigation."
+        }
+      ]
+    },
+    {
+      "start": 269,
+      "duration": 59,
+      "label": "06 · Compare two pages",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, compare two pages. Open a list of sample contacts and then one sample record."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Compare two pages» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can distinguish the collection from a single item. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can distinguish the collection from a single item."
+        }
+      ]
+    },
+    {
+      "start": 328,
+      "duration": 59,
+      "label": "07 · Locate Setup",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, locate Setup. Find the gear menu and Setup in your own learning org, if permitted."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Locate Setup» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can identify configuration without changing it. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can identify configuration without changing it."
+        }
+      ]
+    },
+    {
+      "start": 387,
+      "duration": 62,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not change unfamiliar settings merely to make your screen match a screenshot. Now pause the video and try the exercise yourself. Create a simple map showing how Anna finds a customer and where an administrator changes configuration. Each interface area has a plain-language purpose. The map distinguishes navigation, stored data, and configuration."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does Recently Viewed contain every record?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It is a particular list view, not a complete inventory of all accessible records. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

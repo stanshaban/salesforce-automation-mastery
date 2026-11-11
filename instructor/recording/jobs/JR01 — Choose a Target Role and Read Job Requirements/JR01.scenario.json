@@ -1,0 +1,196 @@
+{
+  "version": 2,
+  "title": "JR01 · Choose a Target Role and Read Job Requirements",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=939d608ffbae47febf571fafe7ae6028. Подготовь только синтетические данные и исходное состояние упражнения. На обезличенных объявлениях отметь обязанности, обязательные условия и желательные навыки. Заполни target-role card своими подтверждёнными примерами. Не путай title с одинаковыми ожиданиями у всех компаний. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Choose a realistic target using five current job descriptions."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No requirement is marked essential unless the description supports that interpretation. Tutorial work is identified as practice rather than employment."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 62,
+      "label": "02 · A job title is a starting point, not a definition",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A job title is a starting point, not a definition». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Salesforce Developer builds and maintains features on the Salesforce platform. The balance of configuration, Apex, Lightning Web Components, integrations and support varies between teams. A title such as “Senior Salesforce Developer” is therefore not a complete description of the work. Read what the person will actually do and what the employer expects them to know. For this exercise, imagine that you have completed the Northstar test-drive application. You can explain its data model, write a bulk-safe trigger and build a small LWC. You have not operated a large production integration. These facts are more useful than deciding, without evidence, that you are “middle level.” They tell you which requirements you can demonstrate and which require preparation."
+        }
+      ]
+    },
+    {
+      "start": 100,
+      "duration": 70,
+      "label": "03 · Separate three kinds of requirement",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Separate three kinds of requirement». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A practical requirement affects whether the role can work for you: location, time zone, working arrangement or a stated employment condition. A technical requirement describes work you must be able to perform, such as maintaining Apex integrations. A preference may improve your fit without being essential, such as previous experience in the automotive industry. Use the employer’s wording; do not turn every item into a mandatory rule. Take this fictional description: “Maintain Apex and LWC features, support REST integrations, work with a UK-based team; Automotive Cloud experience preferred.” Your Northstar LWC is relevant evidence. A completed mock callout exercise shows practice, but it does not prove experience maintaining a production integration. The industry preference is a separate gap. “UK-based team” does not by itself establish where the employer can hire; that still needs clarification."
+        }
+      ]
+    },
+    {
+      "start": 170,
+      "duration": 65,
+      "label": "04 · Build a small evidence matrix",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build a small evidence matrix». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create a table with the columns requirement, employer wording, importance, evidence and next step. Mark evidence as “I can demonstrate this,” “I have practised this” or “I have not used this.” These labels prevent a tutorial from silently turning into commercial experience. Attach a concrete item: a repository, a test result, an explanation or an authorised work example. Start with five genuine job descriptions, keeping a direct link and the date you reviewed each one. Highlight repeated responsibilities rather than counting every keyword equally. If four roles require integration support and your only gap is integration diagnosis, that is a useful study signal. If every role is outside your preferred working arrangement, changing your technical study plan will not solve the practical mismatch."
+        }
+      ]
+    },
+    {
+      "start": 235,
+      "duration": 69,
+      "label": "05 · Choose a primary and an adjacent target",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Choose a primary and an adjacent target». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Select one primary role whose central responsibilities you can credibly discuss. Choose one adjacent role only if you can explain the difference in preparation. For example, your primary target might be a developer role focused on Apex and LWC; an adjacent target might add integration ownership. Do not describe the second role as equivalent if its responsibilities are substantially broader. Write a three-sentence target statement: the work you want, the evidence you bring and the area you are developing. “I want to build Salesforce service applications. My strongest examples are a tested test-drive feature and an accessible LWC. I am extending that work with integration failure handling.” This is an internal planning tool, not a claim that you are guaranteed to qualify. Review it when you have better evidence from actual applications."
+        }
+      ]
+    },
+    {
+      "start": 304,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, save five employer descriptions with links and review dates."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 365,
+      "duration": 60,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, separate practical conditions, technical responsibilities and preferences."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 425,
+      "duration": 64,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, map each important requirement to something you can demonstrate, have practised or have not used."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 489,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write a primary target, one adjacent target and a short preparation priority."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 551,
+      "duration": 61,
+      "label": "10 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Now pause the video and try the exercise yourself. Choose a realistic target using five current job descriptions. No requirement is marked essential unless the description supports that interpretation. Tutorial work is identified as practice rather than employment. The chosen target is explained with evidence, not only a desired title."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does a senior title prove that two roles require the same skills?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Responsibilities, context and expected ownership may differ. Compare the descriptions. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

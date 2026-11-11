@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "title": "M11 · Selecting an asynchronous processing mechanism",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 41,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=6b8060bd58414aab97d2eab0c5f3b77f. Подготовь только синтетические данные и исходное состояние упражнения. На таблице сравни Queueable, Batch и Scheduled по задаче Northstar. Запусти один небольшой Queueable и покажи Apex Jobs. Затем посчитай busy-day demand, не называя маленький запуск нагрузочным тестом. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Choose mechanisms for five operations and state the visible result and recovery behavior of each."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Every delayed operation has a pending state or equivalent acknowledgement. Timing is described as a requirement, not an unsupported guarantee."
+        }
+      ]
+    },
+    {
+      "start": 41,
+      "duration": 65,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Synchronous work runs as part of the operation the user is waiting for. Asynchronous work is accepted for later processing in another execution context. Moving work out of the save can improve responsiveness, but the user now needs a way to learn whether it succeeded. A message saying 'request accepted' is different from 'warranty verified.' Queueable Apex suits a defined background unit that can carry serializable inputs and expose a job identity. Batch Apex partitions a larger selected dataset into separate execute transactions. Scheduled Apex or a scheduled Flow starts work according to a schedule; scheduling does not transform an unlimited amount of processing into a safe single transaction. An asynchronous Flow path can handle appropriate declarative follow-up work after the original save."
+        }
+      ]
+    },
+    {
+      "start": 106,
+      "duration": 118,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Classify five Northstar operations. Rejecting a missing customer before confirmation belongs in the synchronous validation path. A warranty check may be queued with Pending status. Cancelling many overdue appointments may use Batch. Starting the cancellation selection nightly requires a schedule. Announcing a committed confirmation to independent consumers may justify an event. Suppose Anna requests 20 warranty checks and Oleg imports 20,000 vehicles. The first number may fit a bounded background design; the second requires workload analysis. Count expected requests, retries, callouts, records read, and writes. Do not conclude 'Queueable scales' from one small demonstration. The appropriate design may include aggregation, partitioning, or a slower accepted processing window."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Complete NoOpObservationJob.cls, API 68.0; no business record changes» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Complete NoOpObservationJob.cls, API 68.0; no business record changes. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Anonymous Apex after deploying the class and metadata» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Anonymous Apex after deploying the class and metadata. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 224,
+      "duration": 20,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "This lesson is a design-and-observation exercise using the existing core model. No paid product, external provider, or new custom object is required."
+        }
+      ]
+    },
+    {
+      "start": 244,
+      "duration": 63,
+      "label": "05 · Create a decision sheet",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, create a decision sheet. For each of the five operations, record maximum expected volume, acceptable delay, required transaction behavior, and what the user needs to see."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Create a decision sheet» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A mechanism is justified by constraints. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A mechanism is justified by constraints."
+        }
+      ]
+    },
+    {
+      "start": 307,
+      "duration": 75,
+      "label": "06 · Observe one small async run",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe one small async run. Deploy NoOpObservationJob and its API 68.0 Apex metadata using the Junior class workflow. Run the supplied Anonymous Apex in the learning org, then open Setup → Apex Jobs and find its class/job identity. A quick run may already be Completed; do not invent intermediate observations."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe one small async run» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The job has an identity and observable lifecycle. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The job has an identity and observable lifecycle."
+        }
+      ]
+    },
+    {
+      "start": 382,
+      "duration": 63,
+      "label": "07 · Estimate the busy day",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, estimate the busy day. Add retries to your workload estimate and identify per-transaction and org-wide constraints from current documentation and org limits."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Estimate the busy day» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The plan includes a queue backlog and recovery response. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The plan includes a queue backlog and recovery response."
+        }
+      ]
+    },
+    {
+      "start": 445,
+      "duration": 25,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Splitting work into one job per record can create avoidable queue pressure. Conversely, putting all records in one job can exceed transaction limits. Batch size and grouping are design choices, not universal constants."
+        }
+      ]
+    },
+    {
+      "start": 470,
+      "duration": 65,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not promise that Queueable starts at an exact time or that async work has unlimited capacity. Now pause the video and try the exercise yourself. Choose mechanisms for five operations and state the visible result and recovery behavior of each. Every delayed operation has a pending state or equivalent acknowledgement. Timing is described as a requirement, not an unsupported guarantee. Retry load is included."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does enqueue success prove business success?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It confirms acceptance of work, whose later execution may fail. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

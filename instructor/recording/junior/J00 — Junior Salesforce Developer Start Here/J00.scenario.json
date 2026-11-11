@@ -1,0 +1,111 @@
+{
+  "version": 2,
+  "title": "J00 · Junior Salesforce Developer: Start Here",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Выбор маршрута",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Открой contents page курса junior. Покажи prerequisites и результат проекта."
+        },
+        {
+          "type": "speech",
+          "text": "No previous CRM or Salesforce experience is required. Begin with people, business information, and a personal learning org. Apex syntax and browser-language basics are taught before their application code. Complete the separate workspace guide before code deployment. Deliver and explain a small Salesforce feature with a deliberate data model, restricted-user access evidence, automation, bulk-aware Apex, a usable interface, tests, and a reproducible handover."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 39,
+      "label": "02 · CRM and Salesforce Foundations",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «CRM and Salesforce Foundations». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers crm and salesforce foundations. Follow one customer request and discover why a team needs shared information, clear responsibility, and a next action. Distinguish a product, an application, and an org while learning who uses and changes Salesforce. Use a browser to create a personal Salesforce learning environment and verify that you can return to the same one."
+        }
+      ]
+    },
+    {
+      "start": 79,
+      "duration": 36,
+      "label": "03 · Data and the First Application",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Data and the First Application». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers data and the first application. Classify customer information using Lead, Account, Contact, Opportunity, and Case, then explain why the course adds two custom objects. Separate entered values, calculated values, and rejected input using concrete appointment examples. Compare relationship behaviour while preserving independent ownership of the course Test Drive records."
+        }
+      ]
+    },
+    {
+      "start": 115,
+      "duration": 32,
+      "label": "04 · Designing and Verifying Access",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Designing and Verifying Access». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers designing and verifying access. Separate sign-in, object operations, field permissions, and access to an individual record. Create an additive permission set that enables appointment work without broad administration. Use Private defaults, roles, and a focused sharing rule to explain appointment visibility."
+        }
+      ]
+    },
+    {
+      "start": 147,
+      "duration": 36,
+      "label": "05 · Flow, Apex, and Transaction Behaviour",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Flow, Apex, and Transaction Behaviour». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers flow, apex, and transaction behaviour. Create one follow-up Task for a new appointment request, avoid update duplicates, and make a failed reminder visible. Read and write a small pure Apex function before introducing database operations. Write a bounded bulk operation with explicit user-mode access and separate reads from writes."
+        }
+      ]
+    },
+    {
+      "start": 183,
+      "duration": 36,
+      "label": "06 · Components, Diagnosis, and Handover",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Components, Diagnosis, and Handover». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers components, diagnosis, and handover. Learn the browser-language basics and build an explicitly simulated appointment preview with four visible states. Use a standard record form for an ordinary edit and verify the result under a restricted user. Split a small interface into a parent and child with clear ownership of state."
+        }
+      ]
+    },
+    {
+      "start": 219,
+      "duration": 30,
+      "label": "07 · Первое действие",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it."
+        }
+      ]
+    }
+  ]
+}

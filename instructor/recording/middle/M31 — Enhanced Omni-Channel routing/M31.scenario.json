@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M31 · Enhanced Omni-Channel routing",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=34bd509db84342339b2f8f44e468f908. Подготовь только синтетические данные и исходное состояние упражнения. Покажи routing worksheet с presence, capacity, skills и work item. Меняй по одному условию. Live Omni-Channel снимай только при наличии нужной функции; иначе оставь схему явно подписанной simulation. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Submit the provided simulation with three condition changes and an optional separately labeled live observation."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Every chosen or excluded person has a reason. No unsupported tie-breaking rule is invented."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Case records a customer's service issue. A queue groups work that a team can handle. An assignment rule can place a Case with an owner or queue, but that is not the same as deciding which available employee should receive the next item. Omni-Channel adds routing behavior based on configured eligibility, workload, priority, and, when used, skills. Presence describes whether a person is available for the relevant work. Capacity describes how much work the configuration allows them to handle. A work item consumes capacity according to the chosen model. Queue membership alone does not prove that a person is currently eligible: they may be offline, at capacity, missing a needed skill, or unavailable for the relevant service channel."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 109,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use this simplified capacity model: each employee has capacity 4 and each Case costs 2 units. Anna is online with 2 units used; Max is online with all 4 used; Oleg is offline with 0 used. All three belong to the support queue. Only Anna is eligible for the next item. After accepting it, she reaches 4 and a second item must wait unless someone else's eligibility changes. Now Max completes work and drops to 2 used units. He becomes eligible under the simple queue scenario. Add a required EV-service skill that only Anna has: Max's free capacity is no longer sufficient to qualify him. These examples intentionally avoid a tie between equally eligible employees, so they do not invent the product's tie-breaking algorithm."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Provided routing simulation; capacity units are an explicit teaching assumption» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Provided routing simulation; capacity units are an explicit teaching assumption. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 210,
+      "duration": 26,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Mandatory: work through the provided trace and explain decisions. Optional live lab: verify Enhanced Omni-Channel entitlement, use synthetic Cases, and record the actual capacity model and configuration; do not assume it matches the simplified simulation."
+        }
+      ]
+    },
+    {
+      "start": 236,
+      "duration": 61,
+      "label": "05 · Trace eligibility",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, trace eligibility. For each person, evaluate queue membership, presence, available capacity, and any required skill. Record the first failed condition."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Trace eligibility» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Every routing decision has a concrete explanation. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Every routing decision has a concrete explanation."
+        }
+      ]
+    },
+    {
+      "start": 297,
+      "duration": 63,
+      "label": "06 · Change one condition",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, change one condition. Simulate Max completing work, Anna going offline, and an EV skill requirement. Predict each result before changing the trace."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Change one condition» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Capacity and skill are not confused with one another. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Capacity and skill are not confused with one another."
+        }
+      ]
+    },
+    {
+      "start": 360,
+      "duration": 68,
+      "label": "07 · Optional live verification",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, optional live verification. In an entitled training org, configure a Case service channel, routing configuration, queue membership, presence settings, and the appropriate console utility. Test one online worker and one ineligible worker."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Optional live verification» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Evidence names the actual configuration and distinguishes it from simulation. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Evidence names the actual configuration and distinguishes it from simulation."
+        }
+      ]
+    },
+    {
+      "start": 428,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Case sitting in a queue is not proof that routing is broken. Check the service channel, eligible presence, capacity, membership, and routing configuration before changing ownership arbitrarily."
+        }
+      ]
+    },
+    {
+      "start": 451,
+      "duration": 66,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "No paid license or trial is required for the mandatory clinic; mark live product steps Not run when unavailable. Now pause the video and try the exercise yourself. Submit the provided simulation with three condition changes and an optional separately labeled live observation. Every chosen or excluded person has a reason. No unsupported tie-breaking rule is invented. Simulation and live evidence are clearly separated."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is a queue not enough?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Membership identifies a team, but current presence, capacity, and routing requirements still determine eligibility. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

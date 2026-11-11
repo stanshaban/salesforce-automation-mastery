@@ -10,7 +10,7 @@ curriculum.revisionNote =
   'Complete English lessons with worked examples, independent practice, answered knowledge checks and individual generated illustrations. Junior starts with CRM, users and data. Agentforce is a separate practical project.';
 curriculum.sources = curriculum.sources.map((s) => ({
   ...s,
-  title: s.title.split(/ — | —| – /)[0].replace('Focus on Force', 'K2U / Focus on Force'),
+  title: s.title.split(/ — | —| – /)[0].replace(/(?:K2U \/ )*Focus on Force/, 'K2U / Focus on Force'),
 }));
 await writeFile(root + 'data/curriculum.json', JSON.stringify(curriculum, null, 2) + '\n');
 const foundations = [];

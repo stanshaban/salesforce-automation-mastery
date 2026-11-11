@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M14 · Scheduling, workload limits, and monitoring",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=7e22cd72e14d4479ba91f9712b0da7c9. Подготовь только синтетические данные и исходное состояние упражнения. Покажи scheduled launcher, ограничение перекрытия запусков и Apex Jobs. Запланируй только маленький учебный запуск, зафиксируй результат и убери созданное учебное расписание после демонстрации. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Add a schedule and a documented monitoring and recovery procedure to M13."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Time-zone assumptions are explicit. Overlap and abandoned-run behavior are defined."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A schedule decides when work should be requested. It does not guarantee that a long job finishes before the next scheduled occurrence, and it does not remove transaction or org limits. Northstar's nightly cancellation process therefore needs both a calendar rule and an execution policy. 'Run every night' is incomplete without a time zone, cutoff definition, and response to a missed or still-running job. Scheduled Apex implements Schedulable; its execute method typically starts a bounded service or Batch. A scheduled Flow can be appropriate for declarative recurring processing. Choose from the required selection, volume, maintenance, and error behavior rather than assuming the scheduling mechanism performs the entire workload. Review the execution context and access of the work it launches."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 61,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar processes appointments before midnight in its agreed business time zone. The 01:00 run selects that fixed cutoff and normally takes ten minutes. On a busy day it is still active when an operator requests a manual rerun. Choose either to reject the duplicate launch with an observable reason or to resume a defined unprocessed partition. Do not let both workers silently process the same set. Create Processing_Run__c only if implementing durable coordination: Auto Number Name, Run_Key__c Text(80) Unique External ID, Status__c Picklist Running/Succeeded/Failed, Started_At__c and Finished_At__c DateTime, and Summary__c Text(255). Use a key such as 'cancel:2030-04-10'. These are new fields. A failed run requires an authorized recovery transition, not deletion of evidence."
+        }
+      ]
+    },
+    {
+      "start": 159,
+      "duration": 24,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use a dedicated training schedule and remove it when the experiment ends. Document the scheduling user's time zone and the business cutoff; do not infer both from the laptop clock."
+        }
+      ]
+    },
+    {
+      "start": 183,
+      "duration": 61,
+      "label": "05 · Define the operational contract",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, define the operational contract. Write schedule time, time zone, selection cutoff, expected duration, overlap response, and missed-run recovery."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Define the operational contract» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Another developer can predict the intended date window. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Another developer can predict the intended date window."
+        }
+      ]
+    },
+    {
+      "start": 244,
+      "duration": 65,
+      "label": "06 · Build a bounded launcher",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build a bounded launcher. Implement a small Schedulable or scheduled Flow that invokes the chosen bounded workload. Add an explicit coordination policy if duplicate launches are possible."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build a bounded launcher» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The launcher does not perform an uncontrolled scan itself. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The launcher does not perform an uncontrolled scan itself."
+        }
+      ]
+    },
+    {
+      "start": 309,
+      "duration": 64,
+      "label": "07 · Observe and clean up",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe and clean up. Test the launcher locally, observe one training run, force the overlap scenario, and inspect both platform and business status. Remove the recurring schedule afterward."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe and clean up» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: No unattended training job remains active. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: No unattended training job remains active."
+        }
+      ]
+    },
+    {
+      "start": 373,
+      "duration": 21,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Scheduling work separately for every record can consume scarce scheduling capacity and complicate operations. Prefer a deliberate recurring selection when that matches the requirement."
+        }
+      ]
+    },
+    {
+      "start": 394,
+      "duration": 63,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not treat a scheduler's configured time as proof that business processing completed at that time. Now pause the video and try the exercise yourself. Add a schedule and a documented monitoring and recovery procedure to M13. Time-zone assumptions are explicit. Overlap and abandoned-run behavior are defined. The report distinguishes scheduling, execution, and business completion."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can a nightly job overlap?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Its previous execution or a manual run can still be active when another launch is requested. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

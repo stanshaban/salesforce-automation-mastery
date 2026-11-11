@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S17 · Reconstruct an Incident from Business and Technical Evidence",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=9fee87d2888241f5b79f043258f7353b. Подготовь только синтетические данные и исходное состояние упражнения. Разложи incident evidence по времени: user symptom, request key, attempts, state. Пометь observation и hypothesis. Построй причинную версию и укажи недостающую проверку. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Explain the synthetic N-77 notification incident and propose a safe recovery and prevention plan."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The report distinguishes queuing success from downstream completion. The timeout remains an uncertain remote outcome until reconciled."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 55,
+      "label": "02 · Begin with the customer outcome",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Begin with the customer outcome». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Irina did not receive a test-drive notification. Oleg sees a successful booking and a log message saying 'event published.' These facts do not establish that a notification provider received or delivered anything. Define the missing business outcome before searching for the most dramatic error line. Observability means having enough useful signals to understand what the system did and why. Logs describe individual events, metrics summarize behavior over time, and traces connect stages of an execution. None is sufficient alone. A low error count can coexist with missing work if the code never attempted the relevant stage or logged success too early."
+        }
+      ]
+    },
+    {
+      "start": 94,
+      "duration": 95,
+      "label": "03 · Follow the stages and their acknowledgments",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Follow the stages and their acknowledgments». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Platform Event publication is asynchronous. A successful SaveResult from EventBus.publish reports the intermediate queuing result, not the final publication result or a subscriber's business completion. Publish callbacks can report the final publication outcome for supported events, but even publication success does not prove that an external provider completed its work. The synthetic timeline below shows a mismatch between the dashboard's definition of success and the actual process. The subscriber attempted a provider call, timed out, and recorded no durable recovery state. The evidence supports a lost unresolved outcome; it does not prove whether the provider delivered the message before the timeout."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic incident evidence» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic incident evidence. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 189,
+      "duration": 58,
+      "label": "04 · Separate recovery from causal explanation",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Separate recovery from causal explanation». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The immediate recovery task is to reconcile N-77 with the provider or apply the approved idempotent retry procedure. Blindly sending a new notification with a new operation key can create duplicates. The incident explanation is a separate task: why did an uncertain outcome disappear, and why did the dashboard misreport it? A cause statement should connect a mechanism to evidence. 'The developer was careless' explains neither the status transition nor the missing recovery state. A stronger statement identifies that code used the queuing acknowledgment as a completed-notification signal and did not persist timeout handling. Contributing conditions might include a test suite that covered only successful responses."
+        }
+      ]
+    },
+    {
+      "start": 247,
+      "duration": 47,
+      "label": "05 · Measure the process that can fail silently",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Measure the process that can fail silently». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Add counts and age distributions for Pending notifications, attempts, confirmed provider acknowledgments, and unresolved outcomes. Alerting thresholds should reflect the business tolerance and observed normal behavior. Do not invent a universal threshold from this fictional incident. For longer interruptions, remember that an event bus is not an unlimited archive. Standard Platform Event and CDC retention is limited, and recovery beyond the available replay window may require reconciliation from durable business state. A checkpoint is useful, but it does not replace a recovery source."
+        }
+      ]
+    },
+    {
+      "start": 294,
+      "duration": 62,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create a timeline with evidence source, event, known consequence, and uncertainty."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 356,
+      "duration": 61,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, state the customer impact without assuming the provider's unknown outcome."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 417,
+      "duration": 61,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, describe an idempotent reconciliation or retry path for N-77."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 478,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write two demonstrated causes or design defects and separate them from hypotheses."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 540,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create three corrective actions with owners, tests, and a signal that would detect recurrence."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 603,
+      "duration": 68,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "An unexplained gap is a finding. Do not fill it with a confident story that the available evidence cannot support. Now pause the video and try the exercise yourself. Explain the synthetic N-77 notification incident and propose a safe recovery and prevention plan. The report distinguishes queuing success from downstream completion. The timeout remains an uncertain remote outcome until reconciled. Corrective actions can be verified and avoid blame-only explanations."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What does EventBus.publish SaveResult success prove?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It reports successful queuing of the publish operation, not final publication or subscriber completion. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

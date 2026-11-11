@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S01 · How a Salesforce Transaction Runs",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 43,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=67b590f9ee14401996d01fde2844ebad. Подготовь только синтетические данные и исходное состояние упражнения. Построй timeline одной транзакции из реальных автоматизаций Northstar. Отдельной дорожкой покажи async boundary. Сопоставь журнал с commit/rollback, не изображая упрощённую схему полной спецификацией Salesforce. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The diagram has explicit commit boundaries and does not claim Hyperforce removes limits. A worker failure leaves the committed appointment intact."
+        }
+      ]
+    },
+    {
+      "start": 43,
+      "duration": 74,
+      "label": "02 · Start with Anna's booking",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Start with Anna's booking». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna is a salesperson at Northstar Motors. She selects a Vehicle__c record and creates a Test_Drive__c for client Irina. The field definitions, validation rules, Apex classes, and Flow definitions are metadata: instructions that describe how the application behaves. The particular vehicle and appointment are business data. Changing a field definition and inserting an appointment are different operations, even though both can begin in Setup or a browser. A runtime is the software that interprets those definitions and executes the application. You do not need to know the physical database layout to design this feature. You do need to know which operations share a transaction. A transaction is a unit of work whose database changes can commit together or roll back together when its execution fails. The user's click is an entry point, not a guarantee that everything it eventually causes belongs to one transaction."
+        }
+      ]
+    },
+    {
+      "start": 117,
+      "duration": 116,
+      "label": "03 · Follow the save through the boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Follow the save through the boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Begin your diagram with identity and input. Anna's authenticated session identifies the caller; the application still needs to validate the requested vehicle, appointment time, and permitted operation. Object permissions, field permissions, and record access answer different questions. For Apex compiled at API 68.0, database operations default to user mode. Prefer an explicit access contract in examples so reviewers do not have to infer the intent from a class version. Next draw the synchronous save path: request handling, applicable platform validation and automation, and the commit decision. This is a conceptual boundary diagram, not a replacement for the complete order-of-execution reference. A before-save change to the same appointment belongs inside that work. A Queueable job that runs later gets a separate execution context. If it fails after the appointment has committed, its failure does not travel backward and undo the earlier commit."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic boundary trace; these events were written for this lesson» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic boundary trace; these events were written for this lesson. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 233,
+      "duration": 65,
+      "label": "04 · Why shared infrastructure affects your design",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Why shared infrastructure affects your design». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Multitenancy means a platform serves multiple tenants while maintaining separation between their data and operations. An org is a tenant boundary; it is not permission for every user inside that org to see every record. Governor limits constrain individual executions, while other allocations apply across the org or a time window. These controls are part of the platform contract, so a design should budget work rather than assume unlimited processing. Hyperforce concerns Salesforce's infrastructure architecture and deployment on public-cloud infrastructure. It does not turn an inefficient nested loop into an efficient algorithm, merge independent transactions, or remove the application security model. Regional availability and organizational requirements can affect an infrastructure decision, but they do not establish a particular CPU entitlement for your code."
+        }
+      ]
+    },
+    {
+      "start": 298,
+      "duration": 70,
+      "label": "05 · Design a visible recovery path",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Design a visible recovery path». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Oleg, the manager, needs to distinguish an appointment that was never created from one whose notification failed. A useful application status might track Pending, Delivered, and Needs attention for the notification separately from the appointment's booking status. Those fields are a proposed extension, not fields already supplied by the starter. Keep the business state and delivery state separate so a retry cannot accidentally rebook Irina. Measure each boundary independently in a permitted training environment: whether the appointment exists after the save, whether a queued job reached a terminal status, and whether a mocked recipient acknowledged the message. A screenshot of the appointment proves neither a network delivery nor the correctness of a retry. In a paper-only exercise, label every status transition as a prediction and explain how a future experiment would verify it."
+        }
+      ]
+    },
+    {
+      "start": 368,
+      "duration": 62,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, draw browser, Salesforce synchronous transaction, committed appointment, async worker, and external recipient."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 430,
+      "duration": 64,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, place metadata and business data in different boxes; annotate where identity and access are checked."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 494,
+      "duration": 65,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, add three failure cards: validation failure before commit, worker failure after commit, and successful delivery with a lost response."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 559,
+      "duration": 64,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, for each card, state whether an appointment exists and what Anna and Oleg should see."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 623,
+      "duration": 69,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, if using a training org, verify only one small save and a mocked asynchronous failure; record API version and the observations separately from the supplied trace."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 692,
+      "duration": 76,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "An architecture diagram should expose important uncertainty instead of hiding it behind detailed-looking infrastructure boxes. Now pause the video and try the exercise yourself. Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required. The diagram has explicit commit boundaries and does not claim Hyperforce removes limits. A worker failure leaves the committed appointment intact. Every claim is labelled as a documented platform rule, a synthetic case result, or an observation from your own experiment."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does org isolation replace record sharing?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Tenant isolation separates organizations; sharing and other permissions govern access inside an organization. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

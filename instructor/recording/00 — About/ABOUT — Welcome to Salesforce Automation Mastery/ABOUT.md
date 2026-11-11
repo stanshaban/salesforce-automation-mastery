@@ -1,0 +1,46 @@
+# ABOUT · Welcome to Salesforce Automation Mastery
+
+Recording allowance: 3:53
+English speech · Russian recording/editing directions
+
+## 01 · Кому подходит курс
+
+> 🎬 КАМЕРА. Средний крупный план, спокойное приветствие. Все реплики запиши на камеру. Экраны для монтажа снимай отдельным проходом. Не добавляй обещаний работы, грейда или сертификации.
+
+Hi, I’m Stanislav. Welcome to Salesforce Automation Mastery. This community is for developers who want to understand Salesforce more deeply and become more confident building, explaining, and reviewing real features. You might be starting with CRM for the first time, moving beyond familiar Apex tasks, or preparing to discuss architecture and performance in an interview.
+
+## 02 · Учебный проект
+
+> 🎬 МОНТАЖ ПОЗЖЕ · B01. Поверх следующей реплики вставь 8–12 секунд учебного проекта: synthetic Contact → Vehicle → Test Drive. Записывай экраны отдельно от речи, без реальных клиентов.
+
+We learn through Northstar Motors, a fictional car dealership. A customer asks for a test drive. A salesperson needs to find the right vehicle, record the appointment, and hand the work to a colleague. As the application grows, we add access control, automation, interfaces, integrations, and ways to recover when something fails. You can see what each technical decision changes for the people using the system.
+
+## 03 · Junior
+
+> 🎬 МОНТАЖ ПОЗЖЕ · B02. Classroom → Junior → J00 contents. Покажи J01, J07, J17 и J28, затем один practical outcome. Во время основной записи продолжай говорить в камеру.
+
+The Junior path starts with what a CRM is, how Salesforce stores information, and how to find your way around an org. You build the data model, configure access, create a Flow, write Apex, and build a first Lightning Web Component. The goal is a small working feature that you can explain and hand over with tests and clear instructions.
+
+## 04 · Middle и Senior
+
+> 🎬 МОНТАЖ ПОЗЖЕ · B03. Покажи M00 и S00, затем короткие фрагменты async state diagram и measured improvement worksheet. Не выдавай маленький demo fixture за enterprise load test.
+
+The Middle path connects those foundations. We work with asynchronous processing, API contracts, component communication, events, source control, and failure handling. The Senior path focuses on decisions: locating a performance problem, understanding access at scale, keeping integrations reliable, and changing an existing system without losing control of its behavior. You support your choices with evidence and explain the limits of what you tested.
+
+## 05 · Agentforce и поиск работы
+
+> 🎬 МОНТАЖ ПОЗЖЕ · B04. Покажи Agentforce course contents и confirmation → persisted record. Затем Job Research course и portfolio checklist. Live agent trace используй только после фактической записи в поддерживаемой org.
+
+There is also a practical Agentforce project. You build an employee assistant that reads demo options, asks for confirmation, and creates a booking or a support Case. The Job Research course helps you turn your work into an honest CV and portfolio, research suitable roles, and practise technical interviews. We keep the focus on what you can demonstrate and explain.
+
+## 06 · Как выглядит обучение
+
+> 🎬 МОНТАЖ ПОЗЖЕ · B05. Открой J04: practical outcome → demonstration → independent practice → acceptance. Затем портал: rotating self-check и submit form. Не отправляй фиктивную заявку в рабочую очередь.
+
+Each lesson gives you a practical outcome, an explanation, steps to try, and a check for deciding whether the work is ready. Read a small section, build that part, and compare the actual result with the expected one. Use the practice portal for self-checks and project submissions. The written lesson remains your reference while you work, so you can return to a step without searching through a long video.
+
+## 07 · С чего начать
+
+> 🎬 КАМЕРА. Заверши прямым приглашением к первому действию. МОНТАЖ ПОЗЖЕ · B06: Classroom → нужный курс → его contents page. Цены и условия персонального review в этом видео не называй: их нужно сверять с действующими настройками.
+
+Start in the Classroom and open the contents page for the path that matches your experience. If you are new to Salesforce, begin with Junior and take the lessons in order. If you already build features, use the practical checks to find the gaps you want to work on. Choose one exercise, save your result, and explain how you know it works. That is where we begin.

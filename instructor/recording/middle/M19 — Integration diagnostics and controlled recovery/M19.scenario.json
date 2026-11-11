@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M19 · Integration diagnostics and controlled recovery",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b2a58132ee404c5895ff7324bf8d238c. Подготовь только синтетические данные и исходное состояние упражнения. Покажи correlation key и журнал двух попыток без чувствительных payload. По очереди выбери retry, reconcile или manual review для известных результатов. Подтверди последующий статус записи. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Demonstrate how one request can be found, diagnosed, and safely retried."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. History survives later success. One correlation key connects request and attempts."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 66,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "When Anna says that a warranty check failed, a developer needs to locate one business request and follow its attempts. A correlation ID connects diagnostic events belonging to the same operation. The request key from M12 can serve this role within the exercise. Each retry additionally has an attempt number and potentially a new Queueable job ID. These values answer different questions and should not replace one another. A useful diagnostic event records what stage was reached, when it happened, the outcome category, and a safe error code. It need not contain the full request body, customer details, credentials, or raw provider response. Log enough to distinguish a malformed response from an expired credential or rejected business input, while keeping sensitive data out of routine evidence."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 58,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Request WARRANTY-100 has attempt 1 classified TRANSPORT_ERROR and attempt 2 Succeeded. Oleg should see both attempts rather than only a final green status. The first failure explains a delay and can reveal a wider incident. The final result should reference the successful attempt without rewriting the original timestamp or pretending there was no failure. Now consider three requests with different problems: invalid customer input, 401 authentication, and 503 temporary service failure. The first needs corrected data, the second needs credential attention, and the third may be eligible for a bounded retry. A dashboard displaying only 'Failed' invites the wrong action on at least two of them."
+        }
+      ]
+    },
+    {
+      "start": 159,
+      "duration": 23,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use the Warranty_Request__c fields declared in M12 and the attempt object declared here. A report or list view is sufficient; a custom LWC is not required for this lesson."
+        }
+      ]
+    },
+    {
+      "start": 182,
+      "duration": 61,
+      "label": "05 · Define diagnostic fields",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, define diagnostic fields. Choose correlation key, attempt number, stage, outcome, duration, and safe error code. State which data is deliberately excluded."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Define diagnostic fields» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The log supports diagnosis without storing secrets. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The log supports diagnosis without storing secrets."
+        }
+      ]
+    },
+    {
+      "start": 243,
+      "duration": 65,
+      "label": "06 · Record two controlled attempts",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, record two controlled attempts. Use M17 mocks to produce a failure and a success. Persist attempt rows and update the current request state without deleting history."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Record two controlled attempts» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Both the current result and its history are visible. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Both the current result and its history are visible."
+        }
+      ]
+    },
+    {
+      "start": 308,
+      "duration": 61,
+      "label": "07 · Exercise recovery decisions",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, exercise recovery decisions. Create examples of invalid input, authentication failure, transient failure, and already-running work. Apply the documented retry policy."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Exercise recovery decisions» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Only eligible requests launch another bounded attempt. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Only eligible requests launch another bounded attempt."
+        }
+      ]
+    },
+    {
+      "start": 369,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A log write may fail along with the business transaction. Platform job status and external monitoring can provide additional evidence; the custom log alone does not guarantee complete observability."
+        }
+      ]
+    },
+    {
+      "start": 392,
+      "duration": 60,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not expose raw stack traces, access tokens, Authorization headers, or unrestricted payloads in an operator-facing error message. Now pause the video and try the exercise yourself. Demonstrate how one request can be found, diagnosed, and safely retried. History survives later success. One correlation key connects request and attempts. Retry authorization and eligibility are explicit."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why retain failed attempts after success?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "They explain latency and recurring defects and support incident investigation. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "version": 2,
+  "title": "AF-04 · Build the Booking Flow",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 53,
+      "label": "01 · Цель и границы",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=aa596db9260040f68612cfe5a85a58a4 и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+        },
+        {
+          "type": "speech",
+          "text": "Build an automation that accepts only a slot returned by the catalog and creates a controlled record. A Flow is a sequence of Salesforce operations and decisions. An Autolaunched Flow runs without an input screen: the agent supplies values and receives outputs. This Flow validates the customer, reloads the slot catalog, and creates the Test Drive. Validation belongs inside the automation, so a model-invented key cannot become an arbitrary appointment date. The unique Booking Key remains the final duplicate barrier in this teaching model."
+        }
+      ]
+    },
+    {
+      "start": 53,
+      "duration": 96,
+      "label": "02 · Create the Flow and variables",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Setup → Flows → New Flow → Autolaunched Flow (No Trigger). Label it SAM Book Demo Test Drive, API SAM_Book_Demo_Test_Drive. Add Text input variables model, slotKey, contactId with Available for input. Add Text outputs resultCode, resultMessage, testDriveId with Available for output. Add an internal Date/Time selectedStart. Keep user-context execution; do not select System Context Without Sharing."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Create the Flow and variables. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 149,
+      "duration": 89,
+      "label": "03 · Validate the Contact",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Get Records: Contact where Id equals contactId, storing the first record's Id. A Decision sends no-match to an Assignment setting resultCode=INVALID_CUSTOMER and a useful message, then ends. Continue only when the user can retrieve the Contact. Do not bypass missing access."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Validate the Contact. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 238,
+      "duration": 99,
+      "label": "04 · Recheck model and slot",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Add the SAM Demo Slot Catalog Apex action with model from the input. Store its outputs. A Decision requires resultCode=OK; otherwise return its result without creating records. A second Decision compares slotKey to slotOneKey or slotTwoKey and assigns the corresponding start to selectedStart. The default path returns INVALID_SLOT. Use the action's vehicleId and datetime, not a separate date invented by the agent."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Recheck model and slot. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 337,
+      "duration": 95,
+      "label": "05 · Inspect an existing booking",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Get Test_Drive__c where Booking_Key__c equals slotKey. If a visible record exists with the same Customer__c and Confirmed status, return its Id and ALREADY_BOOKED. If it exists for another customer or state, return SLOT_TAKEN without disclosing another customer's details. If no visible record exists, continue; the unique constraint still prevents a duplicate hidden record."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Inspect an existing booking. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 432,
+      "duration": 89,
+      "label": "06 · Create the Test Drive",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Create one Test_Drive__c with Vehicle__c from the action, Customer__c=contactId, Scheduled_At__c=selectedStart, Status__c=Confirmed, Duration_Minutes__c=30, and Booking_Key__c=slotKey. Store its Id in testDriveId. Set resultCode=CREATED and a message describing the created demo record. Retrieve it by Id if you also want its automatic Name."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Create the Test Drive. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 521,
+      "duration": 96,
+      "label": "07 · Connect fault paths",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For fallible actions and record operations, connect faults to an Assignment returning FAILED and a safe message such as: 'Booking could not be completed. Check existing bookings and permissions before retrying.' Do not display unrestricted $Flow.FaultMessage in the conversation. Investigate detailed errors through Flow debugging or failed interviews. A fault must not lead to a success response."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Connect fault paths. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 617,
+      "duration": 100,
+      "label": "08 · Debug without the agent",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Save and Debug. Obtain an actual key from a temporary catalog-only Flow Debug run or the read action when configured. Pass City EV, that key, and Irina's real synthetic Contact ID. For a persisted demo, understand and disable Debug rollback only for your synthetic run. Verify the saved record. Repeat the same values: expect ALREADY_BOOKED and the same Id. A made-up key must produce INVALID_SLOT."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Debug without the agent. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 717,
+      "duration": 96,
+      "label": "09 · Activate the verified version",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Activate after Debug and record inspection pass, then grant run access through SAM Agentforce Demo. Deleting your own demo record releases its unique key; cancelling it retains the key in this simplified version. A slot obtained before midnight may fail revalidation after the date changes. Cancellation, rescheduling, and real calendar behavior are explicit future extensions."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Activate the verified version. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 813,
+      "duration": 42,
+      "label": "10 · Проверка результата",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи expected/actual таблицу и соответствующий Flow debug, action trace или CRM record. Не подменяй результат live org симуляцией портала."
+        },
+        {
+          "type": "speech",
+          "text": "Free text cannot select an arbitrary date. A repeat returns the existing record or a clear conflict. An error is never described as a successful reservation. The Flow creates one record and returns the existing result for a legitimate repeat."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза для ответа. Покажи один из common failures и нужный диагностический экран."
+        },
+        {
+          "type": "speech",
+          "text": "A common mistake to avoid is this: Connecting Create Records to the default invalid-input branch. Keep the record or trace that supports your conclusion before continuing."
+        }
+      ]
+    }
+  ]
+}

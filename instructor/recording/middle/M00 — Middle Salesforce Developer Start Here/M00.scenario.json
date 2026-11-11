@@ -1,0 +1,141 @@
+{
+  "version": 2,
+  "title": "M00 · Middle Salesforce Developer: Start Here",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Выбор маршрута",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Открой contents page курса middle. Покажи prerequisites и результат проекта."
+        },
+        {
+          "type": "speech",
+          "text": "Complete the Junior foundations or demonstrate a small feature with a sound data model, least-privilege access, bulk-safe Apex, meaningful tests, and a basic LWC. CRM and the Northstar actors are restated where needed; unfamiliar product licenses are not assumed. Build and explain an integrated feature with explicit security, durable operation identity, controlled asynchronous work, failure recovery, usable UI states, and reproducible release evidence."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 42,
+      "label": "02 · Access design and Apex security",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Access design and Apex security». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers access design and apex security. Turn a business request into separate object, field, record, and operation decisions. Build an access matrix for two sales branches before changing permissions. Predict effective permissions when a permission set group mutes a grant that is also supplied elsewhere. Identify why a record is visible and distinguish an explicit manual grant from access arising from supported standard relationships."
+        }
+      ]
+    },
+    {
+      "start": 82,
+      "duration": 40,
+      "label": "03 · Maintainable business logic and tests",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Maintainable business logic and tests». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers maintainable business logic and tests. Choose an implementation from the shape of the work, its transaction boundaries, and the team's ability to maintain it. Explain repeated automation within a transaction and design a durable business result that is not duplicated by re-entry or retries. Separate warranty business rules, orchestration, and external access without adding layers that have no clear responsibility."
+        }
+      ]
+    },
+    {
+      "start": 122,
+      "duration": 37,
+      "label": "04 · Asynchronous processing",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Asynchronous processing». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers asynchronous processing. Match delayed work to its volume, timing, transaction, and recovery requirements without promising immediate execution. Create a local background warranty check with a durable request identity, a job reference, and explicit outcomes before adding HTTP. Process a larger appointment dataset in bounded transactions and report partial failure without implying whole-job atomicity."
+        }
+      ]
+    },
+    {
+      "start": 159,
+      "duration": 38,
+      "label": "05 · Integration contracts and recovery",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Integration contracts and recovery». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers integration contracts and recovery. Describe the warranty provider's request, response, errors, and identity before connecting a client. Read an existing provider interface, select the appropriate client and mock, and preserve its error and authentication semantics. Implement a small warranty client and test success, invalid responses, business absence, throttling, server failure, and transport errors locally."
+        }
+      ]
+    },
+    {
+      "start": 197,
+      "duration": 36,
+      "label": "06 · Lightning Web Components",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Lightning Web Components». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers lightning web components. Observe creation, attachment, rendering, removal, and child-error handling without assuming a component renders only once. Separate reactive reads from explicit writes and refresh the cache that actually supplies the displayed data. Choose a communication contract for related components and for independent regions of the same Lightning application."
+        }
+      ]
+    },
+    {
+      "start": 233,
+      "duration": 40,
+      "label": "07 · Events, source control, and delivery",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Events, source control, and delivery». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers events, source control, and delivery. Publish a business fact with a deliberate relationship to commit, and verify the subscriber independently from the publisher. Choose a record-change stream or business event and recover from disconnection without treating replay IDs as permanent business identities. Explain the state changed by common Git operations and transfer one focused correction without losing unrelated work."
+        }
+      ]
+    },
+    {
+      "start": 273,
+      "duration": 45,
+      "label": "08 · Product clinics and project review",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Product clinics and project review». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers product clinics and project review. Explain how queued service work becomes eligible for a person based on presence, capacity, and routing configuration, with a complete no-license simulation path. Build a clear mental model of an employee agent and verify one bounded read-only action before considering actions that change CRM data. Compare the small custom vehicle model with Automotive Cloud's industry entities and decide what additional business requirements would justify the product."
+        }
+      ]
+    },
+    {
+      "start": 318,
+      "duration": 30,
+      "label": "09 · Первое действие",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it."
+        }
+      ]
+    }
+  ]
+}

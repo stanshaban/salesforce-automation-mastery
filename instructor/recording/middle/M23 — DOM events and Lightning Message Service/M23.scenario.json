@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "title": "M23 · DOM events and Lightning Message Service",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 36,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=78dbf5ced5ad42fbbc0306b2c96623b4. Подготовь только синтетические данные и исходное состояние упражнения. Сначала покажи CustomEvent child → parent. Затем независимый publisher/subscriber через LMS. Убери компонент, проверь cleanup и отсутствие повторных сообщений после возврата. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Demonstrate DOM events for one component tree and LMS for a separate panel."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Payloads contain only needed identifiers. DOM and LMS responsibilities are distinct."
+        }
+      ]
+    },
+    {
+      "start": 36,
+      "duration": 61,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A child component should not reach into its parent's internal state. It can receive input through @api and announce an interaction through a DOM CustomEvent. The parent handles that event and decides what to do. This makes the child reusable: a visit row can announce a selected record without knowing whether the parent opens a panel, navigates, or updates a filter. Lightning Message Service communicates across supported component regions in a Lightning page or application. It can connect components without a convenient common parent, including supported Aura or Visualforce integration points. A message channel defines the shared contract. LMS is a client-side application communication mechanism, not the server event bus used by Platform Events."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 106,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Test Drive list contains individual row components. Each row dispatches visitselect with its ID; the list's parent manages selectedId and passes it into the detail component. No message service is necessary for that ordinary tree relationship. Now add an independent warranty panel in another Lightning page region. It needs to react when the salesperson selects a different visit. Publish a small message on a new SAM_Visit_Selected__c message channel. The warranty panel subscribes and reloads authorized details, rather than trusting a payload containing customer and VIN information."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Child event fragment; parent listens with onvisitselect» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Child event fragment; parent listens with onvisitselect. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Complete SAM_Visit_Selected.messageChannel-meta.xml declaration» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Complete SAM_Visit_Selected.messageChannel-meta.xml declaration. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 203,
+      "duration": 19,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create the message-channel metadata under force-app/main/default/messageChannels. Its imported schema name includes __c. No new Salesforce object or field is required."
+        }
+      ]
+    },
+    {
+      "start": 222,
+      "duration": 65,
+      "label": "05 · Build the parent-child path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the parent-child path. Dispatch a narrow selection event and handle it in the parent. Keep input ownership in the parent and avoid mutating the passed record."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the parent-child path» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The child works without knowing its surrounding page layout. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The child works without knowing its surrounding page layout."
+        }
+      ]
+    },
+    {
+      "start": 287,
+      "duration": 65,
+      "label": "06 · Add the independent subscriber",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, add the independent subscriber. Use lightning/messageService with the declared channel, a MessageContext, and a guarded subscription. Publish only recordId and reload details through the subscriber's data source."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Add the independent subscriber» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The independent panel follows selection without sharing private DOM. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The independent panel follows selection without sharing private DOM."
+        }
+      ]
+    },
+    {
+      "start": 352,
+      "duration": 65,
+      "label": "07 · Test lifetime and scope",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test lifetime and scope. Open, close, and revisit the page or workspace. Compare the intended active-area behavior with application scope where supported, and count handler calls."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test lifetime and scope» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: One published selection causes one intended update per active subscriber. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: One published selection causes one intended update per active subscriber."
+        }
+      ]
+    },
+    {
+      "start": 417,
+      "duration": 21,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An overly broad message can make unrelated components react and create difficult-to-trace loops. Define event names and which component is authoritative for selection."
+        }
+      ]
+    },
+    {
+      "start": 438,
+      "duration": 60,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not describe LMS as a durable server-side event stream or as a replacement for authorization. Now pause the video and try the exercise yourself. Demonstrate DOM events for one component tree and LMS for a separate panel. Payloads contain only needed identifiers. DOM and LMS responsibilities are distinct. Scope and cleanup behavior are explained."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. When is a DOM event simpler?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "When a child can communicate through its ordinary parent relationship. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

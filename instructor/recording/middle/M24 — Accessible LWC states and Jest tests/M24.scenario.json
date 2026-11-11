@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "title": "M24 · Accessible LWC states and Jest tests",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=4ac5e2424e204ae28e62ebbbd2a3b783. Подготовь только синтетические данные и исходное состояние упражнения. Покажи loading, empty, success и error в LWC. Пройди клавиатурой фокус и повтор. Запусти Jest behavior tests, затем покажи реальную доступность UI отдельно от mock-окружения. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Build the four UI states and verify selection and recovery behavior."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Tests pass independently with cleanup. Event payload and error recovery are asserted."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An accessible component communicates state and supports operation without relying only on a mouse or color. A spinner needs meaningful context, an error needs understandable text, and a selectable row needs a keyboard-operable control. Use appropriate Lightning base components and semantic HTML before inventing custom interaction patterns. A visually attractive card can still be unusable when focus disappears after an update. Jest runs LWC unit tests locally. The tests create a component instance, supply controlled inputs or mocks, perform an interaction, and assert rendered output or dispatched events. They do not deploy to Salesforce or verify live object permissions. Mocking a successful Apex response does not prove that the actual Apex method returns that response for a restricted user."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 98,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna opens an appointment list. While loading, she sees a contextual loading indication. If there are no appointments, she sees 'No test drives match this filter.' If loading fails, she receives a readable error and Retry control. Selecting TD-A with a keyboard-operable button dispatches its ID to the parent. Create a visitCard component with a public recordId and a button labelled 'Select test drive'. Its handler dispatches visitselect with detail containing recordId, following M23. The complete test file below checks that public contract; the component itself is your small implementation task. This is a local UI test, not evidence of live Salesforce permissions."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Complete visitCard/__tests__/visitCard.test.js; requires your c/visitCard component» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Complete visitCard/__tests__/visitCard.test.js; requires your c/visitCard component. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 196,
+      "duration": 84,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Install a supported Node.js LTS version with npm, then check node --version and npm --version. Run the setup commands below from starter/salesforce, the directory containing sfdx-project.json, not the portal root. The Salesforce setup command installs the local Jest dependency and project configuration. Inspect the resulting package.json and lockfile and keep them with your learner project. Tests belong under force-app/main/default/lwc/visitCard/__tests__. Confirm .forceignore excludes **/__tests__/** so local tests are not deployed as component metadata."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «One-time setup and local execution from starter/salesforce» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is One-time setup and local execution from starter/salesforce. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 280,
+      "duration": 62,
+      "label": "05 · Specify four states",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, specify four states. Write the visible text, available controls, and focus behavior for loading, empty, loaded, and failed states before implementation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Specify four states» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: No state is represented by an unexplained blank area. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: No state is represented by an unexplained blank area."
+        }
+      ]
+    },
+    {
+      "start": 342,
+      "duration": 64,
+      "label": "06 · Write behavior tests",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, write behavior tests. Mock data success, empty results, and rejection. Assert selection events, understandable error text, and Retry behavior after flushing asynchronous updates."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Write behavior tests» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The tests detect a wrong event payload or missing recovery control. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The tests detect a wrong event payload or missing recovery control."
+        }
+      ]
+    },
+    {
+      "start": 406,
+      "duration": 63,
+      "label": "07 · Check actual interaction",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, check actual interaction. Use keyboard-only navigation in the training Lightning page. Verify labels, focus order, visible focus, and state announcements where applicable."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Check actual interaction» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Local unit tests are complemented by real interaction evidence. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Local unit tests are complemented by real interaction evidence."
+        }
+      ]
+    },
+    {
+      "start": 469,
+      "duration": 21,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A test that only compares a snapshot can miss a broken interaction. Include a concrete user action and expected event or state transition."
+        }
+      ]
+    },
+    {
+      "start": 490,
+      "duration": 62,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Jest mocks do not verify real Apex execution, Salesforce security, browser layout, or complete accessibility. Now pause the video and try the exercise yourself. Build the four UI states and verify selection and recovery behavior. Tests pass independently with cleanup. Event payload and error recovery are asserted. Keyboard access and readable labels are demonstrated."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why flush asynchronous updates?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Property and promise changes may not have reached the rendered DOM when the immediate assertion runs. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

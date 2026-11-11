@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M02 · Permission Set Groups and muting",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=3f6b5a697a3d4db492bd2e2f48fc8358. Подготовь только синтетические данные и исходное состояние упражнения. Setup → Permission Set Groups. Покажи reusable set, группу и muting set. Сравни четыре назначения из урока, включая независимый direct grant. На экране поясни, почему muting не отнимает разрешение, выданное вне группы. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Submit the four-path experiment with a small diagram and observed results."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The explanation distinguishes group-local muting from effective user permissions. All four assignment combinations are considered."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 62,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A permission set is a reusable bundle of grants. A permission set group combines several bundles for a working persona, such as Northstar sales coordinator. Muting adjusts permissions contributed by that particular group. It does not place a universal deny on the user, and it does not rewrite the original permission set that another group may reuse. Imagine a VIN Maintenance permission set that grants Edit on Vehicle__c.VIN__c. The Data Steward group needs the grant. The Sales Coordinator group also includes this reusable permission set but mutes VIN editing. A user receiving only the coordinator group should not gain that edit permission through it. If the same user also receives VIN Maintenance directly, the independent grant remains."
+        }
+      ]
+    },
+    {
+      "start": 99,
+      "duration": 55,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna receives Sales Coordinator, whose muting permission set removes VIN Edit. Max receives Data Steward. Anna should read a visible vehicle's VIN without editing it; Max may edit the synthetic VIN if the remaining object and record permissions permit it. Now assign VIN Maintenance directly to Anna. Predict her edit access before testing. It returns because a different assignment path supplies it. Remove the direct assignment and add a second group granting the same field permission. The result should again demonstrate an independent path. Keep record access constant throughout these experiments: changing both sharing and FLS would make the cause ambiguous."
+        }
+      ]
+    },
+    {
+      "start": 154,
+      "duration": 20,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use existing Vehicle__c.VIN__c, a synthetic vehicle visible to both personas, and a restricted user. No new object or field is needed."
+        }
+      ]
+    },
+    {
+      "start": 174,
+      "duration": 65,
+      "label": "05 · Build the reusable permission",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the reusable permission. Create VIN Maintenance with the object and field grants needed for the experiment. Add it to two groups and mute VIN Edit only in Sales Coordinator."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the reusable permission» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The underlying permission set remains unchanged. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The underlying permission set remains unchanged."
+        }
+      ]
+    },
+    {
+      "start": 239,
+      "duration": 65,
+      "label": "06 · Test four assignments",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test four assignments. Compare coordinator only; coordinator plus direct permission set; coordinator plus Data Steward; and coordinator after both independent grants are removed. Wait for current group calculation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test four assignments» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The four observations follow the contribution paths. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The four observations follow the contribution paths."
+        }
+      ]
+    },
+    {
+      "start": 304,
+      "duration": 66,
+      "label": "07 · Inspect dependency effects",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, inspect dependency effects. In a separate reversible experiment, examine what happens when a prerequisite permission is muted. Read the configuration's dependent-permission information, then restore the original group."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Inspect dependency effects» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can explain any dependent change instead of calling it random behavior. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can explain any dependent change instead of calling it random behavior."
+        }
+      ]
+    },
+    {
+      "start": 370,
+      "duration": 25,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A profile or unrelated permission set may already grant the field permission. Start from a minimal persona and inventory assignments. Otherwise, all four configurations may appear identical even though muting works correctly."
+        }
+      ]
+    },
+    {
+      "start": 395,
+      "duration": 62,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A muted permission in one group cannot revoke the same grant received from another source. Now pause the video and try the exercise yourself. Submit the four-path experiment with a small diagram and observed results. The explanation distinguishes group-local muting from effective user permissions. All four assignment combinations are considered. Group recalculation and unchanged record access are recorded."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does muting alter the reused permission set?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It limits the permissions contributed through its associated group. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

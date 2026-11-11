@@ -1,0 +1,205 @@
+{
+  "version": 2,
+  "title": "J24 · Read and Edit a Record with Lightning Data Service",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=08081e4f409f402e881613ad7a8fbc90. Подготовь только синтетические данные и исходное состояние упражнения. На учебной record page покажи lightning-record-edit-form. Сохрани валидное изменение, затем вызови validation error. После каждого случая переоткрой запись. Отдельно проверь ограниченного пользователя. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Deliver the working editor and a short comparison with a custom Apex alternative."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No synthetic preview ID is used as a Salesforce record ID. The outcome is verified after save."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 62,
+      "label": "02 · Choose the smallest useful data component",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Choose the smallest useful data component». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The preview from J23 contained only browser data. Anna now needs to edit the scheduled time and status of a real Test Drive record that she can access. For a standard record-editing task, begin with Salesforce base components backed by Lightning Data Service rather than immediately writing a custom Apex controller. Lightning Data Service, often abbreviated LDS, supports record access for these components and works with the platform's permission model. The standard record form can display and edit selected fields, handle a normal save, and show supported errors. This reduces code you would otherwise need to write and maintain. It does not mean the application no longer needs testing or a correct underlying sharing design."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 129,
+      "label": "03 · Use the current record context",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use the current record context». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A record page has a current record. The public recordId property receives that context when the component is placed in a supported record-page environment. The @api decorator marks the property as part of the component's public interface. It does not magically supply an ID in every possible container. A component on an ordinary App Page needs a different, explicit way to identify a record. The JavaScript imports object and field references from the Salesforce schema. These imports make the intended metadata dependencies visible. The fields array contains only Scheduled At and Status for this task, not every field in the object. The form uses mode edit and provides its own standard save and cancel behaviour."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «appointmentEditor.js» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is appointmentEditor.js. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «appointmentEditor.html» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is appointmentEditor.html. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «appointmentEditor.js-meta.xml» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is appointmentEditor.js-meta.xml. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 230,
+      "duration": 40,
+      "label": "04 · Verify the saved outcome and the access boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Verify the saved outcome and the access boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Open an appointment owned by the intended test user, edit its scheduled time to a valid future value, and save. Reopen or refresh the record and confirm the stored value. A value changed in an input box is not proof that the save succeeded. Repeat with a value rejected by the J08 time rule and check the error without assuming that the UI validation replaces server-side enforcement."
+        }
+      ]
+    },
+    {
+      "start": 270,
+      "duration": 60,
+      "label": "05 · Deploy and place",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, deploy and place. Add appointmentEditor to a Test Drive record page and activate the intended page assignment."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Deploy and place» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A real record ID reaches the public property. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A real record ID reaches the public property."
+        }
+      ]
+    },
+    {
+      "start": 330,
+      "duration": 58,
+      "label": "06 · Test the valid edit",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test the valid edit. Change a permitted future time and inspect the saved record."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test the valid edit» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The displayed result matches stored data. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The displayed result matches stored data."
+        }
+      ]
+    },
+    {
+      "start": 388,
+      "duration": 58,
+      "label": "07 · Test the invalid edit",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test the invalid edit. Use a past newly supplied time and inspect the validation response."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test the invalid edit» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The invalid save is rejected visibly. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The invalid save is rejected visibly."
+        }
+      ]
+    },
+    {
+      "start": 446,
+      "duration": 57,
+      "label": "08 · Test limited access",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test limited access. Repeat under the intended restricted persona."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test limited access» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The form respects the applicable object, field, and record boundaries. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The form respects the applicable object, field, and record boundaries."
+        }
+      ]
+    },
+    {
+      "start": 503,
+      "duration": 66,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "The example needs a real accessible Test Drive record and a supported record-page context. Now pause the video and try the exercise yourself. Deliver the working editor and a short comparison with a custom Apex alternative. No synthetic preview ID is used as a Salesforce record ID. The outcome is verified after save. The choice of standard components is justified."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does @api recordId always populate in every container?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It depends on the supported context or a value explicitly supplied by a parent. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

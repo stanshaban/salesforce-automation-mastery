@@ -1,0 +1,158 @@
+{
+  "version": 2,
+  "title": "AF-07 · Connect Actions and Confirm Writes",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 46,
+      "label": "01 · Цель и границы",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=efeeba2aad94409aba33cdcc54f9f96e и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+        },
+        {
+          "type": "speech",
+          "text": "Connect Apex and Flow with separate confirmation for each operation that changes data. Action inputs are the values an operation needs. Outputs are structured evidence for the agent's response. Require user confirmation is an action setting: the user can inspect the proposed change and decline it. A freely generated approved Boolean is not a substitute for this control. Backend validation remains necessary even when the conversation requests confirmation."
+        }
+      ]
+    },
+    {
+      "start": 46,
+      "duration": 92,
+      "label": "02 · Add the read action",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In Demo Test Drive Booking choose + beside Actions → New Action. Name: SAM Demo Slot Catalog. Reference Action Type: Apex. Reference Action: SAM Demo Slot Catalog. Create and Open, save, and require model as an input. Ensure its description says mock catalog rather than live availability."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Add the read action. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 138,
+      "duration": 96,
+      "label": "03 · Configure catalog outputs",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "message can be shown in the conversation. vehicleId and opaque slot keys support reasoning and the next action, but should not be presented as ordinary customer-facing prose. Instruct the response to show the date and UTC timezone. Timezone conversion is not automated in this lesson. Reading requires no write confirmation because this action does not change records."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Configure catalog outputs. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 234,
+      "duration": 92,
+      "label": "04 · Add the booking Flow action",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In the same subagent create SAM Book Demo Test Drive with Reference Action Type Flow and the active SAM Book Demo Test Drive Flow. Require model, slotKey, and contactId. Describe slotKey as the exact catalog key and contactId as the accessible fictional Contact selected by the employee."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Add the booking Flow action. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 326,
+      "duration": 93,
+      "label": "05 · Require booking confirmation",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Under Additional Settings enable Require user confirmation. Show resultMessage in the conversation and keep resultCode/testDriveId available for interpreting the outcome. Before confirmation, state model, date, UTC time, duration, and customer. Declining means the Flow is not invoked. Enable the setting even when the same rule appears in the instructions."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Require booking confirmation. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 419,
+      "duration": 87,
+      "label": "06 · Add the Case Flow action",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In Demo Support Handoff create an action referencing SAM Create Demo Handoff. Require reason; leave testDriveId optional. Enable Require user confirmation. Expose the useful resultMessage/caseNumber outputs. FAILED must never be presented as successful human transfer."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Add the Case Flow action. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 506,
+      "duration": 93,
+      "label": "07 · Inspect the actual interaction",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In Preview, read slots and attempt booking with and without confirmation. Inspect the selected subagent, action, inputs, and outputs in Interaction Details. Check Test Drive records alongside the conversation: none should appear before consent. If a Flow is absent from selection, verify its active version and the running user's access."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Inspect the actual interaction. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 599,
+      "duration": 40,
+      "label": "08 · Проверка результата",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи expected/actual таблицу и соответствующий Flow debug, action trace или CRM record. Не подменяй результат live org симуляцией портала."
+        },
+        {
+          "type": "speech",
+          "text": "Catalog reads do not create records. Declined confirmation leaves the corresponding CRM data unchanged. Success is based on the action result, not merely the user's intention. Three actions are connected; the two writes require their own confirmation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза для ответа. Покажи один из common failures и нужный диагностический экран."
+        },
+        {
+          "type": "speech",
+          "text": "A common mistake to avoid is this: Selecting an inactive or inaccessible Flow. Keep the record or trace that supports your conclusion before continuing."
+        }
+      ]
+    }
+  ]
+}

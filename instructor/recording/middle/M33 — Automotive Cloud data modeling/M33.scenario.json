@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M33 · Automotive Cloud data modeling",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b57a71c8f0654f599db96cc28136e6b3. Подготовь только синтетические данные и исходное состояние упражнения. На схеме сравни Vehicle курса и официальный Automotive Cloud model. Отдельно укажи VIN, inventory, asset и ownership history. Не называй custom objects установленным Automotive Cloud. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Vehicle__c is not confused with the industry Vehicle API. Relationships are not invented from labels."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 60,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The core SAM project uses Vehicle__c to teach Salesforce development with a small owned schema. That custom object is not the Automotive Cloud Vehicle standard object, and deploying the starter does not install the industry product. Similar labels can conceal different APIs, relationships, licenses, and business capabilities. Keep the two models visibly separate. Automotive Cloud's Vehicle Definition extends product information with model-level vehicle characteristics, such as dimensions or powertrain specifications. An individual Vehicle represents a particular vehicle instance. A model definition can therefore describe many actual vehicles. Storing all model specifications repeatedly on every custom vehicle may work for a prototype but creates consistency and maintenance concerns as the business grows."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 62,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Irina considers a City EV model, then buys a particular vehicle with its own VIN. The model's battery specification belongs to a shared definition; the individual vehicle's identity and lifecycle belong to the instance. Later, a different person may own or use that same vehicle, while service and warranty history must remain understandable. These are richer relationships than a single Customer__c lookup on a test-drive request. Create a mapping sheet with three columns: core teaching concept, Automotive concept, and unresolved question. Map Vehicle__c.Model__c toward model/definition information, Vehicle__c.VIN__c toward individual vehicle identity, and Contact toward a participant in a business relationship. Do not declare the mapping deployable until actual standard-object fields and relationship cardinalities are verified."
+        }
+      ]
+    },
+    {
+      "start": 160,
+      "duration": 29,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Mandatory: use the official data-model gallery and supplied scenario to build the mapping. Optional: use an available Automotive Cloud trial in a separate org. The official trial page currently lists a 30-day option, but verify its terms, features, and expiration before registering."
+        }
+      ]
+    },
+    {
+      "start": 189,
+      "duration": 63,
+      "label": "05 · Read the industry diagram",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, read the industry diagram. Locate Vehicle Definition, Vehicle, Asset, Account/Contact participants, and warranty-related entities in the official model. Explain each in ordinary business language."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Read the industry diagram» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The learner can distinguish definitions, instances, and relationships. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The learner can distinguish definitions, instances, and relationships."
+        }
+      ]
+    },
+    {
+      "start": 252,
+      "duration": 65,
+      "label": "06 · Map the Northstar scenario",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, map the Northstar scenario. Trace Irina considering a model, selecting a specific vehicle, becoming a participant, and later requesting service. Record gaps in the custom starter."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Map the Northstar scenario» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The map exposes business requirements rather than merely renamed objects. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The map exposes business requirements rather than merely renamed objects."
+        }
+      ]
+    },
+    {
+      "start": 317,
+      "duration": 69,
+      "label": "07 · Compare two implementation choices",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, compare two implementation choices. Choose two requirements where the industry model may add value and one narrow requirement the custom project already handles. If using a trial, verify object availability and label live observations separately."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Compare two implementation choices» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The recommendation includes fit, cost, migration, and evidence limits. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The recommendation includes fit, cost, migration, and evidence limits."
+        }
+      ]
+    },
+    {
+      "start": 386,
+      "duration": 21,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Copying custom-object Apex and changing Vehicle__c to Vehicle is not a migration strategy. Field names, relationships, permissions, validation, and product processes need explicit mapping."
+        }
+      ]
+    },
+    {
+      "start": 407,
+      "duration": 64,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "The core project and the required clinic do not require an Automotive Cloud purchase or trial. Now pause the video and try the exercise yourself. Map the Northstar customer-and-vehicle lifecycle and defend whether additional industry capabilities are needed. Vehicle__c is not confused with the industry Vehicle API. Relationships are not invented from labels. No unavailable trial blocks the core course."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why separate a Vehicle Definition?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It holds shared model characteristics rather than repeating them on every physical vehicle. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

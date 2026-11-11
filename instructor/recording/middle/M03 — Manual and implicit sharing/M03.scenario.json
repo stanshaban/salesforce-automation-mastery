@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M03 · Manual and implicit sharing",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f09de57c1d434841988b670b40432d9f. Подготовь только синтетические данные и исходное состояние упражнения. Покажи ручной share одной записи, затем его удаление в учебной конфигурации. Если доступ остался, найди другой источник. На стандартной модели Account/Contact отдели implicit sharing от независимого custom lookup. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Each visibility result names an access mechanism. Remaining access after removal is investigated."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 61,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Manual sharing is a deliberate record-level grant to another user or group. It can solve a small exception such as Anna asking Max to help with one appointment. It does not grant object Read or field permissions. An owner may give a record-level permission that Max cannot effectively use until the other security layers allow the operation. Implicit sharing describes access Salesforce derives from particular supported relationships and ownership rules, especially around Account and related standard records. It is platform-managed behavior, not a generic consequence of any lookup. The exact result depends on the objects and sharing configuration. Explain the documented relationship involved rather than claiming that every parent automatically shares all children."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 87,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Start with Anna owning TD-A and Max unable to read it. Give Max object Read and the necessary FLS, then manually share TD-A with Read. Max should see the appointment but should not gain Edit from this read-only grant alone. Remove the share and test again. If Max still sees it, investigate the remaining paths instead of assuming the deletion failed. For a reproducible parent-implicit example, use Account and Case with Private internal sharing in an isolated training org. Give Max object Read and required field visibility for both, but no View All, broad data permission, account share, or hierarchy path. Anna owns a synthetic Account and a Case whose Account Name points to it. Confirm Max initially sees neither. Manually share only the Case with Max, Read Only. Max can then read the related Account through parent implicit sharing, while this path does not grant Account Edit. Access to a child solely through View All is not this experiment. Restore temporary sharing settings afterward; changes affect more than these two records."
+        }
+      ]
+    },
+    {
+      "start": 185,
+      "duration": 24,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "No additional custom fields are needed. Use a disposable synthetic Account/Contact/Case dataset. If your edition or license limits a standard-object experiment, mark the live part unavailable and analyze the documented configuration."
+        }
+      ]
+    },
+    {
+      "start": 209,
+      "duration": 61,
+      "label": "05 · Make the manual exception",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, make the manual exception. Capture Max's denied baseline, add a Read manual share to TD-A, and verify the same read operation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Make the manual exception» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: One explicit grant explains the changed result. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: One explicit grant explains the changed result."
+        }
+      ]
+    },
+    {
+      "start": 270,
+      "duration": 61,
+      "label": "06 · Remove and investigate",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, remove and investigate. Remove that share. Compare the result with your access matrix and inspect other grants if visibility remains."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Remove and investigate» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The explanation includes every still-effective path. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The explanation includes every still-effective path."
+        }
+      ]
+    },
+    {
+      "start": 331,
+      "duration": 72,
+      "label": "07 · Compare relationship behavior",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, compare relationship behavior. Run the isolated Account/Case steps above: denied baseline → Case Read share → Account Read. Compare this with Vehicle/Test Drive, whose custom lookup does not supply that parent-implicit path. Capture object permissions, owners, sharing settings, and identities."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Compare relationship behavior» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The comparison does not infer platform behavior from a lookup icon. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The comparison does not infer platform behavior from a lookup icon."
+        }
+      ]
+    },
+    {
+      "start": 403,
+      "duration": 21,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A user high in a role hierarchy may already see the record, making the manual-share experiment inconclusive. Choose a persona without that baseline path."
+        }
+      ]
+    },
+    {
+      "start": 424,
+      "duration": 63,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Neither an absent share row nor a deleted manual grant proves that a user has no access. Now pause the video and try the exercise yourself. Produce a short before-and-after report for manual sharing and one supported implicit-sharing relationship. Each visibility result names an access mechanism. Remaining access after removal is investigated. No claim says all lookups automatically share records."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does a manual Read share grant field Read?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Object and field permissions remain separate requirements. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

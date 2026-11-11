@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "title": "M21 · Lightning Web Component lifecycle",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 36,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=d75c016c0a8540d184d085e676c423a2. Подготовь только синтетические данные и исходное состояние упражнения. В браузере открой консоль и учебный LWC. Добавь/убери экземпляр и поменяй данные. Покажи constructor, connectedCallback, renderedCallback, disconnectedCallback и число подписок, не создавая loop в renderedCallback. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Hook order is observed rather than invented. Repeated rendering is expected."
+        }
+      ]
+    },
+    {
+      "start": 36,
+      "duration": 64,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "LWC manages component instances. A lifecycle hook is a method the framework calls at a particular stage, such as construction, connection to the document, rendering, or disconnection. The lifecycle concerns the instance, not a single Salesforce record save. A component may render many times as its state or inputs change, and an attached instance may later be removed and reinserted. Use constructor for minimal initialization after super, not for querying child elements. connectedCallback is a place to begin work that requires attachment, but it can run again if the instance is reinserted. renderedCallback runs after rendering and can run repeatedly; changing reactive data there can schedule another render and create a loop. disconnectedCallback is where owned external resources often need cleanup."
+        }
+      ]
+    },
+    {
+      "start": 100,
+      "duration": 110,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create a parent with a button that shows or hides a child visit panel. The child displays a counter and logs connection, rendering, and disconnection. Incrementing the counter should cause rendering without creating a new component instance. Hiding and showing demonstrates removal and either reinsertion or a new instance depending on how the parent template manages it. Use the complete controller and template below as a small observation component. Add the usual LWC metadata target file through the setup guide before deploying it. Console logs are temporary teaching instrumentation; remove noisy logs before a real release."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Complete lifecycleProbe.js controller for the observation component» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Complete lifecycleProbe.js controller for the observation component. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Complete lifecycleProbe.html template» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Complete lifecycleProbe.html template. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 210,
+      "duration": 24,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The probe requires no custom Salesforce fields. A separate parent component controls whether c-lifecycle-probe is present. Add an error-boundary experiment as a separate component rather than throwing inside the base probe."
+        }
+      ]
+    },
+    {
+      "start": 234,
+      "duration": 61,
+      "label": "05 · Observe one instance",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe one instance. Deploy the probe, open browser developer tools, and record construction, connection, and first rendering. Increment the counter twice."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe one instance» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The same instance renders repeatedly. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The same instance renders repeatedly."
+        }
+      ]
+    },
+    {
+      "start": 295,
+      "duration": 62,
+      "label": "06 · Observe parent and child",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe parent and child. Add a parent with conditional child rendering. Show and hide the child and compare the parent and child hook logs."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe parent and child» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The observation distinguishes attachment from rendering. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The observation distinguishes attachment from rendering."
+        }
+      ]
+    },
+    {
+      "start": 357,
+      "duration": 64,
+      "label": "07 · Audit resources",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, audit resources. If adding a window listener or subscription, retain the handler/reference and remove or release it when appropriate. Reopen the component and count callbacks."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Audit resources» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: One user action does not trigger duplicated listeners. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: One user action does not trigger duplicated listeners."
+        }
+      ]
+    },
+    {
+      "start": 421,
+      "duration": 22,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Assigning a changing reactive field in every renderedCallback can produce an endless rerender cycle. Derive display values from state or guard genuinely one-time DOM setup appropriately."
+        }
+      ]
+    },
+    {
+      "start": 443,
+      "duration": 60,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not query a child's private DOM or assume a wire result arrives at a particular lifecycle hook. Now pause the video and try the exercise yourself. Produce a parent-child trace and correct one deliberately introduced duplicate-resource or render-loop defect. Hook order is observed rather than invented. Repeated rendering is expected. No duplicated external listener remains after reopening."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does renderedCallback run only once?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It can run after each relevant render. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

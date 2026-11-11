@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M25 · Shadow DOM and component boundaries",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=3bbd1a2ffe1c43799dd3fa4a183d5e5b. Подготовь только синтетические данные и исходное состояние упражнения. В DevTools покажи границы двух компонентов. Сравни свойства, события и CSS через публичный контракт. Не используй доступ к чужой внутренней разметке как зависимость приложения. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Show owned queries, scoped styles, and a stable public event contract."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No private child DOM is accessed by the parent. The event detail carries the required business identity."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 62,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Shadow DOM defines an encapsulated internal tree for a component. The component's markup is not a public collection of elements for unrelated code to manipulate. LWC's platform implementation can differ between supported rendering modes and releases, but the design principle remains: interact through public properties, methods, events, and supported styling mechanisms rather than depending on another component's private DOM. Within a shadow-rendered LWC, this.template.querySelector accesses elements owned by that component. A document-level selector is not the correct way to find a child's private input. Timing matters too: an element may not exist before rendering or while a conditional template branch is absent. A null query result can be expected state, not a reason to bypass encapsulation."
+        }
+      ]
+    },
+    {
+      "start": 100,
+      "duration": 103,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar's visitCard contains an internal button. Its parent needs the selected Test Drive ID, not access to the button element. The child dispatches visitselect with that ID, and the parent updates its selected record. Later, the child changes the button to a different accessible control. The parent should continue to work because the event contract has not changed. For an optional Aura migration, write down the legacy component's page inputs, output events, navigation behavior, and required styling before replacing it. Move a small boundary at a time and test supported coexistence. The core lesson is complete without owning or building an Aura component; migration is an extension, not an assumed prerequisite."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Owned-element access fragment after the relevant template has rendered» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Owned-element access fragment after the relevant template has rendered. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 203,
+      "duration": 21,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create two small LWC components with their own templates and styles. Use the existing visit-selection event contract. No Salesforce schema changes are required."
+        }
+      ]
+    },
+    {
+      "start": 224,
+      "duration": 66,
+      "label": "05 · Observe ownership",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe ownership. Add an element marked data-id in the child. Query it from the child after rendering, then compare the parent's attempt to query its own template."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe ownership» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The parent does not rely on the child's private internal element. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The parent does not rely on the child's private internal element."
+        }
+      ]
+    },
+    {
+      "start": 290,
+      "duration": 65,
+      "label": "06 · Compare styling and events",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, compare styling and events. Apply a parent paragraph style and a separate child style. Dispatch a documented event and inspect the listener's target and detail at each boundary."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Compare styling and events» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The explanation separates styling scope, event payload, and retargeting. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The explanation separates styling scope, event payload, and retargeting."
+        }
+      ]
+    },
+    {
+      "start": 355,
+      "duration": 63,
+      "label": "07 · Preserve the contract",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, preserve the contract. Change the child's internal layout while retaining its public input and selection event. Run the parent behavior tests and keyboard check."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Preserve the contract» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The parent still works without selector repairs. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The parent still works without selector repairs."
+        }
+      ]
+    },
+    {
+      "start": 418,
+      "duration": 25,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A test can accidentally reach into private DOM more aggressively than production code should. Unit inspection of a component's own shadow root is useful, but parent integration should still assert public contracts."
+        }
+      ]
+    },
+    {
+      "start": 443,
+      "duration": 65,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not build cross-component behavior around undocumented DOM attributes or selectors that pierce another component's internals. Now pause the video and try the exercise yourself. Show owned queries, scoped styles, and a stable public event contract. No private child DOM is accessed by the parent. The event detail carries the required business identity. Optional Aura work is labeled separately."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can a global selector fail?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The desired element may be inside an encapsulated component tree rather than the document's accessible query scope. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

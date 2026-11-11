@@ -1,0 +1,178 @@
+{
+  "version": 2,
+  "title": "J27 · Use Git to Hand Over a Reproducible Change",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=06944f6ca53645b7a03881fc884e18b1. Подготовь только синтетические данные и исходное состояние упражнения. В VS Code Source Control покажи небольшой diff, status и commit. В отдельной папке проверь чистое получение проекта и README. Не публикуй auth-файлы, .env или личные данные. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Hand over the appointment feature as a versioned, explainable change."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The package excludes credentials and real customer data. Setup-only changes required by the feature are captured or explicitly documented."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 60,
+      "label": "02 · Distinguish source history from the running org",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Distinguish source history from the running org». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Git records versions of files. Salesforce stores the active configuration and business records in an org. These are related but not automatically identical. A working field created in Setup will not appear in a local repository until the relevant metadata is retrieved. A local code edit will not run in the org until it is deployed successfully. Metadata describes configuration and code: objects, fields, permission sets, Flow definitions, components, and other supported types. Business records are the customers and appointments stored using that configuration. A normal metadata deployment does not automatically recreate all of your synthetic test records. The handover therefore needs both a metadata plan and a sample-data setup explanation."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 62,
+      "label": "03 · Prepare a reviewable Git change",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Prepare a reviewable Git change». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use the SAM repository as a template to create your own repository when that route is appropriate. Choose public only if you are comfortable showing its contents to everyone; a private repository requires explicitly granting the instructor access. Keep your solution work in your own repository rather than opening a solution PR into the course curriculum. A branch is a separate line of file changes. A commit is a recorded snapshot with a message. A pull request asks a reviewer to inspect the proposed difference between branches. Create a small branch for the assignment, inspect git status, and review git diff before staging files. Stage the intended paths rather than blindly adding every file in the workspace."
+        }
+      ]
+    },
+    {
+      "start": 160,
+      "duration": 130,
+      "label": "04 · Retrieve, deploy, and document the actual scope",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Retrieve, deploy, and document the actual scope». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "From the Salesforce DX project directory, retrieve the components changed in Setup. The example command retrieves only Test Drive metadata; it is not a complete project backup. Add the other relevant types or use a reviewed package manifest for your actual change. Include the activity setting from J17, added fields, page configuration, Flow, permissions, and code when they are required by your solution. A clean target learning org is stronger handover evidence than repeatedly deploying to the same manually configured org. Authenticate that separate environment through the setup guide and deliberately assign the alias sam-review before using the deployment example. Do not point the command at an employer or production environment. Read the deployment result and test result; a command returning a job ID is not necessarily a completed successful deployment."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Examples: inspect the branch and retrieve one explicit component» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Examples: inspect the branch and retrieve one explicit component. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Deploy only after sam-review is authenticated as a separate learning org» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Deploy only after sam-review is authenticated as a separate learning org. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 290,
+      "duration": 61,
+      "label": "05 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, review the diff and commit only intended source and documentation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 351,
+      "duration": 61,
+      "label": "06 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, list metadata prerequisites, user assignments, and synthetic-data setup."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 412,
+      "duration": 63,
+      "label": "07 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, provide the exact PR commit or labelled upload, deployment outcome, and verification evidence."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 475,
+      "duration": 68,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A public PR and its commit history are public. Use only synthetic learning data and inspect the complete diff. Now pause the video and try the exercise yourself. Hand over the appointment feature as a versioned, explainable change. The package excludes credentials and real customer data. Setup-only changes required by the feature are captured or explicitly documented. The review target is an identifiable version in the learner repository."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does changing a local file change the org immediately?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. A successful deployment is required for supported source changes. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

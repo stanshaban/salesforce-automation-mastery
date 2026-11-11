@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "M05 · Restriction rules and supported access paths",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=6751759281144d36b9bff574d39ad348. Подготовь только синтетические данные и исходное состояние упражнения. Подготовь известный доступный набор записей. В поддерживаемой учебной конфигурации сравни доступ до и после restriction rule и разные пути чтения. Если функция недоступна, используй подписанную схему, не изображай успешный live run. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create the North/South experiment and explain the result for two users."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No new access is attributed to the restriction. Supported object, edition, and context are recorded."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 63,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A sharing mechanism opens access to records. A restriction rule narrows the records a matching user can access through supported paths. Think of two stages: first determine the records available from the ordinary security model, then apply the rule's record criteria where the feature is supported. A restriction rule does not give a user object Read or open a private appointment. Rules have user criteria and record criteria. User criteria identify the people to whom the restriction applies; record criteria identify the records that remain visible to those people. Both must be stated explicitly. A rule that accidentally matches Oleg as well as Anna can hide operational work from the manager, even when the sharing design itself is correct."
+        }
+      ]
+    },
+    {
+      "start": 100,
+      "duration": 57,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Add Region__c, a restricted Picklist with North and South, to Test_Drive__c. Add SAM_Region_Limited__c, a Checkbox default false, to User. These fields are new prerequisites, not starter fields. In this small experiment, users with the checkbox true should see only North appointments through the supported paths being tested. First give Anna ordinary access to one North and one South appointment. Confirm she can see both. Enable the restriction for the flagged test user and expect the South record to disappear from the selected read path. Max remains unflagged and should retain the baseline. This isolates restriction behavior from a missing share or missing object permission."
+        }
+      ]
+    },
+    {
+      "start": 157,
+      "duration": 22,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use a separate training org or reversible rule. Record edition, object support, active-rule limit, user criteria, record criteria, and the exact paths you will test."
+        }
+      ]
+    },
+    {
+      "start": 179,
+      "duration": 66,
+      "label": "05 · Prepare a known accessible set",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, prepare a known accessible set. Create the new fields and two appointments. Grant the restricted persona access to both before the rule. Capture a list-view and query baseline."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Prepare a known accessible set» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The experiment starts with known access rather than an assumed grant. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The experiment starts with known access rather than an assumed grant."
+        }
+      ]
+    },
+    {
+      "start": 245,
+      "duration": 64,
+      "label": "06 · Apply the narrow rule",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, apply the narrow rule. Create the restriction on Test_Drive__c for flagged users and North records. Activate it only after reviewing the criteria."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Apply the narrow rule» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The flagged user loses the South result in supported end-user reads. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The flagged user loses the South result in supported end-user reads."
+        }
+      ]
+    },
+    {
+      "start": 309,
+      "duration": 66,
+      "label": "07 · Compare identities and paths",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, compare identities and paths. Repeat as Anna and Max in the UI and an explicitly user-mode Apex query. Separately document any privileged process without pretending it is the same context."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Compare identities and paths» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Each observation names both identity and execution path. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Each observation names both identity and execution path."
+        }
+      ]
+    },
+    {
+      "start": 375,
+      "duration": 22,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A list-view filter can look like a restriction rule while applying only to that view. Test an independent supported read path to distinguish the two."
+        }
+      ]
+    },
+    {
+      "start": 397,
+      "duration": 60,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Never describe restriction rules as a global deny that automatically governs arbitrary privileged Apex. Now pause the video and try the exercise yourself. Create the North/South experiment and explain the result for two users. No new access is attributed to the restriction. Supported object, edition, and context are recorded. Positive, negative, and unaffected-user cases are included."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Can the rule open a private appointment?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. The underlying access must already be granted. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

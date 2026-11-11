@@ -1956,3 +1956,9 @@ dialog::backdrop {
     scroll-behavior: auto !important;
   }
 }
+
+/* Real org captures and controllable teaching animations. */
+.lesson-visuals figure { margin: 1.25rem 0 2rem; }
+.lesson-visuals img, .lesson-visuals video { width: 100%; height: auto; border-radius: 14px; display: block; background: #f7f4ee; }
+.lesson-visuals figcaption { color: var(--muted, #607080); font-size: .86rem; margin-top: .65rem; line-height: 1.5; }
+.reading-header .lesson-cover { margin-top: 1rem; }

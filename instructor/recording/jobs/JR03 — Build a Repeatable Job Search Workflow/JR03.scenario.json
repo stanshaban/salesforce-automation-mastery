@@ -1,0 +1,215 @@
+{
+  "version": 2,
+  "title": "JR03 · Build a Repeatable Job Search Workflow",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=afd3e59631354b00b15aa63c655991d7. Подготовь только синтетические данные и исходное состояние упражнения. Покажи job tracker с source URL, date checked, status и next action. Найди дубль, проверь устаревшую роль и назначь следующий шаг. Автоматизацию демонстрируй на безопасном sample batch. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Build and run a small job-search board for one week."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Applied means actually submitted. Unverified opportunities cannot silently enter the application queue."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 59,
+      "label": "02 · Track decisions, not just links",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Track decisions, not just links». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A folder of bookmarks is a collection, not a workflow. A useful job-search record tells you what the opportunity is, what you know about it and what to do next. You can use a spreadsheet, a simple board or another tool you already understand. No custom application is required for this lesson. Keep the fields small: employer, role, source URL, date checked, stage, next action, next-action date and notes. Add a link to the CV version only after applying. The purpose is to prevent an opportunity from disappearing between “I found this” and “I decided what to do.” You do not need a complicated score or twenty pipeline stages."
+        }
+      ]
+    },
+    {
+      "start": 94,
+      "duration": 57,
+      "label": "03 · Define stages you can apply consistently",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Define stages you can apply consistently». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use stages such as Found, Verified, Preparing, Applied, Interview and Closed. Define what moves a record forward. Found means you have a candidate link. Verified means the original description has been checked. Applied means you have actually submitted through the chosen application route, not merely generated a draft. For a fictional Northstar developer vacancy, the next action might be “Read the integration responsibilities and choose a portfolio example.” After that, it might be “Tailor the summary and review the final CV.” Avoid moving a record to Applied because you planned to apply. That small distinction makes your later review of the search much more accurate."
+        }
+      ]
+    },
+    {
+      "start": 151,
+      "duration": 62,
+      "label": "04 · Use alerts as input, not as decisions",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use alerts as input, not as decisions». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "If your chosen job service offers saved searches or alerts, create one for your primary role and one for a useful adjacent role. Use the service’s current settings and check the result before relying on the alert. Notifications can contain duplicates, old listings or roles outside your constraints; send them through the same verification process as manual searches. Automation can collect a link or remind you to review it. It should not silently decide that a role is suitable or submit an application on your behalf. If you later build a personal automation, keep a visible review step before anything is sent. In this lesson, a recurring calendar reminder and a saved search are sufficient."
+        }
+      ]
+    },
+    {
+      "start": 213,
+      "duration": 62,
+      "label": "05 · Review the process weekly",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Review the process weekly». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Choose a realistic review rhythm, for example two short research sessions and one weekly review. At the review, look for stalled next actions, descriptions that have closed and preparation work that is consuming time without helping applications. Move closed records out of the active view rather than deleting the history you need for learning. Use counts as observations, not promises: verified opportunities, completed applications, interview invitations and repeated reasons for a mismatch. Small samples are noisy. If a few applications receive no response, you cannot conclude that a particular keyword caused it. Look for repeated patterns and change one part of the process deliberately, such as targeting more closely matched roles or making your project description clearer."
+        }
+      ]
+    },
+    {
+      "start": 275,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create the eight core fields and define six stages."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 336,
+      "duration": 61,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, add three verified roles and one deliberately incomplete sample."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 397,
+      "duration": 61,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, give each active record a next action and date."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 458,
+      "duration": 63,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create a review reminder and test one saved search if your service supports it."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 521,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, at the end of the week, record one process improvement and its reason."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 584,
+      "duration": 58,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Now pause the video and try the exercise yourself. Build and run a small job-search board for one week. Applied means actually submitted. Unverified opportunities cannot silently enter the application queue. Every active record has a next step; closed records retain their useful history."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why not create dozens of stages?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Extra stages add work unless they change a decision. Start with a few observable transitions. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

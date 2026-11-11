@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M26 · Platform Events and publication timing",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 36,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f2653ac996ef42098335ebf6225de3de. Подготовь только синтетические данные и исходное состояние упражнения. На схеме обозначь commit producer и отдельную транзакцию subscriber. Проверь publish-after-commit и rollback в разрешённой учебной конфигурации, затем durable subscriber outcome, а не только publish result. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create a minimal event path with explicit commit behavior and a duplicate-safe receipt."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Payload contains no unnecessary customer data. Publication timing is stated and checked."
+        }
+      ]
+    },
+    {
+      "start": 36,
+      "duration": 66,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Platform Event is a message on Salesforce's event infrastructure. A producer publishes it, and subscribers react independently. 'Test drive confirmed' describes a business fact; 'confirm this test drive' requests an action. Naming the intent matters because a subscriber should know whether it can trust the referenced change as committed or is being asked to perform it. Publish After Commit ties publication to successful completion of the producing transaction. This is a natural choice for a message announcing a saved confirmation. Publish Immediately decouples publication from the transaction's final outcome, so a subscriber may observe the event before related data commits or even when the producer later rolls back. That behavior can be useful for specific diagnostics but is not interchangeable with a committed business fact."
+        }
+      ]
+    },
+    {
+      "start": 102,
+      "duration": 99,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create Test_Drive_Confirmed__e with Test_Drive_Id__c Text(18) and Business_Key__c Text(100). Choose Publish After Commit. These are new Platform Event metadata fields, not ordinary Test Drive fields. Publish the appointment ID and a stable confirmation key; do not include Irina's email, phone, or unnecessary customer details. Use Confirmation_Receipt__c from M08 as the subscriber's demonstration output. Its unique Operation_Key__c stores the business key. A repeated event should leave one receipt. In a separate event definition or controlled comparison, explore Publish Immediately and a producer rollback. The comparison must state the configured behavior and avoid presenting a unit-test event delivery as an external integration proof."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Publisher fragment; event metadata and a valid visitId must already exist» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Publisher fragment; event metadata and a valid visitId must already exist. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 201,
+      "duration": 22,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create the event metadata and verify its publish behavior. Use the receipt schema from M08 or explicitly define an equivalent unique-key output. Configure subscriber-user permissions deliberately."
+        }
+      ]
+    },
+    {
+      "start": 223,
+      "duration": 65,
+      "label": "05 · Implement the producer boundary",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, implement the producer boundary. Publish only for the defined confirmation event, with minimal payload and a stable business key. Record the initial acceptance result separately."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Implement the producer boundary» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: No unrelated update is announced as a new business confirmation. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: No unrelated update is announced as a new business confirmation."
+        }
+      ]
+    },
+    {
+      "start": 288,
+      "duration": 63,
+      "label": "06 · Implement the subscriber result",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, implement the subscriber result. Validate the payload, read authorized required data, and reconcile the unique-key receipt in the subscriber transaction. Preserve errors for investigation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Implement the subscriber result» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A duplicate does not create a second receipt. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A duplicate does not create a second receipt."
+        }
+      ]
+    },
+    {
+      "start": 351,
+      "duration": 64,
+      "label": "07 · Test commit and rollback",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test commit and rollback. Test publisher behavior, subscriber delivery with supported Test.getEventBus().deliver calls, and an independently observed training run. Compare rollback under the selected settings."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test commit and rollback» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Evidence names which stage and environment was actually verified. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Evidence names which stage and environment was actually verified."
+        }
+      ]
+    },
+    {
+      "start": 415,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A subscriber cannot safely assume that a Publish Immediately event's referenced record is already committed. Retrying reads indefinitely is not a substitute for choosing the correct publication semantics."
+        }
+      ]
+    },
+    {
+      "start": 438,
+      "duration": 59,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not describe EventBus.publish success as successful processing by all subscribers. Now pause the video and try the exercise yourself. Create a minimal event path with explicit commit behavior and a duplicate-safe receipt. Payload contains no unnecessary customer data. Publication timing is stated and checked. The receipt remains unique across repeated delivery."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why prefer After Commit for this fact?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The message should describe a confirmation that actually committed. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

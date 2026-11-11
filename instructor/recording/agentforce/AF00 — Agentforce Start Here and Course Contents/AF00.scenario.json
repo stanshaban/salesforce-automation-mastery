@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "title": "AF00 · Agentforce: Start Here and Course Contents",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 28,
+      "label": "01 · Выбор маршрута",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Открой contents page курса agentforce. Покажи prerequisites и результат проекта."
+        },
+        {
+          "type": "speech",
+          "text": "Build the backend first, then the agent, then verify the stored result. Use a special Agentforce Employee training org. Demonstrate confirmation, refusal, repeated booking, and a queued Case using stored records and action traces."
+        }
+      ]
+    },
+    {
+      "start": 28,
+      "duration": 26,
+      "label": "02 · Project route",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Project route». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers project route. Review prerequisites and contracts before running the project. Understand the company's task before configuring an agent. Use an environment that actually supports the Employee Agent template."
+        }
+      ]
+    },
+    {
+      "start": 54,
+      "duration": 30,
+      "label": "03 · Первое действие",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,18 @@
 # Choose a Target Role and Read Job Requirements
 
-JR01 · jobs · About 60 minutes with practice
-
 ![Three career paths with one selected route and a small evidence card](https://sam-portal-production.up.railway.app/lesson-images/JR01.jpg)
 
 Turn a vague goal into a shortlist of roles and a skills map you can support with examples.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose a realistic target using five current job descriptions.
+
+### Check the result
+
+- No requirement is marked essential unless the description supports that interpretation.
+- Tutorial work is identified as practice rather than employment.
+- The chosen target is explained with evidence, not only a desired title.
 
 ## Before you begin
 
@@ -102,11 +110,19 @@ Answer in your own words before reading the explanations.
 
 # Use AI to Research and Verify Job Opportunities
 
-JR02 · jobs · About 60 minutes with practice
-
 ![A magnifying glass checking one job card while duplicate cards sit aside](https://sam-portal-production.up.railway.app/lesson-images/JR02.jpg)
 
 Use an AI assistant to organise job research while checking every opportunity against a real employer source.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Research a small batch of roles and verify the strongest candidates.
+
+### Check the result
+
+- No role is accepted solely on an AI-generated link or summary.
+- Unknown conditions remain explicitly unknown.
+- The list includes a date checked and a direct source for each active opportunity.
 
 ## Before you begin
 
@@ -213,11 +229,19 @@ Answer in your own words before reading the explanations.
 
 # Build a Repeatable Job Search Workflow
 
-JR03 · jobs · About 60 minutes with practice
-
 ![A calm task board with one job card moving toward a calendar tile](https://sam-portal-production.up.railway.app/lesson-images/JR03.jpg)
 
 Create a small system that makes the next useful action visible without turning job hunting into administration.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Build and run a small job-search board for one week.
+
+### Check the result
+
+- Applied means actually submitted.
+- Unverified opportunities cannot silently enter the application queue.
+- Every active record has a next step; closed records retain their useful history.
 
 ## Before you begin
 
@@ -314,11 +338,19 @@ Answer in your own words before reading the explanations.
 
 # Describe Your Experience with Evidence
 
-JR04 · jobs · About 60 minutes with practice
-
 ![Three concrete project artifacts connected to one personal contribution card](https://sam-portal-production.up.railway.app/lesson-images/JR04.jpg)
 
 Explain what you built, why it mattered and what you can actually prove.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Write two evidence-based accounts: one completed feature and one problem you investigated.
+
+### Check the result
+
+- The reader can distinguish your work from the team’s or starter project’s work.
+- Every number has a measurement source and scope.
+- Training work is labelled and still explains a meaningful technical result.
 
 ## Before you begin
 
@@ -427,11 +459,19 @@ Answer in your own words before reading the explanations.
 
 # Write a Clear and Honest Salesforce CV
 
-JR05 · jobs · About 60 minutes with practice
-
 ![A clean resume page linked to a small tested project and a factual evidence card](https://sam-portal-production.up.railway.app/lesson-images/JR05.jpg)
 
 Create a readable CV that connects your skills to relevant work without inventing experience.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Produce a master CV based only on experience and projects you can substantiate.
+
+### Check the result
+
+- The target role and two relevant examples are easy to find.
+- No training project is presented as commercial employment.
+- The exported file has readable text, working links and current contact details.
 
 ## Before you begin
 
@@ -528,11 +568,19 @@ Answer in your own words before reading the explanations.
 
 # Tailor Your CV to a Specific Role
 
-JR06 · jobs · About 60 minutes with practice
-
 ![A job description and a resume joined by a few clear evidence-based connections](https://sam-portal-production.up.railway.app/lesson-images/JR06.jpg)
 
 Change emphasis for a vacancy while keeping your experience accurate and consistent.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Tailor your master CV to one verified vacancy and keep a change log.
+
+### Check the result
+
+- Every claim remains consistent with the master CV.
+- The most relevant evidence is prominent.
+- Unsupported requirements are recorded as gaps rather than disguised as experience.
 
 ## Before you begin
 
@@ -642,11 +690,19 @@ Answer in your own words before reading the explanations.
 
 # Prepare a Salesforce Portfolio for Review
 
-JR07 · jobs · About 60 minutes with practice
-
 ![A small project display with an application, a simple architecture diagram and test evidence](https://sam-portal-production.up.railway.app/lesson-images/JR07.jpg)
 
 Make one project easy for another developer to understand, run and assess.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare one portfolio repository and rehearse a short review walkthrough.
+
+### Check the result
+
+- Training context, ownership and limitations are explicit.
+- Setup and test instructions match the project.
+- The demonstration includes a success and a failure case.
 
 ## Before you begin
 
@@ -761,11 +817,19 @@ Answer in your own words before reading the explanations.
 
 # Practise a Technical Interview with AI
 
-JR08 · jobs · About 60 minutes with practice
-
 ![Two simply drawn people discussing one technical diagram with a reflective note card](https://sam-portal-production.up.railway.app/lesson-images/JR08.jpg)
 
 Run a structured mock interview that reveals gaps instead of rewarding memorised wording.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Run a five-question mock interview and turn it into a small practice plan.
+
+### Check the result
+
+- The session contains follow-up questions, not only definitions.
+- Corrections are supported or explicitly marked uncertain.
+- The final plan names a concrete exercise rather than “study more.”
 
 ## Before you begin
 
@@ -875,11 +939,20 @@ Answer in your own words before reading the explanations.
 
 # Practise Live Coding and Code Review
 
-JR09 · jobs · About 60 minutes with practice
-
 ![A code card with one highlighted flaw beside a small timer and test cases](https://sam-portal-production.up.railway.app/lesson-images/JR09.jpg)
 
 Show your reasoning while solving a small problem and reviewing a flawed implementation.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement the input-only count method, then review a deliberately flawed alternative.
+
+### Check the result
+
+- Counts use only the supplied list.
+- Empty input and repeated vehicles are covered.
+- The review identifies behaviour and scaling issues before style preferences.
+- The report names the tested class, API version, actual test result and zero-query/zero-DML method check; unexecuted org checks are labelled outstanding.
 
 ## Before you begin
 
@@ -1008,11 +1081,19 @@ Answer in your own words before reading the explanations.
 
 # Discuss Your Experience and Evaluate the Employer
 
-JR10 · jobs · About 60 minutes with practice
-
 ![Two drawn people in a calm professional conversation with three concrete project story cards](https://sam-portal-production.up.railway.app/lesson-images/JR10.jpg)
 
 Prepare clear experience stories and questions that help you understand the work and team.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare three experience stories and a focused set of employer questions.
+
+### Check the result
+
+- Stories contain a specific action and evidence, not only personal qualities.
+- Team contributions and limitations remain accurate.
+- Employer questions clarify responsibilities you care about.
 
 ## Before you begin
 
@@ -1110,11 +1191,19 @@ Answer in your own words before reading the explanations.
 
 # Build a Preparation Plan from Interview Feedback
 
-JR11 · jobs · About 60 minutes with practice
-
 ![An interview note becoming three focused practice steps and a follow-up calendar check](https://sam-portal-production.up.railway.app/lesson-images/JR11.jpg)
 
 Turn an interview or mock session into a focused cycle of practice and reassessment.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Turn one interview or mock session into a one-week preparation plan.
+
+### Check the result
+
+- Each priority has a concrete practice task and a verification method.
+- The plan fits the time you actually have.
+- Reassessment uses a variation, not only the original question.
 
 ## Before you begin
 

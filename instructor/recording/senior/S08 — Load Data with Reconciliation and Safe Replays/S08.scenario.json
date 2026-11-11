@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S08 · Load Data with Reconciliation and Safe Replays",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 47,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=58fb77907fb34684afd13cec7aa4013e. Подготовь только синтетические данные и исходное состояние упражнения. Покажи import manifest с external IDs, accepted/rejected counts и checkpoint. Повтори одну партию и докажи reconciliation. Не запускай массовый импорт в неидентифицированную org. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Prepare a preflight and result ledger for the six supplied appointment rows, plus a separate vehicle fixture V-001 through V-005."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The ledger never relies on CSV position as the permanent identity. A-101 version 1 is recorded as superseded before upload; the five-row submitted set has one snapshot per source identity."
+        }
+      ]
+    },
+    {
+      "start": 47,
+      "duration": 61,
+      "label": "02 · A data load is a business transformation",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A data load is a business transformation». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar receives vehicles and appointments from a dealer management system, abbreviated DMS. The DMS stores each vehicle under a stable source identifier. Salesforce needs a reliable way to recognize that the same source vehicle has arrived again. A CSV row number is not such an identity: sorting or splitting the file changes it. An External ID field can support matching imported data to existing Salesforce records, but you must inspect its configuration and uniqueness requirements. The starter includes VIN__c; do not assume that any field named VIN is automatically the correct external identifier for every source. For the exercise, propose a Source_Key__c field with an explicit matching policy and document it as an extension."
+        }
+      ]
+    },
+    {
+      "start": 108,
+      "duration": 115,
+      "label": "03 · Preserve identity through every result file",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Preserve identity through every result file». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The supplied CSV contains six appointment input rows representing five distinct appointment identities. It does not contain vehicle rows. Create a separate five-row vehicle fixture with keys V-001 through V-005, leaving V-MISSING and V-MISSING-2 absent for the first attempt. The two A-101 rows are complete snapshots at versions 1 and 2. Before upload, retain version 2 and record version 1 as superseded. Do not submit competing versions together and assume CSV order makes the latest one win. Upsert matches identities; it does not supply a version policy. Bulk API results distinguish successful, failed, and unprocessed records. Failed means processing encountered an error. Unprocessed means processing did not take place, such as when a job is interrupted. These categories need different operational explanations even if both eventually require attention. Do not rely on returned result ordering matching the original CSV order."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic appointment input; source keys are fictional» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic appointment input; source keys are fictional. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 223,
+      "duration": 59,
+      "label": "04 · Control replays and concurrency",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Control replays and concurrency». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "After correcting a missing parent, repeat only the relevant failed or unprocessed work unless your entire operation is deliberately idempotent and a broader replay is justified. Use the same business identity for a retry of the same action. Assigning a new random key on every attempt defeats duplicate detection. Choose the API and loading mechanism explicitly. Bulk API 2.0 handles batching for you; do not assume that every tuning option from the original Bulk API exists there. If your design requires a serial-processing capability, verify which supported tool or API provides it. Alternatively, coordinate independent jobs or change the data partition with full awareness of how the service processes them."
+        }
+      ]
+    },
+    {
+      "start": 282,
+      "duration": 55,
+      "label": "05 · Make the exercise reproducible without a large org",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make the exercise reproducible without a large org». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A few synthetic records are enough to demonstrate matching, dependencies, rejected rows, and a replay. Use a local spreadsheet ledger if no suitable org is available. Mark predicted outcomes as predictions. If you execute a small load, save sanitized result rows and the precise metadata configuration that controls matching. Before a real migration, add preparation steps for backups, permissions, source cutover, user communication, and reconciliation ownership. Those are decisions to review with the responsible team, not instructions to run against an employer's org. Retain result artifacts according to the agreed operational policy rather than assuming the API keeps them forever."
+        }
+      ]
+    },
+    {
+      "start": 337,
+      "duration": 65,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, define Source_Key__c and uniqueness assumptions on the proposed parent and child extensions; keep the lookup relationship unchanged."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 402,
+      "duration": 66,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create vehicle fixture keys V-001 through V-005. Before upload, retain only A-101 version 2, and record version 1 as superseded."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 468,
+      "duration": 67,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, separate preflight decisions from the five submitted rows; classify actual API outcomes as success, failure or unprocessed, or label them predicted if unexecuted."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 535,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, correct the missing parents and design a replay that preserves appointment identity."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 597,
+      "duration": 65,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, produce totals by attempt and by unique business entity so a reviewer can see why those totals differ."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 662,
+      "duration": 83,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not disable validation or security merely to make the success counter look better; define any exceptional migration access separately. Now pause the video and try the exercise yourself. Prepare a preflight and result ledger for the six supplied appointment rows, plus a separate vehicle fixture V-001 through V-005. The ledger never relies on CSV position as the permanent identity. A-101 version 1 is recorded as superseded before upload; the five-row submitted set has one snapshot per source identity. Successful, failed, and unprocessed outcomes are distinguishable; replay does not create extra appointments."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. How is an unprocessed row different from a failed row?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "A failed row was attempted and encountered an error; an unprocessed row did not undergo processing in that job attempt. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

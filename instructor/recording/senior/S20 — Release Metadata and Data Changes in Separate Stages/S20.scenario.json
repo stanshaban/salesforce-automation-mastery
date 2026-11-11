@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S20 · Release Metadata and Data Changes in Separate Stages",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=68ae95dbba0d4199b1c1eaf6b5492433. Подготовь только синтетические данные и исходное состояние упражнения. Покажи staged release: compatible metadata → deploy → backfill → verify → enable. Разыграй остановку после backfill и восстановление без предположения, что metadata rollback отменяет данные. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Write a staged release plan for adding the provider reference to existing and new appointments."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Old supported clients remain compatible during the agreed transition. The backfill does not overwrite a newer authoritative value blindly."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 53,
+      "label": "02 · A green deployment is only one milestone",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A green deployment is only one milestone». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar adds Booking_Reference__c to store the scheduling provider's stable reservation reference. The field is a proposed extension to the starter, not existing metadata. Old appointments do not yet have values, old clients do not send the field, and some new provider responses arrive while migration is running. Deploying the field and Apex changes makes the new capability available. A backfill populates appropriate existing records. A cutover changes which behavior users or integrations rely on. These steps have different failure modes. Metadata can deploy successfully while the backfill skips records or the consumer reads incomplete data."
+        }
+      ]
+    },
+    {
+      "start": 93,
+      "duration": 93,
+      "label": "03 · Expand while keeping old clients functional",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Expand while keeping old clients functional». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Expand means adding the new structure and compatible behavior before removing the old contract. Introduce the field without immediately requiring a value for every historical appointment. Give the appropriate personas only the permissions they need. Teach the application how to handle an appointment whose reference has not yet been populated. Define the authoritative source for the new value. If the scheduling service owns reservation references, do not generate fictional references in Salesforce simply to satisfy a not-null check. Decide how a new booking obtains the reference and what status it has while that result is pending."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic transition matrix» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic transition matrix. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 186,
+      "duration": 74,
+      "label": "04 · Make migration restartable and race-aware",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make migration restartable and race-aware». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A restartable backfill can continue after interruption without corrupting records already processed. Use stable selection and business identifiers, record progress, and define what qualifies as completed. Do not rely only on a remembered page number if the underlying set changes during the run. Concurrent writes matter. If a new booking obtains a current reservation reference while the backfill holds an older snapshot, the backfill must not overwrite it blindly. Use a supported conditional-write/version check, or lock the relevant record, read its fresh state, compare, and update within one short transaction. A plain re-query followed by an unprotected write can still race. In Apex, FOR UPDATE can support that local critical section, but its locks are released by a callout; do not assume a lock protects a read-callout-write sequence. Record conflicts for review rather than treating every mismatch as a retryable technical error."
+        }
+      ]
+    },
+    {
+      "start": 260,
+      "duration": 51,
+      "label": "05 · Contract only after the transition is proven",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Contract only after the transition is proven». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Contract means retiring the obsolete path after consumers and data are ready. Removing a field, tightening validation, or withdrawing an old API shape can be difficult to reverse. Require explicit evidence that no supported user or integration still depends on it. A code rollback restores an earlier application revision where possible. It does not automatically restore overwritten values, recreate deleted records, or undo remote reservations. Data recovery needs its own source, identity mapping, conflict rules, and verification. Keep the previous compatible application path available long enough to make the planned rollback realistic."
+        }
+      ]
+    },
+    {
+      "start": 311,
+      "duration": 62,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, define the field, ownership, permissions, and behavior when a value is absent."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 373,
+      "duration": 62,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write expand, migrate, cutover, and contract gates with evidence for each."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 435,
+      "duration": 64,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create twelve synthetic migration rows, including missing references, duplicates, and a record changed during migration."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 499,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, specify restart behavior, reconciliation totals, and conflict handling."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 560,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write separate procedures for code rollback and data recovery; perform no production deployment."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 623,
+      "duration": 71,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not use 'rollback' as one word covering both reversible metadata changes and irreversible data effects. Now pause the video and try the exercise yourself. Write a staged release plan for adding the provider reference to existing and new appointments. Old supported clients remain compatible during the agreed transition. The backfill does not overwrite a newer authoritative value blindly. Code rollback and data recovery have separate inputs, owners, and checks."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can deployment success coexist with release failure?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The metadata may be valid while data migration, permissions, consumer compatibility, or the user cutover is incomplete. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

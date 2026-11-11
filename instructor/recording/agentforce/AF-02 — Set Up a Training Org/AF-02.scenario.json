@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "title": "AF-02 · Set Up a Training Org",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 49,
+      "label": "01 · Цель и границы",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=14f8a6cd9f8747198e1cf69ff4d49862 и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+        },
+        {
+          "type": "speech",
+          "text": "Use an environment that actually supports the Employee Agent template. An org is a separate Salesforce environment with its own data, users, and configuration. An old Trailhead Playground may not include the Agentforce functions used here. The recommended path is the special free Developer Edition with Agentforce for employees offered by the official Trailhead project. Free training registration is not a promise of unlimited production AI usage: check the issued org's capabilities, quotas, and terms."
+        }
+      ]
+    },
+    {
+      "start": 49,
+      "duration": 90,
+      "label": "02 · Use the official registration path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Follow the Developer Edition for employees link in this chapter's sources. Register a new training org with your own activation email and a unique Salesforce username. Keep its password and login URL private. SAM does not need your Salesforce password or access token."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Use the official registration path. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 139,
+      "duration": 88,
+      "label": "03 · Enable the available feature",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In Setup, find Salesforce Go and then Agentforce Studio. If it is not enabled, follow Get Started → Turn On and the confirmation, then refresh the page. If Studio is already on, do not repeat activation unnecessarily."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Enable the available feature. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 227,
+      "duration": 93,
+      "label": "04 · Verify the template first",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Open Agentforce Studio from the App Launcher and select New Agent. Confirm that Agentforce Employee Agent is available. If not, verify that you are in the special org, then inspect its assigned permissions and licenses. A purchase or change to a working production org is not required for this exercise."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Verify the template first. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 320,
+      "duration": 85,
+      "label": "05 · Connect the org to the local project",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Complete the setup guide through CLI authorization. From starter/salesforce, use sf org login web --alias sam-training --instance-url https://login.salesforce.com. Open it with sf org open --target-org sam-training and verify its identity again."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Connect the org to the local project. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 405,
+      "duration": 89,
+      "label": "06 · Deploy the core teaching schema",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "From starter/salesforce run sf project deploy start --source-dir force-app --target-org sam-training --wait 10 and wait for the final result. Vehicle and Test Drive should appear in Setup → Object Manager. This is the SAM custom schema, not an Automotive Cloud installation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Deploy the core teaching schema. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 494,
+      "duration": 93,
+      "label": "07 · Make the records reachable in the UI",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In Setup → Tabs, create Custom Object Tabs for Vehicle and Test Drive if absent. Add them to a training Lightning app's navigation through App Manager, or create a small training app. Keep Contacts and Cases available too. Navigation is separate from permissions; a tab does not grant data access."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Make the records reachable in the UI. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 587,
+      "duration": 96,
+      "label": "08 · Record the environment limits",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Note the date, API 68.0 baseline, org type, Employee template availability, and any shown restrictions. Start from the clean core starter; unrelated Flow and validation from other labs can change this lesson's behavior. If AI calls are unavailable, you may still build and test the Apex/Flow parts, but mark the live Agentforce demonstration Not run."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Record the environment limits. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 683,
+      "duration": 46,
+      "label": "09 · Проверка результата",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи expected/actual таблицу и соответствующий Flow debug, action trace или CRM record. Не подменяй результат live org симуляцией портала."
+        },
+        {
+          "type": "speech",
+          "text": "Studio can create the intended agent type. Core metadata exists before the dependent Apex action is deployed. The learner can find the records rather than only their Object Manager definitions. The correct training org is open, the Employee template is available, and the custom objects are deployed and reachable."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза для ответа. Покажи один из common failures и нужный диагностический экран."
+        },
+        {
+          "type": "speech",
+          "text": "A common mistake to avoid is this: Authorizing a different org with a similar name. Keep the record or trace that supports your conclusion before continuing."
+        }
+      ]
+    }
+  ]
+}

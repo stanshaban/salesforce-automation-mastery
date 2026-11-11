@@ -1,0 +1,215 @@
+{
+  "version": 2,
+  "title": "JR05 · Write a Clear and Honest Salesforce CV",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 39,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=28231c6287124f4e9447e3975057395d. Подготовь только синтетические данные и исходное состояние упражнения. Покажи обезличенный CV до и после: summary, experience, projects, skills. Свяжи каждое сильное утверждение с evidence inventory. Спрячь личный телефон и адрес. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Produce a master CV based only on experience and projects you can substantiate."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The target role and two relevant examples are easy to find. No training project is presented as commercial employment."
+        }
+      ]
+    },
+    {
+      "start": 39,
+      "duration": 62,
+      "label": "02 · Give the reader a clear route through your experience",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Give the reader a clear route through your experience». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A CV helps an employer decide what to ask you about. It should make your target role, relevant experience and strongest evidence easy to find. Start with your name and contact information, a short role-focused summary, experience or projects, skills and education or certifications where relevant. The order can change with your background; a career changer may place relevant projects before unrelated employment. Use ordinary section names and readable formatting. Keep your contact details as text, and check that the exported file preserves selectable text. There is no universal layout that guarantees success in every applicant tracking system. A simple document is a practical choice because both people and software need to identify its information."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 62,
+      "label": "03 · Write the summary after collecting evidence",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Write the summary after collecting evidence». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use the target from JR01 and the evidence from JR04. A useful summary might say: “Developer building Salesforce applications with Apex and Lightning Web Components. Completed a test-drive training application with validation, automated tests and a documented review workflow. Seeking a role focused on application development and learning integration support.” Adjust this to your actual background rather than copying it as a personal claim. Avoid broad labels such as “expert in all Salesforce technologies.” They do not help a reader assess your depth and are difficult to defend. A summary is usually a few focused lines, not a biography or a long list of personality traits. Save the detail for the work examples below it."
+        }
+      ]
+    },
+    {
+      "start": 163,
+      "duration": 66,
+      "label": "04 · Connect skills to work examples",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Connect skills to work examples». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "List skills at the depth you can support. If Apex appears in your skills section, a project or experience entry should show where you used it. Distinguish hands-on practice from production responsibility. For a training project, include the project name, its learning context, the problem, your implementation and a repository or demonstration link when it is safe to share. Use a consistent bullet pattern: action, object and evidence. “Implemented validation for unavailable vehicles and added tests for mixed-record updates” is clearer than “Responsible for high-quality innovative solutions.” Include dates honestly and identify certification status accurately. A planned exam is not a completed credential. You do not need to hide a career change; explain the relevant transferable work and the Salesforce work you have completed."
+        }
+      ]
+    },
+    {
+      "start": 229,
+      "duration": 64,
+      "label": "05 · Review the exported document as a reader",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Review the exported document as a reader». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Export the CV in the format requested by the employer. Open that exact file, select its text and copy a paragraph into a plain text editor. Check the reading order, missing characters, broken links and accidental truncation. Verify that the file name is descriptive and that the contact details are current. This is a simple quality check, not proof of compatibility with every hiring system. Ask another person to answer three questions after a brief read: what role are you targeting, what have you actually built, and which example should they ask about first? If the answers are unclear, revise the content. Keep a master CV with your full evidence so that later tailoring changes emphasis rather than rewriting your history."
+        }
+      ]
+    },
+    {
+      "start": 293,
+      "duration": 59,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, choose a simple readable structure."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 352,
+      "duration": 59,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write a short target-role summary."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 411,
+      "duration": 60,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, add evidence-based experience or project bullets."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 471,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, check skills and credential claims against your records."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 532,
+      "duration": 61,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, export and inspect the exact file you would submit."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 593,
+      "duration": 62,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Now pause the video and try the exercise yourself. Produce a master CV based only on experience and projects you can substantiate. The target role and two relevant examples are easy to find. No training project is presented as commercial employment. The exported file has readable text, working links and current contact details."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Should you claim expertise in a tool you used once?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Describe the task you practised and the depth you can demonstrate. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M10 · Testing a complete local business rule",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f73d9ea70ea146b987568ba88aecba11. Подготовь только синтетические данные и исходное состояние упражнения. Открой behavior table и соответствующие Apex assertions. Запусти independent fixtures, bulk case и mutation check. Покажи различие между line coverage и проверенным результатом. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Submit a local test suite with boundaries, negative cases, and mixed bulk input."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. No business records are read through SeeAllData. Strict cutoff and protected statuses are checked."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 64,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A useful unit test states a rule in executable form. It prepares known inputs, performs one operation, and checks a meaningful observable result. Code coverage tells you which lines ran; it does not tell you whether a completed appointment was accidentally cancelled or whether the returned value was correct. The strongest test fails when the behavior it protects is broken. Northstar's local rule cancels Requested or Confirmed appointments strictly earlier than a supplied cutoff. Completed, Cancelled, and future appointments remain unchanged. Supplying the cutoff makes the rule deterministic; a test does not depend on the wall clock reaching midnight or on a record that happens to exist in the org. The boundary at exactly the cutoff deserves its own assertion."
+        }
+      ]
+    },
+    {
+      "start": 101,
+      "duration": 93,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use a cutoff of 2030-04-10 12:00 UTC. Create four appointments: Requested at 11:59, Confirmed at 12:00, Completed at 11:00, and Requested at 12:01. The first should become Cancelled, while the others retain their status. These exact examples distinguish a strict-before rule from an accidental less-than-or-equal comparison. After your tests pass, temporarily change the comparison to include equality. Run the same suite. The boundary test should fail. Restore the implementation and rerun. This controlled mutation demonstrates that the assertion protects the intended rule rather than simply following the implementation's current output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Assertion fragment after invoking your implemented cancellation service» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Assertion fragment after invoking your implemented cancellation service. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 194,
+      "duration": 25,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Use existing Test Drive fields. Implement the local cancellation service before adapting the assertion fragment; it is not a complete test class. Create required fictional Vehicle/Contact records if your own validations require them."
+        }
+      ]
+    },
+    {
+      "start": 219,
+      "duration": 63,
+      "label": "05 · Write the behavior table",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, write the behavior table. List input status, scheduled time relative to cutoff, and expected output. Include null scheduled time and decide its behavior explicitly."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Write the behavior table» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Every fixture has a reason to exist. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Every fixture has a reason to exist."
+        }
+      ]
+    },
+    {
+      "start": 282,
+      "duration": 63,
+      "label": "06 · Implement independent tests",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, implement independent tests. Use a small factory for defaults, explicit values for boundaries, Test.startTest/stopTest around the operation where appropriate, and assertions on persisted state."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Implement independent tests» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Tests pass independently of org business data. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Tests pass independently of org business data."
+        }
+      ]
+    },
+    {
+      "start": 345,
+      "duration": 65,
+      "label": "07 · Add bulk and mutation checks",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, add bulk and mutation checks. Build 200 mixed appointments, assert each category, then deliberately break one rule and observe a focused failure before restoring it."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Add bulk and mutation checks» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A broken rule changes the test result for the expected reason. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A broken rule changes the test result for the expected reason."
+        }
+      ]
+    },
+    {
+      "start": 410,
+      "duration": 25,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Asserting the value just assigned by test setup without calling the service tests the fixture, not the behavior. Likewise, catching an exception without asserting its meaning can allow an unexpected error to pass."
+        }
+      ]
+    },
+    {
+      "start": 435,
+      "duration": 63,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A green coverage report is not evidence that wrong records were left untouched. Now pause the video and try the exercise yourself. Submit a local test suite with boundaries, negative cases, and mixed bulk input. No business records are read through SeeAllData. Strict cutoff and protected statuses are checked. The mutation fails a relevant assertion."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why pass a cutoff instead of reading now everywhere?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It makes the rule deterministic and separates business input from the clock. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S13 · Control Privileged Code and External-User Access",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 42,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=789c439d454b434d991f0e5c9dd196fd. Подготовь только синтетические данные и исходное состояние упражнения. На boundary diagram сопоставь external identity, entry point, Apex sharing и CRUD/FLS. Пройди один unauthorized request. Секреты, токены и реальные внешние пользователи в кадр не попадают. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Design the authorization contract for a portal caller who may read only their own appointments."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The contract does not trust a client-supplied customer Id as proof of ownership. Identity, CRUD/FLS, record sharing, and payload validation are treated separately."
+        }
+      ]
+    },
+    {
+      "start": 42,
+      "duration": 60,
+      "label": "02 · Name the caller and the requested action",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Name the caller and the requested action». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An external portal asks Salesforce to retrieve Irina's appointment. The request contains an appointment Id and a customer identifier. Neither value is proof that the caller is entitled to that appointment. Authentication establishes who the caller is; authorization establishes what that identity may do. Input validation checks whether the supplied values are acceptable for the operation. These checks solve different problems. A trust boundary separates information or actions with different assumptions about who controls them. Browser input, integration payloads, and model-generated tool arguments should cross that boundary as untrusted data. The server should derive or verify the permitted customer relationship rather than accepting a caller's claim that a record belongs to them."
+        }
+      ]
+    },
+    {
+      "start": 102,
+      "duration": 106,
+      "label": "03 · Read both the class and the operation mode",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Read both the class and the operation mode». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Sharing keywords govern record-level behavior in Apex contexts, while database operation modes affect the operation's security checks. With API 68.0, the newer default database mode is user mode. An explicit WITH USER_MODE query applies the user's sharing, object, and field checks even when the surrounding class is declared without sharing. Conversely, specifying system mode does not mean that a with-sharing class has automatically become without sharing. This is why 'the class is with sharing' is not a complete security review, and 'Apex always ignores permissions' is an outdated blanket statement. Inspect the class version, call path, sharing declaration, and each operation's intended mode. Explicitly document any elevation rather than depending on an implicit default inherited from an old example."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «API 68.0 illustration: user-mode query, not a complete endpoint» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is API 68.0 illustration: user-mode query, not a complete endpoint. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 208,
+      "duration": 63,
+      "label": "04 · If elevation is needed, make its scope small",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «If elevation is needed, make its scope small». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A maintenance service might legitimately update a derived status across records that Anna cannot edit directly. That does not justify exposing an unrestricted 'update any object' method to her browser. Define the exact action, allowed records, permitted fields, initiating identity, and auditable reason. Keep privileged code behind a narrow boundary and validate its caller before performing elevated work. Use an allowlist when client input controls a structural choice such as a sort field or operation name. Bind values in queries where supported, but do not assume a bound filter value validates an independently concatenated field name. If using stripInaccessible, use the returned cleaned records and understand that field stripping is not a substitute for the full record-access policy."
+        }
+      ]
+    },
+    {
+      "start": 271,
+      "duration": 48,
+      "label": "05 · Prove the denied paths",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Prove the denied paths». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Build a synthetic matrix: an authorized appointment, another client's appointment, a nonexistent Id, a forbidden field, and a malformed operation request. Decide whether the response should reveal that a hidden record exists. Errors should be useful without disclosing another customer's data. Run a small permitted test under genuinely limited personas when available. Otherwise produce a threat review and an executable test plan, clearly marked unexecuted. Record the security context with each result. A test that passes under an administrator says little about the portal caller."
+        }
+      ]
+    },
+    {
+      "start": 319,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, draw browser, authentication layer, endpoint, data access, and response boundaries."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 380,
+      "duration": 61,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, list trusted identity attributes and untrusted request values."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 441,
+      "duration": 62,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, specify the API 68.0 query mode and any deliberately privileged helper."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 503,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create five positive/negative input cases, including another client's valid record Id."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 565,
+      "duration": 64,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, document license assumptions, required permissions, sanitized errors, and how the restricted persona will be tested."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 629,
+      "duration": 74,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A broad OAuth scope or a successful token response does not replace the integration user's object, field, and record permissions. Now pause the video and try the exercise yourself. Design the authorization contract for a portal caller who may read only their own appointments. The contract does not trust a client-supplied customer Id as proof of ownership. Identity, CRUD/FLS, record sharing, and payload validation are treated separately. Any elevated operation has a narrow purpose and explicit negative tests."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is a valid record Id insufficient authorization?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Knowing an identifier does not establish that the caller may access or change the identified record. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "version": 2,
+  "title": "AF-10 · Demonstrate and Submit",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 42,
+      "label": "01 · Цель и границы",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=270d81802e8d46429989ee4aa071454a и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+        },
+        {
+          "type": "speech",
+          "text": "Show the completed training feature, its evidence, and its limits. A useful demonstration explains which employee task became easier and shows the resulting CRM records. Here the salesperson can move from model selection to a Test Drive and a support Case through the assistant. A real dealer calendar, external-customer verification, durable Case idempotency, and production operations remain separate implementation work."
+        }
+      ]
+    },
+    {
+      "start": 42,
+      "duration": 92,
+      "label": "02 · Record a short introduction",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Explain that Northstar sells cars, an employee assists Irina with a demo test drive, and the agent has three bounded actions. State that scheduling is artificial while Test Drive and Case records are real records in the training org. Do not claim an unmeasured percentage saving."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Record a short introduction. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 134,
+      "duration": 86,
+      "label": "03 · Show the main path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Request City EV options, select one returned slot and the fictional Contact, show the confirmation, approve, and open the created record. Repeat the same customer's key and demonstrate that no second booking appears."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Show the main path. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 220,
+      "duration": 84,
+      "label": "04 · Show human work creation",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Ask for help with the appointment, provide a reason, confirm the Case, and open SAM Demo Handoff's work list. Describe a queued support task, not an Omni-Channel live-chat transfer."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Show human work creation. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 304,
+      "duration": 83,
+      "label": "05 · Show one negative path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Decline confirmation or use the unavailable model. Show that no new corresponding record was created. This demonstrates a boundary that another happy-path conversation would not prove."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Show one negative path. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 387,
+      "duration": 88,
+      "label": "06 · Prepare AF-NORTHSTAR-01",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Submit your Flow and permission metadata, additional fields, Apex add-on or PR URL, README with deployment order, actual scenario results, and a short demo. Identify the agent version and org/API baseline without exposing credentials, real customers, or private email."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Prepare AF-NORTHSTAR-01. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 475,
+      "duration": 90,
+      "label": "07 · Answer the review questions",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Where does model-driven choice end and deterministic validation begin? Whose permissions govern each action? What prevents a second booking? What changes when confirmation is declined? What is still needed for an external website and real calendar? Refer to your actual configuration and tests."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Answer the review questions. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 565,
+      "duration": 42,
+      "label": "08 · Проверка результата",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи expected/actual таблицу и соответствующий Flow debug, action trace или CRM record. Не подменяй результат live org симуляцией портала."
+        },
+        {
+          "type": "speech",
+          "text": "Demo, metadata, and actual checks refer to one version. Artificial data sources are labeled. The next engineering work is identified: real calendar contract, Case idempotency, and security review. The reviewer receives a reproducible solution and can inspect its records and declared limitations."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза для ответа. Покажи один из common failures и нужный диагностический экран."
+        },
+        {
+          "type": "speech",
+          "text": "A common mistake to avoid is this: Submitting only a video without reproducible metadata. Keep the record or trace that supports your conclusion before continuing."
+        }
+      ]
+    }
+  ]
+}

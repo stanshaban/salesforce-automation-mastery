@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S22 · Evaluate Agentforce Actions, Access, and Failure Behavior",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 42,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=a2042c38a241441bb97cf194f4651fda. Подготовь только синтетические данные и исходное состояние упражнения. Покажи Agentforce action boundary, confirmation и durable operation identity. Разыграй refused confirmation, retry и unknown outcome. Отдельно подпиши отсутствующие live entitlement/security tests. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Turn the eight synthetic cases into a reviewable test suite with action, access, and outcome criteria."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The suite checks actual action outcomes and access boundaries, not only response quality. A repeated request cannot silently create a second booking."
+        }
+      ]
+    },
+    {
+      "start": 42,
+      "duration": 54,
+      "label": "02 · A convincing sentence is not a verified business result",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A convincing sentence is not a verified business result». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar's agent helps Anna find a vehicle and arrange Irina's test-drive. A fluent response can still name an unavailable vehicle, expose another dealer's records, or claim a booking that was never committed. Evaluate the action path and resulting business state as well as the final text. An evaluation is a repeatable test case with an input, context, expected behavior, and criteria for judging the result. A transcript is evidence of a particular conversation. Reviewing a supplied transcript is useful analysis, but it is not the same as executing the agent against Salesforce data and verifying the resulting records."
+        }
+      ]
+    },
+    {
+      "start": 96,
+      "duration": 52,
+      "label": "03 · Define the action boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Define the action boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "List the allowed actions: search permitted vehicles, inspect an available slot, create a requested appointment under the approved contract, and hand off an unresolved issue. State which actions require confirmation and what details the user must confirm. 'Yes' after an unrelated question should not authorize a different vehicle, time, or customer. Platform-supported confirmation settings can help require user confirmation for actions, but they do not replace server-side permission checks or validation. The action must still enforce access, accepted inputs, and repeat-safety. Keep elevated logic narrow and explicitly justified under the API 68.0 baseline."
+        }
+      ]
+    },
+    {
+      "start": 148,
+      "duration": 101,
+      "label": "04 · Build a varied evaluation pack",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build a varied evaluation pack». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The synthetic cases below cover more than a successful booking. Each needs a pass condition that a reviewer can judge. For an unknown warranty fact, the expected behavior is to acknowledge the missing evidence or hand off, not to fabricate a confident answer. For another dealer's hidden appointment, a polite refusal alone is insufficient if the action already retrieved and exposed the record. Separate deterministic checks from judgment-based checks. An appointment count, selected action, record identity, and duplicate-prevention outcome can often be checked precisely. Tone, clarity, and usefulness require a stated rubric and may need human review. Run paraphrases and repeated trials where appropriate; one successful wording does not establish robust behavior."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic Agentforce evaluation cases» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic Agentforce evaluation cases. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 249,
+      "duration": 60,
+      "label": "05 · Use supported test tools and report their boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use supported test tools and report their boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Salesforce documents Testing Center, Agentforce DX, and Testing API options. Choose a workflow that matches the supported environment and your evaluation needs. At the documentation baseline checked for this course, agent testing is available in sandboxes, tests can modify data, and Data 360 queries triggered by tests can consume credits even when the test run itself does not consume Einstein Requests or Flex Credits. Verify current availability and metering before execution. If you lack an appropriate environment, complete the evaluation design and transcript analysis. Label the outcome 'designed' or 'reviewed,' not 'end-to-end passed.' The practical course simulation is not evidence that a real model, permission context, and Salesforce action chain succeeded."
+        }
+      ]
+    },
+    {
+      "start": 309,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, define permitted actions and confirmation requirements for the appointment journey."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 370,
+      "duration": 64,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, for each case, specify persona, input, expected action or refusal, expected data changes, and evidence."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 434,
+      "duration": 62,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, add two paraphrases for a normal request and a repeated-request case."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 496,
+      "duration": 63,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, grade a clearly labelled synthetic transcript or run permitted tests in a supported sandbox."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 559,
+      "duration": 63,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, report passed, failed, and unexecuted checks separately, with a release gate for unauthorized writes."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 622,
+      "duration": 76,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A human confirmation step must be meaningful: it should describe the action the system is actually about to perform. Now pause the video and try the exercise yourself. Turn the eight synthetic cases into a reviewable test suite with action, access, and outcome criteria. The suite checks actual action outcomes and access boundaries, not only response quality. A repeated request cannot silently create a second booking. Transcript analysis is not represented as a completed live-agent test."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why is a polite answer insufficient evidence?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The agent may have selected the wrong action, retrieved forbidden data, or failed to create the promised record before producing the text. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

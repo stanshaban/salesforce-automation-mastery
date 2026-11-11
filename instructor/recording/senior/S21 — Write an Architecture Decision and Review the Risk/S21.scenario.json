@@ -1,0 +1,231 @@
+{
+  "version": 2,
+  "title": "S21 · Write an Architecture Decision and Review the Risk",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=0d28c387d7ef49888befefc00f874b59. Подготовь только синтетические данные и исходное состояние упражнения. Заполни ADR: context, decision, alternatives, consequences, evidence, review trigger. Сравни два решения на одном требовании. Риск привяжи к владельцу и следующей проверке. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Alternatives are compared under the same business requirements. The review distinguishes harmful behavior from stylistic preference."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 57,
+      "label": "02 · A decision record preserves the reason",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A decision record preserves the reason». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "An architecture decision record, or ADR, captures a significant choice and why it was made. It should name the problem, relevant constraints, considered alternatives, selected approach, and consequences. Its value is not the number of headings. A future developer should understand which assumption would justify revisiting the choice. Northstar must decide whether booking confirmation waits for the scheduling service or first creates a Pending request. The answer depends on the product promise, acceptable delay, outage behavior, and duplicate-prevention contract. 'Async is more scalable' is too broad to settle it. It hides the important question of whether Anna may tell Irina the slot is confirmed."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 89,
+      "label": "03 · Compare alternatives under the same conditions",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Compare alternatives under the same conditions». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Consider synchronous reservation, asynchronous reservation with a Pending state, and a hybrid that performs a fast check but confirms later. Evaluate each against the same requirements. A hybrid check does not reserve a slot unless the provider contract explicitly says it does; a result can become stale before confirmation. Record uncertainty honestly. If provider response-time evidence is unavailable, mark it unknown and propose a test. If the business has not accepted a Pending state, treat that as a decision dependency, not as permission to implement it silently."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic ADR skeleton» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic ADR skeleton. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 186,
+      "duration": 97,
+      "label": "04 · Review a change through a failure scenario",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Review a change through a failure scenario». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The proposed pull request adds a browser-callable cancellation helper. Its pseudocode uses privileged update access for any supplied appointment Id and contains no explicit authorization check. The required review comment should identify the concrete risk: a caller could request cancellation of an appointment outside the permitted business relationship. Do not hide that issue among preferences about naming or formatting. State the trigger, observed or inferred consequence, and necessary correction. For example: 'A caller-controlled Id reaches an elevated update without checking cancellation authority. Validate the permitted appointment and action before elevation, and add a negative test for another dealer's appointment.'"
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Intentionally unsafe pseudocode for review; not executable Apex» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Intentionally unsafe pseudocode for review; not executable Apex. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 283,
+      "duration": 48,
+      "label": "05 · Make review a collaborative verification process",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make review a collaborative verification process». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Separate blocking correctness or security issues, non-blocking maintainability improvements, and questions requiring product clarification. Ask for evidence proportional to the risk: a negative access test for the cancellation helper, a repeat-request test for idempotency, or a small measured comparison for a performance claim. After a revision, verify that the identified behavior changed. A renamed method does not fix missing authorization. A test that asserts only 'no exception' does not prove that another dealer's appointment stayed unchanged. Review the revised diff and the relevant result."
+        }
+      ]
+    },
+    {
+      "start": 331,
+      "duration": 61,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, state the approved business constraints and two genuine alternatives."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 392,
+      "duration": 61,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, choose an approach, list consequences, and name a revisit condition."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 453,
+      "duration": 63,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write one blocking authorization comment, one test-coverage comment, and one optional maintainability suggestion."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 516,
+      "duration": 63,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, for each required fix, define a scenario that would prove it is resolved."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 579,
+      "duration": 65,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, revise the ADR after a hypothetical requirement for immediate confirmation; explain whether the original choice still holds."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 644,
+      "duration": 70,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A review comment should not claim an exploit was executed when you only established the problematic code path. Now pause the video and try the exercise yourself. Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation. Alternatives are compared under the same business requirements. The review distinguishes harmful behavior from stylistic preference. The explanation connects access mode, caller authority, and a negative test."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What makes an ADR useful later?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It preserves context, constraints, alternatives, consequences, and the assumptions that would justify a new decision. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

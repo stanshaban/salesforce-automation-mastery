@@ -1,0 +1,162 @@
+{
+  "version": 2,
+  "title": "J12 · Grant a Small Set of Working Permissions",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=441e2d13156c4c2bad6ce85ac8fda29f. Подготовь только синтетические данные и исходное состояние упражнения. Setup → Permission Sets → учебный набор продавца → Object Settings → Test Drive. Сопоставь Read/Edit и поля с матрицей. Покажи полный список назначений ограниченного учебного пользователя и выполни allow/deny проверки. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Submit a small table connecting Anna to the operations and fields she needs."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The evidence uses a restricted user. The explanation recognizes additive permissions and independent record sharing."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 60,
+      "label": "02 · Start from the work",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Start from the work». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna needs to read vehicles and contacts, create test-drive requests, and edit appointments she is allowed to manage. She does not need to delete the vehicle catalogue or configure user accounts. Write the required operations before opening a permission editor. This provides a business reason for each grant. A permission set is a collection of permissions assigned to users. It generally adds to permissions already granted by the profile and other assignments. It is not a subtraction mechanism. If a profile grants Delete, leaving Delete unchecked in a new permission set does not remove that existing grant. Inspect the combined access rather than treating one configuration page as the entire user."
+        }
+      ]
+    },
+    {
+      "start": 98,
+      "duration": 63,
+      "label": "03 · Define a deliberate learning assignment",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Define a deliberate learning assignment». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create a permission set named SAM Appointment Editor. For this exercise, grant Read on Vehicle and Contact, and Read, Create, and Edit on Test Drive. Do not grant Delete, View All Records, Modify All Records, or broad administrative permissions. Configure the required field visibility and editability for Vehicle__c, Customer__c, Scheduled_At__c, and Status__c on Test Drive. Auto-number and other system fields are not ordinary editable fields, so do not force them into an identical editability checklist. For Vehicle, allow the fields Anna needs to choose a vehicle, including Model. Decide explicitly whether this exercise requires VIN visibility. Lookup selection also depends on access to the referenced records; a visible relationship field does not make the entire related object available."
+        }
+      ]
+    },
+    {
+      "start": 161,
+      "duration": 30,
+      "label": "04 · Prove the useful permission and the boundary",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Prove the useful permission and the boundary». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Configure the set in Setup, assign it to the intended restricted learning user, and inspect the resulting user access summary. Assignment confirms configuration, not behaviour. Sign in as that user or use an approved login-as route in your own org to test the actual operation."
+        }
+      ]
+    },
+    {
+      "start": 191,
+      "duration": 78,
+      "label": "05 · Create the set",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, create the set. Open Setup → Permission Sets → New, enter SAM Appointment Editor, and choose a license setting compatible with the intended user. Save. Under Object Settings, open each relevant object → Edit, select the agreed object and field grants, then save. Use Manage Assignments → Add Assignments to choose the learning user; review all existing assignments before testing."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Create the set» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The configuration matches the written task. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The configuration matches the written task."
+        }
+      ]
+    },
+    {
+      "start": 269,
+      "duration": 59,
+      "label": "06 · Inspect the whole identity",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, inspect the whole identity. Assign the set to a compatible restricted user and review its other grants."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Inspect the whole identity» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Additional permission sources are not hidden. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Additional permission sources are not hidden."
+        }
+      ]
+    },
+    {
+      "start": 328,
+      "duration": 58,
+      "label": "07 · Run both directions",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, run both directions. Perform a permitted create and attempt a prohibited operation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Run both directions» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The useful action succeeds and the boundary remains enforced. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The useful action succeeds and the boundary remains enforced."
+        }
+      ]
+    },
+    {
+      "start": 386,
+      "duration": 61,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not dismiss a failed lab check by granting System Administrator or Modify All Data. Now pause the video and try the exercise yourself. Submit a small table connecting Anna to the operations and fields she needs. The evidence uses a restricted user. The explanation recognizes additive permissions and independent record sharing."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does an unchecked Delete box remove another Delete grant?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. The actual granting source must be inspected and changed when appropriate. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S14 · Choose System Boundaries and Data Ownership",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 38,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=c4e4da1bc1d34cffb895816850b22388. Подготовь только синтетические данные и исходное состояние упражнения. Покажи ownership table для Salesforce и DMS: кто владеет каждым полем. Проследи обновление и конфликт. Выдели authoritative state и отображаемую копию отдельно. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Complete the ownership worksheet and choose an interaction pattern for each fact."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. A copy is never mistaken for the authoritative decision. The user-facing status matches the actual confirmation guarantee."
+        }
+      ]
+    },
+    {
+      "start": 38,
+      "duration": 59,
+      "label": "02 · One business process can have several authoritative systems",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «One business process can have several authoritative systems». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Northstar uses Salesforce for customer interactions, a dealer management system for workshop operations, and a stock service for vehicle availability. A system of record is the authoritative source for a particular fact. It does not have to own every field about an entity. Salesforce may own the requested appointment while the scheduling system owns the confirmed workshop slot. Make ownership precise at the field or decision level. If both systems can independently declare the same slot reserved, a conflict policy is required. Copying the value into Salesforce does not transfer authority. Distinguish the authoritative state from a cached or replicated view, and show when the view was last refreshed."
+        }
+      ]
+    },
+    {
+      "start": 97,
+      "duration": 97,
+      "label": "03 · Match the pattern to the business promise",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Match the pattern to the business promise». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A synchronous request asks another system for an answer while the caller waits. It fits a decision that requires a current authoritative result, but introduces a dependency into the user's critical path. An asynchronous message decouples timing, but the interface must communicate pending work and eventual outcomes. Batch synchronization moves a set of changes periodically; it can suit information whose freshness tolerance is larger. Virtual access reads information without necessarily maintaining a full local copy. It can reduce duplication, but availability, query support, performance, authorization, and product licensing must fit the use case. It is not automatically simpler just because less data is stored locally."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic data-ownership worksheet» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic data-ownership worksheet. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 194,
+      "duration": 61,
+      "label": "04 · Design the failure contract with the success contract",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Design the failure contract with the success contract». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Suppose Anna saves a request but the scheduling service is unavailable. If the approved process allows Pending, show that state and retain a recoverable work item. Do not display Confirmed simply because a message was enqueued. If the process requires immediate confirmation, return an understandable failure or an explicitly permitted alternative instead of inventing a reservation. Pending is a user-facing integration state in this scenario, not a value already present in the starter picklist. The starter Test_Drive__c.Status__c values are Requested, Confirmed, Completed, and Cancelled. Keep an unconfirmed request as Requested and define a separate integration-state field if the implementation needs finer detail. Document any new metadata and map source states deliberately before writing them."
+        }
+      ]
+    },
+    {
+      "start": 255,
+      "duration": 47,
+      "label": "05 · Keep the first implementation narrow",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Keep the first implementation narrow». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with one field-level ownership map and one complete business journey. A small mock service can return Available, Unavailable, Timeout, and an existing reservation for a repeated key. This tests the application's reaction without requiring a real DMS or an industry product license. Measure user-visible wait for synchronous dependencies and pending-work age for asynchronous ones. Count unresolved mismatches in reconciliation. These metrics answer different questions; a low API error count can coexist with many appointments stuck Pending because a consumer stopped processing."
+        }
+      ]
+    },
+    {
+      "start": 302,
+      "duration": 63,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, name the authoritative owner, allowed writers, consumer, and stable business key for each row."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 365,
+      "duration": 62,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, state freshness tolerance and what Anna sees during a source outage."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 427,
+      "duration": 63,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, choose synchronous request, asynchronous message, scheduled synchronization, or supported virtual access with a reason."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 490,
+      "duration": 61,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, design one reconciliation check and one loop-prevention rule."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 551,
+      "duration": 64,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, use a mock response table to walk through successful reservation, timeout, duplicate request, and unavailable slot."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 615,
+      "duration": 72,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "An integration diagram without data ownership and failure behavior is incomplete, even when every arrow names an API. Now pause the video and try the exercise yourself. Complete the ownership worksheet and choose an interaction pattern for each fact. A copy is never mistaken for the authoritative decision. The user-facing status matches the actual confirmation guarantee. Each asynchronous or replicated flow has a way to find and resolve missing work."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Must one system own every field of an entity?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Authority can be divided by fact or decision, provided the write rules and conflict behavior are explicit. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

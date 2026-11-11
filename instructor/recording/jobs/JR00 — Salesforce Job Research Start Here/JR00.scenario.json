@@ -1,0 +1,81 @@
+{
+  "version": 2,
+  "title": "JR00 · Salesforce Job Research: Start Here",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 24,
+      "label": "01 · Выбор маршрута",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Открой contents page курса jobs. Покажи prerequisites и результат проекта."
+        },
+        {
+          "type": "speech",
+          "text": "A target role or an interest in finding your next Salesforce position. A repeatable search workflow, an honest CV, a reviewable portfolio and an interview practice plan."
+        }
+      ]
+    },
+    {
+      "start": 24,
+      "duration": 38,
+      "label": "02 · Find suitable roles",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Find suitable roles». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers find suitable roles. Turn a vague goal into a shortlist of roles and a skills map you can support with examples. Use an AI assistant to organise job research while checking every opportunity against a real employer source. Create a small system that makes the next useful action visible without turning job hunting into administration."
+        }
+      ]
+    },
+    {
+      "start": 62,
+      "duration": 32,
+      "label": "03 · Present your experience",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Present your experience». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers present your experience. Explain what you built, why it mattered and what you can actually prove. Create a readable CV that connects your skills to relevant work without inventing experience. Change emphasis for a vacancy while keeping your experience accurate and consistent."
+        }
+      ]
+    },
+    {
+      "start": 94,
+      "duration": 34,
+      "label": "04 · Practise and improve your interviews",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Прокрути до «Practise and improve your interviews». Открой один прямой lesson link, покажи practical outcome и вернись в contents."
+        },
+        {
+          "type": "speech",
+          "text": "This part covers practise and improve your interviews. Run a structured mock interview that reveals gaps instead of rewarding memorised wording. Show your reasoning while solving a small problem and reviewing a flawed implementation. Prepare clear experience stories and questions that help you understand the work and team."
+        }
+      ]
+    },
+    {
+      "start": 128,
+      "duration": 30,
+      "label": "05 · Первое действие",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд."
+        },
+        {
+          "type": "speech",
+          "text": "Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it."
+        }
+      ]
+    }
+  ]
+}

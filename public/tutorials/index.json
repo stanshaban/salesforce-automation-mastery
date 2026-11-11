@@ -1,0 +1,44 @@
+[
+  {
+    "id": "app-launcher",
+    "title": "Open an application",
+    "caption": "App Launcher shows the applications available to this user.",
+    "file": "/tutorials/app-launcher.jpg"
+  },
+  {
+    "id": "contacts-list",
+    "title": "A list contains several records",
+    "caption": "Recently Viewed is a view, not an inventory of every accessible contact.",
+    "file": "/tutorials/contacts-list.jpg"
+  },
+  {
+    "id": "contact-form",
+    "title": "Create one fictional contact",
+    "caption": "Enter values for one person. Saving a record does not add a new field.",
+    "file": "/tutorials/contact-form.jpg"
+  },
+  {
+    "id": "contact-details",
+    "title": "Inspect the stored contact",
+    "caption": "Details displays field values for Irina SAM Demo.",
+    "file": "/tutorials/contact-details.jpg"
+  },
+  {
+    "id": "contact-related",
+    "title": "Inspect related work",
+    "caption": "Related displays associated records. These lists can be empty.",
+    "file": "/tutorials/contact-related.jpg"
+  },
+  {
+    "id": "setup-home",
+    "title": "Recognize the configuration area",
+    "caption": "Setup changes how the org works. Daily customer work happens in the application.",
+    "file": "/tutorials/setup-home.jpg"
+  },
+  {
+    "id": "contact-fields",
+    "title": "Inspect the object definition",
+    "caption": "Fields & Relationships defines the structure used by Contact records.",
+    "file": "/tutorials/contact-fields.jpg"
+  }
+]

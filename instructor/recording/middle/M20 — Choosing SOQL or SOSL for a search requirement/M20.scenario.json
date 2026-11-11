@@ -1,0 +1,193 @@
+{
+  "version": 2,
+  "title": "M20 · Choosing SOQL or SOSL for a search requirement",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f59bbeceb22b4c9798ec1a3131f335e3. Подготовь только синтетические данные и исходное состояние упражнения. В редакторе запросов сравни SOQL по Test Drive и SOSL по нескольким объектам. Покажи фильтр, ID и объём результатов. Отдельно объясни задержку search index после сохранения. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create the appointment list and customer search with distinct contracts."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Date boundaries and null lookups are handled. Multiple object types are distinguishable."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 61,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "SOQL queries records from a known object using structured fields and filters. It suits a request such as 'show Confirmed test drives scheduled tomorrow.' SOSL searches text across supported searchable fields and can return results from multiple object types. It suits 'find the customer named Irina across Contact, Lead, and Account.' The decision starts with the question, not with which language has fewer characters. A child-to-parent SOQL relationship traverses a lookup using its relationship name. In the starter, Test_Drive__c.Customer__c points to Contact and Vehicle__c points to Vehicle__c, so expressions such as Customer__r.Name and Vehicle__r.Model__c provide related fields. These optional lookups may be null; the UI should not assume every row has a parent record."
+        }
+      ]
+    },
+    {
+      "start": 96,
+      "duration": 118,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Oleg wants tomorrow's confirmed appointments, ordered by time. A bounded SOQL query on Test_Drive__c answers this precisely. Anna wants to locate Irina, whose name might appear as a Contact or an unconverted Lead; SOSL can return object-specific result lists that the UI labels separately. Create a synthetic Contact named Irina SAM Search. Save it and keep its Id. Compare direct retrieval by Id with a SOSL search immediately and later. If search already finds it, record that observation; do not force a delay or claim the index always takes a fixed number of seconds. The important point is that immediate search visibility is not a guarantee."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «SOQL fragment; startAt/endAt are supplied Datetime bounds» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is SOQL fragment; startAt/endAt are supplied Datetime bounds. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «SOSL fragment; searchTerm is a validated string such as Irina*» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is SOSL fragment; searchTerm is a validated string such as Irina*. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 214,
+      "duration": 22,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "No new custom fields are required. Use only synthetic Contact, Lead, and Account records and grant the test user the necessary access to the objects being queried."
+        }
+      ]
+    },
+    {
+      "start": 236,
+      "duration": 63,
+      "label": "05 · Implement the appointment query",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, implement the appointment query. Define a time-zone-aware date window, use an inclusive lower and exclusive upper bound, and display null parent relationships safely."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Implement the appointment query» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Boundary appointments appear in the intended day without overlap. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Boundary appointments appear in the intended day without overlap."
+        }
+      ]
+    },
+    {
+      "start": 299,
+      "duration": 62,
+      "label": "06 · Build the multi-object search",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the multi-object search. Return labeled Contact, Lead, and Account groups and ask the user to resolve ambiguous matches."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the multi-object search» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A company is not silently treated as the customer Contact. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A company is not silently treated as the customer Contact."
+        }
+      ]
+    },
+    {
+      "start": 361,
+      "duration": 64,
+      "label": "07 · Test save versus search",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test save versus search. Create a Contact, retrieve by returned Id, and observe text-search visibility. In SOSL unit tests use Test.setFixedSearchResults for deterministic fixtures."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test save versus search» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Unit tests do not claim to measure live indexing latency. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Unit tests do not claim to measure live indexing latency."
+        }
+      ]
+    },
+    {
+      "start": 425,
+      "duration": 20,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Using a text search to establish whether the previous save succeeded can create accidental duplicates when the user retries a successful creation."
+        }
+      ]
+    },
+    {
+      "start": 445,
+      "duration": 61,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not promise immediate search indexing or use search as a substitute for CRUD/FLS and record-access checks. Now pause the video and try the exercise yourself. Create the appointment list and customer search with distinct contracts. Date boundaries and null lookups are handled. Multiple object types are distinguishable. The indexing limitation is explained without fabricated timing."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why use SOQL for tomorrow's appointments?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The object and field predicates are known and require structured filtering. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

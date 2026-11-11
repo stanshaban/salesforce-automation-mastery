@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "title": "AF-09 · Activate and Grant Employee Access",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Цель и границы",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=0d37e11c2c184db4b9fbfebb2ed79c71 и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+        },
+        {
+          "type": "speech",
+          "text": "Use the verified agent version from ordinary Lightning. A draft is editable. Commit Version fixes a version for review and Activate makes it available for use. Access to a particular Employee Agent is configured separately from permissions to its data and actions. Even the person who built an agent may need its explicit Agent Access assignment."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 85,
+      "label": "02 · Check readiness",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Both Flow are active, fields and permissions are configured, the scenario matrix is complete, and the UI identifies the artificial schedule. Do not activate a known configuration that writes before confirmation."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Check readiness. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 125,
+      "duration": 86,
+      "label": "03 · Commit and activate",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "In the current Builder select Commit Version, inspect the configuration, and Activate. Resolve any reported error before claiming publication. Make subsequent changes through New Version rather than assuming the active version remains freely editable."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Commit and activate. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 211,
+      "duration": 90,
+      "label": "04 · Grant this agent to the employee",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Setup → Permission Sets → SAM Agentforce Demo → Agent Access or Enabled Agent Access. Add Northstar Sales Assistant and assign the permission set to the intended user. The exact label can differ between profile and permission-set screens; verify the enabled agent itself."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Grant this agent to the employee. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 301,
+      "duration": 89,
+      "label": "05 · Open the employee experience",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Return to Lightning, refresh, open the Agentforce panel, and choose Northstar Sales Assistant when an agent selector is shown. If it is missing, inspect the active version, Agent Access, and actual assignment. A Slack connection is not required for this path."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Open the employee experience. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 390,
+      "duration": 85,
+      "label": "06 · Repeat a short smoke test",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "From the ordinary panel, obtain slots, decline the first confirmation, then perform a new confirmed operation and inspect the record. This verifies the deployed employee experience in addition to the Builder Preview."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ · Repeat a short smoke test. Выполни этот шаг в учебной org по открытому уроку. Покажи конкретный input, изменяемую настройку или узел Flow и наблюдаемый output. На сборку поставь CameraCue на паузу ⌘⇧Space. Не снимай токены и auth-файлы. До изменения состояния сохрани before evidence, после — persisted record/trace. Если это подготовка permission/activation, используй только уже разрешённую учебную конфигурацию; доступ к чувствительным системам не расширяй ради съёмки."
+        },
+        {
+          "type": "speech",
+          "text": "Check the value on screen before moving to the next step. If the result differs from the lesson, stop here and investigate that difference."
+        }
+      ]
+    },
+    {
+      "start": 475,
+      "duration": 37,
+      "label": "07 · Проверка результата",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Покажи expected/actual таблицу и соответствующий Flow debug, action trace или CRM record. Не подменяй результат live org симуляцией портала."
+        },
+        {
+          "type": "speech",
+          "text": "Agent Access and data permissions are separately configured. The final demonstration uses the version covered by the evidence. The employee can select the active agent and complete the verified path in Lightning."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза для ответа. Покажи один из common failures и нужный диагностический экран."
+        },
+        {
+          "type": "speech",
+          "text": "A common mistake to avoid is this: Creating a draft without activating it. Keep the record or trace that supports your conclusion before continuing."
+        }
+      ]
+    }
+  ]
+}

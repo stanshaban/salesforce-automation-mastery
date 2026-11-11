@@ -1,0 +1,162 @@
+{
+  "version": 2,
+  "title": "J13 · Set a Record-Access Baseline and Add Exceptions",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 35,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=95bb839f94c94ecd92704624d1b77405. Подготовь только синтетические данные и исходное состояние упражнения. Setup → Sharing Settings: покажи исходный OWD Test Drive. На схеме отдели владельца, коллегу и руководителя. В отдельной учебной конфигурации проверь одну точечную sharing rule и две контрастные записи. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Explain the intended owner, peer, manager, and service-reviewer access."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. A role is not confused with a profile. No unsupported branch isolation is claimed."
+        }
+      ]
+    },
+    {
+      "start": 35,
+      "duration": 58,
+      "label": "02 · Start with the baseline",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Start with the baseline». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Organization-wide defaults, commonly called OWD, define a baseline for access to records users do not own. The course starter sets Vehicle and Test Drive to Private. Private does not mean that nobody except the owner can ever see a record. Ownership, hierarchy behaviour where applicable, explicit sharing, and elevated permissions can provide additional access. Keep object and field permissions separate. If Max has no Read permission on Test Drive, widening record visibility is not the whole solution. Conversely, Read on Test Drive does not mean all private appointments are visible. You are combining the layers introduced in J11, not replacing them with a single Sharing Settings screen."
+        }
+      ]
+    },
+    {
+      "start": 93,
+      "duration": 65,
+      "label": "03 · Separate a hierarchy position from a permission profile",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Separate a hierarchy position from a permission profile». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A role represents a position in a record-access hierarchy. It is not the same thing as a profile or a job title printed on a business card. In a controlled example, Anna and Max can occupy peer sales roles while Oleg sits above them. Inspect the custom object's Grant Access Using Hierarchies setting before predicting Oleg's access. Record the actual configuration rather than assuming standard and custom objects behave identically. A public group collects users or other supported members for uses such as sharing recipients. Create a Northstar Service Review group containing a suitable test user. A criteria-based sharing rule can grant that group Read access to appointments whose Status is Confirmed. The business reason is that service staff prepare for agreed visits."
+        }
+      ]
+    },
+    {
+      "start": 158,
+      "duration": 30,
+      "label": "04 · Use records that distinguish the possible outcomes",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Use records that distinguish the possible outcomes». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Prepare Anna's Confirmed appointment and Anna's Requested appointment. Predict what the service reviewer should see through the new rule. The Confirmed appointment qualifies; the Requested appointment does not. If a third record owned by a peer is available, include it to make ownership differences visible."
+        }
+      ]
+    },
+    {
+      "start": 188,
+      "duration": 57,
+      "label": "05 · Inspect OWD",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, inspect OWD. Record the actual Test Drive baseline and custom-object hierarchy setting."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Inspect OWD» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The prediction matches the environment. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The prediction matches the environment."
+        }
+      ]
+    },
+    {
+      "start": 245,
+      "duration": 59,
+      "label": "06 · Configure one exception",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, configure one exception. Create a small public group and a Read rule for Confirmed appointments."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Configure one exception» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The condition and recipient have clear business purposes. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The condition and recipient have clear business purposes."
+        }
+      ]
+    },
+    {
+      "start": 304,
+      "duration": 58,
+      "label": "07 · Test contrasting records",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, test contrasting records. Compare Confirmed and Requested appointments under the intended reviewer."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Test contrasting records» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The result distinguishes this rule from unrelated grants. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The result distinguishes this rule from unrelated grants."
+        }
+      ]
+    },
+    {
+      "start": 362,
+      "duration": 60,
+      "label": "08 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Sharing rules grant access; they are not deny rules that cancel ownership, hierarchy, or other grants. Now pause the video and try the exercise yourself. Explain the intended owner, peer, manager, and service-reviewer access. A role is not confused with a profile. No unsupported branch isolation is claimed. Other granting sources are investigated when results differ."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does Private prevent all non-owner access?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. Additional configured access routes can grant it. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

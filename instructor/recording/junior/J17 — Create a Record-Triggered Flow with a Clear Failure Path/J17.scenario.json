@@ -1,0 +1,181 @@
+{
+  "version": 2,
+  "title": "J17 · Create a Record-Triggered Flow with a Clear Failure Path",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 36,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=9e7b30d0a2b341de9e36be324e943ad7. Подготовь только синтетические данные и исходное состояние упражнения. В учебной org проверь Allow Activities у Test Drive. Открой record-triggered Flow: создание записи → создание Task → fault path с Custom Error. В Debug покажи успех и управляемую ошибку, затем проверь сохранённые записи. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Deliver the Flow, activity-setting change, and a three-case result table."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The activity prerequisite is included. The submission distinguishes a Task from an email notification."
+        }
+      ]
+    },
+    {
+      "start": 36,
+      "duration": 70,
+      "label": "02 · Define the event and the business action",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Define the event and the business action». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A Flow is a configured sequence of operations. A record-triggered Flow starts when an eligible record is created, updated, or deleted, according to its configuration. Our requirement is deliberately small: when a new Requested Test Drive with a scheduled time is created, create one Task for its owner to follow up. A Task is a Salesforce work item. Creating it is not the same as sending an email or displaying a timed desktop reminder. Choose an after-save record-triggered Flow because it creates a separate related record. A before-save flow is useful for certain changes to the triggering record itself, but that is not this action. Limiting the trigger to record creation prevents an ordinary later edit from creating another Task. This is a specific duplicate-prevention design, not a universal guarantee against duplicate source appointments."
+        }
+      ]
+    },
+    {
+      "start": 106,
+      "duration": 58,
+      "label": "03 · Prepare the actual starter requirements",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Prepare the actual starter requirements». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The core Test Drive object currently has activities disabled. Enable Allow Activities on this custom object in the learning org before using its ID as Task.WhatId, and include that metadata change in your submission. Task.WhatId identifies the related business record. Without the prerequisite, a seemingly correct Create Records element can fail. Use a user-owned synthetic appointment. Configure Task.Subject as 'SAM reminder: ' followed by the appointment number, OwnerId as the appointment OwnerId, WhatId as the appointment Id, and ActivityDate as the date derived from Scheduled_At__c. Select valid Task Status and Priority values available in your org; do not assume a translated label is a valid API value."
+        }
+      ]
+    },
+    {
+      "start": 164,
+      "duration": 27,
+      "label": "04 · Connect success and failure deliberately",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Connect success and failure deliberately». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create the Flow for Test_Drive__c, triggered when a record is created. Require Status__c equal Requested and Scheduled_At__c not blank. Optimize for Actions and Related Records. Add a Create Records element for the Task with the fields described above."
+        }
+      ]
+    },
+    {
+      "start": 191,
+      "duration": 57,
+      "label": "05 · Configure the prerequisite",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, configure the prerequisite. Enable activities on Test Drive and record the metadata change."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Configure the prerequisite» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Task.WhatId can reference the intended object. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Task.WhatId can reference the intended object."
+        }
+      ]
+    },
+    {
+      "start": 248,
+      "duration": 59,
+      "label": "06 · Build the create-only path",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build the create-only path. Set the trigger conditions and map the Task fields explicitly."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build the create-only path» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A new eligible appointment produces one follow-up Task. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A new eligible appointment produces one follow-up Task."
+        }
+      ]
+    },
+    {
+      "start": 307,
+      "duration": 58,
+      "label": "07 · Add the failure response",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, add the failure response. Connect the fault path to a suitable Custom Error."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Add the failure response» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A required reminder failure blocks the save visibly. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A required reminder failure blocks the save visibly."
+        }
+      ]
+    },
+    {
+      "start": 365,
+      "duration": 58,
+      "label": "08 · Exercise both routes",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, exercise both routes. Test creation, a later edit, and the temporary controlled fault."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Exercise both routes» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Counts and user-visible results match the written requirement. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Counts and user-visible results match the written requirement."
+        }
+      ]
+    },
+    {
+      "start": 423,
+      "duration": 63,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "The starter does not enable activities. Configure and retrieve that explicit prerequisite before relating Tasks to Test Drive records. Now pause the video and try the exercise yourself. Deliver the Flow, activity-setting change, and a three-case result table. The activity prerequisite is included. The submission distinguishes a Task from an email notification. The active version and observed transaction outcome are stated."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why choose after-save here?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "The action creates a separate Task related to the saved appointment. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S25 · Capstone: Improve Northstar with Reproducible Evidence",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 45,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=b2f8db1b36c743f6a070daedd170eec9. Подготовь только синтетические данные и исходное состояние упражнения. Открой reproducible capstone package и commit. Покажи две связанные проблемы, одинаковые fixtures, correctness assertions и измерения. Затем новую fault card, recovery и список непроверенных границ. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance. Before-and-after claims are supported by comparable observations and unchanged business assertions."
+        }
+      ]
+    },
+    {
+      "start": 45,
+      "duration": 58,
+      "label": "02 · Choose a bounded problem with a visible outcome",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Choose a bounded problem with a visible outcome». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Oleg asks for a final improvement to Northstar's booking process. Choose two connected defects from the course, such as repeated collection scans and duplicate notification effects, or an overly broad vehicle query and an incomplete integration failure state. Avoid turning the capstone into a rewrite of the whole platform. Define the user promise and the defect mechanism. Anna should receive a correct booking outcome, Max should see only permitted useful data, and Oleg should find unresolved work. A performance claim must preserve that promise. The final package should make it possible for another learner to reproduce your limited experiment without access to your private org or credentials."
+        }
+      ]
+    },
+    {
+      "start": 103,
+      "duration": 106,
+      "label": "03 · Choose an honest execution path",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Choose an honest execution path». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The Salesforce path uses a small synthetic fixture in your own permitted training environment, with recorded API versions, configuration, personas, and actual test results. The local proxy path uses pure code or a simulation to demonstrate algorithmic work, state transitions, duplicate handling, and recovery decisions. It does not claim to measure Salesforce CPU, sharing recalculation, or enterprise throughput. The JavaScript fixture below is a local illustration of repeated matching work. It deliberately uses ordinary objects rather than Salesforce records. Extend it to compare a nested search with a Map lookup while asserting the same matched result. Counting comparisons supports a claim about algorithmic work for that fixture. A wall-clock timing, if collected, remains a local measurement with its own conditions."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Local fixture to extend; not a Salesforce benchmark» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Local fixture to extend; not a Salesforce benchmark. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 209,
+      "duration": 55,
+      "label": "04 · Build an evidence package, not a demonstration story",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build an evidence package, not a demonstration story». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Include the problem brief, baseline revision, changed revision, fixture, raw results, and the smallest relevant diff. Add tests for empty input, ordinary input, a mixed collection, and the failure that originally motivated the change. For access-related work, include a denied case under the relevant security context. For asynchronous work, include a repeated or uncertain outcome. Write one ADR explaining the selected approach and an alternative. Add a runbook for release or recovery appropriate to the change. A local algorithm improvement may need only a simple rollback procedure; a data backfill needs separate recovery reasoning. Scale the documentation to the actual risk."
+        }
+      ]
+    },
+    {
+      "start": 264,
+      "duration": 55,
+      "label": "05 · Defend the result and accept a new constraint",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Defend the result and accept a new constraint». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Ask a reviewer to introduce one unexpected constraint: another dealer must remain isolated, the provider can return duplicate acknowledgments, or the historical data cannot be changed during business hours. Explain which part of the implementation still holds and which decision must be revisited. Do not conceal the gap with a new untested assertion. Prepare a first-week observation plan for a hypothetical approved release. Choose a few signals tied to the original risk, such as failed saves, queue age, duplicate effects, access denials, and the defined user-journey latency. State who investigates each signal and what evidence would trigger rollback or recovery."
+        }
+      ]
+    },
+    {
+      "start": 319,
+      "duration": 62,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, write a problem statement, user promise, and acceptance matrix before editing."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 381,
+      "duration": 61,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, preserve the baseline and fixture; implement a small reviewable change."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 442,
+      "duration": 63,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, run the meaningful checks and save raw, sanitized results with the revision identifiers."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 505,
+      "duration": 62,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, create one ADR, an appropriate release/recovery runbook, and a brief incident-prevention note."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 567,
+      "duration": 64,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, respond to one surprise constraint, resolve critical review findings, and submit the final evidence index."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 631,
+      "duration": 80,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A local proxy demonstrates the mechanism it models; it does not certify a production Salesforce architecture. Now pause the video and try the exercise yourself. Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path. At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance. Before-and-after claims are supported by comparable observations and unchanged business assertions. The package includes tests, limitations, recovery reasoning, and no real customer data or credentials."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Can a local Map experiment prove a Salesforce CPU improvement?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "No. It can demonstrate reduced matching work and local behavior for the fixture; Salesforce runtime and production effects need separate measurements. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

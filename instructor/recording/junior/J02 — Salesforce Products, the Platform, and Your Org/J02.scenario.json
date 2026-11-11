@@ -1,0 +1,143 @@
+{
+  "version": 2,
+  "title": "J02 · Salesforce Products, the Platform, and Your Org",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 43,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=0d6b16cc9ab24232825cfadd39196af6. Подготовь только синтетические данные и исходное состояние упражнения. Покажи заголовок открытой учебной org и App Launcher. На схеме отдели org от приложения Sales и продукта Sales Cloud. Разложи пять запросов Northstar между salesperson, administrator и developer. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Northstar needs a new field, a customer note, an access change, a useful management report, and a stock-system connection."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. An application is not confused with an org. The proposed developer work includes understanding requirements and testing, not just writing code."
+        }
+      ]
+    },
+    {
+      "start": 43,
+      "duration": 60,
+      "label": "02 · A product solves a category of work",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «A product solves a category of work». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Salesforce is both a company name and the name people use for its family of business software. A company can use Salesforce products to support work such as sales or customer service. A product provides a collection of capabilities for a particular purpose. This does not mean every Salesforce customer owns every product or sees the same features. Northstar's salespeople need customer details and follow-up work. Its support staff need to track customer problems. A ready-made product can provide a starting point. Northstar may still need changes to match how it arranges test drives. A developer should first understand the available capabilities instead of assuming that every requirement needs a new program."
+        }
+      ]
+    },
+    {
+      "start": 103,
+      "duration": 59,
+      "label": "03 · The platform and an individual environment",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «The platform and an individual environment». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The Salesforce platform provides tools for storing data, controlling access, creating applications, and adding business behaviour. An application brings together screens and functions used for a task. Some changes can be made using configuration: settings chosen through the interface. Others require code: written instructions that a programming language can execute. Both approaches still need clear requirements and testing. An org, short for organization, is a separate Salesforce environment containing its own data, users, and configuration. A user is an account through which a person signs in. Northstar's working org is distinct from your personal learning org. Creating a learning org does not grant access to an employer's customer information."
+        }
+      ]
+    },
+    {
+      "start": 162,
+      "duration": 40,
+      "label": "04 · People and responsibilities",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «People and responsibilities». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna and Max use the system to carry out sales work. Oleg defines the team's needs and checks whether the result helps the business. A Salesforce administrator changes configuration, manages access, and maintains the application. A Salesforce developer writes and maintains code when the solution needs it. These are responsibilities, not rigid boundaries: a developer also uses configuration, and a small team may combine several jobs."
+        }
+      ]
+    },
+    {
+      "start": 202,
+      "duration": 60,
+      "label": "05 · Name the environment",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, name the environment. Write down the org you intend to use for learning, separately from any work environment."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Name the environment» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can explain where experiments belong. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can explain where experiments belong."
+        }
+      ]
+    },
+    {
+      "start": 262,
+      "duration": 61,
+      "label": "06 · Assign responsibilities",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, assign responsibilities. For each request, identify the business decision-maker, configuration work, and any coding work."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Assign responsibilities» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Unclear ownership becomes a question for Oleg rather than an invented requirement. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Unclear ownership becomes a question for Oleg rather than an invented requirement."
+        }
+      ]
+    },
+    {
+      "start": 323,
+      "duration": 65,
+      "label": "07 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Your learning administrator account has broad privileges. Its successful test does not prove a salesperson has the intended access. Now pause the video and try the exercise yourself. Northstar needs a new field, a customer note, an access change, a useful management report, and a stock-system connection. An application is not confused with an org. The proposed developer work includes understanding requirements and testing, not just writing code."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. What is an org?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "A separate Salesforce environment containing data, users, and configuration. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

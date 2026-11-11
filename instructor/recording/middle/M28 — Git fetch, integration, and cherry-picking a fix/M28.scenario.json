@@ -1,0 +1,185 @@
+{
+  "version": 2,
+  "title": "M28 · Git fetch, integration, and cherry-picking a fix",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 37,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=0c2e41309bee4374a815d695ec4552e1. Подготовь только синтетические данные и исходное состояние упражнения. В отдельном учебном Git checkout покажи log до и после fetch. Затем merge и отдельный cherry-pick fix. На контролируемом конфликте объясни смысл обеих версий перед разрешением. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create the controlled branch experiment and explain each state transition."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. Working tree, index, branch, and remote-tracking state are distinguished. The selected commit is identified from real history."
+        }
+      ]
+    },
+    {
+      "start": 37,
+      "duration": 62,
+      "label": "02 · Understand the mechanism",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Understand the mechanism». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "The working tree contains the files currently checked out. The index, often called staging, records the content prepared for the next commit. A local branch points to a commit in your repository. A remote-tracking reference such as origin/main records the last fetched state of the remote branch; it is not a live view that updates itself whenever someone pushes. git fetch downloads objects and updates the relevant remote-tracking references without automatically integrating them into your current branch. git pull performs a fetch followed by an integration strategy, such as merge or rebase, according to options and configuration. Before pulling, know which branch you are on, whether the working tree is clean, and which integration behavior is intended."
+        }
+      ]
+    },
+    {
+      "start": 99,
+      "duration": 99,
+      "label": "03 · Northstar Motors worked example",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Northstar Motors worked example». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "In your personal training copy, create notes/warranty-contract.md with a short fictional timeout policy and commit it. On a hotfix branch, correct one incorrect timeout explanation. On a feature branch, edit the same paragraph while adding unrelated notes. Cherry-picking the hotfix onto the feature branch gives a controlled conflict that contains no production code. Draw the original main commit, feature commit, and hotfix commit before running the operation. After resolution, draw the new cherry-picked commit on the feature branch. Explain why the hotfix branch's original commit still exists and why the feature branch's new commit is not the same object."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Inspection and integration commands in your personal training copy; replace the commit placeholder» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Inspection and integration commands in your personal training copy; replace the commit placeholder. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 198,
+      "duration": 24,
+      "label": "04 · Build and inspect",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Build and inspect». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Create the practice branches and file explicitly in your own repository. Replace placeholders using the observed log. Do not run these commands blindly in a checkout containing unrelated unfinished work."
+        }
+      ]
+    },
+    {
+      "start": 222,
+      "duration": 64,
+      "label": "05 · Record the initial state",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, record the initial state. Inspect status and the branch graph. Note the current branch, staged files, working changes, and origin/main before fetching."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Record the initial state» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: You can identify what is local and what is last-known remote state. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: You can identify what is local and what is last-known remote state."
+        }
+      ]
+    },
+    {
+      "start": 286,
+      "duration": 65,
+      "label": "06 · Observe fetch separately",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, observe fetch separately. Fetch, inspect the graph again, and compare local main with origin/main before choosing merge or rebase. Explain what pull would additionally do under your configuration."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Observe fetch separately» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: No automatic integration is mistaken for part of fetch. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: No automatic integration is mistaken for part of fetch."
+        }
+      ]
+    },
+    {
+      "start": 351,
+      "duration": 65,
+      "label": "07 · Transfer and resolve the fix",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, transfer and resolve the fix. Cherry-pick the focused hotfix into the practice feature branch, resolve its intended meaning, and inspect the resulting diff and history."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Transfer and resolve the fix» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Only the intended fix and known conflict resolution are added. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Only the intended fix and known conflict resolution are added."
+        }
+      ]
+    },
+    {
+      "start": 416,
+      "duration": 23,
+      "label": "08 · Failure cases and boundaries",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Failure cases and boundaries». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A destructive reset can erase uncommitted or unshared work. It is unnecessary for this exercise; use the operation's abort mechanism when you need to return from an unresolved cherry-pick."
+        }
+      ]
+    },
+    {
+      "start": 439,
+      "duration": 64,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Do not force-push or reset a shared branch merely to make the graph look tidy. Now pause the video and try the exercise yourself. Create the controlled branch experiment and explain each state transition. Working tree, index, branch, and remote-tracking state are distinguished. The selected commit is identified from real history. The final content is coherent and unrelated changes are preserved."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Does fetch update your current files?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "It does not automatically integrate the fetched history into the checked-out branch. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

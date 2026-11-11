@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "title": "S03 · Locate Delay Across the Browser, Apex, and Database",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 43,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=46ae614e3be54101905373d1411fb718. Подготовь только синтетические данные и исходное состояние упражнения. Покажи browser Network timing, correlation ID и Apex log одного учебного действия. Разложи полное время по границам. Не складывай overlapping интервалы как последовательные. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Explain the synthetic timeline, then design a small experiment that could confirm or reject one bottleneck hypothesis."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The answer does not equate CPU, network elapsed time, and database duration. The proposed experiment changes one relevant factor and preserves the business result."
+        }
+      ]
+    },
+    {
+      "start": 43,
+      "duration": 65,
+      "label": "02 · Follow a request rather than a collection of tools",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Follow a request rather than a collection of tools». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Max opens Northstar's vehicle search. The browser can wait before sending a request, transfer a response, process JavaScript, and render rows. Salesforce can spend time running application logic, accessing data, and waiting for a callout. These stages explain different parts of the wait. Opening every diagnostic tool at once creates more output, but it does not automatically establish a causal sequence. Use a correlation identifier: a value that lets you associate records about the same request or business operation. Prefer a non-sensitive generated identifier over Irina's email or a complete request body. In a small experiment, a run label and carefully recorded timestamps may be enough. At greater scale, define how the identifier travels across application logs, integration attempts, and support reports."
+        }
+      ]
+    },
+    {
+      "start": 108,
+      "duration": 115,
+      "label": "03 · CPU time is only one clock",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «CPU time is only one clock». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Apex CPU time measures application-server processing attributed to the transaction. The database-processing portion of SOQL and DML, and time waiting for an external callout, are not counted as Apex CPU. Application work around those operations can still consume CPU. Consequently, a request can take several seconds while its reported CPU is much smaller. It can also fail the CPU limit even when its queries individually look quick. The synthetic example below places an external availability check on the critical path. The critical path is the chain of dependent work that determines when the user can continue. If rendering requires the callout result, improving a small collection loop will not remove the wait for that result. If the availability check can move to a later explicit step without breaking the business promise, the dependency itself may be the more valuable design question."
+        },
+        {
+          "type": "action",
+          "text": "ЭКРАН · КОД. Открой пример «Synthetic timeline for reasoning; not an observed benchmark» рядом с ожидаемым результатом. Выделяй вход, решение и выход; не читай весь листинг вслух. Перед запуском используй prerequisites и точную команду из урока. Запиши фактический вывод, включая ошибку, если она возникла."
+        },
+        {
+          "type": "speech",
+          "text": "The example on screen is Synthetic timeline for reasoning; not an observed benchmark. Before running it, identify the input, the branch that makes the decision, and the result we expect. We will compare that expectation with the actual output."
+        }
+      ]
+    },
+    {
+      "start": 223,
+      "duration": 70,
+      "label": "04 · Test competing explanations",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Test competing explanations». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Write two hypotheses: the slow callout controls the delay, or a large response controls browser rendering. For the first, replace the external dependency with a controlled test double in a suitable test path and compare the request's structure and elapsed behavior. A test double is a stand-in with a deliberate response, not a secretly faster production service. For the second, compare a reduced required field set and a smaller initial result page while keeping the user task equivalent. Change one meaningful variable at a time. Keep the same user permissions, filters, and application revision. Record whether caches were already populated. Capture several runs, including errors, rather than keeping only the fastest example. Heavy debug logging can affect an experiment and produce large files; use an appropriate logging scope and avoid publishing records or credentials."
+        }
+      ]
+    },
+    {
+      "start": 293,
+      "duration": 62,
+      "label": "05 · What a small org can and cannot establish",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «What a small org can and cannot establish». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "In a training org, you can compare two LWC rendering approaches, observe request timing, or inspect a bounded Apex collection operation. These experiments teach how to attribute delay. They do not reproduce production network paths, a large sharing model, data skew, or concurrent dealer traffic. A good submission states the exact claim it supports, such as 'this change reduces repeated client processing for this fixture.' Your evidence package should include a sanitized timeline, the relevant code difference, raw observation rows, and a short explanation of remaining uncertainty. Avoid exporting an entire browser archive without reviewing its contents: network captures can include sensitive headers and data. A concise redrawn timeline is often sufficient for a classroom review."
+        }
+      ]
+    },
+    {
+      "start": 355,
+      "duration": 64,
+      "label": "06 · Практический шаг 1",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, draw the browser and server spans with explicit nesting; calculate the stated total without double-counting."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 1 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 419,
+      "duration": 64,
+      "label": "07 · Практический шаг 2",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, identify which time is known, which is included inside another span, and which remains unattributed."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 2 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 483,
+      "duration": 62,
+      "label": "08 · Практический шаг 3",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, propose two different causes and name the observation that would distinguish them."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 3 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 545,
+      "duration": 63,
+      "label": "09 · Практический шаг 4",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, prepare a minimal code or configuration change for one experiment; execution is optional."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 4 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 608,
+      "duration": 66,
+      "label": "10 · Практический шаг 5",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "For the practical work, submit a blank or genuinely observed results table, a sanitized diagram, and a paragraph describing what the evidence cannot establish."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни пункт 5 независимой практики в подготовленном fixture/worksheet. Покажи промежуточный артефакт и сохрани его. Не представляй расчёт или схему как выполненную операцию в Salesforce. Пауза суфлёра на время работы."
+        },
+        {
+          "type": "speech",
+          "text": "Keep the intermediate result. We will need it when we check the complete exercise, rather than relying on the final screen alone."
+        }
+      ]
+    },
+    {
+      "start": 674,
+      "duration": 78,
+      "label": "11 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "Synthetic timings are exercise inputs. Keep them out of a chart labelled 'measured before and after.' Now pause the video and try the exercise yourself. Explain the synthetic timeline, then design a small experiment that could confirm or reject one bottleneck hypothesis. The answer does not equate CPU, network elapsed time, and database duration. The proposed experiment changes one relevant factor and preserves the business result. Any measured result includes conditions and sample count; supplied timings remain marked synthetic."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Can a slow request have low Apex CPU?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "Yes. Waiting for a callout, database processing, network transfer, and browser work can contribute to elapsed time without appearing as equivalent Apex CPU. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,18 @@
 # How a Salesforce Transaction Runs
 
-S01 · senior · About 55 minutes with practice
-
 ![A shared platform foundation supporting several clearly separated application workspaces](https://sam-portal-production.up.railway.app/lesson-images/S01.jpg)
 
 Trace one booking from a browser action to committed records, then separate that transaction from the work that follows it.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a one-page diagram and a state table for Anna's booking. Use the synthetic trace; no Salesforce connection is required.
+
+### Check the result
+
+- The diagram has explicit commit boundaries and does not claim Hyperforce removes limits.
+- A worker failure leaves the committed appointment intact.
+- Every claim is labelled as a documented platform rule, a synthetic case result, or an observation from your own experiment.
 
 ## Before you begin
 
@@ -16,6 +24,14 @@ Trace one booking from a browser action to committed records, then separate that
 - Distinguish application metadata, business records, and execution state.
 - Draw transaction and trust boundaries without inventing Salesforce internals.
 - Explain which application decisions remain important on Hyperforce.
+
+## See the steps
+
+![Commit and rollback](https://sam-portal-production.up.railway.app/animations/transaction.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/transaction.mp4)
+
+
 
 ## 1. Start with Anna's booking
 
@@ -126,11 +142,19 @@ Answer in your own words before reading the explanations.
 
 # Turn a Performance Complaint into a Measurable Requirement
 
-S02 · senior · About 55 minutes with practice
-
 ![A simple stopwatch beside a user journey and a measurable target marker](https://sam-portal-production.up.railway.app/lesson-images/S02.jpg)
 
 Convert 'Salesforce is slow' into a specific user journey, a comparison method, and an agreed improvement target.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose two journeys from the synthetic intake sheet and prepare a one-page investigation brief for Oleg.
+
+### Check the result
+
+- Latency, throughput, and backlog are not treated as interchangeable.
+- Synthetic estimates and actual observations are visibly separated.
+- The brief states sample limitations and a next evidence-gathering step.
 
 ## Before you begin
 
@@ -252,11 +276,19 @@ Answer in your own words before reading the explanations.
 
 # Locate Delay Across the Browser, Apex, and Database
 
-S03 · senior · About 65 minutes with practice
-
 ![Three timing segments for interface, processing and data with one bottleneck highlighted](https://sam-portal-production.up.railway.app/lesson-images/S03.jpg)
 
 Use a request timeline to identify the work that actually controls a user's wait, then test one explanation at a time.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain the synthetic timeline, then design a small experiment that could confirm or reject one bottleneck hypothesis.
+
+### Check the result
+
+- The answer does not equate CPU, network elapsed time, and database duration.
+- The proposed experiment changes one relevant factor and preserves the business result.
+- Any measured result includes conditions and sample count; supplied timings remain marked synthetic.
 
 ## Before you begin
 
@@ -268,6 +300,14 @@ Use a request timeline to identify the work that actually controls a user's wait
 - Distinguish elapsed request time from Apex CPU time.
 - Correlate observations without adding overlapping durations twice.
 - Choose a controlled experiment that tests the current bottleneck.
+
+## See the steps
+
+![A useful filter preserves the user requirement](https://sam-portal-production.up.railway.app/animations/query.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/query.mp4)
+
+
 
 ## 1. Follow a request rather than a collection of tools
 
@@ -378,11 +418,19 @@ Answer in your own words before reading the explanations.
 
 # Estimate Resource Demand Before Increasing Traffic
 
-S04 · senior · About 60 minutes with practice
-
 ![A small resource budget gauge beside a group of efficiently processed records](https://sam-portal-production.up.railway.app/lesson-images/S04.jpg)
 
 Build a small capacity model that separates transaction limits, organization allocations, and the rate at which background work can finish.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Model all three traffic scenarios using the supplied assumptions and a small optional collection experiment.
+
+### Check the result
+
+- Every calculated value includes its unit and assumptions.
+- The 80-versus-100 example produces 600 additional waiting items after 30 minutes.
+- No small-org result is described as a validated 1000-bookings-per-minute capacity.
 
 ## Before you begin
 
@@ -501,11 +549,19 @@ Answer in your own words before reading the explanations.
 
 # Choose an Optimization and Prove Its Value
 
-S05 · senior · About 55 minutes with practice
-
 ![Two restrained performance traces showing a measured before and after with the same workload](https://sam-portal-production.up.railway.app/lesson-images/S05.jpg)
 
 Prioritize an improvement by business impact, evidence, implementation risk, and the ability to reverse it.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Choose two candidates from the evidence cards and prepare an approval-ready optimization note.
+
+### Check the result
+
+- The recommendation follows evidence and business use rather than the amount of code changed.
+- No exact speedup is promised without observed comparable measurements.
+- The verification plan includes permissions and data correctness, not only response time.
 
 ## Before you begin
 
@@ -517,6 +573,14 @@ Prioritize an improvement by business impact, evidence, implementation risk, and
 - Rank candidate changes without promising unsupported speedups.
 - Define before-and-after comparisons and correctness guardrails.
 - Explain when leaving working code alone is the better choice.
+
+## See the steps
+
+![A useful filter preserves the user requirement](https://sam-portal-production.up.railway.app/animations/query.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/query.mp4)
+
+
 
 ## 1. The longest code file is not automatically the best target
 
@@ -627,11 +691,19 @@ Answer in your own words before reading the explanations.
 
 # Read Query Plans and Data Selectivity
 
-S06 · senior · About 65 minutes with practice
-
 ![A magnifying glass choosing a narrow indexed route through a large orderly data grid](https://sam-portal-production.up.railway.app/lesson-images/S06.jpg)
 
 Explain why a query can slow down without a code change, and use query plans without mistaking a small data set for a scale benchmark.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Compare the two synthetic snapshots and design a correct upcoming-appointments query for Anna.
+
+### Check the result
+
+- The answer explains why unchanged code can behave differently after data growth.
+- The narrower query retains all records required by the stated user journey.
+- Small-org observations and large-volume assumptions are reported separately.
 
 ## Before you begin
 
@@ -643,6 +715,14 @@ Explain why a query can slow down without a code change, and use query plans wit
 - Define selectivity and explain why an index is not a performance guarantee.
 - Compare query plans against actual data distribution.
 - Design a small-org query experiment and state its scale limitations.
+
+## See the steps
+
+![A useful filter preserves the user requirement](https://sam-portal-production.up.railway.app/animations/query.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/query.mp4)
+
+
 
 ## 1. Indexes narrow a search only when the filter helps
 
@@ -751,11 +831,19 @@ Answer in your own words before reading the explanations.
 
 # Find Shared Records Behind Lock Contention
 
-S07 · senior · About 65 minutes with practice
-
 ![Many record links converging on one overloaded parent lock beside a more balanced arrangement](https://sam-portal-production.up.railway.app/lesson-images/S07.jpg)
 
 Trace competing updates to the records they may lock, then change the work partition rather than blindly adding workers.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Create a lock map and a processing plan for the synthetic three-worker case.
+
+### Check the result
+
+- The explanation identifies the common resource rather than only repeating UNABLE_TO_LOCK_ROW.
+- The proposed partition corresponds to the actual record being contested.
+- The recovery plan preserves failed work and does not rely on unlimited immediate retries.
 
 ## Before you begin
 
@@ -878,11 +966,19 @@ Answer in your own words before reading the explanations.
 
 # Load Data with Reconciliation and Safe Replays
 
-S08 · senior · About 70 minutes with practice
-
 ![A staged stream of records entering a database through a validation checkpoint](https://sam-portal-production.up.railway.app/lesson-images/S08.jpg)
 
 Plan a repeatable vehicle-and-appointment load that accounts for dependencies, partial results, and uncertain retries.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare a preflight and result ledger for the six supplied appointment rows, plus a separate vehicle fixture V-001 through V-005.
+
+### Check the result
+
+- The ledger never relies on CSV position as the permanent identity.
+- A-101 version 1 is recorded as superseded before upload; the five-row submitted set has one snapshot per source identity.
+- Successful, failed, and unprocessed outcomes are distinguishable; replay does not create extra appointments.
 
 ## Before you begin
 
@@ -1009,11 +1105,19 @@ Answer in your own words before reading the explanations.
 
 # Archive History Without Losing the Business Record
 
-S09 · senior · About 60 minutes with practice
-
 ![Recent records on an active shelf and older records in an archive with one reporting path](https://sam-portal-production.up.railway.app/lesson-images/S09.jpg)
 
 Separate active working data from historical information and design retrieval, reporting, and recovery before proposing deletion.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Use ten fictional appointments to define an archive policy proposal, a manifest, and a retrieval test.
+
+### Check the result
+
+- Archiving, backup, history, and deletion are not conflated.
+- The exercise does not present an invented retention period as a legal rule.
+- The design includes destination permissions and recovery, not only reduced live record count.
 
 ## Before you begin
 
@@ -1136,11 +1240,19 @@ Answer in your own words before reading the explanations.
 
 # Design Record Access for a Dealer Network
 
-S10 · senior · About 65 minutes with practice
-
 ![A small network of dealership locations with deliberate grouped access boundaries](https://sam-portal-production.up.railway.app/lesson-images/S10.jpg)
 
 Model dealer isolation, central service access, and staff changes without copying the organization chart into an oversized role hierarchy.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Compare individual appointment ownership with a centralized ownership alternative using the same business matrix.
+
+### Check the result
+
+- Peer access is not assumed from job title or role name.
+- Removing one grant is not automatically treated as removal of every access path.
+- The decision includes staff movement and exception cleanup as well as today's visibility.
 
 ## Before you begin
 
@@ -1152,6 +1264,14 @@ Model dealer isolation, central service access, and staff changes without copyin
 - Separate job capabilities from record visibility.
 - Compare access models using both daily work and organizational changes.
 - Define positive and negative access tests for realistic personas.
+
+## See the steps
+
+![Record access has independent granting paths](https://sam-portal-production.up.railway.app/animations/sharing.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/sharing.mp4)
+
+
 
 ## 1. Start with people doing work
 
@@ -1261,11 +1381,19 @@ Answer in your own words before reading the explanations.
 
 # Remove Excess Access Without Breaking Legitimate Work
 
-S11 · senior · About 65 minutes with practice
-
 ![A reviewer removing one unnecessary key from a ring of permissions](https://sam-portal-production.up.railway.app/lesson-images/S11.jpg)
 
 Audit the sources of an effective permission or record grant and prove that a proposed removal changes exactly the intended access.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Use the inventory to remove the expired East collaboration while preserving legitimate West work.
+
+### Check the result
+
+- Muting is never described as a user-wide deny.
+- The plan checks independent grants after each removal.
+- Legitimate West work remains a specific acceptance criterion.
 
 ## Before you begin
 
@@ -1277,6 +1405,14 @@ Audit the sources of an effective permission or record grant and prove that a pr
 - Trace additive permissions and independent record-access paths.
 - Use muting within its actual group boundary.
 - Plan access reduction with business tests and a controlled recovery route.
+
+## See the steps
+
+![Muting affects one permission set group](https://sam-portal-production.up.railway.app/animations/muting.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/muting.mp4)
+
+
 
 ## 1. An effective right can have several sources
 
@@ -1388,11 +1524,19 @@ Answer in your own words before reading the explanations.
 
 # Plan a Deferred-Sharing Maintenance Window
 
-S12 · senior · About 65 minutes with practice
-
 ![A maintenance calendar beside a paused sharing calculation and a deliberate recalculation step](https://sam-portal-production.up.railway.app/lesson-images/S12.jpg)
 
 Write an operational runbook for a large access-model change, including the distinct steps of resuming calculations and recalculating accumulated changes.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare a runbook and three failure-card responses for a synthetic Northstar access change.
+
+### Check the result
+
+- Resume and full Recalculate are explicit separate requirements.
+- The plan acknowledges mechanisms that are not paused by sharing-rule deferral.
+- Completion requires verified access and resolved exceptions, not only saved configuration.
 
 ## Before you begin
 
@@ -1517,11 +1661,19 @@ Answer in your own words before reading the explanations.
 
 # Control Privileged Code and External-User Access
 
-S13 · senior · About 70 minutes with practice
-
 ![An external user and internal application separated by a clear guarded boundary](https://sam-portal-production.up.railway.app/lesson-images/S13.jpg)
 
 Review identity, permissions, record sharing, and input validation as separate trust boundaries, using explicit Apex access modes.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Design the authorization contract for a portal caller who may read only their own appointments.
+
+### Check the result
+
+- The contract does not trust a client-supplied customer Id as proof of ownership.
+- Identity, CRUD/FLS, record sharing, and payload validation are treated separately.
+- Any elevated operation has a narrow purpose and explicit negative tests.
 
 ## Before you begin
 
@@ -1646,11 +1798,19 @@ Answer in your own words before reading the explanations.
 
 # Choose System Boundaries and Data Ownership
 
-S14 · senior · About 65 minutes with practice
-
 ![Two systems with one record clearly owned by one system and a controlled synchronisation path](https://sam-portal-production.up.railway.app/lesson-images/S14.jpg)
 
 Decide which system owns each fact, how other systems use it, and what happens when they disagree.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Complete the ownership worksheet and choose an interaction pattern for each fact.
+
+### Check the result
+
+- A copy is never mistaken for the authoritative decision.
+- The user-facing status matches the actual confirmation guarantee.
+- Each asynchronous or replicated flow has a way to find and resolve missing work.
 
 ## Before you begin
 
@@ -1775,11 +1935,20 @@ Answer in your own words before reading the explanations.
 
 # Handle Duplicate and Out-of-Order Events
 
-S15 · senior · About 70 minutes with practice
-
 ![Out-of-order message cards being placed into a coherent sequence with a duplicate set aside](https://sam-portal-production.up.railway.app/lesson-images/S15.jpg)
 
 Design a consumer that produces a consistent business outcome when messages repeat or arrive in an unexpected sequence.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Apply the synthetic events to an appointment state and record a decision for every arrival.
+
+### Check the result
+
+- The older version cannot revert the newer state.
+- The duplicate cancellation does not repeat the business effect.
+- The answer explains why the same policy would not automatically work for delta events.
+- External status labels stay separate from the starter picklist until a documented mapping or metadata extension exists.
 
 ## Before you begin
 
@@ -1791,6 +1960,14 @@ Design a consumer that produces a consistent business outcome when messages repe
 - Separate event identity, operation identity, and stream position.
 - Define an explicit policy for duplicates and older versions.
 - Explain why one durable business effect requires more than a replay checkpoint.
+
+## See the steps
+
+![A repeated request is not a second business operation](https://sam-portal-production.up.railway.app/animations/idempotency.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/idempotency.mp4)
+
+
 
 ## 1. Delivery and business effects have different identities
 
@@ -1905,11 +2082,19 @@ Answer in your own words before reading the explanations.
 
 # Recover from an External-Service Outage Without a Retry Storm
 
-S16 · senior · About 65 minutes with practice
-
 ![An unavailable external system with buffered work and a careful controlled restart path](https://sam-portal-production.up.railway.app/lesson-images/S16.jpg)
 
 Build bounded retries, visible failed work, and a paced recovery process that can handle new arrivals while draining a backlog.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Design the statuses and transitions for scheduling requests during a synthetic thirty-minute outage.
+
+### Check the result
+
+- No path retries forever without a bound or operator state.
+- Unknown outcomes preserve the same business operation identity.
+- The recovery calculation separates new arrivals from backlog drain and is labelled hypothetical.
 
 ## Before you begin
 
@@ -1921,6 +2106,14 @@ Build bounded retries, visible failed work, and a paced recovery process that ca
 - Classify failures before retrying them.
 - Explain backoff, jitter, and a circuit breaker in practical terms.
 - Define controlled recovery and a measurable backlog-clearing plan.
+
+## See the steps
+
+![Bounded recovery during an outage](https://sam-portal-production.up.railway.app/animations/retry.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/retry.mp4)
+
+
 
 ## 1. Retries are additional load
 
@@ -2032,11 +2225,19 @@ Answer in your own words before reading the explanations.
 
 # Reconstruct an Incident from Business and Technical Evidence
 
-S17 · senior · About 65 minutes with practice
-
 ![Three simple telemetry panels converging on one incident timeline](https://sam-portal-production.up.railway.app/lesson-images/S17.jpg)
 
 Build an evidence-based incident timeline and choose corrective actions that address the demonstrated failure mechanism.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Explain the synthetic N-77 notification incident and propose a safe recovery and prevention plan.
+
+### Check the result
+
+- The report distinguishes queuing success from downstream completion.
+- The timeout remains an uncertain remote outcome until reconciled.
+- Corrective actions can be verified and avoid blame-only explanations.
 
 ## Before you begin
 
@@ -2160,11 +2361,19 @@ Answer in your own words before reading the explanations.
 
 # Refactor Legacy Automation in Small Verified Steps
 
-S18 · senior · About 65 minutes with practice
-
 ![An older code structure receiving one small supported replacement piece](https://sam-portal-production.up.railway.app/lesson-images/S18.jpg)
 
 Capture existing behavior, isolate one responsibility, and change a legacy booking handler without requiring a complete rewrite.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Design a small refactor that separates status-transition decisions from reminder persistence.
+
+### Check the result
+
+- Existing behavior and intended corrected behavior are labelled separately.
+- The first change has one responsibility and a clear comparison path.
+- Tests check side-effect counts and bulk behavior, not only line coverage.
 
 ## Before you begin
 
@@ -2176,6 +2385,14 @@ Capture existing behavior, isolate one responsibility, and change a legacy booki
 - Explain characterization tests and their limits.
 - Choose a small boundary for extracting legacy behavior.
 - Separate structural refactoring from intentional behavior changes.
+
+## See the steps
+
+![Metadata and data changes have separate recovery work](https://sam-portal-production.up.railway.app/animations/release.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/release.mp4)
+
+
 
 ## 1. First discover what the old code actually does
 
@@ -2287,11 +2504,19 @@ Answer in your own words before reading the explanations.
 
 # Test Integration Contracts at the Right Boundaries
 
-S19 · senior · About 65 minutes with practice
-
 ![Two system interfaces meeting at a contract card with matching test checks](https://sam-portal-production.up.railway.app/lesson-images/S19.jpg)
 
 Build a risk-based test set for a changing scheduling API, combining fast local checks with focused integration evidence.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Prepare fixtures and tests for a provider moving from the old flat response to the proposed nested contract.
+
+### Check the result
+
+- An unfamiliar status cannot become Confirmed by default.
+- The report identifies mocked dependencies and contract versions.
+- At least one test would fail if the required reservation reference disappeared.
 
 ## Before you begin
 
@@ -2303,6 +2528,14 @@ Build a risk-based test set for a changing scheduling API, combining fast local 
 - Explain consumer and provider contracts in plain language.
 - Select tests that catch meaningful compatibility failures.
 - Distinguish a mocked response test from an end-to-end integration result.
+
+## See the steps
+
+![Classify a provider response before retrying](https://sam-portal-production.up.railway.app/animations/callout.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/callout.mp4)
+
+
 
 ## 1. A contract includes meaning as well as field names
 
@@ -2429,11 +2662,19 @@ Answer in your own words before reading the explanations.
 
 # Release Metadata and Data Changes in Separate Stages
 
-S20 · senior · About 70 minutes with practice
-
 ![A database schema transitioning through expand, migrate and retire stages](https://sam-portal-production.up.railway.app/lesson-images/S20.jpg)
 
 Use an expand, migrate, and contract sequence so a new booking field can be introduced without pretending a code revert restores data.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Write a staged release plan for adding the provider reference to existing and new appointments.
+
+### Check the result
+
+- Old supported clients remain compatible during the agreed transition.
+- The backfill does not overwrite a newer authoritative value blindly.
+- Code rollback and data recovery have separate inputs, owners, and checks.
 
 ## Before you begin
 
@@ -2445,6 +2686,14 @@ Use an expand, migrate, and contract sequence so a new booking field can be intr
 - Separate deploying capability from moving data and switching users.
 - Design a restartable backfill with verification gates.
 - Explain code rollback and data recovery as different procedures.
+
+## See the steps
+
+![Metadata and data changes have separate recovery work](https://sam-portal-production.up.railway.app/animations/release.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/release.mp4)
+
+
 
 ## 1. A green deployment is only one milestone
 
@@ -2559,11 +2808,19 @@ Answer in your own words before reading the explanations.
 
 # Write an Architecture Decision and Review the Risk
 
-S21 · senior · About 60 minutes with practice
-
 ![Two drawn developers comparing a small design diagram and a tradeoff card](https://sam-portal-production.up.railway.app/lesson-images/S21.jpg)
 
 Explain a technical choice in a short decision record, then review a pull request by its behavior and consequences.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Write the booking-confirmation ADR and evaluate a helper that accepts any appointment Id before a privileged cancellation.
+
+### Check the result
+
+- Alternatives are compared under the same business requirements.
+- The review distinguishes harmful behavior from stylistic preference.
+- The explanation connects access mode, caller authority, and a negative test.
 
 ## Before you begin
 
@@ -2700,11 +2957,19 @@ Answer in your own words before reading the explanations.
 
 # Evaluate Agentforce Actions, Access, and Failure Behavior
 
-S22 · senior · About 70 minutes with practice
-
 ![An agent action passing through a quality check, a permission boundary and a cost gauge](https://sam-portal-production.up.railway.app/lesson-images/S22.jpg)
 
 Create an evaluation pack that tests what an agent does, what data it may use, and how it behaves when the answer or action is uncertain.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Turn the eight synthetic cases into a reviewable test suite with action, access, and outcome criteria.
+
+### Check the result
+
+- The suite checks actual action outcomes and access boundaries, not only response quality.
+- A repeated request cannot silently create a second booking.
+- Transcript analysis is not represented as a completed live-agent test.
 
 ## Before you begin
 
@@ -2716,6 +2981,14 @@ Create an evaluation pack that tests what an agent does, what data it may use, a
 - Separate conversational quality from action correctness.
 - Define pass/fail criteria before running an agent evaluation.
 - Explain human confirmation, denied access, repeated actions, and test-environment limits.
+
+## See the steps
+
+![Read options, confirm, then verify the write](https://sam-portal-production.up.railway.app/animations/agentforce.gif)
+
+[Play or download the short explanation](https://sam-portal-production.up.railway.app/animations/agentforce.mp4)
+
+
 
 ## 1. A convincing sentence is not a verified business result
 
@@ -2832,11 +3105,19 @@ Answer in your own words before reading the explanations.
 
 # Compare Core Salesforce, Automotive Cloud, and a DMS
 
-S23 · senior · About 65 minutes with practice
-
 ![Three calm product option blocks compared against one requirement card](https://sam-portal-production.up.railway.app/lesson-images/S23.jpg)
 
 Evaluate build, buy, and integration options against the same business requirements rather than choosing by product name or coding preference.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Compare the three options for the five synthetic requirements and identify the next decision-changing proof.
+
+### Check the result
+
+- Vehicle__c is not described as the installed Automotive Cloud Vehicle model.
+- All options receive a fair comparison with operating consequences.
+- Unverified capabilities and commercial assumptions are clearly labelled.
 
 ## Before you begin
 
@@ -2960,11 +3241,19 @@ Answer in your own words before reading the explanations.
 
 # Lead a 45-Minute Dealer-Network Architecture Interview
 
-S24 · senior · About 60 minutes with practice
-
 ![A drawn developer explaining a dealership network on a clear sparse whiteboard](https://sam-portal-production.up.railway.app/lesson-images/S24.jpg)
 
 Use a structured conversation to turn an ambiguous network brief into a defensible design with explicit tradeoffs and unknowns.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Record or write a forty-five-minute architecture discussion using the synthetic requirement card.
+
+### Check the result
+
+- The design explains one complete user journey and at least one failure.
+- Tradeoffs change when the business requirement changes.
+- No unmeasured rate, product entitlement, or hidden platform implementation is presented as fact.
 
 ## Before you begin
 
@@ -3088,11 +3377,19 @@ Answer in your own words before reading the explanations.
 
 # Capstone: Improve Northstar with Reproducible Evidence
 
-S25 · senior · About 90 minutes with practice
-
 ![A restored dealership system with a measured performance improvement and a concise incident timeline](https://sam-portal-production.up.railway.app/lesson-images/S25.jpg)
 
 Deliver a small, complete improvement package that connects diagnosis, implementation, tests, recovery, and a clear statement of its limits.
+
+> **⚡ Try it**
+>
+> Your practical outcome: Implement and verify two bounded, connected improvements using either a small Salesforce environment or the explicit local-proxy path.
+
+### Check the result
+
+- At least one implementation path was executed; otherwise the submission explicitly remains incomplete for implementation acceptance.
+- Before-and-after claims are supported by comparable observations and unchanged business assertions.
+- The package includes tests, limitations, recovery reasoning, and no real customer data or credentials.
 
 ## Before you begin
 

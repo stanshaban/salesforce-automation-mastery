@@ -1,0 +1,181 @@
+{
+  "version": 2,
+  "title": "J10 · Build a Usable Sales Application",
+  "cues": [
+    {
+      "start": 0,
+      "duration": 40,
+      "label": "01 · Результат и исходное состояние",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=41605f48afc74bf69ec901818a5a8229. Подготовь только синтетические данные и исходное состояние упражнения. App Manager → учебное приложение Northstar. Покажи переход от вкладки Test Drives к записи, затем focused list view и отчёт. Сверь число строк отчёта с заранее известным синтетическим набором. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+        },
+        {
+          "type": "action",
+          "text": "КАМЕРА. Короткое вступление, затем экран. Действия ниже выполняй между соответствующими репликами. Для долгой сборки ставь CameraCue на паузу: ⌘⇧Space."
+        },
+        {
+          "type": "speech",
+          "text": "Here is our practical task. Create a short demonstration from application navigation to an appointment and a management count."
+        },
+        {
+          "type": "action",
+          "text": "МОНТАЖ ПОЗЖЕ. Вставь 6–10 секунд подготовленного результата. Это preview результата; пошаговую сборку покажи дальше без пропуска важных решений."
+        },
+        {
+          "type": "speech",
+          "text": "By the end, you should be able to show the result and explain how you checked it. The report matches the known sample records. The explanation does not claim that a page layout enforces field-level security."
+        }
+      ]
+    },
+    {
+      "start": 40,
+      "duration": 62,
+      "label": "02 · Design for a task rather than a catalogue of fields",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Design for a task rather than a catalogue of fields». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "Anna needs to find a vehicle, identify a customer, and record an appointment. A useful application makes that sequence understandable. Putting every available field on the screen does not automatically make the application complete. Start with the agreed task from J06 and the data model from J07–J09. The starter defines objects and fields, but it does not provide a finished Northstar application. Create custom object tabs for Vehicle and Test Drive if they are not already available, then use App Manager to create a Lightning application named Northstar Learning. Add the navigation items required by the task, such as Vehicles, Test Drives, and Contacts. Availability still depends on permissions; an application is not an access-control shortcut."
+        }
+      ]
+    },
+    {
+      "start": 102,
+      "duration": 62,
+      "label": "03 · Distinguish the page from the stored information",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Distinguish the page from the stored information». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A page layout arranges fields and actions for a record. A Lightning record page arranges components around that record. These configuration layers affect presentation. Field-level security controls access to a field. Removing a field from a layout is not a substitute for denying access, because another supported entry route may still expose an accessible field. The course Test Drive has an automatically generated Name, displayed as a number such as TD-0001. Anna should not be expected to type that number. Place Vehicle, Customer, Scheduled At, and Status where she can understand them. If you added the duration extension in J08, explain it alongside the calculated end rather than presenting the formula as another editable input."
+        }
+      ]
+    },
+    {
+      "start": 164,
+      "duration": 36,
+      "label": "04 · Make a list and a report answer different questions",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Раздел «Make a list and a report answer different questions». Продолжай показ подготовленного примера. Выдели входные данные и решение именно этого раздела. Не прокручивай целый урок вместо демонстрации. Если это аналитическое упражнение, заполняй его рабочую таблицу по одному решению."
+        },
+        {
+          "type": "speech",
+          "text": "A list view helps a salesperson find working records. Create a view such as Upcoming Confirmed Test Drives, with a Status condition and appropriate scheduled-time conditions supported by the interface. Include the appointment number, vehicle, customer, scheduled time, and owner where accessible. Explain that filters select records from the user's available data; they do not grant records."
+        }
+      ]
+    },
+    {
+      "start": 200,
+      "duration": 60,
+      "label": "05 · Create the application route",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, create the application route. Add the needed custom object tabs and a small Northstar Learning application."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Create the application route» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: A learner can reach vehicles and appointments predictably. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: A learner can reach vehicles and appointments predictably."
+        }
+      ]
+    },
+    {
+      "start": 260,
+      "duration": 60,
+      "label": "06 · Arrange one record page",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, arrange one record page. Show the core appointment fields clearly and distinguish calculated fields from editable inputs."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Arrange one record page» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Max can complete the agreed task without guessing. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Max can complete the agreed task without guessing."
+        }
+      ]
+    },
+    {
+      "start": 320,
+      "duration": 61,
+      "label": "07 · Build a focused list",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, build a focused list. Apply explicit status and time conditions and select useful columns."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Build a focused list» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: The sample Requested record is excluded when the view is for Confirmed appointments. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: The sample Requested record is excluded when the view is for Confirmed appointments."
+        }
+      ]
+    },
+    {
+      "start": 381,
+      "duration": 60,
+      "label": "08 · Reconcile a report",
+      "blocks": [
+        {
+          "type": "speech",
+          "text": "Next, reconcile a report. Count the sample data manually, run the report, and compare totals."
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Выполни именно описанный шаг «Reconcile a report» на подготовленном экране. На длительной операции поставь суфлёр на паузу; убери из монтажа только ожидание. После действия задержи курсор у проверяемого результата на 2–3 секунды. Ожидаемый результат: Any difference is investigated through filters, report type, and access. Если результат другой, сначала выясни причину; не произноси следующий вывод как уже доказанный."
+        },
+        {
+          "type": "speech",
+          "text": "The result we are checking is this: Any difference is investigated through filters, report type, and access."
+        }
+      ]
+    },
+    {
+      "start": 441,
+      "duration": 68,
+      "label": "09 · Проверка и самостоятельная практика",
+      "blocks": [
+        {
+          "type": "action",
+          "text": "ЭКРАН. Вернись к результату упражнения. Покажи evidence, а не зелёный статус без деталей. Затем открой практическую задачу и остановись перед готовым решением."
+        },
+        {
+          "type": "speech",
+          "text": "A hidden or read-only-looking field on one page is a presentation choice, not complete proof of enforced field access. Now pause the video and try the exercise yourself. Create a short demonstration from application navigation to an appointment and a management count. The report matches the known sample records. The explanation does not claim that a page layout enforces field-level security."
+        },
+        {
+          "type": "speech",
+          "text": "Before you finish, answer this question in your own words. Why can a report and a list show different counts?"
+        },
+        {
+          "type": "action",
+          "text": "ПРИ ЗАПИСИ. Пауза 4 секунды. Не показывай ответ раньше вопроса. Затем открой объяснение и сравни его с проверяемым результатом."
+        },
+        {
+          "type": "speech",
+          "text": "They can use different filters, report structures, or available data; inspect those assumptions before declaring a defect. Save your work with the expected and actual results. If a check was not run, say which one remains and what you would need to run it."
+        }
+      ]
+    }
+  ]
+}

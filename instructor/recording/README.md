@@ -1,0 +1,130 @@
+# Salesforce Automation Mastery — recording pack
+
+CameraCue / CameraQ JSON version 2. One importable file per lesson, five contents videos, and the About introduction.
+
+- **speech**: text to read in English.
+- **action**: Russian instructions. `ПРИ ЗАПИСИ` means perform the action during the screen recording. `МОНТАЖ ПОЗЖЕ` means record that insert separately and place it over the narration later.
+- Timings allow approximately 135 spoken words per minute plus screen work. Pause the prompter with **⌘⇧Space** for a longer build. Do not rush to match an estimated cue.
+- Before recording, prepare the prerequisite metadata, a known synthetic fixture, and the expected result. Record a short finished-result insert, then reset the fixture for the walkthrough.
+- Do not read source code character by character. Highlight its input, decision, and output; run it and show the actual result.
+- A direction is a recording plan, not evidence that the org operation has already passed. If a live feature or license is missing, say so and use the explicitly labelled design/worksheet path.
+- Import one or several `.scenario.json` files through CameraCue's file loader, paste JSON, or drag and drop them into the library. The accompanying `.md` files are readable scripts, not the app's import format.
+
+## Files
+
+- [J01 · What a CRM Does for a Business](junior/J01%20—%20What%20a%20CRM%20Does%20for%20a%20Business/J01.scenario.json) — 598 spoken words, recording allowance 7:42
+- [J02 · Salesforce Products, the Platform, and Your Org](junior/J02%20—%20Salesforce%20Products,%20the%20Platform,%20and%20Your%20Org/J02.scenario.json) — 534 spoken words, recording allowance 6:28
+- [J03 · Create and Reopen a Learning Org](junior/J03%20—%20Create%20and%20Reopen%20a%20Learning%20Org/J03.scenario.json) — 569 spoken words, recording allowance 8:14
+- [J04 · Finding Your Way Around Salesforce](junior/J04%20—%20Finding%20Your%20Way%20Around%20Salesforce/J04.scenario.json) — 570 spoken words, recording allowance 7:29
+- [J05 · Objects, Fields, and Records](junior/J05%20—%20Objects,%20Fields,%20and%20Records/J05.scenario.json) — 541 spoken words, recording allowance 7:14
+- [J06 · Turn a Request into a Testable Task](junior/J06%20—%20Turn%20a%20Request%20into%20a%20Testable%20Task/J06.scenario.json) — 523 spoken words, recording allowance 7:08
+- [J07 · Choose Standard Objects Before Creating New Ones](junior/J07%20—%20Choose%20Standard%20Objects%20Before%20Creating%20New%20Ones/J07.scenario.json) — 1119 spoken words, recording allowance 16:16
+- [J08 · Field Types, Formulas, and Validation Rules](junior/J08%20—%20Field%20Types,%20Formulas,%20and%20Validation%20Rules/J08.scenario.json) — 736 spoken words, recording allowance 9:07
+- [J09 · Choose Lookup or Master-Detail Deliberately](junior/J09%20—%20Choose%20Lookup%20or%20Master-Detail%20Deliberately/J09.scenario.json) — 566 spoken words, recording allowance 8:13
+- [J10 · Build a Usable Sales Application](junior/J10%20—%20Build%20a%20Usable%20Sales%20Application/J10.scenario.json) — 600 spoken words, recording allowance 8:29
+- [J11 · Understand the Layers of Data Access](junior/J11%20—%20Understand%20the%20Layers%20of%20Data%20Access/J11.scenario.json) — 518 spoken words, recording allowance 7:06
+- [J12 · Grant a Small Set of Working Permissions](junior/J12%20—%20Grant%20a%20Small%20Set%20of%20Working%20Permissions/J12.scenario.json) — 568 spoken words, recording allowance 7:27
+- [J13 · Set a Record-Access Baseline and Add Exceptions](junior/J13%20—%20Set%20a%20Record-Access%20Baseline%20and%20Add%20Exceptions/J13.scenario.json) — 511 spoken words, recording allowance 7:02
+- [J14 · Share One Record and Test an Ownership Change](junior/J14%20—%20Share%20One%20Record%20and%20Test%20an%20Ownership%20Change/J14.scenario.json) — 515 spoken words, recording allowance 7:50
+- [J15 · Trace the Source of an Access Problem](junior/J15%20—%20Trace%20the%20Source%20of%20an%20Access%20Problem/J15.scenario.json) — 554 spoken words, recording allowance 8:08
+- [J16 · Verify Access for Sales, Service, and Management](junior/J16%20—%20Verify%20Access%20for%20Sales,%20Service,%20and%20Management/J16.scenario.json) — 579 spoken words, recording allowance 8:18
+- [J17 · Create a Record-Triggered Flow with a Clear Failure Path](junior/J17%20—%20Create%20a%20Record-Triggered%20Flow%20with%20a%20Clear%20Failure%20Path/J17.scenario.json) — 553 spoken words, recording allowance 8:06
+- [J18 · Apex Syntax, Variables, Collections, and Methods](junior/J18%20—%20Apex%20Syntax,%20Variables,%20Collections,%20and%20Methods/J18.scenario.json) — 694 spoken words, recording allowance 9:15
+- [J19 · Read and Change Records with SOQL and DML](junior/J19%20—%20Read%20and%20Change%20Records%20with%20SOQL%20and%20DML/J19.scenario.json) — 570 spoken words, recording allowance 7:54
+- [J20 · Use a Thin Trigger and a Focused Handler](junior/J20%20—%20Use%20a%20Thin%20Trigger%20and%20a%20Focused%20Handler/J20.scenario.json) — 651 spoken words, recording allowance 8:31
+- [J21 · Trace Automation Through a Transaction](junior/J21%20—%20Trace%20Automation%20Through%20a%20Transaction/J21.scenario.json) — 670 spoken words, recording allowance 8:38
+- [J22 · Write Apex Tests That Prove Behaviour](junior/J22%20—%20Write%20Apex%20Tests%20That%20Prove%20Behaviour/J22.scenario.json) — 616 spoken words, recording allowance 8:15
+- [J23 · HTML, JavaScript, and Your First Lightning Web Component](junior/J23%20—%20HTML,%20JavaScript,%20and%20Your%20First%20Lightning%20Web%20Component/J23.scenario.json) — 652 spoken words, recording allowance 8:31
+- [J24 · Read and Edit a Record with Lightning Data Service](junior/J24%20—%20Read%20and%20Edit%20a%20Record%20with%20Lightning%20Data%20Service/J24.scenario.json) — 682 spoken words, recording allowance 9:29
+- [J25 · Pass Data Down and Send Events Up](junior/J25%20—%20Pass%20Data%20Down%20and%20Send%20Events%20Up/J25.scenario.json) — 704 spoken words, recording allowance 8:55
+- [J26 · Investigate a Failure from Symptom to Cause](junior/J26%20—%20Investigate%20a%20Failure%20from%20Symptom%20to%20Cause/J26.scenario.json) — 559 spoken words, recording allowance 8:09
+- [J27 · Use Git to Hand Over a Reproducible Change](junior/J27%20—%20Use%20Git%20to%20Hand%20Over%20a%20Reproducible%20Change/J27.scenario.json) — 725 spoken words, recording allowance 9:03
+- [J28 · Deliver the Northstar Test-Drive Application](junior/J28%20—%20Deliver%20the%20Northstar%20Test-Drive%20Application/J28.scenario.json) — 592 spoken words, recording allowance 8:24
+- [M01 · Designing and verifying an access model](middle/M01%20—%20Designing%20and%20verifying%20an%20access%20model/M01.scenario.json) — 583 spoken words, recording allowance 7:44
+- [M02 · Permission Set Groups and muting](middle/M02%20—%20Permission%20Set%20Groups%20and%20muting/M02.scenario.json) — 565 spoken words, recording allowance 7:37
+- [M03 · Manual and implicit sharing](middle/M03%20—%20Manual%20and%20implicit%20sharing/M03.scenario.json) — 630 spoken words, recording allowance 8:07
+- [M04 · Apex managed sharing across a record lifecycle](middle/M04%20—%20Apex%20managed%20sharing%20across%20a%20record%20lifecycle/M04.scenario.json) — 598 spoken words, recording allowance 8:17
+- [M05 · Restriction rules and supported access paths](middle/M05%20—%20Restriction%20rules%20and%20supported%20access%20paths/M05.scenario.json) — 563 spoken words, recording allowance 7:37
+- [M06 · Apex security and API-version defaults](middle/M06%20—%20Apex%20security%20and%20API-version%20defaults/M06.scenario.json) — 603 spoken words, recording allowance 8:20
+- [M07 · Choosing Flow or Apex for a business operation](middle/M07%20—%20Choosing%20Flow%20or%20Apex%20for%20a%20business%20operation/M07.scenario.json) — 597 spoken words, recording allowance 7:53
+- [M08 · Order of execution, recursion, and idempotency](middle/M08%20—%20Order%20of%20execution,%20recursion,%20and%20idempotency/M08.scenario.json) — 578 spoken words, recording allowance 7:44
+- [M09 · Structuring Apex and using Custom Metadata](middle/M09%20—%20Structuring%20Apex%20and%20using%20Custom%20Metadata/M09.scenario.json) — 617 spoken words, recording allowance 8:27
+- [M10 · Testing a complete local business rule](middle/M10%20—%20Testing%20a%20complete%20local%20business%20rule/M10.scenario.json) — 599 spoken words, recording allowance 8:18
+- [M11 · Selecting an asynchronous processing mechanism](middle/M11%20—%20Selecting%20an%20asynchronous%20processing%20mechanism/M11.scenario.json) — 684 spoken words, recording allowance 8:55
+- [M12 · Queueable Apex and observable request state](middle/M12%20—%20Queueable%20Apex%20and%20observable%20request%20state/M12.scenario.json) — 591 spoken words, recording allowance 8:14
+- [M13 · Batch Apex and independent execution scopes](middle/M13%20—%20Batch%20Apex%20and%20independent%20execution%20scopes/M13.scenario.json) — 627 spoken words, recording allowance 8:05
+- [M14 · Scheduling, workload limits, and monitoring](middle/M14%20—%20Scheduling,%20workload%20limits,%20and%20monitoring/M14.scenario.json) — 564 spoken words, recording allowance 7:37
+- [M15 · API contracts and credential boundaries](middle/M15%20—%20API%20contracts%20and%20credential%20boundaries/M15.scenario.json) — 670 spoken words, recording allowance 8:48
+- [M16 · Working with REST and SOAP service contracts](middle/M16%20—%20Working%20with%20REST%20and%20SOAP%20service%20contracts/M16.scenario.json) — 661 spoken words, recording allowance 8:43
+- [M17 · HTTP callouts, failures, and bounded retries](middle/M17%20—%20HTTP%20callouts,%20failures,%20and%20bounded%20retries/M17.scenario.json) — 629 spoken words, recording allowance 8:31
+- [M18 · Inbound APIs, external IDs, and duplicate protection](middle/M18%20—%20Inbound%20APIs,%20external%20IDs,%20and%20duplicate%20protection/M18.scenario.json) — 598 spoken words, recording allowance 8:18
+- [M19 · Integration diagnostics and controlled recovery](middle/M19%20—%20Integration%20diagnostics%20and%20controlled%20recovery/M19.scenario.json) — 556 spoken words, recording allowance 7:32
+- [M20 · Choosing SOQL or SOSL for a search requirement](middle/M20%20—%20Choosing%20SOQL%20or%20SOSL%20for%20a%20search%20requirement/M20.scenario.json) — 621 spoken words, recording allowance 8:26
+- [M21 · Lightning Web Component lifecycle](middle/M21%20—%20Lightning%20Web%20Component%20lifecycle/M21.scenario.json) — 613 spoken words, recording allowance 8:23
+- [M22 · Wire, imperative Apex, and refreshing data](middle/M22%20—%20Wire,%20imperative%20Apex,%20and%20refreshing%20data/M22.scenario.json) — 659 spoken words, recording allowance 8:44
+- [M23 · DOM events and Lightning Message Service](middle/M23%20—%20DOM%20events%20and%20Lightning%20Message%20Service/M23.scenario.json) — 602 spoken words, recording allowance 8:18
+- [M24 · Accessible LWC states and Jest tests](middle/M24%20—%20Accessible%20LWC%20states%20and%20Jest%20tests/M24.scenario.json) — 667 spoken words, recording allowance 9:12
+- [M25 · Shadow DOM and component boundaries](middle/M25%20—%20Shadow%20DOM%20and%20component%20boundaries/M25.scenario.json) — 621 spoken words, recording allowance 8:28
+- [M26 · Platform Events and publication timing](middle/M26%20—%20Platform%20Events%20and%20publication%20timing/M26.scenario.json) — 599 spoken words, recording allowance 8:17
+- [M27 · Change Data Capture, replay, and duplicate delivery](middle/M27%20—%20Change%20Data%20Capture,%20replay,%20and%20duplicate%20delivery/M27.scenario.json) — 629 spoken words, recording allowance 8:30
+- [M28 · Git fetch, integration, and cherry-picking a fix](middle/M28%20—%20Git%20fetch,%20integration,%20and%20cherry-picking%20a%20fix/M28.scenario.json) — 614 spoken words, recording allowance 8:23
+- [M29 · Pull requests, CI checks, and controlled deployment](middle/M29%20—%20Pull%20requests,%20CI%20checks,%20and%20controlled%20deployment/M29.scenario.json) — 595 spoken words, recording allowance 8:15
+- [M30 · Verifying an application under failure](middle/M30%20—%20Verifying%20an%20application%20under%20failure/M30.scenario.json) — 584 spoken words, recording allowance 7:46
+- [M31 · Enhanced Omni-Channel routing](middle/M31%20—%20Enhanced%20Omni-Channel%20routing/M31.scenario.json) — 643 spoken words, recording allowance 8:37
+- [M32 · Agentforce tasks, actions, and evidence](middle/M32%20—%20Agentforce%20tasks,%20actions,%20and%20evidence/M32.scenario.json) — 607 spoken words, recording allowance 7:55
+- [M33 · Automotive Cloud data modeling](middle/M33%20—%20Automotive%20Cloud%20data%20modeling/M33.scenario.json) — 593 spoken words, recording allowance 7:51
+- [M34 · Middle project review and technical defense](middle/M34%20—%20Middle%20project%20review%20and%20technical%20defense/M34.scenario.json) — 620 spoken words, recording allowance 8:01
+- [S01 · How a Salesforce Transaction Runs](senior/S01%20—%20How%20a%20Salesforce%20Transaction%20Runs/S01.scenario.json) — 1004 spoken words, recording allowance 12:48
+- [S02 · Turn a Performance Complaint into a Measurable Requirement](senior/S02%20—%20Turn%20a%20Performance%20Complaint%20into%20a%20Measurable%20Requirement/S02.scenario.json) — 899 spoken words, recording allowance 12:02
+- [S03 · Locate Delay Across the Browser, Apex, and Database](senior/S03%20—%20Locate%20Delay%20Across%20the%20Browser,%20Apex,%20and%20Database/S03.scenario.json) — 967 spoken words, recording allowance 12:32
+- [S04 · Estimate Resource Demand Before Increasing Traffic](senior/S04%20—%20Estimate%20Resource%20Demand%20Before%20Increasing%20Traffic/S04.scenario.json) — 921 spoken words, recording allowance 12:13
+- [S05 · Choose an Optimization and Prove Its Value](senior/S05%20—%20Choose%20an%20Optimization%20and%20Prove%20Its%20Value/S05.scenario.json) — 870 spoken words, recording allowance 11:49
+- [S06 · Read Query Plans and Data Selectivity](senior/S06%20—%20Read%20Query%20Plans%20and%20Data%20Selectivity/S06.scenario.json) — 884 spoken words, recording allowance 11:55
+- [S07 · Find Shared Records Behind Lock Contention](senior/S07%20—%20Find%20Shared%20Records%20Behind%20Lock%20Contention/S07.scenario.json) — 858 spoken words, recording allowance 11:43
+- [S08 · Load Data with Reconciliation and Safe Replays](senior/S08%20—%20Load%20Data%20with%20Reconciliation%20and%20Safe%20Replays/S08.scenario.json) — 953 spoken words, recording allowance 12:25
+- [S09 · Archive History Without Losing the Business Record](senior/S09%20—%20Archive%20History%20Without%20Losing%20the%20Business%20Record/S09.scenario.json) — 866 spoken words, recording allowance 11:46
+- [S10 · Design Record Access for a Dealer Network](senior/S10%20—%20Design%20Record%20Access%20for%20a%20Dealer%20Network/S10.scenario.json) — 868 spoken words, recording allowance 11:47
+- [S11 · Remove Excess Access Without Breaking Legitimate Work](senior/S11%20—%20Remove%20Excess%20Access%20Without%20Breaking%20Legitimate%20Work/S11.scenario.json) — 828 spoken words, recording allowance 11:30
+- [S12 · Plan a Deferred-Sharing Maintenance Window](senior/S12%20—%20Plan%20a%20Deferred-Sharing%20Maintenance%20Window/S12.scenario.json) — 791 spoken words, recording allowance 11:11
+- [S13 · Control Privileged Code and External-User Access](senior/S13%20—%20Control%20Privileged%20Code%20and%20External-User%20Access/S13.scenario.json) — 858 spoken words, recording allowance 11:43
+- [S14 · Choose System Boundaries and Data Ownership](senior/S14%20—%20Choose%20System%20Boundaries%20and%20Data%20Ownership/S14.scenario.json) — 822 spoken words, recording allowance 11:27
+- [S15 · Handle Duplicate and Out-of-Order Events](senior/S15%20—%20Handle%20Duplicate%20and%20Out-of-Order%20Events/S15.scenario.json) — 860 spoken words, recording allowance 11:43
+- [S16 · Recover from an External-Service Outage Without a Retry Storm](senior/S16%20—%20Recover%20from%20an%20External-Service%20Outage%20Without%20a%20Retry%20Storm/S16.scenario.json) — 815 spoken words, recording allowance 11:26
+- [S17 · Reconstruct an Incident from Business and Technical Evidence](senior/S17%20—%20Reconstruct%20an%20Incident%20from%20Business%20and%20Technical%20Evidence/S17.scenario.json) — 790 spoken words, recording allowance 11:11
+- [S18 · Refactor Legacy Automation in Small Verified Steps](senior/S18%20—%20Refactor%20Legacy%20Automation%20in%20Small%20Verified%20Steps/S18.scenario.json) — 825 spoken words, recording allowance 11:27
+- [S19 · Test Integration Contracts at the Right Boundaries](senior/S19%20—%20Test%20Integration%20Contracts%20at%20the%20Right%20Boundaries/S19.scenario.json) — 856 spoken words, recording allowance 11:41
+- [S20 · Release Metadata and Data Changes in Separate Stages](senior/S20%20—%20Release%20Metadata%20and%20Data%20Changes%20in%20Separate%20Stages/S20.scenario.json) — 836 spoken words, recording allowance 11:34
+- [S21 · Write an Architecture Decision and Review the Risk](senior/S21%20—%20Write%20an%20Architecture%20Decision%20and%20Review%20the%20Risk/S21.scenario.json) — 823 spoken words, recording allowance 11:54
+- [S22 · Evaluate Agentforce Actions, Access, and Failure Behavior](senior/S22%20—%20Evaluate%20Agentforce%20Actions,%20Access,%20and%20Failure%20Behavior/S22.scenario.json) — 845 spoken words, recording allowance 11:38
+- [S23 · Compare Core Salesforce, Automotive Cloud, and a DMS](senior/S23%20—%20Compare%20Core%20Salesforce,%20Automotive%20Cloud,%20and%20a%20DMS/S23.scenario.json) — 829 spoken words, recording allowance 11:29
+- [S24 · Lead a 45-Minute Dealer-Network Architecture Interview](senior/S24%20—%20Lead%20a%2045-Minute%20Dealer-Network%20Architecture%20Interview/S24.scenario.json) — 795 spoken words, recording allowance 11:15
+- [S25 · Capstone: Improve Northstar with Reproducible Evidence](senior/S25%20—%20Capstone%20Improve%20Northstar%20with%20Reproducible%20Evidence/S25.scenario.json) — 877 spoken words, recording allowance 11:51
+- [JR01 · Choose a Target Role and Read Job Requirements](jobs/JR01%20—%20Choose%20a%20Target%20Role%20and%20Read%20Job%20Requirements/JR01.scenario.json) — 814 spoken words, recording allowance 10:12
+- [JR02 · Use AI to Research and Verify Job Opportunities](jobs/JR02%20—%20Use%20AI%20to%20Research%20and%20Verify%20Job%20Opportunities/JR02.scenario.json) — 805 spoken words, recording allowance 10:34
+- [JR03 · Build a Repeatable Job Search Workflow](jobs/JR03%20—%20Build%20a%20Repeatable%20Job%20Search%20Workflow/JR03.scenario.json) — 776 spoken words, recording allowance 10:42
+- [JR04 · Describe Your Experience with Evidence](jobs/JR04%20—%20Describe%20Your%20Experience%20with%20Evidence/JR04.scenario.json) — 859 spoken words, recording allowance 11:43
+- [JR05 · Write a Clear and Honest Salesforce CV](jobs/JR05%20—%20Write%20a%20Clear%20and%20Honest%20Salesforce%20CV/JR05.scenario.json) — 804 spoken words, recording allowance 10:55
+- [JR06 · Tailor Your CV to a Specific Role](jobs/JR06%20—%20Tailor%20Your%20CV%20to%20a%20Specific%20Role/JR06.scenario.json) — 795 spoken words, recording allowance 11:16
+- [JR07 · Prepare a Salesforce Portfolio for Review](jobs/JR07%20—%20Prepare%20a%20Salesforce%20Portfolio%20for%20Review/JR07.scenario.json) — 824 spoken words, recording allowance 11:29
+- [JR08 · Practise a Technical Interview with AI](jobs/JR08%20—%20Practise%20a%20Technical%20Interview%20with%20AI/JR08.scenario.json) — 822 spoken words, recording allowance 11:29
+- [JR09 · Practise Live Coding and Code Review](jobs/JR09%20—%20Practise%20Live%20Coding%20and%20Code%20Review/JR09.scenario.json) — 907 spoken words, recording allowance 12:31
+- [JR10 · Discuss Your Experience and Evaluate the Employer](jobs/JR10%20—%20Discuss%20Your%20Experience%20and%20Evaluate%20the%20Employer/JR10.scenario.json) — 787 spoken words, recording allowance 10:48
+- [JR11 · Build a Preparation Plan from Interview Feedback](jobs/JR11%20—%20Build%20a%20Preparation%20Plan%20from%20Interview%20Feedback/JR11.scenario.json) — 814 spoken words, recording allowance 11:01
+- [AF-01 · CRM and Test-Drive Booking](agentforce/AF-01%20—%20CRM%20and%20Test-Drive%20Booking/AF-01.scenario.json) — 508 spoken words, recording allowance 9:16
+- [AF-02 · Set Up a Training Org](agentforce/AF-02%20—%20Set%20Up%20a%20Training%20Org/AF-02.scenario.json) — 625 spoken words, recording allowance 12:09
+- [AF-03 · Data, Permissions, and Apex Catalog](agentforce/AF-03%20—%20Data,%20Permissions,%20and%20Apex%20Catalog/AF-03.scenario.json) — 723 spoken words, recording allowance 12:52
+- [AF-04 · Build the Booking Flow](agentforce/AF-04%20—%20Build%20the%20Booking%20Flow/AF-04.scenario.json) — 771 spoken words, recording allowance 14:15
+- [AF-05 · Build the Support Case Flow](agentforce/AF-05%20—%20Build%20the%20Support%20Case%20Flow/AF-05.scenario.json) — 615 spoken words, recording allowance 11:04
+- [AF-06 · Build the Employee Agent](agentforce/AF-06%20—%20Build%20the%20Employee%20Agent/AF-06.scenario.json) — 544 spoken words, recording allowance 10:30
+- [AF-07 · Connect Actions and Confirm Writes](agentforce/AF-07%20—%20Connect%20Actions%20and%20Confirm%20Writes/AF-07.scenario.json) — 558 spoken words, recording allowance 10:39
+- [AF-08 · Test Behaviour and Access](agentforce/AF-08%20—%20Test%20Behaviour%20and%20Access/AF-08.scenario.json) — 551 spoken words, recording allowance 10:37
+- [AF-09 · Activate and Grant Employee Access](agentforce/AF-09%20—%20Activate%20and%20Grant%20Employee%20Access/AF-09.scenario.json) — 413 spoken words, recording allowance 8:32
+- [AF-10 · Demonstrate and Submit](agentforce/AF-10%20—%20Demonstrate%20and%20Submit/AF-10.scenario.json) — 487 spoken words, recording allowance 10:07
+- [AF-L01 · Project Overview and Prerequisites](agentforce/AF-L01%20—%20Project%20Overview%20and%20Prerequisites/AF-L01.scenario.json) — 250 spoken words, recording allowance 2:42
+- [AF-Check · Contracts and Verification](agentforce/AF-Check%20—%20Contracts%20and%20Verification/AF-Check.scenario.json) — 511 spoken words, recording allowance 11:22
+- [ABOUT · Welcome to Salesforce Automation Mastery](00%20—%20About/ABOUT%20—%20Welcome%20to%20Salesforce%20Automation%20Mastery/ABOUT.scenario.json) — 440 spoken words, recording allowance 3:53
+- [J00 · Junior Salesforce Developer: Start Here](junior/J00%20—%20Junior%20Salesforce%20Developer%20Start%20Here/J00.scenario.json) — 369 spoken words, recording allowance 4:09
+- [M00 · Middle Salesforce Developer: Start Here](middle/M00%20—%20Middle%20Salesforce%20Developer%20Start%20Here/M00.scenario.json) — 539 spoken words, recording allowance 5:48
+- [S00 · Senior Salesforce Developer: Start Here](senior/S00%20—%20Senior%20Salesforce%20Developer%20Start%20Here/S00.scenario.json) — 292 spoken words, recording allowance 3:48
+- [JR00 · Salesforce Job Research: Start Here](jobs/JR00%20—%20Salesforce%20Job%20Research%20Start%20Here/JR00.scenario.json) — 223 spoken words, recording allowance 2:38
+- [AF00 · Agentforce: Start Here and Course Contents](agentforce/AF00%20—%20Agentforce%20Start%20Here%20and%20Course%20Contents/AF00.scenario.json) — 110 spoken words, recording allowance 1:24
