@@ -9,7 +9,7 @@
       "blocks": [
         {
           "type": "action",
-          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=cf62206e4a524aedb11ec77e253ff537. Подготовь только синтетические данные и исходное состояние упражнения. Покажи HttpCalloutMock с success, malformed body, 429, 500 и timeout. Запусти классификацию и bounded retry policy. Сверь число попыток и итоговый durable статус. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=cf62206e4a524aedb11ec77e253ff537. Подготовь только синтетические данные и исходное состояние упражнения. Покажи HttpCalloutMock с success, malformed body, 429, 500 и timeout. Запусти классификацию и bounded retry policy. Сверь число попыток и итоговый durable статус. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу. ГОТОВЫЕ ВСТАВКИ: https://sam-portal-production.up.railway.app/animations/callout.mp4. Анимацию используй как отдельное пояснение; UI показывай реальным снимком."
         },
         {
           "type": "action",

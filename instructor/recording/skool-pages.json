@@ -1,0 +1,577 @@
+[
+  {
+    "id": "J01",
+    "title": "J01 · What a CRM Does for a Business",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=1c8cad0d85e04292aaa0d4025e7b1b3f"
+  },
+  {
+    "id": "J02",
+    "title": "J02 · Salesforce Products, Platform, and Orgs",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=0d6b16cc9ab24232825cfadd39196af6"
+  },
+  {
+    "id": "J03",
+    "title": "J03 · Create and Reopen a Learning Org",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=758f9d41598943bf98fd457f8527061e"
+  },
+  {
+    "id": "J04",
+    "title": "J04 · Finding Your Way Around Salesforce",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=9196998cdd504fc0b6604fe74c0d0aaf"
+  },
+  {
+    "id": "J05",
+    "title": "J05 · Objects, Fields, and Records",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=ea2cc5385c4f4ffc91eee131cd06a9d0"
+  },
+  {
+    "id": "J06",
+    "title": "J06 · Turn a Request into a Testable Task",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=9fbb6e8de50a44db89be5919e12dda38"
+  },
+  {
+    "id": "J07",
+    "title": "J07 · Choose Standard Salesforce Objects",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=8139dcaa562d4b7ba7ae91b19f82b040"
+  },
+  {
+    "id": "J08",
+    "title": "J08 · Field Types, Formulas, and Validation Rules",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=26a309ef4afc4064b002cd4fb0a24df7"
+  },
+  {
+    "id": "J09",
+    "title": "J09 · Choose Lookup or Master-Detail Deliberately",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=0bdc7f42b4da4049a754ef00ce9c84bc"
+  },
+  {
+    "id": "J10",
+    "title": "J10 · Build a Usable Sales Application",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=41605f48afc74bf69ec901818a5a8229"
+  },
+  {
+    "id": "J11",
+    "title": "J11 · Understand the Layers of Data Access",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=24d8c1fb88cd4bb98d91b41c7d8c61a6"
+  },
+  {
+    "id": "J12",
+    "title": "J12 · Grant a Small Set of Working Permissions",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=441e2d13156c4c2bad6ce85ac8fda29f"
+  },
+  {
+    "id": "J13",
+    "title": "J13 · Set Record Access and Sharing Exceptions",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=95bb839f94c94ecd92704624d1b77405"
+  },
+  {
+    "id": "J14",
+    "title": "J14 · Share Records and Test Ownership Changes",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=6e9dcddf64704fd691841f726900c268"
+  },
+  {
+    "id": "J15",
+    "title": "J15 · Trace the Source of an Access Problem",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=6958237303fb4fdca42cb17ba768ce71"
+  },
+  {
+    "id": "J16",
+    "title": "J16 · Verify Access Across Business Roles",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=144383b76fcd4cfb9cefb05fe15455f2"
+  },
+  {
+    "id": "J17",
+    "title": "J17 · Record-Triggered Flow and Fault Paths",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=9e7b30d0a2b341de9e36be324e943ad7"
+  },
+  {
+    "id": "J18",
+    "title": "J18 · Apex Syntax, Collections, and Methods",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=5eaea487a3794e23b07c2e1b1f1ab706"
+  },
+  {
+    "id": "J19",
+    "title": "J19 · Read and Change Records with SOQL and DML",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=e42854af700b4683863eb05e22a675d4"
+  },
+  {
+    "id": "J20",
+    "title": "J20 · Use a Thin Trigger and a Focused Handler",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=989a69566f78421fbf2e9af46b4c1747"
+  },
+  {
+    "id": "J21",
+    "title": "J21 · Trace Automation Through a Transaction",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=ca153218d0c7469d93ad45b3a421c371"
+  },
+  {
+    "id": "J22",
+    "title": "J22 · Write Apex Tests That Prove Behaviour",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=a8d555a5ce12401684985f361e5eafd0"
+  },
+  {
+    "id": "J23",
+    "title": "J23 · HTML, JavaScript, and Your First LWC",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=e4855adda8a24655bc6d497dab04d271"
+  },
+  {
+    "id": "J24",
+    "title": "J24 · Edit Records with Lightning Data Service",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=08081e4f409f402e881613ad7a8fbc90"
+  },
+  {
+    "id": "J25",
+    "title": "J25 · Pass Data Down and Send Events Up",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=de5a8149cfe240f2b89b751e0fe1fe54"
+  },
+  {
+    "id": "J26",
+    "title": "J26 · Investigate a Failure from Symptom to Cause",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=14798fde61d5435ea3269662c3ff82c9"
+  },
+  {
+    "id": "J27",
+    "title": "J27 · Use Git to Hand Over a Reproducible Change",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=06944f6ca53645b7a03881fc884e18b1"
+  },
+  {
+    "id": "J28",
+    "title": "J28 · Deliver the Northstar Test-Drive Application",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=cec53a569b6943d899da8abc22cc7701"
+  },
+  {
+    "id": "M01",
+    "title": "M01 · Designing and verifying an access model",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=d027eafdafc34dc2ad85a0dd87c0db4f"
+  },
+  {
+    "id": "M02",
+    "title": "M02 · Permission Set Groups and muting",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=3f6b5a697a3d4db492bd2e2f48fc8358"
+  },
+  {
+    "id": "M03",
+    "title": "M03 · Manual and implicit sharing",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f09de57c1d434841988b670b40432d9f"
+  },
+  {
+    "id": "M04",
+    "title": "M04 · Apex Managed Sharing and Record Lifecycle",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=79817d7fc11b4586aad34f2d10f3390c"
+  },
+  {
+    "id": "M05",
+    "title": "M05 · Restriction rules and supported access paths",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=6751759281144d36b9bff574d39ad348"
+  },
+  {
+    "id": "M06",
+    "title": "M06 · Apex security and API-version defaults",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=ef275b99da5843ddbe159299dd82a8d5"
+  },
+  {
+    "id": "M07",
+    "title": "M07 · Choose Flow or Apex",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=a9eaa6dc30cc44e5824334f7456540d9"
+  },
+  {
+    "id": "M08",
+    "title": "M08 · Execution Order, Recursion, and Idempotency",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b682898cf52d417dbae39acde032db63"
+  },
+  {
+    "id": "M09",
+    "title": "M09 · Structuring Apex and using Custom Metadata",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=4ff92283c1744d0c9d227ca05a62f1a1"
+  },
+  {
+    "id": "M10",
+    "title": "M10 · Testing a complete local business rule",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f73d9ea70ea146b987568ba88aecba11"
+  },
+  {
+    "id": "M11",
+    "title": "M11 · Choose an Asynchronous Processing Tool",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=6b8060bd58414aab97d2eab0c5f3b77f"
+  },
+  {
+    "id": "M12",
+    "title": "M12 · Queueable Apex and observable request state",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=27c096912a3445888393650fd534d9cf"
+  },
+  {
+    "id": "M13",
+    "title": "M13 · Batch Apex and independent execution scopes",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=819c4873b25c4e319648a62b4d1d013b"
+  },
+  {
+    "id": "M14",
+    "title": "M14 · Scheduling, workload limits, and monitoring",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=7e22cd72e14d4479ba91f9712b0da7c9"
+  },
+  {
+    "id": "M15",
+    "title": "M15 · API contracts and credential boundaries",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=7ecdc6a0d8284fcc8ead09687c7e0540"
+  },
+  {
+    "id": "M16",
+    "title": "M16 · Working with REST and SOAP service contracts",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=0e32730745104ef68181084764363beb"
+  },
+  {
+    "id": "M17",
+    "title": "M17 · HTTP callouts, failures, and bounded retries",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=cf62206e4a524aedb11ec77e253ff537"
+  },
+  {
+    "id": "M18",
+    "title": "M18 · Inbound APIs, External IDs, and Duplicates",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=078c136305a4484a9459cb31d558fecf"
+  },
+  {
+    "id": "M19",
+    "title": "M19 · Integration Diagnostics and Recovery",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b2a58132ee404c5895ff7324bf8d238c"
+  },
+  {
+    "id": "M20",
+    "title": "M20 · Choose SOQL or SOSL for Search",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f59bbeceb22b4c9798ec1a3131f335e3"
+  },
+  {
+    "id": "M21",
+    "title": "M21 · Lightning Web Component lifecycle",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=d75c016c0a8540d184d085e676c423a2"
+  },
+  {
+    "id": "M22",
+    "title": "M22 · Wire, imperative Apex, and refreshing data",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=7d02fae6e14b4817baadfa2371947c72"
+  },
+  {
+    "id": "M23",
+    "title": "M23 · DOM events and Lightning Message Service",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=78dbf5ced5ad42fbbc0306b2c96623b4"
+  },
+  {
+    "id": "M24",
+    "title": "M24 · Accessible LWC states and Jest tests",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=4ac5e2424e204ae28e62ebbbd2a3b783"
+  },
+  {
+    "id": "M25",
+    "title": "M25 · Shadow DOM and component boundaries",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=3bbd1a2ffe1c43799dd3fa4a183d5e5b"
+  },
+  {
+    "id": "M26",
+    "title": "M26 · Platform Events and publication timing",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f2653ac996ef42098335ebf6225de3de"
+  },
+  {
+    "id": "M27",
+    "title": "M27 · CDC, Replay, and Duplicate Delivery",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=26120b5f42a44137baa67d0b94308322"
+  },
+  {
+    "id": "M28",
+    "title": "M28 · Git Fetch, Merge, and Cherry-Pick",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=0c2e41309bee4374a815d695ec4552e1"
+  },
+  {
+    "id": "M29",
+    "title": "M29 · Pull Requests, CI, and Deployment",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=f21adbeffe43499b9632c8220519406d"
+  },
+  {
+    "id": "M30",
+    "title": "M30 · Verifying an application under failure",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=ac944d22628c4c34a27a0f08835cc76d"
+  },
+  {
+    "id": "M31",
+    "title": "M31 · Enhanced Omni-Channel routing",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=34bd509db84342339b2f8f44e468f908"
+  },
+  {
+    "id": "M32",
+    "title": "M32 · Agentforce tasks, actions, and evidence",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b5a1df8363e14f789cdf7442fb82881a"
+  },
+  {
+    "id": "M33",
+    "title": "M33 · Automotive Cloud data modeling",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=b57a71c8f0654f599db96cc28136e6b3"
+  },
+  {
+    "id": "M34",
+    "title": "M34 · Middle project review and technical defense",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=1a44b586a99647908b713519af7cfc01"
+  },
+  {
+    "id": "S01",
+    "title": "S01 · How a Salesforce Transaction Runs",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=67b590f9ee14401996d01fde2844ebad"
+  },
+  {
+    "id": "S02",
+    "title": "S02 · Turn a Complaint into a Performance Target",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=398331a7800c4f72a0e7d42ee072264e"
+  },
+  {
+    "id": "S03",
+    "title": "S03 · Trace Delay Across Browser, Apex, and Data",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=46ae614e3be54101905373d1411fb718"
+  },
+  {
+    "id": "S04",
+    "title": "S04 · Estimate Resources Before Scaling Traffic",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=7e1040bb14bb45c09f743cdaaf8bed03"
+  },
+  {
+    "id": "S05",
+    "title": "S05 · Choose an Optimization and Prove Its Value",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=aa512d8802344be1a6afa471716f8c79"
+  },
+  {
+    "id": "S06",
+    "title": "S06 · Read Query Plans and Data Selectivity",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=41b489e13e0441d683f7c750ec3d5d18"
+  },
+  {
+    "id": "S07",
+    "title": "S07 · Find Shared Records Behind Lock Contention",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=3bfe018b896549b3bc2a424d5cc02de6"
+  },
+  {
+    "id": "S08",
+    "title": "S08 · Load Data, Reconcile, and Replay Safely",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=58fb77907fb34684afd13cec7aa4013e"
+  },
+  {
+    "id": "S09",
+    "title": "S09 · Archive Data and Preserve Business History",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=1842980648704f5f97b143458c498154"
+  },
+  {
+    "id": "S10",
+    "title": "S10 · Design Record Access for a Dealer Network",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=219a66f02b03400e927b0d13b83a0ae2"
+  },
+  {
+    "id": "S11",
+    "title": "S11 · Remove Excess Access Safely",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=2115b41bd311477b8ba83e2d6765fe1a"
+  },
+  {
+    "id": "S12",
+    "title": "S12 · Plan a Deferred-Sharing Maintenance Window",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=0ce7758c1034483481e5501aad8df429"
+  },
+  {
+    "id": "S13",
+    "title": "S13 · Privileged Code and External-User Access",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=789c439d454b434d991f0e5c9dd196fd"
+  },
+  {
+    "id": "S14",
+    "title": "S14 · Choose System Boundaries and Data Ownership",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=c4e4da1bc1d34cffb895816850b22388"
+  },
+  {
+    "id": "S15",
+    "title": "S15 · Handle Duplicate and Out-of-Order Events",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=f923fd2bc50c4274b94722f76cf2763f"
+  },
+  {
+    "id": "S16",
+    "title": "S16 · Recover Without a Retry Storm",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=5b6bfc6987d247799b513abafb02e577"
+  },
+  {
+    "id": "S17",
+    "title": "S17 · Reconstruct an Incident from Evidence",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=9fee87d2888241f5b79f043258f7353b"
+  },
+  {
+    "id": "S18",
+    "title": "S18 · Refactor Legacy Automation in Small Steps",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=ca2bff578f844789abf9447f833bc8d6"
+  },
+  {
+    "id": "S19",
+    "title": "S19 · Test Integration Contracts at Boundaries",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=c4a772dd20b446c2838c67f2e56af2f2"
+  },
+  {
+    "id": "S20",
+    "title": "S20 · Stage Metadata and Data Releases",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=68ae95dbba0d4199b1c1eaf6b5492433"
+  },
+  {
+    "id": "S21",
+    "title": "S21 · Document Architecture Decisions and Risk",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=0d28c387d7ef49888befefc00f874b59"
+  },
+  {
+    "id": "S22",
+    "title": "S22 · Agentforce Actions, Access, and Failure",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=a2042c38a241441bb97cf194f4651fda"
+  },
+  {
+    "id": "S23",
+    "title": "S23 · Compare Salesforce, Automotive Cloud, DMS",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=b4eed2ae69414a25bfe053fdd7926d2c"
+  },
+  {
+    "id": "S24",
+    "title": "S24 · Run a Dealer-Network Design Interview",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=c251392e7dfe4eca8b6351ea1a7780f2"
+  },
+  {
+    "id": "S25",
+    "title": "S25 · Capstone: Improve Northstar with Evidence",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=b2f8db1b36c743f6a070daedd170eec9"
+  },
+  {
+    "id": "JR01",
+    "title": "JR01 · Choose a Role and Read Job Requirements",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=939d608ffbae47febf571fafe7ae6028"
+  },
+  {
+    "id": "JR02",
+    "title": "JR02 · Research and Verify Jobs with AI",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=5b7bfc4323cd46a7b0a9249b44eb5663"
+  },
+  {
+    "id": "JR03",
+    "title": "JR03 · Build a Repeatable Job Search Workflow",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=afd3e59631354b00b15aa63c655991d7"
+  },
+  {
+    "id": "JR04",
+    "title": "JR04 · Describe Your Experience with Evidence",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=0b1381ca2ebe463b9f5bb31b7c1a9171"
+  },
+  {
+    "id": "JR05",
+    "title": "JR05 · Write a Clear and Honest Salesforce CV",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=28231c6287124f4e9447e3975057395d"
+  },
+  {
+    "id": "JR06",
+    "title": "JR06 · Tailor Your CV to a Specific Role",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=55a02a13258e4e46bf879cf9bcfdd91f"
+  },
+  {
+    "id": "JR07",
+    "title": "JR07 · Prepare a Salesforce Portfolio for Review",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=b2c0899a90044fe1ab99a39ba4720a0b"
+  },
+  {
+    "id": "JR08",
+    "title": "JR08 · Practise a Technical Interview with AI",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=c0285d80abb5429eb411e43eee46f6ed"
+  },
+  {
+    "id": "JR09",
+    "title": "JR09 · Practise Live Coding and Code Review",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=239a94bc68ee404baedccd223c68f62b"
+  },
+  {
+    "id": "JR10",
+    "title": "JR10 · Explain Your Experience and Assess the Team",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=735dadda9dfb46daa04c204c01de3f17"
+  },
+  {
+    "id": "JR11",
+    "title": "JR11 · Use Interview Feedback to Plan Practice",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=b5e04ff2ba1746be8944b7b2019e78a8"
+  },
+  {
+    "id": "AF-L01",
+    "title": "AF-L01 · Project Overview and Prerequisites",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=1da52b26facc412887df7015f5c93797"
+  },
+  {
+    "id": "AF-01",
+    "title": "AF-01 · CRM and Test-Drive Booking",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=ab7f8e18b9a1421795fbcd6f65fe4f0a"
+  },
+  {
+    "id": "AF-02",
+    "title": "AF-02 · Set Up a Training Org",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=14f8a6cd9f8747198e1cf69ff4d49862"
+  },
+  {
+    "id": "AF-03",
+    "title": "AF-03 · Data, Permissions, and Apex Catalog",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=d51104ed2db44c53ae29f0618ef4b5b9"
+  },
+  {
+    "id": "AF-04",
+    "title": "AF-04 · Build the Booking Flow",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=aa596db9260040f68612cfe5a85a58a4"
+  },
+  {
+    "id": "AF-05",
+    "title": "AF-05 · Build the Support Case Flow",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=9f000ac96b16410d9288d63e2d49c1f3"
+  },
+  {
+    "id": "AF-06",
+    "title": "AF-06 · Build the Employee Agent",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=7adda0621e404191ac8782c92bfc0c7b"
+  },
+  {
+    "id": "AF-07",
+    "title": "AF-07 · Connect Actions and Confirm Writes",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=efeeba2aad94409aba33cdcc54f9f96e"
+  },
+  {
+    "id": "AF-08",
+    "title": "AF-08 · Test Behaviour and Access",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=08fc39deb98f4727b4e809332133b6d0"
+  },
+  {
+    "id": "AF-09",
+    "title": "AF-09 · Activate and Grant Employee Access",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=0d37e11c2c184db4b9fbfebb2ed79c71"
+  },
+  {
+    "id": "AF-10",
+    "title": "AF-10 · Demonstrate and Submit",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=270d81802e8d46429989ee4aa071454a"
+  },
+  {
+    "id": "AF-Check",
+    "title": "AF-Check · Contracts and Verification",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=fbb932ed20b74e00be19b500a9440833"
+  },
+  {
+    "id": "AF00",
+    "track": "agentforce",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=d81416d2f10c48fdabf13806a9d4fa0c"
+  },
+  {
+    "id": "J00",
+    "track": "junior",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=ec14b05ea2fc460287044b934d94a855"
+  },
+  {
+    "id": "M00",
+    "track": "middle",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/a07d8353?md=3e20b906fe9d4a26aaa904fc962044bc"
+  },
+  {
+    "id": "S00",
+    "track": "senior",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=99b112d9857047bda26e40db2b7aba1c"
+  },
+  {
+    "id": "JR00",
+    "track": "jobs",
+    "url": "https://www.skool.com/salesforce-automation-mastery-2005/classroom/c65db7d0?md=1504cf6d8174483f98d7db015981fdc0"
+  }
+]

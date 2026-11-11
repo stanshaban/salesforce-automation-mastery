@@ -9,7 +9,7 @@
       "blocks": [
         {
           "type": "action",
-          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=0d6b16cc9ab24232825cfadd39196af6. Подготовь только синтетические данные и исходное состояние упражнения. Покажи заголовок открытой учебной org и App Launcher. На схеме отдели org от приложения Sales и продукта Sales Cloud. Разложи пять запросов Northstar между salesperson, administrator и developer. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/5afe24f7?md=0d6b16cc9ab24232825cfadd39196af6. Подготовь только синтетические данные и исходное состояние упражнения. Покажи заголовок открытой учебной org и App Launcher. На схеме отдели org от приложения Sales и продукта Sales Cloud. Разложи пять запросов Northstar между salesperson, administrator и developer. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу. ГОТОВЫЕ ВСТАВКИ: https://sam-portal-production.up.railway.app/tutorials/app-launcher.jpg; https://sam-portal-production.up.railway.app/tutorials/setup-home.jpg. Анимацию используй как отдельное пояснение; UI показывай реальным снимком."
         },
         {
           "type": "action",

@@ -8,15 +8,21 @@ import json
 import math
 import pathlib
 import re
+import subprocess
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "instructor" / "recording"
 PUBLISH = ROOT.parent / "deliverables" / "skool-publication"
 OUT.mkdir(parents=True, exist_ok=True)
-MANIFEST = json.loads((PUBLISH / "skool-manifest.json").read_text())
+manifest_file = PUBLISH / "skool-manifest.json"
+if not manifest_file.exists():
+    manifest_file = OUT / "skool-pages.json"
+MANIFEST = json.loads(manifest_file.read_text())
 LINKS = {x["id"]: x for x in MANIFEST}
 if (PUBLISH / "intro-manifest.json").exists():
     LINKS.update({x["id"]: x for x in json.loads((PUBLISH / "intro-manifest.json").read_text())})
+MEDIA = json.loads((ROOT / "public/lesson-media.mjs").read_text().split(" = ", 1)[1].strip().removesuffix(";"))
 
 # Specific screen destinations and experiments, rather than a generic 'show lesson'.
 SHOTS = {
@@ -128,6 +134,10 @@ def action(text):
     return {"type": "action", "text": text.strip()}
 
 def save_script(id, title, scenes, track):
+    if id in MEDIA:
+        m = MEDIA[id]
+        assets = ([m['animation']['video']] if 'animation' in m else []) + [s['file'] for s in m.get('screenshots', [])]
+        scenes[0][1][0]['text'] += ' ГОТОВЫЕ ВСТАВКИ: ' + '; '.join('https://sam-portal-production.up.railway.app' + a for a in assets) + '. Анимацию используй как отдельное пояснение; UI показывай реальным снимком.'
     cues, start = [], 0
     for number, (label, blocks, work_seconds) in enumerate(scenes, 1):
         words = sum(len(b["text"].split()) for b in blocks if b["type"] == "speech")
@@ -274,6 +284,7 @@ for track in ids:
     overview_scenes.append(('Первое действие',[action('ЭКРАН. Покажи первый lesson link и правило self-check. Не открывай все уроки подряд.'),speech('Begin with the first lesson you have not yet completed. Keep a short record of your expected result, your actual result, and what you changed. Use the acceptance checks before moving on. If you already know a topic, demonstrate its practical result before skipping it.')],10))
     rows.append(save_script(id,title,overview_scenes,track))
 
+PUBLISH.mkdir(parents=True, exist_ok=True)
 (PUBLISH/'course-contents.json').write_text(json.dumps(course_data,ensure_ascii=False,indent=2)+'\n')
 (OUT/'index.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
 readme='''# Salesforce Automation Mastery — recording pack
@@ -294,4 +305,6 @@ CameraCue / CameraQ JSON version 2. One importable file per lesson, five content
 for row in rows:
     readme+=f'- [{row["id"]} · {row["title"]}]({row["file"].replace(" ","%20")}) — {row["words"]} spoken words, recording allowance {row["seconds"]//60}:{row["seconds"]%60:02}\n'
 (OUT/'README.md').write_text(readme)
+(OUT/'skool-pages.json').write_text(json.dumps(list(LINKS.values()),ensure_ascii=False,indent=2)+'\n')
+subprocess.run([sys.executable, str(ROOT/'scripts/build-recording-index.py')], check=True)
 print(f'Built {len(rows)} scripts, {sum(x["words"] for x in rows):,} spoken words; contents for five courses.')

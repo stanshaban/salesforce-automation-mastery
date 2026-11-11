@@ -9,7 +9,7 @@
       "blocks": [
         {
           "type": "action",
-          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=5b6bfc6987d247799b513abafb02e577. Подготовь только синтетические данные и исходное состояние упражнения. Покажи outage timeline и bounded retry queue. Увеличь число клиентов на схеме, затем jitter/backoff и circuit-open state. Сравни нагрузку и reconcile неизвестный исход. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу."
+          "text": "ДО ЗАПИСИ. Открой урок https://www.skool.com/salesforce-automation-mastery-2005/classroom/3509557f?md=5b6bfc6987d247799b513abafb02e577. Подготовь только синтетические данные и исходное состояние упражнения. Покажи outage timeline и bounded retry queue. Увеличь число клиентов на схеме, затем jitter/backoff и circuit-open state. Сравни нагрузку и reconcile неизвестный исход. Запиши финальный пример отдельным коротким проходом, затем верни исходное состояние. Если нужная функция недоступна, запиши объяснение схемы и явно назови эту границу. ГОТОВЫЕ ВСТАВКИ: https://sam-portal-production.up.railway.app/animations/retry.mp4. Анимацию используй как отдельное пояснение; UI показывай реальным снимком."
         },
         {
           "type": "action",

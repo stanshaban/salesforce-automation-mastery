@@ -9,7 +9,7 @@
       "blocks": [
         {
           "type": "action",
-          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=efeeba2aad94409aba33cdcc54f9f96e и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена."
+          "text": "ДО ЗАПИСИ. Открой https://www.skool.com/salesforce-automation-mastery-2005/classroom/eeba9845?md=efeeba2aad94409aba33cdcc54f9f96e и специальную Agentforce Employee training org. Проверь prerequisite предыдущей главы. Записывай фактический Builder и реальные synthetic records. При отсутствии функции запиши схему и явно скажи, что live проверка не выполнена. ГОТОВЫЕ ВСТАВКИ: https://sam-portal-production.up.railway.app/animations/agentforce.mp4. Анимацию используй как отдельное пояснение; UI показывай реальным снимком."
         },
         {
           "type": "speech",
